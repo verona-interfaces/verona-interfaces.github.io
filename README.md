@@ -26,7 +26,8 @@ beschrieben.
 Sämtliche Einführungstexte, erläuternde Dokumente und allgemeinen Diskussionen finden 
 sich in diesem Repository "verona-interfaces/introduction". Konkrete Schnittstellen 
 sind dann in separaten Repositorys geführt, z. B. "verona-interfaces/player". Als 
-Einstieg ist das Wiki gedacht. Hier finden Sie auch Verweise zu anderen Quellen.
+Einstieg ist das [Wiki](https://github.com/verona-interfaces/introduction/wiki) gedacht. 
+Hier finden Sie auch Verweise zu anderen Quellen.
 
 # <a name="english"></a>Introduction to Verona Interfaces
 The repositories located at /verona-interfaces consist of API specifications for 
