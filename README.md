@@ -1,43 +1,26 @@
 English version [see below](#english)
 
-# Einführung zu Verona Interfaces
-In Deutschland gibt es für internationale (z. B. PISA) und einheitliche nationale 
-Erhebungen (z. B. Bildungstrend) jeweils zentrale Einrichtungen oder Firmen zur 
-Durchführung. Da für die Bildungspolitik aber jedes Bundesland einzeln zuständig ist, 
-werden Kompetenzerhebungen oft in Länderregie durchgeführt. Entsprechend ist die 
-Vielfalt an Anforderungen an ein technisches System zum computerbasierten Testen.    
+In Deutschland werden viele Erhebungen des Bildungsmonitorings dezentral durchgeführt, d. h. jedes Bundesland folgt eigenen Traditionen und Prioritäten. Auch zentral auf Ebene der KMK abgestimmte Lernstandserhebungen (VERA) benutzen zwar gleiche Aufgaben und methodische Verfahren, technisch und organisatorisch laufen aber auch diese Erhebungen getrennt in den Ländern. Eine zentrale technische Lösung würde in Deutschland den heterogenen Anforderungen nicht gerecht werden können.
 
-Erhebungen zum Bildungsmonitoring erfordern nicht nur die eigentliche 
-Computeranwendung zur unmittelbaren Durchführung des Tests, sondern auch komplexe Portale 
-zur Vorbereitung (Eingabe der Daten der Testgruppen bzw. -personen, Festlegungen zum 
-Inhalt und Ablauf der Tests) und zur Auswertung (anschauliche Präsentation der 
-Ergebnisse, Anregungen zur Interpretation und zur Weiterarbeit). Die erhebliche Vielfalt 
-und Komplexität der Anwendungen führt dazu, dass es keine einheitliche Software geben 
-kann, die von allen genutzt wird. Statt dessen entwickeln die Länder gemeinsam eine 
-offene und schrittweise wachsende Landschaft von Software-Modulen, die über 
-wohldefinierte Schnittstellen durch alle Beteiligten genutzt werden können.
+Daraus resultieren sehr hohe Anforderungen an die Modularität und Interoperabilität von technischen Lösungen im computerbasierten Testen. Sämtliche Programmierungen müssen über wohldokumentierte Schnittstellen verfügen. Die Initiative "Verona" hat das Ziel, diese Schnittstellendefinitionen zu erarbeiten und zu pflegen. An dieser Stelle finden Sie Verweise auf den Arbeitsstand.
 
-Lernstandserhebungen in den Ländern gibt es papierbasiert seit 2003. Diese 
-Vergleichsarbeiten werden mit der Abkürzung VERA bezeichnet. Aus der Verbindung mit 
-"Online" wurde dann die Bezeichnung "Verona" für VERA Online. Die nötigen Schnittstellen 
-(engl. Interfaces) sind in diesem Dokumenten- bzw. Codeverwaltungssystem GitHub 
-beschrieben.
+## [Wiki](https://github.com/verona-interfaces/verona-interfaces.github.io/introduction/wiki)
 
-Sämtliche Einführungstexte, erläuternde Dokumente und allgemeinen Diskussionen finden 
-sich in diesem Repository "verona-interfaces/introduction". Konkrete Schnittstellen 
-sind dann in separaten Repositorys geführt, z. B. "verona-interfaces/player". Als 
-Einstieg ist das [Wiki](https://github.com/verona-interfaces/introduction/wiki) gedacht. 
-Hier finden Sie auch Verweise zu anderen Quellen.
+Bitte nutzen Sie das [Wiki](https://github.com/verona-interfaces/verona-interfaces.github.io/introduction/wiki) für eine Einführung in die Initiative und in die Schnittstellen. Sie finden dort auch Präsentationen und Videos. Hier ist alles in deutscher Sprache verfasst.
 
-# <a name="english"></a>Introduction to Verona Interfaces
-The repositories located at /verona-interfaces consist of API specifications for 
-assessment applications. In Germany, every state / Bundesland conducts assessments 
-in schools. These are separate applications with complex management overhead. In order
-to exchange some code modules and to be able to use the same tasks, we specify
-applications interfaces. For example, if one application implements the player interface, 
-it will be able to load and run player code. Every assessment unit requiring a verona 
-player can be loaded afterwards.   
+## Spezifikationen
+Folgende Spezifikationen liegen vor und werden in englischer Sprache gesondert in Repositorien geführt:
 
-Providing a number of documents and a wiki, this repository supports the understanding 
-of the basic concepts. Although the language of the api specification is English, we 
-document and discuss in German language.
+* [Player](https://github.com/verona-interfaces/player#readme): Die Komponente, die eine Aufgabe in einer Testanwendung abspielt.
+* [Editor](https://github.com/verona-interfaces/editor#readme): Die Komponente, mit der man Aufgaben entwirft.
+* [Schemer](https://github.com/verona-interfaces/schemer#readme): Die Komponente, mit der man die Kodieranweisungen für die Antwortverarbeitung festlegt.
+* [Metadaten](https://github.com/verona-interfaces/metadata#readme): Alle o. g. Komponenten enthalten Metadaten auf einheitliche Art, die hier beschrieben ist.
+
+# <a name="english"></a>Verona Interface Specifications
+The repositories located at /verona-interfaces consist of API specifications for assessment applications. In Germany, every state / Bundesland conducts assessments in schools and uses different technical solutions. In order to exchange assessment units or to share code modules, the data formats and interfaces need to be specified. The initiative 'Verona' works on these specifications.
+
+This is an early stage of this endeavour, we did some first steps. To support this process, we publish several documents as [Wiki](https://github.com/verona-interfaces/verona-interfaces.github.io/introduction/wiki) in German language. Here you find a general introduction and clarifying of terms etc.
+
+Besides, the specifications come in separate repositories in English language: [Player](https://github.com/verona-interfaces/player#readme), [Editor](https://github.com/verona-interfaces/editor#readme), [Schemer](https://github.com/verona-interfaces/schemer#readme) and [Metadata](https://github.com/verona-interfaces/metadata#readme).
+
+Contact: [Institute for Educational Quality Improvement](mailto:iqb-tbadev@hu-berlin.de).
