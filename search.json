@@ -1,0 +1,72 @@
+[
+  {
+    "objectID": "intro/index.html",
+    "href": "intro/index.html",
+    "title": "Verona Interfaces - Intro",
+    "section": "",
+    "text": "Verona Interfaces - Intro"
+  },
+  {
+    "objectID": "intro/tba.html",
+    "href": "intro/tba.html",
+    "title": "Verona Interfaces - Intro TBA",
+    "section": "",
+    "text": "Verona Interfaces - Intro TBA"
+  },
+  {
+    "objectID": "player/msg1_start.html",
+    "href": "player/msg1_start.html",
+    "title": "Verona Interfaces - Player",
+    "section": "",
+    "text": "Verona Interfaces - Player Message1 Start"
+  },
+  {
+    "objectID": "editor/index.html",
+    "href": "editor/index.html",
+    "title": "Verona Interfaces - Editor",
+    "section": "",
+    "text": "Verona Interfaces - Editor"
+  },
+  {
+    "objectID": "editor/uml.html",
+    "href": "editor/uml.html",
+    "title": "Verona Interfaces - Editor",
+    "section": "",
+    "text": "Verona Interfaces - Editor UML"
+  },
+  {
+    "objectID": "editor/msg1_start.html",
+    "href": "editor/msg1_start.html",
+    "title": "Verona Interfaces - Editor",
+    "section": "",
+    "text": "Verona Interfaces - Editor Message1 Start"
+  },
+  {
+    "objectID": "player/uml.html",
+    "href": "player/uml.html",
+    "title": "Verona Interfaces - Player",
+    "section": "",
+    "text": "Verona Interfaces - Player UML"
+  },
+  {
+    "objectID": "player/index.html",
+    "href": "player/index.html",
+    "title": "Verona Interfaces - Player",
+    "section": "",
+    "text": "Verona Interfaces - Player"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Verona Interfaces - Standards für computerbasiertes Testen",
+    "section": "",
+    "text": "English version\n\n\n\nYou find a short introduction in English language at the end of this page.\n\n\n\nWillkommen\nIn Deutschland werden viele Erhebungen des Bildungsmonitorings dezentral durchgeführt, d. h. jedes Bundesland folgt eigenen Traditionen und Prioritäten. Auch zentral auf Ebene der KMK abgestimmte Lernstandserhebungen (VERA) benutzen zwar gleiche Aufgaben und methodische Verfahren, technisch und organisatorisch laufen aber auch diese Erhebungen getrennt in den Ländern. Eine zentrale technische Lösung würde in Deutschland den heterogenen Anforderungen nicht gerecht werden können.\nDaraus resultieren sehr hohe Anforderungen an die Modularität und Interoperabilität von technischen Lösungen im computerbasierten Testen. Sämtliche Programmierungen müssen über wohldokumentierte Schnittstellen verfügen. Die Initiative “Verona” hat das Ziel, diese Schnittstellendefinitionen zu erarbeiten und zu pflegen. An dieser Stelle finden Sie Verweise auf die Spezifikationen, aber vor allem ausführliche Erläuterungen für deren Nutzung (im Aufbau).\n\n\nSpezifikationen - Übersicht\nFolgende Spezifikationen liegen vor und werden in englischer Sprache gesondert in Repositorien geführt:\n\n\n\nModul\nBeschreibung\nDirekte Links\n\n\n\n\nPlayer\nKomponente, die eine Aufgabe in einer Testanwendung abspielt\nSpezifikation (Html), Modell (UML)\n\n\nEditor\nKomponente, mit der man Aufgaben gestaltet\nSpezifikation (Html)\n\n\nSchemer\nKomponente, mit der man die Kodieranweisungen für die Antwortverarbeitung festlegt\nSpezifikation (Html)\n\n\nMetadaten\nAlle o. g. Komponenten enthalten Metadaten auf einheitliche Art, die hier beschrieben ist.\nSchema Editor\n\n\n\n\n\nRedaktion\nDie vorliegenden Texte werden unter Federführung des Instituts zur Qualitätsentwicklung im Bildungswesen veröffentlicht. Autor*innen sind ggf. entweder im Kopf eines Dokumentes genannt oder zu Beginn eines größeren Seitenzweiges.\n\n\nLizenz\nAlle Texte sind unter der Lizenz CC0 veröffentlicht. Die Leitlinien zur Sicherung guter wissenschaftlicher Praxis (s. z. B. DFG-pdf) gebieten gleichwohl, dass die Quellen von Informationen genannt werden sollten.\n\n\nHaftungsausschluss\nAuf diesen Webseiten sind Links auf externe Webseiten in besonderer Weise gekennzeichnet (s. oben der Link zum IQB). Wir prüfen diese Quellen regelmäßig, können aber für diese Seiten und die dort hinterlegten Zusatzmaterialien keine Haftung für Richtigkeit, Vollständigkeit und Aktualität übernehmen. Dafür sind ausschließlich deren Betreiber verantwortlich.\n\n\nTechnische Realisierung\nDieser Webauftritt basiert auf Texten in einer einfachen Syntax Markdown, die anschließend in Html und CSS umgesetzt werden. Hierzu wird Quarto verwendet. Sämtliche Dateien für den Inhalt und die Steuerung sind in einem öffentlich zugänglichen Codeverwaltungssystem gespeichert. Eine Anleitung für Änderungen an den Inhalten finden Sie z. B. hier.\n\n\nKontakt\nWenn Sie Inhalte beitragen oder Probleme melden möchten, können Sie die Funktion “Problem melden” nutzen, die rechts auf jeder Seite zu finden ist. Sie werden dann zu GitHub weitergeleitet. Es ist ein Account bei GitHub erforderlich.\nAnsonsten kontakten Sie bitte die IT des IQB.\n\n\nEnglish: Verona Interface Specifications\nThe repositories located at /verona-interfaces consist of API specifications for assessment applications. In Germany, every state / Bundesland conducts assessments in schools and uses different technical solutions. In order to exchange assessment units or to share code modules, the data formats and interfaces need to be specified. The initiative ‘Verona’ works on these specifications.\nThis is an early stage of this endeavour, we did some first steps. To support this process, we publish this documentation in German language. Here you find a general introduction and clarifying of terms etc.\nBesides, the specifications come in separate repositories in English language: Player, Editor, Schemer and Metadata.\nContact: Institute for Educational Quality Improvement."
+  },
+  {
+    "objectID": "intro/architecture.html",
+    "href": "intro/architecture.html",
+    "title": "Verona Interfaces - Intro Architektur",
+    "section": "",
+    "text": "Verona Interfaces - Intro Architektur"
+  }
+]

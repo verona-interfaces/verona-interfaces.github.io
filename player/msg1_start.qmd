@@ -1,6 +1,0 @@
----
-lang: de
-title: Verona Interfaces - Player
----
-
-Verona Interfaces - Player Message1 Start

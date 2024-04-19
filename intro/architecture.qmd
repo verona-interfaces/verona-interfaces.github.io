@@ -1,6 +1,0 @@
----
-lang: de
-title: Verona Interfaces - Intro Architektur
----
-
-Verona Interfaces - Intro Architektur
