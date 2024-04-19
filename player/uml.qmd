@@ -1,0 +1,6 @@
+---
+lang: de
+title: Verona Interfaces - Player
+---
+
+Verona Interfaces - Player UML

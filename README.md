@@ -1,3 +1,5 @@
+[![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/)
+
 English version [see below](#english)
 
 In Deutschland werden viele Erhebungen des Bildungsmonitorings dezentral durchgeführt, d. h. jedes Bundesland folgt eigenen Traditionen und Prioritäten. Auch zentral auf Ebene der KMK abgestimmte Lernstandserhebungen (VERA) benutzen zwar gleiche Aufgaben und methodische Verfahren, technisch und organisatorisch laufen aber auch diese Erhebungen getrennt in den Ländern. Eine zentrale technische Lösung würde in Deutschland den heterogenen Anforderungen nicht gerecht werden können.

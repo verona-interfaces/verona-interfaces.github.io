@@ -1,0 +1,9 @@
+/* css styles */
+h1 {
+    font-weight: lighter;
+}
+
+h1.title {
+    font-weight: bold;
+    color: #367ec4
+}
