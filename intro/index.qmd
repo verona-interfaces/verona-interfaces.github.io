@@ -1,6 +1,13 @@
 ---
 lang: de
-title: Verona Interfaces - Intro
+title: Verona Interfaces - Einführung
 ---
 
-Verona Interfaces - Intro
+Es geht auf den Seiten dieser Dokumentation um große Vergleichsstudien oder Befragungen im Rahmen des nationalen Bildungsmonitorings. Hierfür ist der Begriff "Large Scale Assessments" etabliert. Die hohe Anzahl der Testpersonen soll ein datenbasiertes wissenschaftliches Monitoring des Bildungssystems ermöglichen, also Zusammenhänge sichtbar machen zwischen den Einflussfaktoren und dem Erreichen von Bildungszielen. Eine Vergleichsstudie ist in hohem Maße standardisiert und wird in einem engen Zeitfenster synchron durchgeführt.
+
+Der Fokus liegt also nicht auf der Einzelperson - der Schülerin oder des Schülers -, sondern auf Gruppen von Personen - Klassen, Schulen, Bezirke, Länder. Die Erkenntnisse aus den aufwändigen Testungen sollen aber nicht nur der obersten Steuerungsebene zufließen, sondern es ist an vielen Stellen eine Auswertung der Analyseergebnisse durch die Lehrkraft vorgesehen. Diese sogenannten Rückmeldungen ermöglichen durch den hohen Grad der Standardisierung eine Verortung der Leistungen der Klasse im Land und auch länderübergreifend.
+
+**Lesen Sie weiter**
+
+* [Computerbasiertes Testen](tba.qmd): Modellierung der Datenflüsse für computerbasierte Vergleichsstudien und institutionelle Szenarien
+* [Architektur](architecture.qmd): Die Schnittstellen dieser Dokumentation folgen einem einheiltichen technischen Muster

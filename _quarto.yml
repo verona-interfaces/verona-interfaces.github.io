@@ -22,6 +22,20 @@ website:
       - href: index.qmd
         text: Start
 
+  sidebar: 
+    style: "docked"
+    lang: de
+    contents:
+      - href: index.qmd
+        text: Start
+      - section: "Einführung"
+        href: intro/index.qmd
+        contents:
+          - section: "Computerbasiertes Testen"
+            href: intro/tba.qmd
+          - section: "Architektur"
+            href: intro/architecture.qmd
+
 format:
   html:
     theme: cosmo
