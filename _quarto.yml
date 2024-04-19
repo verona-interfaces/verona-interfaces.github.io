@@ -21,35 +21,7 @@ website:
     left:
       - href: index.qmd
         text: Start
-  sidebar: 
-    style: docked
-    lang: de
-    collapse-level: 1
-    contents:
-      - href: index.qmd
-        text: Start
-      - section: "Einführung"
-        href: intro/index.qmd
-        contents:
-          - href: intro/tba.qmd
-            text: Computerbasiertes Testen
-          - href: intro/architecture.qmd
-            text: Architektur
-      - section: Player
-        href: player/index.qmd
-        contents:
-          - href: player/uml.qmd
-            text: Nachrichten-Schema
-          - href: player/msg1_start.qmd
-            text: Start-Kommando
-      - section: Editor
-        href: editor/index.qmd
-        contents:
-          - href: editor/uml.qmd
-            text: Nachrichten-Schema
-          - href: editor/msg1_start.qmd
-            text: Start-Kommando
-          
+
 format:
   html:
     theme: cosmo
