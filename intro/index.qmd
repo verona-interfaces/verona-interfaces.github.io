@@ -1,19 +1,24 @@
 ---
 lang: de
 title: Verona Interfaces - Einführung
+format:
+  html:
+    toc: false
 ---
 
 Es geht auf den Seiten dieser Dokumentation um große Vergleichsstudien oder Befragungen im Rahmen des nationalen Bildungsmonitorings. Hierfür ist der Begriff "Large Scale Assessments" etabliert. Die hohe Anzahl der Testpersonen soll ein datenbasiertes wissenschaftliches Monitoring des Bildungssystems ermöglichen, also Zusammenhänge sichtbar machen zwischen den Einflussfaktoren und dem Erreichen von Bildungszielen. Eine Vergleichsstudie ist in hohem Maße standardisiert und wird in einem engen Zeitfenster synchron durchgeführt.
 
 Der Fokus liegt also nicht auf der Einzelperson - der Schülerin oder des Schülers -, sondern auf Gruppen von Personen - Klassen, Schulen, Bezirke, Länder. Die Erkenntnisse aus den aufwändigen Testungen sollen aber nicht nur der obersten Steuerungsebene zufließen, sondern es ist an vielen Stellen eine Auswertung der Analyseergebnisse durch die Lehrkraft vorgesehen. Diese sogenannten Rückmeldungen ermöglichen durch den hohen Grad der Standardisierung eine Verortung der Leistungen der Klasse im Land und auch länderübergreifend.
 
-**Lesen Sie weiter**
+## Lesen Sie weiter
 
 * [Computerbasiertes Testen](tba.qmd): Modellierung der Datenflüsse für computerbasierte Vergleichsstudien und institutionelle Szenarien
 * [Architektur](architecture.qmd): Die Schnittstellen dieser Dokumentation folgen einem einheitlichen technischen Muster
 
-**Name und Logo**
+## Name und Logo
 
 Eine der großen Lernstandserhebungen in Deutschland ist unter dem Namen *VERA* bekannt (VERgleichsArbeiten), und aus der Kombination mit *Online* ist dann die Bezeichnung *Verona* entstanden. Das Logo[^1] stellt eine Leiter dar - italienisch "la scala". Skalieren ist ein wichtiger methodischer Schritt bei der Auswertung der Antworten, und die Scaliger (Scaligeri, della Scala, deutsch oft auch Skaliger, historisch auch Herren von der Leiter) waren Herren der italienischen Stadt Verona von 1262 bis 1387. Die unterschiedlichen Einfärbungen zwischen den Sprossen stehen für verschiedene Endgeräte.
+
+![](../logo_verona_small.png)
 
 [^1]: credits to [HoffmannP](https://github.com/HoffmannP) 2019

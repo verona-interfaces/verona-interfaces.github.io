@@ -1,9 +1,33 @@
 ---
 lang: de
-title: Verona Interfaces - Intro TBA
+title: Computerbasiertes Testen
 ---
 
-{{< fa thumbs-up >}} 
+# Begriffe
+
+## Test oder Befragung?
+
+Die folgenden Ausführungen beziehen sich stets auch auf Befragungen. Die Anforderungen an Befragungen sind ähnlich, aber meist einfacher umzusetzen. Es gibt beispielsweise keine Kodierung in "Richtig" oder "Falsch".
+
+Dass Befragungen hier auch technisch mit abgedeckt werden (können) liegt daran, dass große Studien zur Erfassung von Kompetenzen stets auch Befragungen mit einschließen. Auf diesem Weg ist es möglich, Einflussfaktoren über Personenmerkmale zu erheben.
+
+## Computerbasiert vs. Technologiebasiert
+
+Das Durchführungsszenario sieht bei der Testperson ein Endgerät vor, das dem Begriff des "Computers" entspricht. Es sind also Desktop-Geräte, Laptops, Notebooks und teilweise auch Smartphones im Einsatz.
+
+Der Begriff "technologiebasiert" möchte betonen, dass es nicht unbedingt eines Computers bedarf, um digital Antworten zu erfassen. Prominentes Beispiel wäre ein Stift, der auf Spezialpapier Geschriebenes erkennt und in einen Speicher ablegt für spätere Auswertungen.
+
+Letztlich sind diese Unterscheidungen hier nicht relevant und werden daher synonym verwendet. Man könnte auch eAssessment, digitales Testen usw. verwenden.
+
+# Ablaufschema
+
+Die untere Darstellung gilt prinzipiell auch für papierbasierte Testungen. Bei einer computergestützten Durchführung bildet jedoch das Schema einen wichtigen Startpunkt für die Modellierung der Prozesse und Daten.
+
+Als Voraussetzung für eine Testung müssen vorhanden sein:
+
+* {{< fa table-list >}} Testaufgaben: Fragen bzw. Instruktionen an die Testperson, bestimmte Eingaben zu tätigen oder allgemein in Interaktion mit dem System zu treten
+* {{< fa file-lines >}} Testablauf: Vorschrift, in welcher Reihenfolge die Aufgaben präsentiert werden sollen (analog Testheft)
+* {{< fa users >}} Testpersonen: Eine Liste von Personen, die den Test durchführen sollen und auch die Festlegung, welche Variante eines Testablaufes für welche Person aktiviert wird
 
 ```{mermaid}
 flowchart TD
@@ -29,3 +53,11 @@ flowchart TD
     D -->E[fa:fa-book-open Bericht/Rückmeldung]
     style E fill:white
 ```
+
+Die {{< fa computer >}} Testdurchführung produziert Antwort- und Logdaten. Die Unterscheidung steht allgemein dafür, dass neben den Daten, die die Person bewusst erzeugt, auch weitere vom System generierte Informationen anfallen. Beispielsweise kann für die Auswertung die Zeit eine Rolle spielen, die die Testperson für die Beantwortung gebraucht hat.
+
+Eine {{< fa circle-check >}}{{< fa circle-xmark >}} Kodierung der Testdaten ist erforderlich, um die Antworten bestimmten Kategorien zuzuordnen. Meist können Antworten nicht direkt in Analysen verwendet werden. Beispielsweise erzeugt eine Textmarkierung ein komplexes Datenobjekt, aber für die Auswertung ist nur wichtig, ob die Markierung ungefähr den Erwartungen entspricht.
+
+Kodierungen können manuell am Bildschirm erfolgen. Aufgrund der Kosten strebt man einen hohen Anteil automatisch kodierbarer Antworten in einer Testung an. Die gepunktete Linie zeigt an, dass die Informationen für die Kodierung (sog. Kodierschema) Teil der Aufgabendaten sind und bereits bei der Aufgabenentwicklung ausgiebig diskutiert und erprobt werden müssen.
+
+Die {{< fa user-graduate >}} Analyse der kodierten Daten bezieht bei Studien des Bildungsmonitoring stets Daten aus diversen anderen Quellen ein. Dies können Informationen aus anderen vergleichbaren Studien sein (andere Testgruppen, andere Jahre) oder zusätzliche Daten, die für die Interpretation nützlich sind (sozio-demografische Angaben, Klassifizierung der Schule usw.).
