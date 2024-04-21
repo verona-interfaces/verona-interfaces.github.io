@@ -10,7 +10,7 @@ Der Fokus liegt also nicht auf der Einzelperson - der Schülerin oder des Schül
 **Lesen Sie weiter**
 
 * [Computerbasiertes Testen](tba.qmd): Modellierung der Datenflüsse für computerbasierte Vergleichsstudien und institutionelle Szenarien
-* [Architektur](architecture.qmd): Die Schnittstellen dieser Dokumentation folgen einem einheiltichen technischen Muster
+* [Architektur](architecture.qmd): Die Schnittstellen dieser Dokumentation folgen einem einheitlichen technischen Muster
 
 **Name und Logo**
 
