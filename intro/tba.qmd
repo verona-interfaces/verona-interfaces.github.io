@@ -3,4 +3,25 @@ lang: de
 title: Verona Interfaces - Intro TBA
 ---
 
-Verona Interfaces - Intro TBA
+```{mermaid}
+flowchart TD
+    H[fa:fa-table-list Testaufgaben] --> B
+    style H fill:white
+    G[fa:fa-file-lines Testablauf] --> B
+    style G fill:white
+    A[fa:fa-users Testpersonen] --> B(fa:fa-computer Testdurchführung)
+    style A fill:white
+    style B fill:#cdf
+    B --> K[Antworten]
+    style K fill:white
+    B --> J[Logdaten]
+    style J fill:white
+    H -.-> C(fa:fa-circle-check fa:fa-circle-xmark Kodierung)
+    style C fill:#cdf
+    K --> C
+    J --> C
+    C -->D(fa:fa-user-graduate Analyse)
+    style D fill:#cdf
+    D -->E[fa:fa-book-open Rückmeldung]
+    style E fill:white
+```
