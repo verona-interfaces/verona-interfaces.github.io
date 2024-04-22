@@ -15,7 +15,7 @@ Dass Befragungen hier auch technisch mit abgedeckt werden (können) liegt daran,
 
 Das Durchführungsszenario sieht bei der Testperson ein Endgerät vor, das dem Begriff des "Computers" entspricht. Es sind also Desktop-Geräte, Laptops, Notebooks und teilweise auch Smartphones im Einsatz.
 
-Der Begriff "technologiebasiert" möchte betonen, dass es nicht unbedingt eines Computers bedarf, um digital Antworten zu erfassen. Prominentes Beispiel wäre ein Stift, der auf Spezialpapier Geschriebenes erkennt und in einen Speicher ablegt für spätere Auswertungen.
+Der Begriff "technologiebasiert" möchte betonen, dass es nicht unbedingt eines Computers bedarf, um digital Antworten zu erfassen. Prominentes Beispiel wäre ein Stift, der auf Spezialpapier Geschriebenes erkennt und in einen Speicher ablegt für spätere Auswertungen. Diese Überlegungen führten zum Begriff TBA - "Technologiebasiertes Assessment" oder "Technology Based Assessment", wobei Technologie hier eher als Technik verstanden wird (Papierverfahren sind eigentlich auch Technologien).
 
 Letztlich sind diese Unterscheidungen hier nicht relevant und werden daher synonym verwendet. Man könnte auch eAssessment, digitales Testen usw. verwenden.
 
@@ -50,7 +50,7 @@ flowchart TD
     style D fill:#cdf
     L(Vergleichsdaten) --> D
     style L fill:white
-    D -->E[fa:fa-book-open Bericht/Rückmeldung]
+    D -->E[Bericht/Rückmeldung]
     style E fill:white
 ```
 
@@ -61,3 +61,55 @@ Eine {{< fa circle-check >}}{{< fa circle-xmark >}} Kodierung der Testdaten ist 
 Kodierungen können manuell am Bildschirm erfolgen. Aufgrund der Kosten strebt man einen hohen Anteil automatisch kodierbarer Antworten in einer Testung an. Die gepunktete Linie zeigt an, dass die Informationen für die Kodierung (sog. Kodierschema) Teil der Aufgabendaten sind und bereits bei der Aufgabenentwicklung ausgiebig diskutiert und erprobt werden müssen.
 
 Die {{< fa user-graduate >}} Analyse der kodierten Daten bezieht bei Studien des Bildungsmonitoring stets Daten aus diversen anderen Quellen ein. Dies können Informationen aus anderen vergleichbaren Studien sein (andere Testgruppen, andere Jahre) oder zusätzliche Daten, die für die Interpretation nützlich sind (sozio-demografische Angaben, Klassifizierung der Schule usw.).
+
+# Institutionelle Szenarien - Wer macht was?
+
+## Aufgabenentwicklung
+
+Die Testaufgaben für die Durchführung der [Bildungstrendstudien](https://www.iqb.hu-berlin.de/bt/) und für die [Vergleichsarbeiten](https://www.iqb.hu-berlin.de/vera/) der Länder (VERA; s. [KMK](https://www.kmk.org/themen/qualitaetssicherung-in-schulen/bildungsmonitoring/)) werden am IQB entwickelt. Es erfolgt in jedem Fall eine empirische Erprobung einer jeden Aufgabe (sog. Pilotierung). Für die Aufgaben werden auch die Vorschriften für die Kodierung entwickelt.
+
+## Bildungstrend - länderübergreifend
+
+Die Studien des Bildungstrends in den Jahrgängen 4 und 9 werden online auf Servern durchgeführt, die das IQB bereitstellt. Ein auf die Durchführung großer Bildungsstudien spezialisierter Auftragnehmer (nachfolgend "AN Durchführung") bereitet die Testung vor und begleitet die Durchführung in den Schulen vor Ort mit Testleiterinnen und Testleitern. Hier erfolgt auch die Kodierung der Antworten, und das IQB bekommt einen umfassenden Datensatz sowie begleitende Dokumentation.
+
+```{mermaid}
+sequenceDiagram
+    participant IQB
+    participant AN as AN Durchführung
+    Actor Schule
+    IQB->>AN: Nennung Schulen
+    AN->>Schule: System-Check
+    Schule->>AN: Meldung Testpersonen
+    IQB->>AN: Aufgaben
+    AN->>Schule: Logins
+    note right of Schule: Testdurchführung
+    Schule->>AN: Antworten+Logs roh
+    AN->>IQB: Ergebnisse kodiert
+    note left of IQB: Auswertung/Bericht
+```
+
+## VERA - in jedem Land separat
+
+Die jährlichen Vergleichsarbeiten in den Jahrgängen 3 und 8 führt ein Land in eigener Regie durch. Das IQB liefert Aufgaben einschl. Kodierschema sowie Vorschläge für den Testablauf (Testmodule, Testhefte). Im Schema unten ist der häufige Fall dargestellt, dass das Land eine Einrichtung (z. B. ein universitäres Projekt) mit der Durchführung beauftragt.
+
+```{mermaid}
+sequenceDiagram
+    participant IQB
+    participant Land
+    participant DE as Durchführende Einrichtung
+    Actor Schule
+    IQB->>Land: Aufgaben
+    Land->>DE: Nennung Schulen
+    DE->>Schule: System-Check
+    Schule->>DE: Meldung Testpersonen
+    Land->>DE: Aufgaben
+    DE->>Schule: Logins
+    note right of Schule: Testdurchführung
+    note right of Schule: Kodierung
+    Schule->>DE: Antworten kodiert
+    note left of DE: Auswertung
+    DE->>Schule: Rückmeldung
+    DE->>Land: Rückmeldung
+```
+
+Die Antworten werden in diesem Szenario durch die Lehrkräfte kodiert. Nach der Auswertung durch die durchführende Einrichtung meldet diese in die Schulen und dem Auftraggeber die Ergebnisse, um die Unterrichtsentwicklung zu fördern sowie eine Evaluation auf Systemebene zu ermöglichen.
