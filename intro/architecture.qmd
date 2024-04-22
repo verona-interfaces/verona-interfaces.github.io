@@ -1,6 +1,38 @@
 ---
 lang: de
-title: Verona Interfaces - Intro Architektur
+title: Architektur
 ---
 
-Verona Interfaces - Intro Architektur
+# Verona-Module als Plug-in
+
+Um für VERA die Länder bzw. die durchführenden Einrichtungen in die Lage zu versetzen, Aufgaben des IQB direkt einzusetzen, hat das IQB Komponenten für Webanwendungen entwickelt, die sich gut in vorhandene Webanwendungen einfügen lassen. Durch eine einfache standardisierte Schnittstelle wird diese Komponente in einen Bildschirmbereich geladen und kann anschließend die Aufgabe darstellen. Das Plug-in "Player" beispielsweise präsentiert alle Inhalte auf eine bei der Aufgabenentwicklung festgelegte Art und Weise (z. B. zeitverzögertes Audio, automatische Navigation, Textmarkierung, Aus- und Einblenden von Formular-Elementen je nach Stand der Beantwortung usw.).
+
+```{mermaid}
+flowchart BT
+    subgraph Testsystem
+        TC[Testablaufsteuerung]-->|Aufgabendefinition| P[Player]
+        P-->|Antworten| TC
+    end
+    DB[(Datenbank)]<--> TC
+```
+
+Während einer Testung können Player-Module nach Bedarf ausgetauscht werden. Aus diesem Plug-in-Modell ergibt sich eine hohe Flexibilität für das Testsystem: Neue Funktionen der Interaktion führen nur zum Laden einer neuen Player-Version - das Testsystem bleibt unverändert. Weitere Vorteile:
+
+* Ältere Player können alte Aufgaben lange abspielen - solange die Schnittstelle des Plug-ins unterstützt wird
+* Player für besondere Anwendungsfälle (z. B. Lesegeschwindigkeitstest, Physik-Experimente) werden nur einmal programmiert und dann allen Interessierten zur Verfügung gestellt
+
+Wir nennen die Webanwendung, die das Plug-in lädt, **"Host"**.
+
+# Technische Umsetzung
+
+Es handelt sich bei den Verona-Modulen um Code für das Frontend. Das Plug-in beansprucht einen rechteckigen Bereich des Bildschirmes und führt darin JavaScript aus. Um die Nebenwirkungen für den Host so gering wie möglich zu halten, ist das Modul technisch eine eigene Html-Seite, die in ein `iframe`-Element geladen wird. Die Kommunikation zwischen Host und Modul erfolgt asynchron über `postMessage()`.
+
+# Konventionen
+
+Für alle Module gelten folgende Grundsätze:
+
+* Das Modul muss in einer einzigen Datei zusammengefasst sein. Der Build-Prozess muss also alle sonst separat vorliegenden Komponenten einer Html-Seite (Styles, Code, Schriften usw.) zusammenbinden.
+* Außer über `postMessage()` darf das Modul keinen weiteren Kontakt mit der Außenwelt pflegen. Es gibt hier nur eine Ausnahme für den Player, dem ein Nachladen von Code vom Host-Server gestattet ist, wenn dies nicht anders lösbar scheint (z. B. GeoGebra). Jedweder direkter Zugriff auf Ressourcen des Hosts ist nicht gestattet.
+* Das Modul muss Metadaten enthalten in einem JSON-LD-Format (z. B. Version, Maintainer usw., s. u.).
+
+# Metadaten
