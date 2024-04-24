@@ -35,6 +35,8 @@ website:
             href: intro/tba.qmd
           - section: "Architektur"
             href: intro/architecture.qmd
+          - section: "Metadaten"
+            href: intro/metadata.qmd
 
 format:
   html:
