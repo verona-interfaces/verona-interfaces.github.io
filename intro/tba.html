@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Verona-Interfaces - Verona Interfaces - Intro TBA</title>
+<title>Verona-Interfaces - Computerbasiertes Testen</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -29,6 +29,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../intro/architecture.html" rel="next">
+<link href="../intro/index.html" rel="prev">
 <link href="../favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -39,6 +41,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -66,12 +70,15 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Suchen"
   }
 }</script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -90,20 +97,83 @@ ul.task-list li input[type="checkbox"] {
           <div id="quarto-search" class="" title="Suchen"></div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro/index.html">Einführung</a></li><li class="breadcrumb-item"><a href="../intro/tba.html">Computerbasiertes Testen</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Start</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../intro/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Einführung</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Computerbasiertes Testen</span></span>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Architektur</span></span>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Metadaten</span></span>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Auf dieser Seite</h2>
+   
+  <ul>
+  <li><a href="#begriffe" id="toc-begriffe" class="nav-link active" data-scroll-target="#begriffe">Begriffe</a>
+  <ul class="collapse">
+  <li><a href="#test-oder-befragung" id="toc-test-oder-befragung" class="nav-link" data-scroll-target="#test-oder-befragung">Test oder Befragung?</a></li>
+  <li><a href="#computerbasiert-vs.-technologiebasiert" id="toc-computerbasiert-vs.-technologiebasiert" class="nav-link" data-scroll-target="#computerbasiert-vs.-technologiebasiert">Computerbasiert vs.&nbsp;technologiebasiert</a></li>
+  </ul></li>
+  <li><a href="#ablaufschema" id="toc-ablaufschema" class="nav-link" data-scroll-target="#ablaufschema">Ablaufschema</a></li>
+  <li><a href="#institutionelle-szenarien---wer-macht-was" id="toc-institutionelle-szenarien---wer-macht-was" class="nav-link" data-scroll-target="#institutionelle-szenarien---wer-macht-was">Institutionelle Szenarien - Wer macht was?</a>
+  <ul class="collapse">
+  <li><a href="#aufgabenentwicklung" id="toc-aufgabenentwicklung" class="nav-link" data-scroll-target="#aufgabenentwicklung">Aufgabenentwicklung</a></li>
+  <li><a href="#bildungstrend---länderübergreifend" id="toc-bildungstrend---länderübergreifend" class="nav-link" data-scroll-target="#bildungstrend---länderübergreifend">Bildungstrend - länderübergreifend</a></li>
+  <li><a href="#vera---in-jedem-land-separat" id="toc-vera---in-jedem-land-separat" class="nav-link" data-scroll-target="#vera---in-jedem-land-separat">VERA - in jedem Land separat</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/verona-interfaces/verona-interfaces.github.io/issues/new" class="toc-action"><i class="bi bi-github"></i>Problem melden</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro/index.html">Einführung</a></li><li class="breadcrumb-item"><a href="../intro/tba.html">Computerbasiertes Testen</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Verona Interfaces - Intro TBA</h1>
+<h1 class="title">Computerbasiertes Testen</h1>
 </div>
 
 
@@ -120,9 +190,137 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Verona Interfaces - Intro TBA</p>
+<section id="begriffe" class="level1">
+<h1>Begriffe</h1>
+<section id="test-oder-befragung" class="level2">
+<h2 class="anchored" data-anchor-id="test-oder-befragung">Test oder Befragung?</h2>
+<p>Die folgenden Ausführungen beziehen sich stets auch auf Befragungen. Die Anforderungen an Befragungen sind ähnlich, aber meist einfacher umzusetzen. Es gibt beispielsweise keine Kodierung in “Richtig” oder “Falsch”.</p>
+<p>Dass Befragungen hier auch technisch mit abgedeckt werden (können) liegt daran, dass große Studien zur Erfassung von Kompetenzen stets auch Befragungen mit einschließen. Auf diesem Weg ist es möglich, Einflussfaktoren über Personenmerkmale zu erheben.</p>
+</section>
+<section id="computerbasiert-vs.-technologiebasiert" class="level2">
+<h2 class="anchored" data-anchor-id="computerbasiert-vs.-technologiebasiert">Computerbasiert vs.&nbsp;technologiebasiert</h2>
+<p>Das Durchführungsszenario sieht bei der Testperson ein Endgerät vor, das dem Begriff des “Computers” entspricht. Es sind also Desktop-Geräte, Laptops, Notebooks und teilweise auch Smartphones im Einsatz.</p>
+<p>Der Begriff “technologiebasiert” möchte betonen, dass es nicht unbedingt eines Computers bedarf, um digital Antworten zu erfassen. Prominentes Beispiel wäre ein Stift, der auf Spezialpapier Geschriebenes erkennt (scannen in Echtzeit) und in einen Speicher ablegt für spätere Auswertungen. Diese Überlegungen führten zum Begriff TBA - “Technologiebasiertes Assessment” oder “Technology Based Assessment”, wobei Technologie hier eher als Technik verstanden wird (Papierverfahren sind eigentlich auch Technologien).</p>
+<p>Letztlich sind diese Unterscheidungen hier nicht relevant und werden daher synonym verwendet. Man könnte auch eAssessment, digitales Testen usw. verwenden.</p>
+</section>
+</section>
+<section id="ablaufschema" class="level1">
+<h1>Ablaufschema</h1>
+<p>Die untere Darstellung gilt prinzipiell auch für papierbasierte Testungen. Bei einer computergestützten Durchführung bildet jedoch das Schema einen wichtigen Startpunkt für die Modellierung der Prozesse und Daten.</p>
+<p>Als Voraussetzung für eine Testung müssen vorhanden sein:</p>
+<ul>
+<li><i class="fa-solid fa-table-list" aria-label="table-list"></i> Testaufgaben: Fragen bzw. Instruktionen an die Testperson, bestimmte Eingaben zu tätigen oder allgemein in Interaktion mit dem System zu treten</li>
+<li><i class="fa-solid fa-file-lines" aria-label="file-lines"></i> Testablauf: Vorschrift, in welcher Reihenfolge die Aufgaben präsentiert werden sollen (analog Testheft)</li>
+<li><i class="fa-solid fa-users" aria-label="users"></i> Testpersonen: Eine Liste von Personen, die den Test durchführen sollen und auch die Festlegung, welche Variante eines Testablaufes für welche Person aktiviert wird</li>
+</ul>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    H[fa:fa-table-list Testaufgaben] --&gt; B
+    style H fill:white
+    G[fa:fa-file-lines Testablauf] --&gt; B
+    style G fill:white
+    A[fa:fa-users Testpersonen] --&gt; B(fa:fa-computer Testdurchführung)
+    style A fill:white
+    style B fill:#cdf
+    B --&gt; K[Antworten]
+    style K fill:white
+    B --&gt; J[Logdaten]
+    style J fill:white
+    H -.-&gt; C(fa:fa-circle-check fa:fa-circle-xmark Kodierung)
+    style C fill:#cdf
+    K --&gt; C
+    J --&gt; C
+    C --&gt;D(fa:fa-user-graduate Analyse)
+    style D fill:#cdf
+    L(Vergleichsdaten) --&gt; D
+    style L fill:white
+    D --&gt;E[Bericht/Rückmeldung]
+    style E fill:white
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>Die <i class="fa-solid fa-computer" aria-label="computer"></i> Testdurchführung produziert Antwort- und Logdaten. Die Unterscheidung steht allgemein dafür, dass neben den Daten, die die Person bewusst erzeugt, auch weitere vom System generierte Informationen anfallen. Beispielsweise kann für die Auswertung die Zeit eine Rolle spielen, die die Testperson für die Beantwortung gebraucht hat.</p>
+<p>Eine <i class="fa-solid fa-circle-check" aria-label="circle-check"></i><i class="fa-solid fa-circle-xmark" aria-label="circle-xmark"></i> Kodierung der Testdaten ist erforderlich, um die Antworten bestimmten Kategorien zuzuordnen. Meist können Antworten nicht direkt in Analysen verwendet werden. Beispielsweise erzeugt eine Textmarkierung ein komplexes Datenobjekt, aber für die Auswertung ist nur wichtig, ob die Markierung ungefähr den Erwartungen entspricht.</p>
+<p>Kodierungen können manuell am Bildschirm erfolgen. Aufgrund der Kosten strebt man einen hohen Anteil automatisch kodierbarer Antworten in einer Testung an. Die gepunktete Linie zeigt an, dass die Informationen für die Kodierung (sog. Kodierschema) Teil der Aufgabendaten sind und bereits bei der Aufgabenentwicklung ausgiebig diskutiert und erprobt werden müssen.</p>
+<p>Die <i class="fa-solid fa-user-graduate" aria-label="user-graduate"></i> Analyse der kodierten Daten bezieht bei Studien des Bildungsmonitoring stets Daten aus diversen anderen Quellen ein. Dies können Informationen aus anderen vergleichbaren Studien sein (andere Testgruppen, andere Jahre) oder zusätzliche Daten, die für die Interpretation nützlich sind (sozio-demografische Angaben, Klassifizierung der Schule usw.).</p>
+</section>
+<section id="institutionelle-szenarien---wer-macht-was" class="level1">
+<h1>Institutionelle Szenarien - Wer macht was?</h1>
+<section id="aufgabenentwicklung" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabenentwicklung">Aufgabenentwicklung</h2>
+<p>Die Testaufgaben für die Durchführung der <a href="https://www.iqb.hu-berlin.de/bt/">Bildungstrendstudien</a> und für die <a href="https://www.iqb.hu-berlin.de/vera/">Vergleichsarbeiten</a> der Länder (VERA; s. <a href="https://www.kmk.org/themen/qualitaetssicherung-in-schulen/bildungsmonitoring/">KMK</a>) werden am IQB entwickelt. Es erfolgt in jedem Fall eine empirische Erprobung einer jeden Aufgabe (sog. Pilotierung). Für die Aufgaben werden auch die Vorschriften für die Kodierung entwickelt.</p>
+</section>
+<section id="bildungstrend---länderübergreifend" class="level2">
+<h2 class="anchored" data-anchor-id="bildungstrend---länderübergreifend">Bildungstrend - länderübergreifend</h2>
+<p>Die Studien des Bildungstrends in den Jahrgängen 4 und 9 werden online auf Servern durchgeführt, die das IQB bereitstellt. Ein auf die Durchführung großer Bildungsstudien spezialisierter Auftragnehmer (nachfolgend “AN Durchführung”) bereitet die Testung vor und begleitet die Durchführung in den Schulen vor Ort mit Testleiterinnen und Testleitern. Hier erfolgt auch die Kodierung der Antworten, und das IQB bekommt einen umfassenden Datensatz sowie begleitende Dokumentation.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">sequenceDiagram
+    participant IQB
+    participant AN as AN Durchführung
+    Actor Schule
+    IQB-&gt;&gt;AN: Nennung Schulen
+    AN-&gt;&gt;Schule: System-Check
+    Schule-&gt;&gt;AN: Meldung Testpersonen
+    IQB-&gt;&gt;AN: Aufgaben
+    AN-&gt;&gt;Schule: Logins
+    note right of Schule: Testdurchführung
+    Schule-&gt;&gt;AN: Antworten+Logs roh
+    AN-&gt;&gt;IQB: Ergebnisse kodiert
+    note left of IQB: Auswertung, Bericht
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="vera---in-jedem-land-separat" class="level2">
+<h2 class="anchored" data-anchor-id="vera---in-jedem-land-separat">VERA - in jedem Land separat</h2>
+<p>Die jährlichen Vergleichsarbeiten in den Jahrgängen 3 und 8 führt ein Land in eigener Regie durch. Das IQB liefert Aufgaben einschl. Kodierschema sowie Vorschläge für den Testablauf (Testmodule, Testhefte). Im Schema unten ist der häufige Fall dargestellt, dass das Land eine Einrichtung (z. B. ein universitäres Projekt) mit der Durchführung beauftragt.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">sequenceDiagram
+    participant IQB
+    participant Land
+    participant DE as Durchführende Einrichtung
+    Actor Schule
+    IQB-&gt;&gt;Land: Aufgaben
+    Land-&gt;&gt;DE: Nennung Schulen
+    DE-&gt;&gt;Schule: System-Check
+    Schule-&gt;&gt;DE: Meldung Testpersonen
+    Land-&gt;&gt;DE: Aufgaben
+    DE-&gt;&gt;Schule: Logins
+    note right of Schule: Testdurchführung
+    note right of Schule: Kodierung
+    Schule-&gt;&gt;DE: Antworten kodiert
+    note left of DE: Auswertung
+    DE-&gt;&gt;Schule: Rückmeldung
+    DE-&gt;&gt;Land: Rückmeldung
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>Die Antworten werden in diesem Szenario durch die Lehrkräfte kodiert. Nach der Auswertung durch die durchführende Einrichtung meldet diese in die Schulen und dem Auftraggeber die Ergebnisse, um die Unterrichtsentwicklung zu fördern sowie eine Evaluation auf Systemebene zu ermöglichen.</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -541,13 +739,25 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../intro/index.html" class="pagination-link" aria-label="Einführung">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Einführung</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../intro/architecture.html" class="pagination-link" aria-label="Architektur">
+        <span class="nav-page-text">Architektur</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
-    <a class="nav-link" href="../index.html">
+    <a class="nav-link active" href="../index.html" aria-current="page">
 <p>Start</p>
 </a>
   </li>  
@@ -555,7 +765,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/verona-interfaces/verona-interfaces.github.io/issues/new" class="toc-action"><i class="bi bi-github"></i>Problem melden</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/verona-interfaces/verona-interfaces.github.io/issues/new" class="toc-action"><i class="bi bi-github"></i>Problem melden</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
