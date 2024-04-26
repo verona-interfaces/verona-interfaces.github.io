@@ -3,4 +3,10 @@ lang: de
 title: Modul-Metadaten
 ---
 
+Ein Verona-Modul muss Metadaten enthalten. Der wichtigste Anwendungsfall hierfür ist die Auswahl und Speicherung von Modulen in Webanwendungen. Erst wenn z. B. die Bezeichnung und die Version eines Moduls auf standardisierte Art bekannt gemacht wird, können Anwender über die Verwendung sinnvoll entscheiden.
 
+Eine Html-Seite kann auf diverse Arten Metadaten speichern. Im Verona-Kontext benutzen wir einen `<script>`-Block im Header, der ein JSON-Datenobjekt enthält. Diese Vorgehensweise wird als "Linked Data" bezeichnet, d. h. der Script-Typ wäre mit `application/ld+json` zu bezeichnen.
+
+Die vollständige Spezifikation mit Beispiel finden Sie [hier](https://verona-interfaces.github.io/metadata). Der Umfang der Informationen ist recht ambitioniert. Es muss sich für viele Einträge jedoch erst herausstellen, ob sie nützlich sind bzw. ob die konkrete Umsetzung passt. Hierbei spielt wird die Entwicklung eines [Modul-Registers](registry.qmd) helfen.
+
+Die folgende Liste enthält die Metadaten, die bisher in den Webanwendungen des IQB verwendet werden:
