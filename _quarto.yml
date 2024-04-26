@@ -34,14 +34,10 @@ website:
       - section: "Einführung"
         href: intro/index.qmd
         contents:
-          - section: "Computerbasiertes Testen"
-            href: intro/tba.qmd
-          - section: "Architektur"
-            href: intro/architecture.qmd
-          - section: "Metadaten"
-            href: intro/metadata.qmd
-          - section: "Register"
-            href: intro/registry.qmd
+          - intro/tba.qmd
+          - intro/architecture.qmd
+          - intro/metadata.qmd
+          - intro/registry.qmd
 
 format:
   html:
