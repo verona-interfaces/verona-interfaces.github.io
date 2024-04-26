@@ -1,0 +1,8 @@
+---
+lang: de
+title: Modul-Register
+---
+
+Derzeit ist die Liste der verfügbaren Module noch sehr überschaubar. Nur das IQB stellt Verona-Module bereit.
+
+Sollte die Anzahl steigen, wäre die Einführung eines Registers angebracht. Webanwendungen können dann gezielt Module anbieten.

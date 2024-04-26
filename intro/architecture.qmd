@@ -11,6 +11,8 @@ Um für VERA die Länder bzw. die durchführenden Einrichtungen in die Lage zu v
 flowchart BT
     subgraph Testsystem
         TC[Testablaufsteuerung]-->|Aufgabendefinition| P[Player]
+        style TC fill:white
+        style P fill:white
         P-->|Antworten| TC
     end
     style Testsystem fill:#d1d1e0,stroke:#d1d1e0

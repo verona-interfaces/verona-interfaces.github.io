@@ -12,6 +12,9 @@ website:
     pinned: true
     search: true
     logo: logo_verona_small.png
+    right:
+      - icon: github
+        href: https://github.com/verona-interfaces
   page-footer:
     border: true
     background: light
@@ -37,10 +40,12 @@ website:
             href: intro/architecture.qmd
           - section: "Metadaten"
             href: intro/metadata.qmd
+          - section: "Register"
+            href: intro/registry.qmd
 
 format:
   html:
-    theme: cosmo
+    theme: pulse
     css: styles.css
     toc: true 
     anchor-sections: true
