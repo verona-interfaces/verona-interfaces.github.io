@@ -7,19 +7,21 @@ Ein Verona-Modul muss Metadaten enthalten. Der wichtigste Anwendungsfall hierfü
 
 Eine Html-Seite kann auf diverse Arten Metadaten speichern. Im Verona-Kontext benutzen wir einen `<script>`-Block im Header, der ein JSON-Datenobjekt enthält. Diese Vorgehensweise wird als "Linked Data" bezeichnet, d. h. der Script-Typ wäre mit `application/ld+json` zu bezeichnen.
 
+# Daten erläutert
+
 Die vollständige Spezifikation mit Beispiel finden Sie [hier](https://verona-interfaces.github.io/metadata). Der Umfang der Informationen ist recht ambitioniert. Es muss sich für viele Einträge jedoch erst herausstellen, ob sie nützlich sind bzw. ob die konkrete Umsetzung passt. Hierbei spielt wird die Entwicklung eines [Modul-Registers](registry.qmd) helfen. Die folgende Liste enthält die Metadaten, die bisher in den Webanwendungen des IQB verwendet werden (Version 2.0).
 
-# id
+## id
 
 Diese ID kann in internen Referenzen verwendet werden. Wenn beispielsweise eine Unitdefinition mit einem bestimmten Editor erzeugt wurde, kann die ID des Editor-Moduls die spätere Weiterarbeit sichern. 
 
 Achtung: Um sicherzustellen, dass dann auch die passende Version des Moduls verwendet wird, sollte diese Version ebenfalls als Referenz abgespeichert werden, also z. B. `iqb-editor-aspect@2.4.9`. Dies kann auch der Dateiname des Moduls sein, obwohl in unixbasierten Systemen das @-Zeichen reserviert ist. Das IQB verwendet daher als Dateinamen die ID sowie die Version auf folgende Art: `iqb-player-aspect-2.4.11.html`.
 
-# version
+## version
 
 Hier wird eine übliche [SemVer](https://semver.org/lang/de/)-Notation erwartet, also auch mit Suffixen wie `beta` oder `rc4`.
 
-# type
+## type
 
 Die möglichen Werte dieser Aufzählung sind
 
@@ -30,16 +32,20 @@ Die möglichen Werte dieser Aufzählung sind
 | `schemer` | Ein Modul zur Änderung eines Kodierschemas für die Auswertung der Antworten |
 | `coder` | Dieses Modul ist nur eine Idee. Ursprünglich war geplant, das automatische Kodieren ebenfalls als Verona-Modul zu implementieren. Aktuell wird dies jedoch über die Bereitstellung einer JavaScript-Klasse ([npm](https://www.npmjs.com/package/@iqb/responses)) gelöst, die in Webanwendungen beim Build-Prozess eingebunden wird. Diese Programmierung kann also nicht zur Laufzeit dynamisch geladen werden. Dies stellt aktuell die bessere Lösung dar. |
 
-# name
+## name
 
 Diese Bezeichnung erscheint als Label z. B. in Auswahllisten, da die ID zu knapp und wenig verständlich ist.
 
-# description
+## description
 
 Hier soll eine knappe Beschreibung helfen, die Besonderheiten dieses Moduls zu erkennen und darüber zu entscheiden, ob das Modul für die eigenen Zwecke interessant sein könnte.
 
-# specVersion
+## specVersion
 
 Dieser String erklärt, welche Version der Modul-Interfacedefinition unterstützt wird. Da Interfacedefinitionen einer Entwicklung unterliegen und Eigenschaften geändert und hinzugefügt werden, sollte sich eine Hostanwendung darauf einstellen, welchen Dialekt der Kommunikation das Modul versteht.
 
 Allerdings kann man diese Information auch ignorieren und als Host einfach alle Varianten unterstützen. Wenn eine bestimmte Information nicht gefunden wird in einem Datenobjekt eines Players, versucht der Host andere Bezeichnungen oder Datenformate entsprechend älterer Varianten der Spezifikation. Dieses defensive Verhalten erhöht die Robustheit der Programmierung.
+
+# Modul-Register
+
+Derzeit ist die Liste der verfügbaren Module noch sehr überschaubar. Nur das IQB stellt Verona-Module bereit. Sollte die Anzahl steigen, wäre die Einführung eines Registers angebracht. Webanwendungen können dann gezielt Module anbieten. Wenn dieses Register aufgebaut wird, könnten sich die Anforderungen an die Metadaten nocheinmal ändern.

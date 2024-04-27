@@ -37,7 +37,7 @@ website:
           - intro/tba.qmd
           - intro/architecture.qmd
           - intro/metadata.qmd
-          - intro/registry.qmd
+          - intro/modelling.qmd
 
 format:
   html:

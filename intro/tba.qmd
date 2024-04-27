@@ -82,10 +82,10 @@ sequenceDiagram
     Schule->>AN: Meldung Testpersonen
     IQB->>AN: Aufgaben
     AN->>Schule: Logins
-    note right of Schule: Testdurchführung
+    note over Schule: Testdurchführung
     Schule->>AN: Antworten+Logs roh
     AN->>IQB: Ergebnisse kodiert
-    note left of IQB: Auswertung, Bericht
+    note over IQB: Auswertung, Bericht
 ```
 
 ## VERA - in jedem Land separat
@@ -104,12 +104,14 @@ sequenceDiagram
     Schule->>DE: Meldung Testpersonen
     Land->>DE: Aufgaben
     DE->>Schule: Logins
-    note right of Schule: Testdurchführung
-    note right of Schule: Kodierung
+    note over Schule: Testdurchführung
+    note over Schule: Kodierung
     Schule->>DE: Antworten kodiert
-    note left of DE: Auswertung
+    note over DE: Auswertung
     DE->>Schule: Rückmeldung
     DE->>Land: Rückmeldung
 ```
 
 Die Antworten werden in diesem Szenario durch die Lehrkräfte kodiert. Nach der Auswertung durch die durchführende Einrichtung meldet diese in die Schulen und dem Auftraggeber die Ergebnisse, um die Unterrichtsentwicklung zu fördern sowie eine Evaluation auf Systemebene zu ermöglichen.
+
+Wenn das Land keine Einrichtung mit der Durchführung beauftragt, fallen die entsprechenden Arbeiten samt Bereitstellung der technischen Infrastruktur dem Land zu.
