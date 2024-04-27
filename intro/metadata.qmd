@@ -44,7 +44,7 @@ Hier soll eine knappe Beschreibung helfen, die Besonderheiten dieses Moduls zu e
 
 Dieser String erklärt, welche Version der Modul-Interfacedefinition unterstützt wird. Da Interfacedefinitionen einer Entwicklung unterliegen und Eigenschaften geändert und hinzugefügt werden, sollte sich eine Hostanwendung darauf einstellen, welchen Dialekt der Kommunikation das Modul versteht.
 
-Allerdings kann man diese Information auch ignorieren und als Host einfach alle Varianten unterstützen. Wenn eine bestimmte Information nicht gefunden wird in einem Datenobjekt eines Players, versucht der Host andere Bezeichnungen oder Datenformate entsprechend älterer Varianten der Spezifikation. Dieses defensive Verhalten erhöht die Robustheit der Programmierung.
+Allerdings kann man diese Information auch ignorieren und als Host einfach alle Varianten unterstützen. Wenn eine bestimmte Information nicht gefunden wird in einem Datenobjekt eines Players, versucht der Host andere Bezeichnungen oder Datenformate entsprechend älterer Varianten der Spezifikation. Dieses defensive Verhalten erhöht die Robustheit der Programmierung, kann aber auch ernste Probleme verschleiern.
 
 # Modul-Register
 

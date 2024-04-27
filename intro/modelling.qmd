@@ -89,7 +89,7 @@ Bei schnellen Tastatureingaben oder ambitionierter Beobachtung des Userverhalten
 
 # Beenden: unnötig
 
-Da Änderungen sofort gemeldet werden, ist ein formelles Beenden des Moduls unnötig. Es gibt bei keinem Verona-Modul Bedarf, vor Entfernen des Moduls bestimmte Funktionen aufzurufen. Wenn das Modul nicht mehr benötigt wird (oben dargestellt als Navigation), kann das `<iframe>`-Element entfernt oder geleert werden (`scrdoc=""`).
+Da Änderungen sofort gemeldet werden, ist ein formelles Beenden des Moduls unnötig. Es gibt bei keinem Verona-Modul Bedarf, vor Entfernen des Moduls bestimmte Funktionen aufzurufen. Wenn das Modul nicht mehr benötigt wird (oben dargestellt als Navigation), kann das `<iframe>`-Element entfernt oder geleert werden (`srcdoc=""`).
 
 # Korrekte Zuordnung der Modul-Instanz bzw. der Daten
 
