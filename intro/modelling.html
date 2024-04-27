@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Verona-Interfaces - Verona Interfaces - Player</title>
+<title>Verona-Interfaces - Kommunikationsmodell</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -29,6 +63,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../intro/metadata.html" rel="prev">
 <link href="../favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -66,6 +101,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Suchen"
   }
 }</script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="../styles.css">
@@ -107,7 +145,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Verona Interfaces - Player</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro/index.html">Einführung</a></li><li class="breadcrumb-item"><a href="../intro/modelling.html">Kommunikationsmodell</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -154,8 +192,8 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../intro/registry.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Modul-Register</span></a>
+  <a href="../intro/modelling.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Kommunikationsmodell</span></a>
   </div>
 </li>
       </ul>
@@ -166,14 +204,26 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Auf dieser Seite</h2>
+   
+  <ul>
+  <li><a href="#initialisierung" id="toc-initialisierung" class="nav-link active" data-scroll-target="#initialisierung">Initialisierung</a></li>
+  <li><a href="#nachrichten-empfangen" id="toc-nachrichten-empfangen" class="nav-link" data-scroll-target="#nachrichten-empfangen">Nachrichten empfangen</a></li>
+  <li><a href="#verona-modul-meldet-bereitschaft" id="toc-verona-modul-meldet-bereitschaft" class="nav-link" data-scroll-target="#verona-modul-meldet-bereitschaft">Verona-Modul meldet Bereitschaft</a></li>
+  <li><a href="#start-kommando" id="toc-start-kommando" class="nav-link" data-scroll-target="#start-kommando">Start-Kommando</a></li>
+  <li><a href="#interaktion-zustandsänderung-melden" id="toc-interaktion-zustandsänderung-melden" class="nav-link" data-scroll-target="#interaktion-zustandsänderung-melden">Interaktion: Zustandsänderung melden</a></li>
+  <li><a href="#beenden-unnötig" id="toc-beenden-unnötig" class="nav-link" data-scroll-target="#beenden-unnötig">Beenden: unnötig</a></li>
+  <li><a href="#korrekte-zuordnung-der-modul-instanz-bzw.-der-daten" id="toc-korrekte-zuordnung-der-modul-instanz-bzw.-der-daten" class="nav-link" data-scroll-target="#korrekte-zuordnung-der-modul-instanz-bzw.-der-daten">Korrekte Zuordnung der Modul-Instanz bzw. der Daten</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/verona-interfaces/verona-interfaces.github.io/issues/new" class="toc-action"><i class="bi bi-github"></i>Problem melden</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro/index.html">Einführung</a></li><li class="breadcrumb-item"><a href="../intro/modelling.html">Kommunikationsmodell</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Verona Interfaces - Player</h1>
+<h1 class="title">Kommunikationsmodell</h1>
 </div>
 
 
@@ -190,9 +240,125 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Verona Interfaces - Player Message1 Start</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">sequenceDiagram
+    participant DB as Datenbank
+    participant MH as Modul-Host
+
+    DB-&gt;&gt;MH:Laden Daten
+    participant VM as Verona-Modul
+    MH-&gt;&gt;VM:Initialisierung
+    VM-&gt;&gt;MH:Melde Bereitschaft
+    MH-&gt;&gt;VM:Startkommando mit Daten
+    loop
+        Actor TP as Person
+        VM-&gt;TP:Interaktion
+        VM-&gt;&gt;MH:Melde Änderung Status
+    end
+    VM-xTP:Navigation
+    MH-&gt;&gt;DB:Speichern geänderte Daten
+    MH-xVM:Navigation
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<section id="initialisierung" class="level1">
+<h1>Initialisierung</h1>
+<p>Verona-Module werden üblicherweise dynamisch geladen und ausgeführt. Wenn ein bestimmtes Modul erforderlich ist und grundsätzlich im System verfügbar, dann wird es zunächst von der Hostanwendung (Frontend im Browser) in den Hauptspeicher geladen.</p>
+<p>Anschließend muss ein <code>&lt;iframe&gt;</code>-Element verfügbar sein. Die Browser unterstützen jetzt alle das Attribut <code>srcdoc</code>, und diesem Attribut wird der Modul-Code zugewiesen. Dies entspricht technisch dem Laden einer Webseite. Dies erfordert eine gewisse (unbekannte) Zeit.</p>
+</section>
+<section id="nachrichten-empfangen" class="level1">
+<h1>Nachrichten empfangen</h1>
+<p>Die Kommunikation kann nur erfolgen, wenn die Host-Anwendung Nachrichten an das <code>window</code>-Objekt abfängt. Das Modul kann nur allgemein an seine Host-Anwendung Nachrichten schicken, nicht gezielt an eine bestimmte Komponente oder ein bestimmtes DOM-Element. Auf höchster Ebene muss also z. B. so etwas einmalig aufgerufen werden:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Listener einrichten bei Start der Hostanwendung</strong></pre>
+</div>
+<div class="sourceCode" id="cb1" data-filename="Listener einrichten bei Start der Hostanwendung"><pre class="sourceCode typescript code-with-copy"><code class="sourceCode typescript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> <span class="bu">window</span><span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">'message'</span><span class="op">,</span> (event<span class="op">:</span> <span class="bu">MessageEvent</span>) <span class="kw">=&gt;</span> {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> msgData <span class="op">=</span> <span class="bu">event</span><span class="op">.</span><span class="at">data</span><span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> msgType <span class="op">=</span> msgData<span class="op">.</span><span class="at">type</span><span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> ((msgType <span class="op">!==</span> <span class="kw">undefined</span>) <span class="op">&amp;&amp;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>            (msgType<span class="op">.</span><span class="fu">substr</span>(<span class="dv">0</span><span class="op">,</span> <span class="dv">2</span>) <span class="op">===</span> <span class="st">'vo'</span>)) {</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="kw">this</span><span class="op">.</span><span class="at">tcs</span><span class="op">.</span><span class="at">postMessage$</span><span class="op">.</span><span class="fu">next</span>(<span class="bu">event</span>)<span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In diesem Beispiel prüft die Funktion, ob der Typ der Nachricht mit ‘vo’ beginnt. In diesem Fall wird angenommen, dass es sich um eine Nachricht von einem Verona-Modul handelt und ein Observable wird auf einen neuen Wert gesetzt. An passenden Stellen im Host kann dann darauf reagiert werden.</p>
+</section>
+<section id="verona-modul-meldet-bereitschaft" class="level1">
+<h1>Verona-Modul meldet Bereitschaft</h1>
+<p>Wenn das Modul die eigene Initialisierung abgeschlossen hat, meldet es die Bereitschaft an den Host. Erst ab diesem Zeitpunkt kann man davon ausgehen, dass das Modul Nachrichten empfangen kann. Davor hört es quasi nicht zu.</p>
+<p>Im Verona-Kontext liefert das Modul seine Metadaten mit, d.&nbsp;h. der Host kann prüfen, ob das richtige Modul geladen wurde bzw. ob bestimmte Anpassungen in der Kommunikation erfolgen müssen.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Vorsicht bei mehreren Modulen auf einer Seite
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Wenn mehrere Module desselben Typs auf einer Seite eingerichtet werden sollen, muss der Host prüfen, von welchem <code>&lt;iframe&gt;</code>-Element die Bereitschaftsmeldung kam (source/target). Anschließend sollte die <code>sessionId</code> verwendet werden, um die Nachrichten bzw. deren Daten zuzuordnen.</p>
+</div>
+</div>
+</section>
+<section id="start-kommando" class="level1">
+<h1>Start-Kommando</h1>
+<p>An das <code>&lt;iframe&gt;</code>-Element wird dann üblicherweise ein Kommando geschickt, das die spezifischen Daten der Unit enthält (Definition, vorherige Antworten, Kodierschema usw.). Damit erstellt bzw. parametrisiert das Modul die erforderlichen Elemente und die Interaktion mit dem User (Testperson, Autorin) kann beginnen.</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Beispiel Startkommando für Player</strong></pre>
+</div>
+<div class="sourceCode" id="cb2" data-filename="Beispiel Startkommando für Player"><pre class="sourceCode typescript code-with-copy"><code class="sourceCode typescript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">this</span><span class="op">.</span><span class="at">postMessageTarget</span><span class="op">.</span><span class="fu">postMessage</span>({</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>        type<span class="op">:</span> <span class="st">'vopStartCommand'</span><span class="op">,</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        sessionId<span class="op">:</span> <span class="kw">this</span><span class="op">.</span><span class="at">itemPlayerSessionId</span><span class="op">,</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        unitDefinition<span class="op">:</span> pendingUnitDef<span class="op">,</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        unitState<span class="op">:</span> {</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>          dataParts<span class="op">:</span> pendingUnitDataToRestore</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        }<span class="op">,</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        playerConfig<span class="op">:</span> <span class="kw">this</span><span class="op">.</span><span class="at">tcs</span><span class="op">.</span><span class="at">fullPlayerConfig</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>      }<span class="op">,</span> <span class="st">'*'</span>)<span class="op">;</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Wenn später ein neues Startkommando vom Host geschickt wird, stellt das Modul zunächst den Ausgangszustand nach der Initialisierung wieder her und verfährt dann wie oben. Sollten z. B. mehrere Units hintereinander denselben Player anfordern, muss nicht immer neu das gesamte Modul neu initialisiert werden. Der Player kann über ein neues Start-Kommando “nachgenutzt” werden.</p>
+</section>
+<section id="interaktion-zustandsänderung-melden" class="level1">
+<h1>Interaktion: Zustandsänderung melden</h1>
+<p>Während der Interaktion meldet das Verona-Modul Änderungen je nach Typ des Moduls. Ob diese Änderungen gspeichert werden, hängt vom jeweiligen Anwendungsfall ab.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Vorsicht Datenflut
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Bei schnellen Tasteneingaben oder ambitionierter Beobachtung des Userverhaltens fallen sehr viele Daten an. Beim Player-Modul kann man die Daten aufteilen (sog. <code>dataParts</code>), aber auch sonst könnte es viel werden. Die Hostanwendung sollte einen Puffer einrichten und nicht alles sofort wegspeichern. Bei <code>rxjs</code> gibt es beispielsweise den Operator <code>debounceTime</code>.</p>
+</div>
+</div>
+</section>
+<section id="beenden-unnötig" class="level1">
+<h1>Beenden: unnötig</h1>
+<p>Da Änderungen sofort gemeldet werden, ist ein formelles Beenden des Moduls unnötig. Es gibt bei keinem Verona-Modul Bedarf, vor Entfernen des Moduls bestimmte Funktionen aufzurufen. Wenn das Modul nicht mehr benötigt wird (oben dargestellt als Navigation), kann das <code>&lt;iframe&gt;</code>-Element entfernt oder geleert werden (<code>scrdoc=""</code>).</p>
+</section>
+<section id="korrekte-zuordnung-der-modul-instanz-bzw.-der-daten" class="level1">
+<h1>Korrekte Zuordnung der Modul-Instanz bzw. der Daten</h1>
+<p>Bei den Nachrichten gibt es zwei Eigenschaften, die eine korrekte Zuordnung unterstützen:</p>
+<ul>
+<li><code>sessionId</code>: Diese ID wird beim Startkommando vom Host vergeben und wird vom Modul bei jeder Nachricht mitgeschickt. Diese ID wird durch das Modul nicht verändert. Der Host kann darüber das Modul-Element identifizieren und daher sicherstellen, dass bei den überwiegend asynchronen Vorgängen im Browser die Daten stets z. B. der richtigen Unit zugeordnet werden.</li>
+<li><code>timeStamp</code>: Auch diese Eigenschaft wird stets vom Modul mitgeschickt. Darüber kann sichergestellt werden, dass die Reihenfolge der Nachrichten nicht vertauscht wird. Es ist stets die jeweils letzte Änderung feststellbar.</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -611,6 +777,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../intro/metadata.html" class="pagination-link" aria-label="Modul-Metadaten">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Modul-Metadaten</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
@@ -625,7 +800,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/verona-interfaces/verona-interfaces.github.io/issues/new" class="toc-action"><i class="bi bi-github"></i>Problem melden</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/verona-interfaces/verona-interfaces.github.io/issues/new" class="toc-action"><i class="bi bi-github"></i>Problem melden</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">

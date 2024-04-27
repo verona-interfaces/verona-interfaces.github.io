@@ -99,7 +99,7 @@
     "href": "intro/tba.html#bildungstrend---länderübergreifend",
     "title": "Computerbasiertes Testen",
     "section": "Bildungstrend - länderübergreifend",
-    "text": "Bildungstrend - länderübergreifend\nDie Studien des Bildungstrends in den Jahrgängen 4 und 9 werden online auf Servern durchgeführt, die das IQB bereitstellt. Ein auf die Durchführung großer Bildungsstudien spezialisierter Auftragnehmer (nachfolgend “AN Durchführung”) bereitet die Testung vor und begleitet die Durchführung in den Schulen vor Ort mit Testleiterinnen und Testleitern. Hier erfolgt auch die Kodierung der Antworten, und das IQB bekommt einen umfassenden Datensatz sowie begleitende Dokumentation.\n\n\n\n\n\nsequenceDiagram\n    participant IQB\n    participant AN as AN Durchführung\n    Actor Schule\n    IQB-&gt;&gt;AN: Nennung Schulen\n    AN-&gt;&gt;Schule: System-Check\n    Schule-&gt;&gt;AN: Meldung Testpersonen\n    IQB-&gt;&gt;AN: Aufgaben\n    AN-&gt;&gt;Schule: Logins\n    note right of Schule: Testdurchführung\n    Schule-&gt;&gt;AN: Antworten+Logs roh\n    AN-&gt;&gt;IQB: Ergebnisse kodiert\n    note left of IQB: Auswertung, Bericht",
+    "text": "Bildungstrend - länderübergreifend\nDie Studien des Bildungstrends in den Jahrgängen 4 und 9 werden online auf Servern durchgeführt, die das IQB bereitstellt. Ein auf die Durchführung großer Bildungsstudien spezialisierter Auftragnehmer (nachfolgend “AN Durchführung”) bereitet die Testung vor und begleitet die Durchführung in den Schulen vor Ort mit Testleiterinnen und Testleitern. Hier erfolgt auch die Kodierung der Antworten, und das IQB bekommt einen umfassenden Datensatz sowie begleitende Dokumentation.\n\n\n\n\n\nsequenceDiagram\n    participant IQB\n    participant AN as AN Durchführung\n    Actor Schule\n    IQB-&gt;&gt;AN: Nennung Schulen\n    AN-&gt;&gt;Schule: System-Check\n    Schule-&gt;&gt;AN: Meldung Testpersonen\n    IQB-&gt;&gt;AN: Aufgaben\n    AN-&gt;&gt;Schule: Logins\n    note over Schule: Testdurchführung\n    Schule-&gt;&gt;AN: Antworten+Logs roh\n    AN-&gt;&gt;IQB: Ergebnisse kodiert\n    note over IQB: Auswertung, Bericht",
     "crumbs": [
       "Einführung",
       "Computerbasiertes Testen"
@@ -110,18 +110,18 @@
     "href": "intro/tba.html#vera---in-jedem-land-separat",
     "title": "Computerbasiertes Testen",
     "section": "VERA - in jedem Land separat",
-    "text": "VERA - in jedem Land separat\nDie jährlichen Vergleichsarbeiten in den Jahrgängen 3 und 8 führt ein Land in eigener Regie durch. Das IQB liefert Aufgaben einschl. Kodierschema sowie Vorschläge für den Testablauf (Testmodule, Testhefte). Im Schema unten ist der häufige Fall dargestellt, dass das Land eine Einrichtung (z. B. ein universitäres Projekt) mit der Durchführung beauftragt.\n\n\n\n\n\nsequenceDiagram\n    participant IQB\n    participant Land\n    participant DE as Durchführende Einrichtung\n    Actor Schule\n    IQB-&gt;&gt;Land: Aufgaben\n    Land-&gt;&gt;DE: Nennung Schulen\n    DE-&gt;&gt;Schule: System-Check\n    Schule-&gt;&gt;DE: Meldung Testpersonen\n    Land-&gt;&gt;DE: Aufgaben\n    DE-&gt;&gt;Schule: Logins\n    note right of Schule: Testdurchführung\n    note right of Schule: Kodierung\n    Schule-&gt;&gt;DE: Antworten kodiert\n    note left of DE: Auswertung\n    DE-&gt;&gt;Schule: Rückmeldung\n    DE-&gt;&gt;Land: Rückmeldung\n\n\n\n\n\n\nDie Antworten werden in diesem Szenario durch die Lehrkräfte kodiert. Nach der Auswertung durch die durchführende Einrichtung meldet diese in die Schulen und dem Auftraggeber die Ergebnisse, um die Unterrichtsentwicklung zu fördern sowie eine Evaluation auf Systemebene zu ermöglichen.",
+    "text": "VERA - in jedem Land separat\nDie jährlichen Vergleichsarbeiten in den Jahrgängen 3 und 8 führt ein Land in eigener Regie durch. Das IQB liefert Aufgaben einschl. Kodierschema sowie Vorschläge für den Testablauf (Testmodule, Testhefte). Im Schema unten ist der häufige Fall dargestellt, dass das Land eine Einrichtung (z. B. ein universitäres Projekt) mit der Durchführung beauftragt.\n\n\n\n\n\nsequenceDiagram\n    participant IQB\n    participant Land\n    participant DE as Durchführende Einrichtung\n    Actor Schule\n    IQB-&gt;&gt;Land: Aufgaben\n    Land-&gt;&gt;DE: Nennung Schulen\n    DE-&gt;&gt;Schule: System-Check\n    Schule-&gt;&gt;DE: Meldung Testpersonen\n    Land-&gt;&gt;DE: Aufgaben\n    DE-&gt;&gt;Schule: Logins\n    note over Schule: Testdurchführung\n    note over Schule: Kodierung\n    Schule-&gt;&gt;DE: Antworten kodiert\n    note over DE: Auswertung\n    DE-&gt;&gt;Schule: Rückmeldung\n    DE-&gt;&gt;Land: Rückmeldung\n\n\n\n\n\n\nDie Antworten werden in diesem Szenario durch die Lehrkräfte kodiert. Nach der Auswertung durch die durchführende Einrichtung meldet diese in die Schulen und dem Auftraggeber die Ergebnisse, um die Unterrichtsentwicklung zu fördern sowie eine Evaluation auf Systemebene zu ermöglichen.\nWenn das Land keine Einrichtung mit der Durchführung beauftragt, fallen die entsprechenden Arbeiten samt Bereitstellung der technischen Infrastruktur dem Land zu.",
     "crumbs": [
       "Einführung",
       "Computerbasiertes Testen"
     ]
   },
   {
-    "objectID": "player/msg1_start.html",
-    "href": "player/msg1_start.html",
+    "objectID": "player/index.html",
+    "href": "player/index.html",
     "title": "Verona Interfaces - Player",
     "section": "",
-    "text": "Verona Interfaces - Player Message1 Start"
+    "text": "Verona Interfaces - Player"
   },
   {
     "objectID": "editor/index.html",
@@ -145,18 +145,18 @@
     "text": "Verona Interfaces - Editor Message1 Start"
   },
   {
-    "objectID": "player/uml.html",
-    "href": "player/uml.html",
-    "title": "Verona Interfaces - Player",
+    "objectID": "player/vopStartCommand.html",
+    "href": "player/vopStartCommand.html",
+    "title": "Player vopStartCommand",
     "section": "",
-    "text": "Verona Interfaces - Player UML"
+    "text": "Verona Interfaces - Player Message1 Start"
   },
   {
-    "objectID": "player/index.html",
-    "href": "player/index.html",
-    "title": "Verona Interfaces - Player",
+    "objectID": "player/vopStateChangedNotification.html",
+    "href": "player/vopStateChangedNotification.html",
+    "title": "Player vopStateChangedNotification",
     "section": "",
-    "text": "Verona Interfaces - Player"
+    "text": "Verona Interfaces - Player UML"
   },
   {
     "objectID": "index.html",
@@ -173,21 +173,87 @@
     "href": "intro/metadata.html",
     "title": "Modul-Metadaten",
     "section": "",
-    "text": "Ein Verona-Modul muss Metadaten enthalten. Der wichtigste Anwendungsfall hierfür ist die Auswahl und Speicherung von Modulen in Webanwendungen. Erst wenn z. B. die Bezeichnung und die Version eines Moduls auf standardisierte Art bekannt gemacht wird, können Anwender über die Verwendung sinnvoll entscheiden.\nEine Html-Seite kann auf diverse Arten Metadaten speichern. Im Verona-Kontext benutzen wir einen &lt;script&gt;-Block im Header, der ein JSON-Datenobjekt enthält. Diese Vorgehensweise wird als “Linked Data” bezeichnet, d. h. der Script-Typ wäre mit application/ld+json zu bezeichnen.\nDie vollständige Spezifikation mit Beispiel finden Sie hier. Der Umfang der Informationen ist recht ambitioniert. Es muss sich für viele Einträge jedoch erst herausstellen, ob sie nützlich sind bzw. ob die konkrete Umsetzung passt. Hierbei spielt wird die Entwicklung eines Modul-Registers helfen. Die folgende Liste enthält die Metadaten, die bisher in den Webanwendungen des IQB verwendet werden (Version 2.0).\n\nid\nDiese ID kann in internen Referenzen verwendet werden. Wenn beispielsweise eine Unitdefinition mit einem bestimmten Editor erzeugt wurde, kann die ID des Editor-Moduls die spätere Weiterarbeit sichern.\nAchtung: Um sicherzustellen, dass dann auch die passende Version des Moduls verwendet wird, sollte diese Version ebenfalls als Referenz abgespeichert werden, also z. B. iqb-editor-aspect@2.4.9. Dies kann auch der Dateiname des Moduls sein, obwohl in unixbasierten Systemen das @-Zeichen reserviert ist. Das IQB verwendet daher als Dateinamen die ID sowie die Version auf folgende Art: iqb-player-aspect-2.4.11.html.\n\n\nversion\nHier wird eine übliche SemVer-Notation erwartet, also auch mit Suffixen wie beta oder rc4.\n\n\ntype\nDie möglichen Werte dieser Aufzählung sind\n\n\n\nWert\nBeschreibung\n\n\n\n\nplayer\nEin Modul, das der Anzeige einer Unit dient. Es wird die Definition geladen, und eine Interaktion mit der Testperson startet\n\n\neditor\nEin Modul, das dem Ändern einer Unit-Defintion dient\n\n\nschemer\nEin Modul zur Änderung eines Kodierschemas für die Auswertung der Antworten\n\n\ncoder\nDieses Modul ist nur eine Idee. Ursprünglich war geplant, das automatische Kodieren ebenfalls als Verona-Modul zu implementieren. Aktuell wird dies jedoch über die Bereitstellung einer JavaScript-Klasse (npm) gelöst, die in Webanwendungen beim Build-Prozess eingebunden wird. Diese Programmierung kann also nicht zur Laufzeit dynamisch geladen werden. Dies stellt aktuell die bessere Lösung dar.\n\n\n\n\n\nname\nDiese Bezeichnung erscheint als Label z. B. in Auswahllisten, da die ID zu knapp und wenig verständlich ist.\n\n\ndescription\nHier soll eine knappe Beschreibung helfen, die Besonderheiten dieses Moduls zu erkennen und darüber zu entscheiden, ob das Modul für die eigenen Zwecke interessant sein könnte.\n\n\nspecVersion\nDieser String erklärt, welche Version der Modul-Interfacedefinition unterstützt wird. Da Interfacedefinitionen einer Entwicklung unterliegen und Eigenschaften geändert und hinzugefügt werden, sollte sich eine Hostanwendung darauf einstellen, welchen Dialekt der Kommunikation das Modul versteht.\nAllerdings kann man diese Information auch ignorieren und als Host einfach alle Varianten unterstützen. Wenn eine bestimmte Information nicht gefunden wird in einem Datenobjekt eines Players, versucht der Host andere Bezeichnungen oder Datenformate entsprechend älterer Varianten der Spezifikation. Dieses defensive Verhalten erhöht die Robustheit der Programmierung.",
+    "text": "Ein Verona-Modul muss Metadaten enthalten. Der wichtigste Anwendungsfall hierfür ist die Auswahl und Speicherung von Modulen in Webanwendungen. Erst wenn z. B. die Bezeichnung und die Version eines Moduls auf standardisierte Art bekannt gemacht wird, können Anwender über die Verwendung sinnvoll entscheiden.\nEine Html-Seite kann auf diverse Arten Metadaten speichern. Im Verona-Kontext benutzen wir einen &lt;script&gt;-Block im Header, der ein JSON-Datenobjekt enthält. Diese Vorgehensweise wird als “Linked Data” bezeichnet, d. h. der Script-Typ wäre mit application/ld+json zu bezeichnen.",
     "crumbs": [
       "Einführung",
       "Modul-Metadaten"
     ]
   },
   {
-    "objectID": "intro/registry.html",
-    "href": "intro/registry.html",
-    "title": "Modul-Register",
-    "section": "",
-    "text": "Derzeit ist die Liste der verfügbaren Module noch sehr überschaubar. Nur das IQB stellt Verona-Module bereit.\nSollte die Anzahl steigen, wäre die Einführung eines Registers angebracht. Webanwendungen können dann gezielt Module anbieten.",
+    "objectID": "intro/metadata.html#id",
+    "href": "intro/metadata.html#id",
+    "title": "Modul-Metadaten",
+    "section": "id",
+    "text": "id\nDiese ID kann in internen Referenzen verwendet werden. Wenn beispielsweise eine Unitdefinition mit einem bestimmten Editor erzeugt wurde, kann die ID des Editor-Moduls die spätere Weiterarbeit sichern.\nAchtung: Um sicherzustellen, dass dann auch die passende Version des Moduls verwendet wird, sollte diese Version ebenfalls als Referenz abgespeichert werden, also z. B. iqb-editor-aspect@2.4.9. Dies kann auch der Dateiname des Moduls sein, obwohl in unixbasierten Systemen das @-Zeichen reserviert ist. Das IQB verwendet daher als Dateinamen die ID sowie die Version auf folgende Art: iqb-player-aspect-2.4.11.html.",
     "crumbs": [
       "Einführung",
-      "Modul-Register"
+      "Modul-Metadaten"
+    ]
+  },
+  {
+    "objectID": "intro/metadata.html#version",
+    "href": "intro/metadata.html#version",
+    "title": "Modul-Metadaten",
+    "section": "version",
+    "text": "version\nHier wird eine übliche SemVer-Notation erwartet, also auch mit Suffixen wie beta oder rc4.",
+    "crumbs": [
+      "Einführung",
+      "Modul-Metadaten"
+    ]
+  },
+  {
+    "objectID": "intro/metadata.html#type",
+    "href": "intro/metadata.html#type",
+    "title": "Modul-Metadaten",
+    "section": "type",
+    "text": "type\nDie möglichen Werte dieser Aufzählung sind\n\n\n\nWert\nBeschreibung\n\n\n\n\nplayer\nEin Modul, das der Anzeige einer Unit dient. Es wird die Definition geladen, und eine Interaktion mit der Testperson startet\n\n\neditor\nEin Modul, das dem Ändern einer Unit-Defintion dient\n\n\nschemer\nEin Modul zur Änderung eines Kodierschemas für die Auswertung der Antworten\n\n\ncoder\nDieses Modul ist nur eine Idee. Ursprünglich war geplant, das automatische Kodieren ebenfalls als Verona-Modul zu implementieren. Aktuell wird dies jedoch über die Bereitstellung einer JavaScript-Klasse (npm) gelöst, die in Webanwendungen beim Build-Prozess eingebunden wird. Diese Programmierung kann also nicht zur Laufzeit dynamisch geladen werden. Dies stellt aktuell die bessere Lösung dar.",
+    "crumbs": [
+      "Einführung",
+      "Modul-Metadaten"
+    ]
+  },
+  {
+    "objectID": "intro/metadata.html#name",
+    "href": "intro/metadata.html#name",
+    "title": "Modul-Metadaten",
+    "section": "name",
+    "text": "name\nDiese Bezeichnung erscheint als Label z. B. in Auswahllisten, da die ID zu knapp und wenig verständlich ist.",
+    "crumbs": [
+      "Einführung",
+      "Modul-Metadaten"
+    ]
+  },
+  {
+    "objectID": "intro/metadata.html#description",
+    "href": "intro/metadata.html#description",
+    "title": "Modul-Metadaten",
+    "section": "description",
+    "text": "description\nHier soll eine knappe Beschreibung helfen, die Besonderheiten dieses Moduls zu erkennen und darüber zu entscheiden, ob das Modul für die eigenen Zwecke interessant sein könnte.",
+    "crumbs": [
+      "Einführung",
+      "Modul-Metadaten"
+    ]
+  },
+  {
+    "objectID": "intro/metadata.html#specversion",
+    "href": "intro/metadata.html#specversion",
+    "title": "Modul-Metadaten",
+    "section": "specVersion",
+    "text": "specVersion\nDieser String erklärt, welche Version der Modul-Interfacedefinition unterstützt wird. Da Interfacedefinitionen einer Entwicklung unterliegen und Eigenschaften geändert und hinzugefügt werden, sollte sich eine Hostanwendung darauf einstellen, welchen Dialekt der Kommunikation das Modul versteht.\nAllerdings kann man diese Information auch ignorieren und als Host einfach alle Varianten unterstützen. Wenn eine bestimmte Information nicht gefunden wird in einem Datenobjekt eines Players, versucht der Host andere Bezeichnungen oder Datenformate entsprechend älterer Varianten der Spezifikation. Dieses defensive Verhalten erhöht die Robustheit der Programmierung.",
+    "crumbs": [
+      "Einführung",
+      "Modul-Metadaten"
+    ]
+  },
+  {
+    "objectID": "intro/modelling.html",
+    "href": "intro/modelling.html",
+    "title": "Kommunikationsmodell",
+    "section": "",
+    "text": "sequenceDiagram\n    participant DB as Datenbank\n    participant MH as Modul-Host\n\n    DB-&gt;&gt;MH:Laden Daten\n    participant VM as Verona-Modul\n    MH-&gt;&gt;VM:Initialisierung\n    VM-&gt;&gt;MH:Melde Bereitschaft\n    MH-&gt;&gt;VM:Startkommando mit Daten\n    loop\n        Actor TP as Person\n        VM-&gt;TP:Interaktion\n        VM-&gt;&gt;MH:Melde Änderung Status\n    end\n    VM-xTP:Navigation\n    MH-&gt;&gt;DB:Speichern geänderte Daten\n    MH-xVM:Navigation\n\n\n\n\n\n\n\nInitialisierung\nVerona-Module werden üblicherweise dynamisch geladen und ausgeführt. Wenn ein bestimmtes Modul erforderlich ist und grundsätzlich im System verfügbar, dann wird es zunächst von der Hostanwendung (Frontend im Browser) in den Hauptspeicher geladen.\nAnschließend muss ein &lt;iframe&gt;-Element verfügbar sein. Die Browser unterstützen jetzt alle das Attribut srcdoc, und diesem Attribut wird der Modul-Code zugewiesen. Dies entspricht technisch dem Laden einer Webseite. Dies erfordert eine gewisse (unbekannte) Zeit.\n\n\nNachrichten empfangen\nDie Kommunikation kann nur erfolgen, wenn die Host-Anwendung Nachrichten an das window-Objekt abfängt. Das Modul kann nur allgemein an seine Host-Anwendung Nachrichten schicken, nicht gezielt an eine bestimmte Komponente oder ein bestimmtes DOM-Element. Auf höchster Ebene muss also z. B. so etwas einmalig aufgerufen werden:\n\n\nListener einrichten bei Start der Hostanwendung\n\n window.addEventListener('message', (event: MessageEvent) =&gt; {\n      const msgData = event.data;\n      const msgType = msgData.type;\n      if ((msgType !== undefined) &&\n            (msgType.substr(0, 2) === 'vo')) {\n        this.tcs.postMessage$.next(event);\n      }\n    });\n\nIn diesem Beispiel prüft die Funktion, ob der Typ der Nachricht mit ‘vo’ beginnt. In diesem Fall wird angenommen, dass es sich um eine Nachricht von einem Verona-Modul handelt und ein Observable wird auf einen neuen Wert gesetzt. An passenden Stellen im Host kann dann darauf reagiert werden.\n\n\nVerona-Modul meldet Bereitschaft\nWenn das Modul die eigene Initialisierung abgeschlossen hat, meldet es die Bereitschaft an den Host. Erst ab diesem Zeitpunkt kann man davon ausgehen, dass das Modul Nachrichten empfangen kann. Davor hört es quasi nicht zu.\nIm Verona-Kontext liefert das Modul seine Metadaten mit, d. h. der Host kann prüfen, ob das richtige Modul geladen wurde bzw. ob bestimmte Anpassungen in der Kommunikation erfolgen müssen.\n\n\n\n\n\n\nVorsicht bei mehreren Modulen auf einer Seite\n\n\n\nWenn mehrere Module desselben Typs auf einer Seite eingerichtet werden sollen, muss der Host prüfen, von welchem &lt;iframe&gt;-Element die Bereitschaftsmeldung kam (source/target). Anschließend sollte die sessionId verwendet werden, um die Nachrichten bzw. deren Daten zuzuordnen.\n\n\n\n\nStart-Kommando\nAn das &lt;iframe&gt;-Element wird dann üblicherweise ein Kommando geschickt, das die spezifischen Daten der Unit enthält (Definition, vorherige Antworten, Kodierschema usw.). Damit erstellt bzw. parametrisiert das Modul die erforderlichen Elemente und die Interaktion mit dem User (Testperson, Autorin) kann beginnen.\n\n\nBeispiel Startkommando für Player\n\n  this.postMessageTarget.postMessage({\n        type: 'vopStartCommand',\n        sessionId: this.itemPlayerSessionId,\n        unitDefinition: pendingUnitDef,\n        unitState: {\n          dataParts: pendingUnitDataToRestore\n        },\n        playerConfig: this.tcs.fullPlayerConfig\n      }, '*');\n\nWenn später ein neues Startkommando vom Host geschickt wird, stellt das Modul zunächst den Ausgangszustand nach der Initialisierung wieder her und verfährt dann wie oben. Sollten z. B. mehrere Units hintereinander denselben Player anfordern, muss nicht immer neu das gesamte Modul neu initialisiert werden. Der Player kann über ein neues Start-Kommando “nachgenutzt” werden.\n\n\nInteraktion: Zustandsänderung melden\nWährend der Interaktion meldet das Verona-Modul Änderungen je nach Typ des Moduls. Ob diese Änderungen gspeichert werden, hängt vom jeweiligen Anwendungsfall ab.\n\n\n\n\n\n\nVorsicht Datenflut\n\n\n\nBei schnellen Tasteneingaben oder ambitionierter Beobachtung des Userverhaltens fallen sehr viele Daten an. Beim Player-Modul kann man die Daten aufteilen (sog. dataParts), aber auch sonst könnte es viel werden. Die Hostanwendung sollte einen Puffer einrichten und nicht alles sofort wegspeichern. Bei rxjs gibt es beispielsweise den Operator debounceTime.\n\n\n\n\nBeenden: unnötig\nDa Änderungen sofort gemeldet werden, ist ein formelles Beenden des Moduls unnötig. Es gibt bei keinem Verona-Modul Bedarf, vor Entfernen des Moduls bestimmte Funktionen aufzurufen. Wenn das Modul nicht mehr benötigt wird (oben dargestellt als Navigation), kann das &lt;iframe&gt;-Element entfernt oder geleert werden (scrdoc=\"\").\n\n\nKorrekte Zuordnung der Modul-Instanz bzw. der Daten\nBei den Nachrichten gibt es zwei Eigenschaften, die eine korrekte Zuordnung unterstützen:\n\nsessionId: Diese ID wird beim Startkommando vom Host vergeben und wird vom Modul bei jeder Nachricht mitgeschickt. Diese ID wird durch das Modul nicht verändert. Der Host kann darüber das Modul-Element identifizieren und daher sicherstellen, dass bei den überwiegend asynchronen Vorgängen im Browser die Daten stets z. B. der richtigen Unit zugeordnet werden.\ntimeStamp: Auch diese Eigenschaft wird stets vom Modul mitgeschickt. Darüber kann sichergestellt werden, dass die Reihenfolge der Nachrichten nicht vertauscht wird. Es ist stets die jeweils letzte Änderung feststellbar.",
+    "crumbs": [
+      "Einführung",
+      "Kommunikationsmodell"
     ]
   }
 ]
