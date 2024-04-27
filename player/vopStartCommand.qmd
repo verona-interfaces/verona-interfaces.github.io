@@ -1,6 +1,6 @@
 ---
 lang: de
-title: Verona Interfaces - Player
+title: Player vopStartCommand
 ---
 
 Verona Interfaces - Player Message1 Start

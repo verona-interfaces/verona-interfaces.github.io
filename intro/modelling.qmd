@@ -48,7 +48,9 @@ In diesem Beispiel prüft die Funktion, ob der Typ der Nachricht mit 'vo' beginn
 
 # Verona-Modul meldet Bereitschaft
 
-Wenn das Modul die eigene Initialisierung abgeschlossen hat, meldet es die Bereitschaft an den Host. Im Verona-Kontext liefert das Modul seine Metadaten mit, d. h. der Host kann prüfen, ob das richtige Modul geladen wurde bzw. ob bestimmte Anpassungen in der Kommunikation erfolgen müssen.
+Wenn das Modul die eigene Initialisierung abgeschlossen hat, meldet es die Bereitschaft an den Host. Erst ab diesem Zeitpunkt kann man davon ausgehen, dass das Modul Nachrichten empfangen kann. Davor hört es quasi nicht zu.
+
+Im Verona-Kontext liefert das Modul seine Metadaten mit, d. h. der Host kann prüfen, ob das richtige Modul geladen wurde bzw. ob bestimmte Anpassungen in der Kommunikation erfolgen müssen.
 
 ::: {.callout-warning}
 ## Vorsicht bei mehreren Modulen auf einer Seite

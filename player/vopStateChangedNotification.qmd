@@ -1,6 +1,6 @@
 ---
 lang: de
-title: Verona Interfaces - Player
+title: Player vopStateChangedNotification
 ---
 
 Verona Interfaces - Player UML
