@@ -1,0 +1,97 @@
+---
+lang: de
+title: Datenstrukturen
+---
+
+# Begriff Unit
+
+Ein Testablauf ist stets eine Abfolge von Instruktionen oder Fragen an die Testperson, nach Bedarf angereichert mit Material (Bilder, Text, Audio, Video - sog. Stimulus), auf die sich die Fragen bzw. Handlungsanweisungen dann beziehen. Die kleinste Dateneinheit ist ein durch die Testperson geänderter Zustand, der durch Speichern reproduzierbar wird. Diese kleinste Dateneinheit nennen wir **Variable**. Sie kann sich auf ein Interaktionselement (z. B. Eingabefeld, Ankreuzkästchen), aber auch auf ein abgespieltes Audio beziehen (Variablenwert ist dann der Fortschritt des Abspielens).
+
+Der Begriff **Item** steht für eine Antwort der Testperson, die man mit einem Erwartungswert vergleichen kann und dann den Kategorien "Richtig" und "Falsch" zuordnen kann. Die Quelle für die Antwort ist der Wert einer oder mehrerer Variablen. D. h. die Zustandsänderungen während der Interaktion führen nicht automatisch zu auswertbaren Daten, sondern müssen ggf. aus mehreren Interaktionen zusammengeführt werden.
+
+> Z. B. ist in Mathematik ein Format sehr beliebt: "Kreuze an und begründe". Die Testperson soll sich für eine Option einer Auswahl von Ankreuzkästchen entscheiden, aber bewertet im Sinne der Datenanalyse wird die Entscheidung erst im Zusammenhang mit einem Text, der darunter in ein Eingabefeld geschrieben wurde.
+
+Nun kann ein Item auf einer Seite ggf. zusammen mit einem Stimulus präsentiert werden. Über die Navigation kommt man zum nächsten Item. Oft werden jedoch mehrere Items als Gruppe präsentiert, vor allem, wenn sie sich auf denselben Stimulus beziehen. Man erreicht eine höhere Effizienz beim Testen, wenn man zu einem Stimulus nicht nur ein Item vorsieht. Als **Unit** bezeichnen wir eine Gruppe von Items, die aus testpraktischen oder testtheoretischen Gründen zusammen präsentiert werden.
+
+Die Unit ist nun die Ebene in der Datenstruktur, die man als beliebig austauschbar innerhalb eines Tests deklariert. Es gibt sogar statistische Maßzahlen, die die unerwünschten Positionseffekte von Units quantifizieren. Natürlich gibt es auch Tests und vor allem Befragungen, bei denen die Abfolge gründlich geplant wird und wo die Units nicht unabhängig voneinander sind. Aber aus Sicht der Datenstrukturen reden wir lange von Units und deren Optimierung, bevor ihr Platz in einer Testabfolge festgelegt wird. Daher sieht der Entwicklungsprozess für Tests zunächst eine Unit- -- bzw. im deutschen Sprachgebrauch auch Aufgaben- -- Entwicklung vor.
+
+::: {.callout-tip}
+## Unit ist Fokus
+
+Der Fokus aller Verona-Module liegt auf der Unit. Es werden Daten verarbeitet, die sich stets auf eine Unit beziehen.
+:::
+
+# Dreiklang der Module
+
+```{mermaid}
+flowchart TD
+    subgraph Aufgabenentwicklung
+        E(((Editor)))
+        style E fill:white
+        S(((Schemer)))
+        style S fill:white
+    end
+    style Aufgabenentwicklung fill:#e6eeff,stroke-width:0
+    subgraph Testsystem
+        P(((Player)))
+        style P fill:white
+    end
+    style Testsystem fill:#e6eeff,stroke-width:0
+    subgraph Auswertung
+        K[Kodierung]-->A[Datenanalyse]
+        style K fill:white
+        style A fill:white
+    end
+    style Auswertung fill:#e6eeff,stroke-width:0
+
+
+    E-->|Unit-Definition|P
+    E-->|Variablenliste|S
+    P-->|Antwortdaten|K
+    S-->|Kodierschema|K
+```
+
+## Modul "Editor"
+
+Hier werden in einem interaktiven Prozess alle Medien platziert und alle Interaktionselemente gebaut. Ein Editor ist auf die Autorinnen und Autoren ausgerichtet. Bei den großen Bildungsvergleichsstudien muss sich daher dessen UI/UX an den Fähigkeiten und Gewohnheiten von Lehrkräften orientieren.
+
+## Modul "Player"
+
+Ein Player-Modul dient dem "Abspielen" -- also der Präsentation -- von Units. Es gibt mehrere Anwendungsfälle:
+
+* Anzeige im Testsystem während des Tests
+* Anzeige im Testsystem für den Review
+* Veröffentlichung von Beispielaufgaben
+* Veröffentlichung als permanente Referenz für einen wissenschaftlichen Artikel
+* Voransicht im Autorensystem
+* Druckbare Ansicht für den Export
+* Präsentation während des Kodierprozesses mit den Antwortdaten einer Testperson
+* Anzeige für Eltern nach dem Test mit den Antwortdaten ihres Kindes
+
+Diese Liste lässt sich sicherlich erweitern. Je nach Anwendungsfall werden die Antworten gespeichert bzw. wiederhergestellt oder nicht.
+
+## Unit-Definition
+
+Die Unit-Definition ist nicht spezifiziert. Sie wird serialisiert als String gespeichert bzw. zwischen den Komponenten ausgetauscht.
+
+Natürlich kann ein Entwickler entscheiden, die Unit-Definition ausführlich zu beschreiben und auch z. B. einer Versionierung zu unterziehen. Das IQB tut dies z. B. für zwei einfache Player. Eine solche Spezifikation der Unit-Definition ist aber nicht Gegenstand dieser Verona-Spezifikationen.
+
+## Modul "Schemer"
+
+Mit diesem Verona-Modul werden im Autorensystem die Vorschriften für die Antwortverarbeitung erstellt. Dieses sog. Kodierschema wird in einfachen Fällen bereits von den Aufgabenentwicklerinnen und -entwicklern eingegeben, meist bedarf es aber aufgrund der Komplexität einer besonderen Erfahrung.
+
+## Variablenliste
+
+Damit das Kodierschema entwickelt werden kann, muss der Schemer die Variablen kennen, die im Editor angelegt wurden. Diese Datenstruktur ist als [Teil des Editors](https://verona-interfaces.github.io/editor/#schema-VariableList) spezifiziert.
+
+## Antwortdaten
+
+Die Antwortdaten sind nicht spezifiziert. Sie werden serialisiert als String gespeichert bzw. zwischen den Komponenten ausgetauscht.
+
+Das IQB hat für die eigenen Module ein einheitliches Antwortformat spezifiziert. Dieses ist jedoch nicht Teil dieser Verona-Spezifikationen.
+
+## Kodierschema
+
+Das Kodierschema ist nicht spezifiziert. Es wird serialisiert als String gespeichert bzw. zwischen den Komponenten ausgetauscht.
+
+Das IQB hat für die eigenen Module ein einheitliches Datenformat für das Kodierschema spezifiziert. Dieses ist jedoch nicht Teil dieser Verona-Spezifikationen.

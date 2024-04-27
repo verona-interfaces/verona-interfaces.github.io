@@ -3,4 +3,10 @@ lang: de
 title: Verona Interfaces - Player
 ---
 
-Verona Interfaces - Player
+# Beschreibung
+
+Ein Player präsentiert eine Unit und sorgt für die Interaktion mit der Testperson bzw. mit den Befragten. Das grundlegende Modell hierbei ist, dass ein Test bzw. Befragung (nachfolgend synonym) eine Abfolge von inhaltlich getrennten 
+
+# Spezifikation
+
+| [Player](https://github.com/verona-interfaces/player#readme) | Komponente, die eine Aufgabe in einer Testanwendung abspielt | [Spezifikation (Html)](https://verona-interfaces.github.io/player/), [Modell (UML)](https://github.com/verona-interfaces/player/blob/master/model/model.md) |

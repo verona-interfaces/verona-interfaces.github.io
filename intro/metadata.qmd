@@ -9,7 +9,7 @@ Eine Html-Seite kann auf diverse Arten Metadaten speichern. Im Verona-Kontext be
 
 # Daten erläutert
 
-Die vollständige Spezifikation mit Beispiel finden Sie [hier](https://verona-interfaces.github.io/metadata). Der Umfang der Informationen ist recht ambitioniert. Es muss sich für viele Einträge jedoch erst herausstellen, ob sie nützlich sind bzw. ob die konkrete Umsetzung passt. Hierbei spielt wird die Entwicklung eines [Modul-Registers](registry.qmd) helfen. Die folgende Liste enthält die Metadaten, die bisher in den Webanwendungen des IQB verwendet werden (Version 2.0).
+Die vollständige Spezifikation mit Beispiel finden Sie [hier](https://verona-interfaces.github.io/metadata). Der Umfang der Informationen ist recht ambitioniert. Es muss sich für viele Einträge jedoch erst herausstellen, ob sie nützlich sind bzw. ob die konkrete Umsetzung passt. Hierbei wird die Entwicklung eines Modul-Registers (s. unten) helfen. Die folgende Liste enthält die Metadaten, die bisher in den Webanwendungen des IQB verwendet werden (Version 2.0).
 
 ## id
 

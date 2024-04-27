@@ -84,7 +84,7 @@ Während der Interaktion meldet das Verona-Modul Änderungen je nach Typ des Mod
 ::: {.callout-warning}
 ## Vorsicht Datenflut
 
-Bei schnellen Tasteneingaben oder ambitionierter Beobachtung des Userverhaltens fallen sehr viele Daten an. Beim Player-Modul kann man die Daten aufteilen (sog. `dataParts`), aber auch sonst könnte es viel werden. Die Hostanwendung sollte einen Puffer einrichten und nicht alles sofort wegspeichern. Bei `rxjs` gibt es beispielsweise den Operator `debounceTime`.
+Bei schnellen Tastatureingaben oder ambitionierter Beobachtung des Userverhaltens (Logging) fallen sehr viele Daten an. Beim Player-Modul kann man die Daten aufteilen (sog. `dataParts`), aber auch sonst könnte es viel werden. Die Hostanwendung sollte einen Puffer einrichten und nicht alles sofort wegspeichern. Bei `rxjs` gibt es beispielsweise den Operator `debounceTime`.
 :::
 
 # Beenden: unnötig

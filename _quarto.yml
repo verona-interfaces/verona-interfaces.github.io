@@ -38,6 +38,7 @@ website:
           - intro/architecture.qmd
           - intro/metadata.qmd
           - intro/modelling.qmd
+          - intro/data-structures.qmd
 
 format:
   html:
