@@ -1,0 +1,11 @@
+---
+title: "English: About"
+---
+
+The repositories located at /verona-interfaces consist of API specifications for assessment web applications. In Germany, every state / Bundesland conducts assessments in schools and uses different technical solutions. In order to exchange assessment units or to share code modules, the data formats and interfaces need to be specified. The initiative 'Verona' works on these specifications.
+
+This is an early stage of this endeavour, we did some first steps. To support this process, we publish this documentation in German language. Here you find a general introduction and clarifying of terms etc.
+
+Besides, the specifications come in separate repositories in English language: [Player](https://github.com/verona-interfaces/player#readme), [Editor](https://github.com/verona-interfaces/editor#readme), [Schemer](https://github.com/verona-interfaces/schemer#readme) and [Metadata](https://github.com/verona-interfaces/metadata#readme).
+
+Contact: [Institute for Educational Quality Improvement](mailto:iqb-it@hu-berlin.de).

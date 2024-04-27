@@ -12,8 +12,11 @@ Der Fokus liegt also nicht auf der Einzelperson - der Schülerin oder des Schül
 
 ## Lesen Sie weiter
 
-* [Computerbasiertes Testen](tba.qmd): Modellierung der Datenflüsse für computerbasierte Vergleichsstudien und institutionelle Szenarien
-* [Architektur](architecture.qmd): Die Schnittstellen dieser Dokumentation folgen einem einheitlichen technischen Muster
+* [Computerbasiertes Testen](tba.qmd): Ein Einstieg in das Thema "Computerbasierte Vergleichsstudien" und institutionelle Szenarien
+* [Architektur](architecture.qmd): Hier wird das Plug-in-System erläutert
+* [Modul-Metadaten](metadata.qmd): Einem Modul müssen bestimmte Informationen beigegeben werden. Diese sind hier erläutert.
+* [Kommunikationsmodell](modelling.qmd): Wenn ein Verona-Modul von einer Webanwendung geladen wird, ist die dann folgende Kommunikation standardisiert.
+* [Datenstrukturen](data-structures.qmd): Was ist eine Unit und welche Daten spielen bei Verona-Modulen eine Rolle?
 
 ## Name und Logo
 

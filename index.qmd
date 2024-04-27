@@ -1,6 +1,6 @@
 ---
 lang: de
-title: Verona Interfaces - Standards für computerbasiertes Testen
+title: Verona Interfaces -- Standards für computerbasiertes Testen
 format:
     html:
       anchor-sections: true
@@ -9,7 +9,7 @@ format:
 
 ::: {.callout-note}
 ## English version
-You find a short introduction in English language at the [end of this page](#english-verona-interface-specifications).
+[Here](intro/english.qmd) you find a short introduction in English language.
 :::
 
 # Willkommen
@@ -27,7 +27,7 @@ Folgende Spezifikationen liegen vor und werden in englischer Sprache gesondert i
 | [Player](https://github.com/verona-interfaces/player#readme) | Komponente, die eine Aufgabe in einer Testanwendung abspielt | [Spezifikation (Html)](https://verona-interfaces.github.io/player/), [Modell (UML)](https://github.com/verona-interfaces/player/blob/master/model/model.md) |
 | [Editor](https://github.com/verona-interfaces/editor#readme) | Komponente, mit der man Aufgaben gestaltet | [Spezifikation (Html)](https://verona-interfaces.github.io/editor/) |
 | [Schemer](https://github.com/verona-interfaces/schemer#readme) | Komponente, mit der man die Kodieranweisungen für die Antwortverarbeitung festlegt | [Spezifikation (Html)](https://verona-interfaces.github.io/schemer/) |
-| [Metadaten](https://github.com/verona-interfaces/metadata#readme) | Alle o. g. Komponenten enthalten Metadaten auf einheitliche Art, die hier beschrieben ist. | [Schema Editor](https://skohub.io/editor/?schema=https://raw.githubusercontent.com/verona-interfaces/metadata/master/verona-module-metadata.json) |
+| [Metadaten](https://github.com/verona-interfaces/metadata#readme) | Alle o. g. Komponenten enthalten Metadaten auf einheitliche Art, die hier beschrieben ist. |  |
 
 
 # Redaktion
@@ -50,13 +50,3 @@ Dieser Webauftritt basiert auf Texten in einer einfachen Syntax [Markdown](https
 Wenn Sie Inhalte beitragen oder Probleme melden möchten, können Sie die Funktion "Problem melden" nutzen, die rechts auf jeder Seite zu finden ist. Sie werden dann zu GitHub weitergeleitet. Es ist ein Account bei GitHub erforderlich.
 
 Ansonsten kontakten Sie bitte die [IT des IQB](mailto:iqb-it@hu-berlin.de).
-
-# English: Verona Interface Specifications
-
-The repositories located at /verona-interfaces consist of API specifications for assessment applications. In Germany, every state / Bundesland conducts assessments in schools and uses different technical solutions. In order to exchange assessment units or to share code modules, the data formats and interfaces need to be specified. The initiative 'Verona' works on these specifications.
-
-This is an early stage of this endeavour, we did some first steps. To support this process, we publish this documentation in German language. Here you find a general introduction and clarifying of terms etc.
-
-Besides, the specifications come in separate repositories in English language: [Player](https://github.com/verona-interfaces/player#readme), [Editor](https://github.com/verona-interfaces/editor#readme), [Schemer](https://github.com/verona-interfaces/schemer#readme) and [Metadata](https://github.com/verona-interfaces/metadata#readme).
-
-Contact: [Institute for Educational Quality Improvement](mailto:iqb-it@hu-berlin.de).
