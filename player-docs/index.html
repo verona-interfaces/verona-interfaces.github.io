@@ -200,6 +200,29 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../editor-docs/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Editor</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../editor-docs/voeStartCommand.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Start-Kommando</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../editor-docs/voeDefinitionChangedNotification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Änderung Definition</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -213,7 +236,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#initialisierung" id="toc-initialisierung" class="nav-link active" data-scroll-target="#initialisierung">1 Initialisierung</a></li>
   <li><a href="#ready-notification" id="toc-ready-notification" class="nav-link" data-scroll-target="#ready-notification">2 Ready Notification</a></li>
   <li><a href="#start-command" id="toc-start-command" class="nav-link" data-scroll-target="#start-command">3 Start Command</a></li>
-  <li><a href="#statechanged-notification" id="toc-statechanged-notification" class="nav-link" data-scroll-target="#statechanged-notification">4 StateChanged Notification</a></li>
+  <li><a href="#state-changed-notification" id="toc-state-changed-notification" class="nav-link" data-scroll-target="#state-changed-notification">4 State Changed Notification</a></li>
   <li><a href="#page-navigation-command" id="toc-page-navigation-command" class="nav-link" data-scroll-target="#page-navigation-command">5 Page Navigation Command</a></li>
   <li><a href="#unit-navigation-requested-notification" id="toc-unit-navigation-requested-notification" class="nav-link" data-scroll-target="#unit-navigation-requested-notification">6 Unit Navigation Requested Notification</a></li>
   <li><a href="#navigation-denied-notification" id="toc-navigation-denied-notification" class="nav-link" data-scroll-target="#navigation-denied-notification">7 Navigation Denied Notification</a></li>
@@ -324,8 +347,8 @@ Tipp
 <li><code>playerConfig</code>: Hier werden Parameter übergeben, die die Anzeige und die Interaktion steuern. Beispielsweise kann die Art und Weise des Blätterns zur nächsten Seite festgelegt werden. Weitere Erläuterungen zu diesem Datenobjekt finden Sie <a href="../player-docs/vopStartCommand.html">hier</a>.</li>
 </ul>
 </section>
-<section id="statechanged-notification" class="level1">
-<h1>4 StateChanged Notification</h1>
+<section id="state-changed-notification" class="level1">
+<h1>4 State Changed Notification</h1>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -342,7 +365,7 @@ Tipp
 <p>Sobald eine Interaktion stattgefunden hat, die als Antwort wichtig wäre oder die bei einem wiederholten Aufruf der Unit wiederhergestellt werden soll, meldet der Player diese Änderung. Parameter:</p>
 <ul>
 <li><code>sessionId</code>: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.</li>
-<li><code>timeStamp</code>: Ein String im Standard-Format <a href="https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-date-time-string-format">date-time</a>. Die Nutzung dieser Information ist dem Host überlassen, soll aber vor allem die korrekte Reihenfolge vieler asynchron eintreffenden Nachrichten sicherstellen.</li>
+<li><code>timeStamp</code>: Ein String im Standard-Format <a href="https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-date-time-string-format">date-time</a>. Die Nutzung dieser Information ist dem Host überlassen, soll aber vor allem die korrekte Reihenfolge vieler asynchron eintreffender Nachrichten sicherstellen.</li>
 <li><code>unitState</code>: Daten der Antworten im weiteren Sinne. Diese dienen der Auswertung und der Wiederherstellung beim Zurückblättern. Weitere Erläuterungen zu diesem Datenobjekt finden Sie <a href="../player-docs/vopStateChangedNotification.html">hier</a>.</li>
 <li><code>playerState</code>: Hier schickt der Player Informationen, die dem Host helfen können, die UI anzupassen. Beispielsweise wird so ein Wechsel der Seite berichtet, damit der Host in der Navigationsdarstellung die aktive Seite anders darstellt. Weitere Erläuterungen zu diesem Datenobjekt finden Sie <a href="../player-docs/vopStateChangedNotification.html">hier</a>.</li>
 <li><code>log</code>: Hierüber werden Log-Einträge geschickt. Dies sind Ereignisse, die nicht unbedingt einen Status ändern, sondern nur der Rekonstruktion der Beantwortung über die Zeit dienen können. Weitere Erläuterungen zu diesem Datenobjekt finden Sie <a href="../player-docs/vopStateChangedNotification.html">hier</a>.</li>

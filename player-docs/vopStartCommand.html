@@ -231,6 +231,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../editor-docs/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Editor</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../editor-docs/voeStartCommand.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Start-Kommando</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../editor-docs/voeDefinitionChangedNotification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Änderung Definition</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -366,13 +389,13 @@ Hinweis “required”
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Ob eine Antwort als “erforderlich” – also als “required” – gewertet wird, sollte gezielt gesteuert werden. Das Player sollte “responses complete” nur für die als erforderlich markierten Elemente melden. In diesem Fall meldet der Player sofort nach Start der Unit “responses complete”, wenn die Unit keine Elemente mit der Markierung “erforderlich” hat.</p>
+<p>Ob eine Antwort als “erforderlich” – also als “required” – gewertet wird, sollte gezielt gesteuert werden. Das Player-Modul sollte “responses complete” nur für die als erforderlich markierten Elemente melden. Dann meldet der Player sofort nach Start der Unit “responses complete”, wenn die Unit keine Elemente mit der Markierung “erforderlich” hat.</p>
 </div>
 </div>
 </section>
 <section id="unitstatedatatype" class="level2">
 <h2 class="anchored" data-anchor-id="unitstatedatatype"><code>unitStateDataType</code></h2>
-<p>Hier soll dem Host mitgeteilt werden, um welchen Datentyp es sich bei den Datenteilen <code>dataParts</code> handelt. Beispiel: <code>iqb-standard@1.2</code>. Ein Player kann also eine exotische, nicht dokumentierte Unit-Definition verwenden, erzeugt aber Antworten in einem dokumentierten Format. In diesem Fall wäre die Antwortverarbeitung einfacher.</p>
+<p>Hier soll dem Host mitgeteilt werden, um welchen Datentyp es sich bei den Datenteilen <code>dataParts</code> handelt. Beispiel: <code>iqb-standard@1.2</code>. Ein Player kann also eine exotische, nicht dokumentierte Unit-Definition verwenden, erzeugt aber Antworten in einem dokumentierten Format.</p>
 </section>
 </section>
 <section id="playerconfig" class="level1">

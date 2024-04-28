@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Verona-Interfaces - Datenstrukturen</title>
+<title>Verona-Interfaces - Editor voeDefinitionChangedNotification</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -29,8 +29,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../intro/english.html" rel="next">
-<link href="../intro/modelling.html" rel="prev">
+<link href="../editor-docs/voeStartCommand.html" rel="prev">
 <link href="../favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -68,9 +67,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Suchen"
   }
 }</script>
-<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="../styles.css">
@@ -112,7 +108,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro/index.html">Einführung</a></li><li class="breadcrumb-item"><a href="../intro/data-structures.html">Datenstrukturen</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../editor-docs/index.html">Editor</a></li><li class="breadcrumb-item"><a href="../editor-docs/voeDefinitionChangedNotification.html">Änderung Definition</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -165,7 +161,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../intro/data-structures.html" class="sidebar-item-text sidebar-link active">
+  <a href="../intro/data-structures.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Datenstrukturen</span></a>
   </div>
 </li>
@@ -217,7 +213,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../editor-docs/voeDefinitionChangedNotification.html" class="sidebar-item-text sidebar-link">
+  <a href="../editor-docs/voeDefinitionChangedNotification.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Änderung Definition</span></a>
   </div>
 </li>
@@ -233,26 +229,26 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Auf dieser Seite</h2>
    
   <ul>
-  <li><a href="#begriff-unit" id="toc-begriff-unit" class="nav-link active" data-scroll-target="#begriff-unit">Begriff Unit</a></li>
-  <li><a href="#dreiklang-der-module" id="toc-dreiklang-der-module" class="nav-link" data-scroll-target="#dreiklang-der-module">Dreiklang der Module</a>
+  <li><a href="#sessionid" id="toc-sessionid" class="nav-link active" data-scroll-target="#sessionid"><code>sessionId</code></a></li>
+  <li><a href="#timestamp" id="toc-timestamp" class="nav-link" data-scroll-target="#timestamp"><code>timestamp</code></a></li>
+  <li><a href="#unitdefinition-unitdefinitiontype" id="toc-unitdefinition-unitdefinitiontype" class="nav-link" data-scroll-target="#unitdefinition-unitdefinitiontype"><code>unitDefinition</code>, <code>unitDefinitionType</code></a></li>
+  <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables"><code>variables</code></a>
   <ul class="collapse">
-  <li><a href="#modul-editor" id="toc-modul-editor" class="nav-link" data-scroll-target="#modul-editor">Modul “Editor”</a></li>
-  <li><a href="#modul-player" id="toc-modul-player" class="nav-link" data-scroll-target="#modul-player">Modul “Player”</a></li>
-  <li><a href="#unit-definition" id="toc-unit-definition" class="nav-link" data-scroll-target="#unit-definition">Unit-Definition</a></li>
-  <li><a href="#modul-schemer" id="toc-modul-schemer" class="nav-link" data-scroll-target="#modul-schemer">Modul “Schemer”</a></li>
-  <li><a href="#variablenliste" id="toc-variablenliste" class="nav-link" data-scroll-target="#variablenliste">Variablenliste</a></li>
-  <li><a href="#antwortdaten" id="toc-antwortdaten" class="nav-link" data-scroll-target="#antwortdaten">Antwortdaten</a></li>
-  <li><a href="#kodierschema" id="toc-kodierschema" class="nav-link" data-scroll-target="#kodierschema">Kodierschema</a></li>
+  <li><a href="#id-type-format" id="toc-id-type-format" class="nav-link" data-scroll-target="#id-type-format"><code>id</code>, <code>type</code>, <code>format</code></a></li>
+  <li><a href="#multiple-nullable" id="toc-multiple-nullable" class="nav-link" data-scroll-target="#multiple-nullable"><code>multiple</code>, <code>nullable</code></a></li>
+  <li><a href="#values-valuepositionlabels-valuescomplete" id="toc-values-valuepositionlabels-valuescomplete" class="nav-link" data-scroll-target="#values-valuepositionlabels-valuescomplete"><code>values</code>, <code>valuePositionLabels</code>, <code>valuesComplete</code></a></li>
+  <li><a href="#page" id="toc-page" class="nav-link" data-scroll-target="#page"><code>page</code></a></li>
   </ul></li>
+  <li><a href="#dependenciestoplay-dependenciestoedit" id="toc-dependenciestoplay-dependenciestoedit" class="nav-link" data-scroll-target="#dependenciestoplay-dependenciestoedit"><code>dependenciesToPlay</code>, <code>dependenciesToEdit</code></a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/verona-interfaces/verona-interfaces.github.io/issues/new" class="toc-action"><i class="bi bi-github"></i>Problem melden</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro/index.html">Einführung</a></li><li class="breadcrumb-item"><a href="../intro/data-structures.html">Datenstrukturen</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../editor-docs/index.html">Editor</a></li><li class="breadcrumb-item"><a href="../editor-docs/voeDefinitionChangedNotification.html">Änderung Definition</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Datenstrukturen</h1>
+<h1 class="title">Editor voeDefinitionChangedNotification</h1>
 </div>
 
 
@@ -269,114 +265,56 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="begriff-unit" class="level1">
-<h1>Begriff Unit</h1>
-<p>Ein Testablauf ist stets eine Abfolge von Instruktionen oder Fragen an die Testperson, nach Bedarf angereichert mit Material (Bilder, Text, Audio, Video - sog. Stimulus), auf die sich die Fragen bzw. Handlungsanweisungen dann beziehen. Die kleinste Dateneinheit ist ein durch die Testperson geänderter Zustand, der durch Speichern reproduzierbar wird. Diese kleinste Dateneinheit nennen wir <strong>Variable</strong>. Sie kann sich auf ein Interaktionselement (z. B. Eingabefeld, Ankreuzkästchen), aber auch auf ein abgespieltes Audio beziehen (Variablenwert ist dann der Fortschritt des Abspielens).</p>
-<p>Der Begriff <strong>Item</strong> steht für eine Antwort der Testperson, die man mit einem Erwartungswert vergleichen kann und dann den Kategorien “Richtig” und “Falsch” zuordnen kann. Die Quelle für die Antwort ist der Wert einer oder mehrerer Variablen. D. h. die Zustandsänderungen während der Interaktion führen nicht automatisch zu auswertbaren Daten, sondern müssen ggf. aus mehreren Interaktionen zusammengeführt werden.</p>
-<blockquote class="blockquote">
-<p>Z. B. ist in Mathematik ein Format sehr beliebt: “Kreuze an und begründe”. Die Testperson soll sich für eine Option einer Auswahl von Ankreuzkästchen entscheiden, aber bewertet im Sinne der Datenanalyse wird die Entscheidung erst im Zusammenhang mit einem Text, der darunter in ein Eingabefeld geschrieben wurde.</p>
-</blockquote>
-<p>Nun kann ein Item auf einer Seite ggf. zusammen mit einem Stimulus präsentiert werden. Über die Navigation kommt man zum nächsten Item. Oft werden jedoch mehrere Items als Gruppe präsentiert, vor allem, wenn sie sich auf denselben Stimulus beziehen. Man erreicht eine höhere Effizienz beim Testen, wenn man zu einem Stimulus nicht nur ein Item vorsieht. Als <strong>Unit</strong> bezeichnen wir eine Gruppe von Items, die aus testpraktischen oder testtheoretischen Gründen zusammen präsentiert werden.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Unit ist Fokus
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Der Fokus aller Verona-Module liegt auf der Unit. Es werden Daten verarbeitet, die sich stets auf eine Unit beziehen.</p>
-</div>
-</div>
-<p>Die Unit ist nun die Ebene in der Datenstruktur, die man als beliebig austauschbar innerhalb eines Tests deklariert. Es gibt sogar statistische Maßzahlen, die die unerwünschten Positionseffekte von Units quantifizieren. Natürlich gibt es auch Tests und vor allem Befragungen, bei denen die Abfolge gründlich geplant wird und wo die Units nicht unabhängig voneinander sind. Aber aus Sicht der Datenstrukturen reden wir lange von Units und deren Optimierung, bevor ihr Platz in einer Testabfolge festgelegt wird. Daher sieht der Entwicklungsprozess für Tests zunächst eine Unit- – bzw. im deutschen Sprachgebrauch auch Aufgaben- – Entwicklung vor.</p>
-<blockquote class="blockquote">
-<p>Eine Unit kann auch eine simple Seite sein, die nur begrüßt oder den nächsten Aufgabenblock ankündigt. Das IQB hat viel Arbeit in Units gestteckt, die die Bedienung von Eingabeelementen erläutern. Für die vorliegende Dokumentation spielt das keine Rolle, da es technisch nur eine Vereinfachung darstellt und stets möglich ist.</p>
-</blockquote>
+<p>Nachfolgend sind die Parameter des Payloads für die Nachricht <code>voeDefinitionChangedNotification</code> erläutert. Für einen Gesamtblick auf die Kommunikation des Editor-Moduls mit dem Host siehe <a href="../editor-docs/index.html">hier</a>.</p>
+<section id="sessionid" class="level1">
+<h1><code>sessionId</code></h1>
+<p>Dem Editor wurde im Start-Kommando eine <code>sessionId</code> eine Kennung mitgeschickt, die der Editor anschließend in jeder Nachricht verwendet. Damit wird die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit unterstützt.</p>
 </section>
-<section id="dreiklang-der-module" class="level1">
-<h1>Dreiklang der Module</h1>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart TD
-    subgraph Aufgabenentwicklung
-        E(((Editor)))
-        style E fill:white
-        S(((Schemer)))
-        style S fill:white
-    end
-    style Aufgabenentwicklung fill:#e6eeff,stroke-width:0
-    subgraph Testsystem
-        P(((Player)))
-        style P fill:white
-    end
-    style Testsystem fill:#e6eeff,stroke-width:0
-    subgraph Auswertung
-        K[Kodierung]--&gt;A[Datenanalyse]
-        style K fill:white
-        style A fill:white
-    end
-    style Auswertung fill:#e6eeff,stroke-width:0
-
-
-    E--&gt;|Unit-Definition|P
-    E--&gt;|Variablenliste|S
-    P--&gt;|Antwortdaten|K
-    S--&gt;|Kodierschema|K
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<section id="modul-editor" class="level2">
-<h2 class="anchored" data-anchor-id="modul-editor">Modul “Editor”</h2>
-<p>Hier werden in einem interaktiven Prozess alle Medien platziert und alle Interaktionselemente gebaut. Ein Editor ist auf die Autorinnen und Autoren ausgerichtet. Bei den großen Bildungsvergleichsstudien muss sich daher dessen UI/UX an den Fähigkeiten und Gewohnheiten von Lehrkräften orientieren.</p>
+<section id="timestamp" class="level1">
+<h1><code>timestamp</code></h1>
+<p>Ein String im Standard-Format <a href="https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-date-time-string-format">date-time</a>. Die Nutzung dieser Information ist dem Host überlassen, soll aber vor allem die korrekte Reihenfolge vieler asynchron eintreffenden Nachrichten sicherstellen.</p>
 </section>
-<section id="modul-player" class="level2">
-<h2 class="anchored" data-anchor-id="modul-player">Modul “Player”</h2>
-<p>Ein Player-Modul dient dem “Abspielen” – also der Präsentation – von Units. Es gibt mehrere Anwendungsfälle:</p>
+<section id="unitdefinition-unitdefinitiontype" class="level1">
+<h1><code>unitDefinition</code>, <code>unitDefinitionType</code></h1>
+<p>Dieser String enthält die neue Unit-Definition sowie deren Typ.</p>
+</section>
+<section id="variables" class="level1">
+<h1><code>variables</code></h1>
+<p>Dass die Unit-Definition nicht dokumentiert ist, hat eine Menge Vorteile, allerdings auch Nachteile. Einige Informationen wären durchaus sinnvoll, anderen Programmierungen zur Verfügung zu stellen. Dazu gehört die Liste aller möglichen Variablen. Dies sind Werte-Tträger, also mit einer ID identifizierbare Quellen von Antwortdaten. Wie genau diese Antwortdaten entstehen oder wo, das ist uninteressant. Nur dass es sie gibt, ist z. B. für die Planung der Kodierung wichtig.</p>
+<p>Die Variablenliste wird stets gleichzeitig mit der Unit-Definition geschickt. Sie soll also immer aktuell sein. Die folgenden Parameter werden mitgeliefert:</p>
+<section id="id-type-format" class="level2">
+<h2 class="anchored" data-anchor-id="id-type-format"><code>id</code>, <code>type</code>, <code>format</code></h2>
 <ul>
-<li>Anzeige im Testsystem während des Tests</li>
-<li>Anzeige im Testsystem für den Review</li>
-<li>Veröffentlichung von Beispielaufgaben</li>
-<li>Veröffentlichung als permanente Referenz für einen wissenschaftlichen Artikel</li>
-<li>Voransicht im Autorensystem</li>
-<li>Druckbare Ansicht für den Export</li>
-<li>Präsentation während der manuellen Kodierung mit den Antwortdaten einer Testperson</li>
-<li>Anzeige für Eltern nach dem Test mit den Antwortdaten ihres Kindes</li>
+<li>Eine Variable braucht eine innerhalb der Unit eindeutige Bezeichnung.</li>
+<li>Ein Typ kann sein: <code>string</code>, <code>integer</code>, <code>number</code>, <code>boolean</code>, <code>attachment</code> – letzteres bezeichnet ein erzeugtes Medium, z. B. ein Bild. Im Kern handelt es sich hier um einen String, der aber eine Referenz darstellt und dem Auswertungssystem das Auffinden des zugehörigen Mediums ermöglicht.</li>
+<li>Werte für <code>format</code>:
+<ul>
+<li><code>text-selection</code>: Ein String, der Daten für eine Textmarkierung enthält</li>
+<li><code>image</code>, <code>capture-image</code>, <code>audio</code>: Spezifiziert den Datentyp <code>attachment</code></li>
+<li><code>ggb-file</code>, <code>ggb-variable</code>: Strings mit besonderem Bezug zu GeoGebra</li>
+<li><code>non-negative</code>: spezifiziert <code>integer</code> oder <code>number</code></li>
+<li><code>latex</code>, <code>math-ml</code>, <code>math-table</code>: Strings mit besonderem Bezug zu mathematischen Formeln oder Ausdrücken</li>
+</ul></li>
 </ul>
-<p>Diese Liste lässt sich sicherlich erweitern. Je nach Anwendungsfall werden die Antworten gespeichert bzw. wiederhergestellt oder nicht.</p>
 </section>
-<section id="unit-definition" class="level2">
-<h2 class="anchored" data-anchor-id="unit-definition">Unit-Definition</h2>
-<p>Die Unit-Definition ist nicht spezifiziert. Sie wird serialisiert als String gespeichert bzw. zwischen den Komponenten ausgetauscht. Aus diesem Grund ist es wichtig, dass zu der Unit-Definition auch die ID und die Version von Player- und ggf. Editormodul gespeichert werden.</p>
-<p>Natürlich kann ein Entwickler entscheiden, die Unit-Definition ausführlich zu beschreiben und auch z. B. einer Versionierung zu unterziehen. Das IQB tut dies z. B. für zwei einfache Player. Eine solche Spezifikation der Unit-Definition ist aber nicht Gegenstand dieser Verona-Spezifikationen.</p>
+<section id="multiple-nullable" class="level2">
+<h2 class="anchored" data-anchor-id="multiple-nullable"><code>multiple</code>, <code>nullable</code></h2>
+<p>Diese booleschen Werte kennzeichnen, ob die Variable ein Array des beschriebenen Typs und Formats enthält und ob der Wert <code>null</code> möglich ist.</p>
 </section>
-<section id="modul-schemer" class="level2">
-<h2 class="anchored" data-anchor-id="modul-schemer">Modul “Schemer”</h2>
-<p>Mit diesem Verona-Modul werden im Autorensystem die Vorschriften für die Antwortverarbeitung erstellt. Dieses sog. Kodierschema wird in einfachen Fällen bereits von den Aufgabenentwicklerinnen und -entwicklern eingegeben, meist bedarf es aber aufgrund der Komplexität einer besonderen Erfahrung.</p>
+<section id="values-valuepositionlabels-valuescomplete" class="level2">
+<h2 class="anchored" data-anchor-id="values-valuepositionlabels-valuescomplete"><code>values</code>, <code>valuePositionLabels</code>, <code>valuesComplete</code></h2>
+<p>Diese Angaben liefern genauere Informationen über die möglichen Werte der Variablen. Wenn <code>valuesComplete</code> true ist, dann handelt es sich sogar um eine vollständige Liste, und die Kodierung kann automatisch erfolgen.</p>
 </section>
-<section id="variablenliste" class="level2">
-<h2 class="anchored" data-anchor-id="variablenliste">Variablenliste</h2>
-<p>Damit das Kodierschema entwickelt werden kann, muss der Schemer die Variablen kennen, die im Editor angelegt wurden. Diese Datenstruktur ist als <a href="https://verona-interfaces.github.io/editor/#schema-VariableList">Teil des Editors</a> spezifiziert.</p>
+<section id="page" class="level2">
+<h2 class="anchored" data-anchor-id="page"><code>page</code></h2>
+<p>Diese Information verortet die Quelle des Variablenwertes auf einer Seite der Unit.</p>
 </section>
-<section id="antwortdaten" class="level2">
-<h2 class="anchored" data-anchor-id="antwortdaten">Antwortdaten</h2>
-<p>Die Antwortdaten sind nicht spezifiziert. Sie werden serialisiert als String gespeichert bzw. zwischen den Komponenten ausgetauscht. In der Player-Schnittstelle ist die Angabe eines Datenformates als String vorgesehen, damit nachfolgende Prozesse die Daten sinnvoll verarbeiten können.</p>
-<p>Das IQB hat für die eigenen Module ein einheitliches Antwortformat spezifiziert. Dieses ist jedoch nicht Teil dieser Verona-Spezifikationen.</p>
 </section>
-<section id="kodierschema" class="level2">
-<h2 class="anchored" data-anchor-id="kodierschema">Kodierschema</h2>
-<p>Das Kodierschema ist nicht spezifiziert. Es wird serialisiert als String gespeichert bzw. zwischen den Komponenten ausgetauscht. In der Schemer-Schnittstelle ist die Angabe eines Datenformates als String vorgesehen, damit nachfolgende Prozesse die Daten sinnvoll verarbeiten können.</p>
-<p>Das IQB hat für die eigenen Module ein einheitliches Datenformat für das Kodierschema spezifiziert. Dieses ist jedoch nicht Teil dieser Verona-Spezifikationen.</p>
+<section id="dependenciestoplay-dependenciestoedit" class="level1">
+<h1><code>dependenciesToPlay</code>, <code>dependenciesToEdit</code></h1>
+<p>Diese Einträge beschreiben Abhängigkeiten von externen Bibliotheken oder Diensten für das Editieren oder Abspielen der Unit. Dies kann der Prüfung der Testinhalte auf Vollständigkeit dienen. Wird hier z. B. GeoGebra genannt, kann eine Warnung ausgegeben werden, wenn dieses Softwarepaket nicht verfügbar ist.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -798,14 +736,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../intro/modelling.html" class="pagination-link" aria-label="Kommunikationsmodell">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Kommunikationsmodell</span>
+      <a href="../editor-docs/voeStartCommand.html" class="pagination-link" aria-label="Start-Kommando">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Start-Kommando</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../intro/english.html" class="pagination-link" aria-label="English: About">
-        <span class="nav-page-text">English: About</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

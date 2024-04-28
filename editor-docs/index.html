@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Verona-Interfaces - Datenstrukturen</title>
+<title>Verona-Interfaces - Verona Interfaces - Editor</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -29,8 +29,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../intro/english.html" rel="next">
-<link href="../intro/modelling.html" rel="prev">
+<link href="../editor-docs/voeStartCommand.html" rel="next">
+<link href="../player-docs/vopStateChangedNotification.html" rel="prev">
 <link href="../favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -112,7 +112,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro/index.html">Einführung</a></li><li class="breadcrumb-item"><a href="../intro/data-structures.html">Datenstrukturen</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../editor-docs/index.html">Editor</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -165,7 +165,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../intro/data-structures.html" class="sidebar-item-text sidebar-link active">
+  <a href="../intro/data-structures.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Datenstrukturen</span></a>
   </div>
 </li>
@@ -202,7 +202,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../editor-docs/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../editor-docs/index.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Editor</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Abschnitt umschalten">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -233,26 +233,19 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Auf dieser Seite</h2>
    
   <ul>
-  <li><a href="#begriff-unit" id="toc-begriff-unit" class="nav-link active" data-scroll-target="#begriff-unit">Begriff Unit</a></li>
-  <li><a href="#dreiklang-der-module" id="toc-dreiklang-der-module" class="nav-link" data-scroll-target="#dreiklang-der-module">Dreiklang der Module</a>
-  <ul class="collapse">
-  <li><a href="#modul-editor" id="toc-modul-editor" class="nav-link" data-scroll-target="#modul-editor">Modul “Editor”</a></li>
-  <li><a href="#modul-player" id="toc-modul-player" class="nav-link" data-scroll-target="#modul-player">Modul “Player”</a></li>
-  <li><a href="#unit-definition" id="toc-unit-definition" class="nav-link" data-scroll-target="#unit-definition">Unit-Definition</a></li>
-  <li><a href="#modul-schemer" id="toc-modul-schemer" class="nav-link" data-scroll-target="#modul-schemer">Modul “Schemer”</a></li>
-  <li><a href="#variablenliste" id="toc-variablenliste" class="nav-link" data-scroll-target="#variablenliste">Variablenliste</a></li>
-  <li><a href="#antwortdaten" id="toc-antwortdaten" class="nav-link" data-scroll-target="#antwortdaten">Antwortdaten</a></li>
-  <li><a href="#kodierschema" id="toc-kodierschema" class="nav-link" data-scroll-target="#kodierschema">Kodierschema</a></li>
-  </ul></li>
+  <li><a href="#initialisierung" id="toc-initialisierung" class="nav-link active" data-scroll-target="#initialisierung">1 Initialisierung</a></li>
+  <li><a href="#ready-notification" id="toc-ready-notification" class="nav-link" data-scroll-target="#ready-notification">2 Ready Notification</a></li>
+  <li><a href="#start-command" id="toc-start-command" class="nav-link" data-scroll-target="#start-command">3 Start Command</a></li>
+  <li><a href="#definition-changed-notification" id="toc-definition-changed-notification" class="nav-link" data-scroll-target="#definition-changed-notification">4 Definition Changed Notification</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/verona-interfaces/verona-interfaces.github.io/issues/new" class="toc-action"><i class="bi bi-github"></i>Problem melden</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro/index.html">Einführung</a></li><li class="breadcrumb-item"><a href="../intro/data-structures.html">Datenstrukturen</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Datenstrukturen</h1>
+<h1 class="title">Verona Interfaces - Editor</h1>
 </div>
 
 
@@ -269,114 +262,99 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="begriff-unit" class="level1">
-<h1>Begriff Unit</h1>
-<p>Ein Testablauf ist stets eine Abfolge von Instruktionen oder Fragen an die Testperson, nach Bedarf angereichert mit Material (Bilder, Text, Audio, Video - sog. Stimulus), auf die sich die Fragen bzw. Handlungsanweisungen dann beziehen. Die kleinste Dateneinheit ist ein durch die Testperson geänderter Zustand, der durch Speichern reproduzierbar wird. Diese kleinste Dateneinheit nennen wir <strong>Variable</strong>. Sie kann sich auf ein Interaktionselement (z. B. Eingabefeld, Ankreuzkästchen), aber auch auf ein abgespieltes Audio beziehen (Variablenwert ist dann der Fortschritt des Abspielens).</p>
-<p>Der Begriff <strong>Item</strong> steht für eine Antwort der Testperson, die man mit einem Erwartungswert vergleichen kann und dann den Kategorien “Richtig” und “Falsch” zuordnen kann. Die Quelle für die Antwort ist der Wert einer oder mehrerer Variablen. D. h. die Zustandsänderungen während der Interaktion führen nicht automatisch zu auswertbaren Daten, sondern müssen ggf. aus mehreren Interaktionen zusammengeführt werden.</p>
-<blockquote class="blockquote">
-<p>Z. B. ist in Mathematik ein Format sehr beliebt: “Kreuze an und begründe”. Die Testperson soll sich für eine Option einer Auswahl von Ankreuzkästchen entscheiden, aber bewertet im Sinne der Datenanalyse wird die Entscheidung erst im Zusammenhang mit einem Text, der darunter in ein Eingabefeld geschrieben wurde.</p>
-</blockquote>
-<p>Nun kann ein Item auf einer Seite ggf. zusammen mit einem Stimulus präsentiert werden. Über die Navigation kommt man zum nächsten Item. Oft werden jedoch mehrere Items als Gruppe präsentiert, vor allem, wenn sie sich auf denselben Stimulus beziehen. Man erreicht eine höhere Effizienz beim Testen, wenn man zu einem Stimulus nicht nur ein Item vorsieht. Als <strong>Unit</strong> bezeichnen wir eine Gruppe von Items, die aus testpraktischen oder testtheoretischen Gründen zusammen präsentiert werden.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
+<p>Ein Editor dient der interaktiven onlinegestützten Entwicklung einer Unit. Hierbei stehen die visuelle Erscheinung und die Interaktionselemente im Vordergrund.</p>
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Unit ist Fokus
+<a href="https://verona-interfaces.github.io/editor/">Spezifikation</a>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Der Fokus aller Verona-Module liegt auf der Unit. Es werden Daten verarbeitet, die sich stets auf eine Unit beziehen.</p>
+<p>Die Spezifikation der API ist als YML-Datei in der Syntax <a href="https://www.asyncapi.com/de">AsyncAPI</a> ausgeführt. Nach einer Änderung wird über ein <a href="https://www.asyncapi.com/tools/generator">Tool</a> eine lesbare Html-Datei erzeugt.</p>
 </div>
 </div>
-<p>Die Unit ist nun die Ebene in der Datenstruktur, die man als beliebig austauschbar innerhalb eines Tests deklariert. Es gibt sogar statistische Maßzahlen, die die unerwünschten Positionseffekte von Units quantifizieren. Natürlich gibt es auch Tests und vor allem Befragungen, bei denen die Abfolge gründlich geplant wird und wo die Units nicht unabhängig voneinander sind. Aber aus Sicht der Datenstrukturen reden wir lange von Units und deren Optimierung, bevor ihr Platz in einer Testabfolge festgelegt wird. Daher sieht der Entwicklungsprozess für Tests zunächst eine Unit- – bzw. im deutschen Sprachgebrauch auch Aufgaben- – Entwicklung vor.</p>
-<blockquote class="blockquote">
-<p>Eine Unit kann auch eine simple Seite sein, die nur begrüßt oder den nächsten Aufgabenblock ankündigt. Das IQB hat viel Arbeit in Units gestteckt, die die Bedienung von Eingabeelementen erläutern. Für die vorliegende Dokumentation spielt das keine Rolle, da es technisch nur eine Vereinfachung darstellt und stets möglich ist.</p>
-</blockquote>
-</section>
-<section id="dreiklang-der-module" class="level1">
-<h1>Dreiklang der Module</h1>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
 <p></p><figure class="figure"><p></p>
 <div>
-<pre class="mermaid mermaid-js">flowchart TD
-    subgraph Aufgabenentwicklung
-        E(((Editor)))
-        style E fill:white
-        S(((Schemer)))
-        style S fill:white
+<pre class="mermaid mermaid-js">sequenceDiagram
+    autonumber
+    participant MH as Modul-Host
+    participant VM as Editor
+    MH-&gt;&gt;VM:Initialisierung
+    VM-&gt;&gt;MH:voeReadyNotification
+    MH-&gt;&gt;VM:voeStartCommand
+    loop
+        VM-&gt;&gt;MH:voeDefinitionChangedNotification
     end
-    style Aufgabenentwicklung fill:#e6eeff,stroke-width:0
-    subgraph Testsystem
-        P(((Player)))
-        style P fill:white
-    end
-    style Testsystem fill:#e6eeff,stroke-width:0
-    subgraph Auswertung
-        K[Kodierung]--&gt;A[Datenanalyse]
-        style K fill:white
-        style A fill:white
-    end
-    style Auswertung fill:#e6eeff,stroke-width:0
-
-
-    E--&gt;|Unit-Definition|P
-    E--&gt;|Variablenliste|S
-    P--&gt;|Antwortdaten|K
-    S--&gt;|Kodierschema|K
 </pre>
 </div>
 <p></p></figure><p></p>
 </div>
 </div>
 </div>
-<section id="modul-editor" class="level2">
-<h2 class="anchored" data-anchor-id="modul-editor">Modul “Editor”</h2>
-<p>Hier werden in einem interaktiven Prozess alle Medien platziert und alle Interaktionselemente gebaut. Ein Editor ist auf die Autorinnen und Autoren ausgerichtet. Bei den großen Bildungsvergleichsstudien muss sich daher dessen UI/UX an den Fähigkeiten und Gewohnheiten von Lehrkräften orientieren.</p>
+<section id="initialisierung" class="level1">
+<h1>1 Initialisierung</h1>
+<p>Der Host richtet ein <code>&lt;iframe&gt;</code>-Element ein und setzt für das <code>srcdoc</code>-Attribut den kompletten Inhalt des Moduls. Das Modul ist technisch eine Html-Seite, d.&nbsp;h. es wird durch das Laden auch die Ausführung von JavaScript-Code angestoßen, der auf oberster Ebene vorgesehen ist.</p>
 </section>
-<section id="modul-player" class="level2">
-<h2 class="anchored" data-anchor-id="modul-player">Modul “Player”</h2>
-<p>Ein Player-Modul dient dem “Abspielen” – also der Präsentation – von Units. Es gibt mehrere Anwendungsfälle:</p>
+<section id="ready-notification" class="level1">
+<h1>2 Ready Notification</h1>
+<p>Dieser Code sendet als letzten Schritt der eigenen Initialisierung eine Nachricht an den Host, dass das Modul bereit sei für das Start-Kommando. Als Payload wird das <a href="../intro/metadata.html">Metadaten-Objekt</a> mitgeschickt – hier allerdings als String serialisiert, um nicht bei jeder Änderung der Metadaten-Spezifikation alle Modul-API ändern zu müssen.</p>
+</section>
+<section id="start-command" class="level1">
+<h1>3 Start Command</h1>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tipp
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ausführliche Darstellung des Start-Kommandos siehe <a href="../editor-docs/voeStartCommand.html">hier</a>.</p>
+</div>
+</div>
+<p>Nachdem der Host die Bereitschaftsmeldung erhalten hat, schickt er die Unit-Definition: Parameter <code>unitDefinition</code>, serialisiert als String. Damit stellt der Editor für die erste Seite alle Elemente dar, die in der Unit-Definition vorgesehen sind und bereitet die Oberfläche vor.</p>
+<p>Dem Editor wird mit <code>sessionId</code> eine Kennung mitgeschickt, die der Editor anschließend in jeder Nachricht zur Änderung der Definition verwenden soll. Damit wird die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit unterstützt.</p>
+<p>Weitere Parameter:</p>
 <ul>
-<li>Anzeige im Testsystem während des Tests</li>
-<li>Anzeige im Testsystem für den Review</li>
-<li>Veröffentlichung von Beispielaufgaben</li>
-<li>Veröffentlichung als permanente Referenz für einen wissenschaftlichen Artikel</li>
-<li>Voransicht im Autorensystem</li>
-<li>Druckbare Ansicht für den Export</li>
-<li>Präsentation während der manuellen Kodierung mit den Antwortdaten einer Testperson</li>
-<li>Anzeige für Eltern nach dem Test mit den Antwortdaten ihres Kindes</li>
+<li><code>unitDefinitionType</code>: Sollte es Varianten oder Versionen von Unit-Definitionen geben, kann dies hier dem Editor mitgeteilt werden. Alternativ (oder parallel) kann natürlich diese Information als Teil der Datenstruktur der Unit-Definition übergeben werden.</li>
+<li><code>editorConfig</code>: Hier werden Parameter übergeben, die die Bearbeitung steuern. Weitere Erläuterungen zu diesem Datenobjekt finden Sie <a href="../editor-docs/voeStartCommand.html">hier</a>.</li>
 </ul>
-<p>Diese Liste lässt sich sicherlich erweitern. Je nach Anwendungsfall werden die Antworten gespeichert bzw. wiederhergestellt oder nicht.</p>
 </section>
-<section id="unit-definition" class="level2">
-<h2 class="anchored" data-anchor-id="unit-definition">Unit-Definition</h2>
-<p>Die Unit-Definition ist nicht spezifiziert. Sie wird serialisiert als String gespeichert bzw. zwischen den Komponenten ausgetauscht. Aus diesem Grund ist es wichtig, dass zu der Unit-Definition auch die ID und die Version von Player- und ggf. Editormodul gespeichert werden.</p>
-<p>Natürlich kann ein Entwickler entscheiden, die Unit-Definition ausführlich zu beschreiben und auch z. B. einer Versionierung zu unterziehen. Das IQB tut dies z. B. für zwei einfache Player. Eine solche Spezifikation der Unit-Definition ist aber nicht Gegenstand dieser Verona-Spezifikationen.</p>
-</section>
-<section id="modul-schemer" class="level2">
-<h2 class="anchored" data-anchor-id="modul-schemer">Modul “Schemer”</h2>
-<p>Mit diesem Verona-Modul werden im Autorensystem die Vorschriften für die Antwortverarbeitung erstellt. Dieses sog. Kodierschema wird in einfachen Fällen bereits von den Aufgabenentwicklerinnen und -entwicklern eingegeben, meist bedarf es aber aufgrund der Komplexität einer besonderen Erfahrung.</p>
-</section>
-<section id="variablenliste" class="level2">
-<h2 class="anchored" data-anchor-id="variablenliste">Variablenliste</h2>
-<p>Damit das Kodierschema entwickelt werden kann, muss der Schemer die Variablen kennen, die im Editor angelegt wurden. Diese Datenstruktur ist als <a href="https://verona-interfaces.github.io/editor/#schema-VariableList">Teil des Editors</a> spezifiziert.</p>
-</section>
-<section id="antwortdaten" class="level2">
-<h2 class="anchored" data-anchor-id="antwortdaten">Antwortdaten</h2>
-<p>Die Antwortdaten sind nicht spezifiziert. Sie werden serialisiert als String gespeichert bzw. zwischen den Komponenten ausgetauscht. In der Player-Schnittstelle ist die Angabe eines Datenformates als String vorgesehen, damit nachfolgende Prozesse die Daten sinnvoll verarbeiten können.</p>
-<p>Das IQB hat für die eigenen Module ein einheitliches Antwortformat spezifiziert. Dieses ist jedoch nicht Teil dieser Verona-Spezifikationen.</p>
-</section>
-<section id="kodierschema" class="level2">
-<h2 class="anchored" data-anchor-id="kodierschema">Kodierschema</h2>
-<p>Das Kodierschema ist nicht spezifiziert. Es wird serialisiert als String gespeichert bzw. zwischen den Komponenten ausgetauscht. In der Schemer-Schnittstelle ist die Angabe eines Datenformates als String vorgesehen, damit nachfolgende Prozesse die Daten sinnvoll verarbeiten können.</p>
-<p>Das IQB hat für die eigenen Module ein einheitliches Datenformat für das Kodierschema spezifiziert. Dieses ist jedoch nicht Teil dieser Verona-Spezifikationen.</p>
+<section id="definition-changed-notification" class="level1">
+<h1>4 Definition Changed Notification</h1>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tipp
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ausführliche Darstellung der Meldung zur Änderung der Definition siehe <a href="../editor-docs/voeDefinitionChangedNotification.html">hier</a>.</p>
+</div>
+</div>
+<p>Sobald eine Bearbeitung der Unit-Definition stattgefunden hat, meldet der Editor diese Änderung. Parameter:</p>
+<ul>
+<li><code>sessionId</code>: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.</li>
+<li><code>timeStamp</code>: Ein String im Standard-Format <a href="https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-date-time-string-format">date-time</a>. Die Nutzung dieser Information ist dem Host überlassen, soll aber vor allem die korrekte Reihenfolge vieler asynchron eintreffender Nachrichten sicherstellen.</li>
+<li><code>unitDefinition</code>: Die neue vollständige Unit-Definition, serialisiert als String.</li>
+<li><code>unitDefinitionType</code>: Spezifizierung des Datenformates, wenn gewünscht.</li>
+<li><code>variables</code>: Liste aller Variablen der Unit-Definition. Diese Liste wird z. B. benötigt, um die Kodierung zu erstellen.</li>
+<li><code>dependenciesToPlay</code>: Abhängigkeiten von externen Bibliotheken oder Diensten für das Abspielen der Unit.</li>
+<li><code>dependenciesToEdit</code>: Abhängigkeiten von externen Bibliotheken oder Diensten für das Editieren der Unit.</li>
+</ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -798,13 +776,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../intro/modelling.html" class="pagination-link" aria-label="Kommunikationsmodell">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Kommunikationsmodell</span>
+      <a href="../player-docs/vopStateChangedNotification.html" class="pagination-link" aria-label="Status-Änderung">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Status-Änderung</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../intro/english.html" class="pagination-link" aria-label="English: About">
-        <span class="nav-page-text">English: About</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../editor-docs/voeStartCommand.html" class="pagination-link" aria-label="Start-Kommando">
+        <span class="nav-page-text">Start-Kommando</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
