@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Verona-Interfaces - Player vopStartCommand</title>
+<title>Verona-Interfaces - Player vopStateChangedNotification</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -63,8 +63,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../player/vopStateChangedNotification.html" rel="next">
-<link href="../player/index.html" rel="prev">
+<link href="../player-docs/vopStartCommand.html" rel="prev">
 <link href="../favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -143,7 +142,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../player/index.html">Player</a></li><li class="breadcrumb-item"><a href="../player/vopStartCommand.html">Start-Kommando</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../player-docs/index.html">Player</a></li><li class="breadcrumb-item"><a href="../player-docs/vopStateChangedNotification.html">Status-Änderung</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -210,7 +209,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../player/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../player-docs/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Player</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Abschnitt umschalten">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -219,13 +218,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../player/vopStartCommand.html" class="sidebar-item-text sidebar-link active">
+  <a href="../player-docs/vopStartCommand.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Start-Kommando</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../player/vopStateChangedNotification.html" class="sidebar-item-text sidebar-link">
+  <a href="../player-docs/vopStateChangedNotification.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Status-Änderung</span></a>
   </div>
 </li>
@@ -242,8 +241,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#sessionid" id="toc-sessionid" class="nav-link active" data-scroll-target="#sessionid"><code>sessionId</code></a></li>
-  <li><a href="#unitdefinition" id="toc-unitdefinition" class="nav-link" data-scroll-target="#unitdefinition"><code>unitDefinition</code></a></li>
-  <li><a href="#unitdefinitiontype" id="toc-unitdefinitiontype" class="nav-link" data-scroll-target="#unitdefinitiontype"><code>unitDefinitionType</code></a></li>
+  <li><a href="#timestamp" id="toc-timestamp" class="nav-link" data-scroll-target="#timestamp"><code>timestamp</code></a></li>
   <li><a href="#unitstate" id="toc-unitstate" class="nav-link" data-scroll-target="#unitstate"><code>unitState</code></a>
   <ul class="collapse">
   <li><a href="#dataparts" id="toc-dataparts" class="nav-link" data-scroll-target="#dataparts"><code>dataParts</code></a></li>
@@ -251,25 +249,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#responseprogress" id="toc-responseprogress" class="nav-link" data-scroll-target="#responseprogress"><code>responseProgress</code></a></li>
   <li><a href="#unitstatedatatype" id="toc-unitstatedatatype" class="nav-link" data-scroll-target="#unitstatedatatype"><code>unitStateDataType</code></a></li>
   </ul></li>
-  <li><a href="#playerconfig" id="toc-playerconfig" class="nav-link" data-scroll-target="#playerconfig"><code>playerConfig</code></a>
+  <li><a href="#playerstate" id="toc-playerstate" class="nav-link" data-scroll-target="#playerstate"><code>playerState</code></a>
   <ul class="collapse">
-  <li><a href="#unitnumber-unittitle-unitid" id="toc-unitnumber-unittitle-unitid" class="nav-link" data-scroll-target="#unitnumber-unittitle-unitid"><code>unitNumber</code>, <code>unitTitle</code>, <code>unitId</code></a></li>
-  <li><a href="#logpolicy" id="toc-logpolicy" class="nav-link" data-scroll-target="#logpolicy"><code>logPolicy</code></a></li>
-  <li><a href="#pagingmode" id="toc-pagingmode" class="nav-link" data-scroll-target="#pagingmode"><code>pagingMode</code></a></li>
-  <li><a href="#printmode" id="toc-printmode" class="nav-link" data-scroll-target="#printmode"><code>printMode</code></a></li>
-  <li><a href="#enablednavigationtargets" id="toc-enablednavigationtargets" class="nav-link" data-scroll-target="#enablednavigationtargets"><code>enabledNavigationTargets</code></a></li>
-  <li><a href="#startpage" id="toc-startpage" class="nav-link" data-scroll-target="#startpage"><code>startPage</code></a></li>
-  <li><a href="#directdownloadurl" id="toc-directdownloadurl" class="nav-link" data-scroll-target="#directdownloadurl"><code>directDownloadUrl</code></a></li>
+  <li><a href="#validpages" id="toc-validpages" class="nav-link" data-scroll-target="#validpages"><code>validPages</code></a></li>
+  <li><a href="#currentpage" id="toc-currentpage" class="nav-link" data-scroll-target="#currentpage"><code>currentPage</code></a></li>
   </ul></li>
+  <li><a href="#log" id="toc-log" class="nav-link" data-scroll-target="#log"><code>log</code></a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/verona-interfaces/verona-interfaces.github.io/issues/new" class="toc-action"><i class="bi bi-github"></i>Problem melden</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../player/index.html">Player</a></li><li class="breadcrumb-item"><a href="../player/vopStartCommand.html">Start-Kommando</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../player-docs/index.html">Player</a></li><li class="breadcrumb-item"><a href="../player-docs/vopStateChangedNotification.html">Status-Änderung</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Player vopStartCommand</h1>
+<h1 class="title">Player vopStateChangedNotification</h1>
 </div>
 
 
@@ -286,26 +280,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Nachfolgend sind die Parameter des Payloads für die Nachricht <code>vopStartCommand</code> erläutert. Für einen Gesamtblick auf die Kommunikation des Player-Moduls mit dem Host siehe <a href="../player/index.html">hier</a>.</p>
+<p>Nachfolgend sind die Parameter des Payloads für die Nachricht <code>vopStateChangedNotification</code> erläutert. Für einen Gesamtblick auf die Kommunikation des Player-Moduls mit dem Host siehe <a href="../player-docs/index.html">hier</a>.</p>
 <section id="sessionid" class="level1">
 <h1><code>sessionId</code></h1>
 <p>Dem Player wird mit <code>sessionId</code> eine Kennung mitgeschickt, die der Player anschließend in jeder Nachricht verwenden soll. Damit wird die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit unterstützt. Diese ID ist wichtiger, wenn es mehrere Player pro Seite beim Host gibt, die gleichzeitig verwaltet werden sollen.</p>
 </section>
-<section id="unitdefinition" class="level1">
-<h1><code>unitDefinition</code></h1>
-<p>Die Unit-Definition beschreibt das Erscheinungsbild der Unit und ggf. die Interaktionselemente.</p>
-<blockquote class="blockquote">
-<p>Beispiel: Bei einem Player für einen basalen Lesegeschwindigkeitstest besteht die Unit-Definition nur aus einem Text, der durch die Testperson gelesen werden soll, und dann soll einer von zwei Buttons geklickt werden – “JA” oder “NEIN”. So ein Text heißt z. B. “Eis ist warm”. Als Antwort wird die Kennung des Buttons – “A” oder “B” – geliefert sowie die Zeit in Millisekunden, die von der Präsentation der Unit (entspricht der Bereitschaftsmeldung des Players) bis zum Klicken eines Buttons vergangen ist. Mit dem Klick wird auch gleich eine Anforderung für eine Unit-Navigation “next” abgeschickt. Dieser spezialisierte Player benötigt aufgrund umfangreicher Konventionen nur den Text als Unit-Definition.</p>
-</blockquote>
-<p>Häufig wird es sich bei der Unit-Definition um ein Datenobjekt handeln, das z. B. über <code>JSON.stringify()</code> serialisiert wurde. Die Komplexität der übergebenen Daten ist nicht bestimmbar und aus Sicht der Verona-Spezifikationen auch egal. Der Player wird die Datenstruktur wieder zu einem Datenobjekt transformieren, prüfen und auswerten.</p>
-</section>
-<section id="unitdefinitiontype" class="level1">
-<h1><code>unitDefinitionType</code></h1>
-<p>Diese Angabe soll dem Player helfen, Missverständnisse bei der Interpretation der Unit-Definition zu vermeiden. Aus Sicht der Host-Anwendung ist es jedoch wichtiger, Namen und Version des erforderlichen Players zu kennen. Wenn bekannt ist, dass Player <code>XY@3.5</code> für diese Unit-Definition sinnvollerweise benutzt werden sollte, dann muss der Host diesen Player besorgen. Dann spielt der Typ der Unit-Definition eine untergeordnete Rolle.</p>
+<section id="timestamp" class="level1">
+<h1><code>timestamp</code></h1>
+<p>Ein String im Standard-Format <a href="https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-date-time-string-format">date-time</a>. Die Nutzung dieser Information ist dem Host überlassen, soll aber vor allem die korrekte Reihenfolge vieler asynchron eintreffenden Nachrichten sicherstellen.</p>
 </section>
 <section id="unitstate" class="level1">
 <h1><code>unitState</code></h1>
-<p>Hierbei handelt es sich um dasselbe Objekt, das der Player zuletzt an den Host sendet hat, als sich der Status geändert hat. Der Player stellt dann den Bearbeitungsstand wieder her, den die Unit beim Verlassen hatte, und meldet als neuen Status nur Abweichungen zu diesem Stand.</p>
+<p>Hierbei handelt es sich um dasselbe Objekt, das dem Player im Start-Kommando übergeben wird, wenn der vorherige Zustand wiederhergestellt werden soll. Der Player meldet über diese Datenstruktur Änderungen.</p>
 <p>Grundsätzlich sind die Eigenschaften der Datenstruktur <code>unitState</code> optional. Es sollte nur das übergeben werden, was sich geändert hat.</p>
 <section id="dataparts" class="level2">
 <h2 class="anchored" data-anchor-id="dataparts"><code>dataParts</code></h2>
@@ -375,66 +361,46 @@ Hinweis “required”
 <p>Hier soll dem Host mitgeteilt werden, um welchen Datentyp es sich bei den Datenteilen <code>dataParts</code> handelt. Beispiel: <code>iqb-standard@1.2</code>. Ein Player kann also eine exotische, nicht dokumentierte Unit-Definition verwenden, erzeugt aber Antworten in einem dokumentierten Format. In diesem Fall wäre die Antwortverarbeitung einfacher.</p>
 </section>
 </section>
-<section id="playerconfig" class="level1">
-<h1><code>playerConfig</code></h1>
-<section id="unitnumber-unittitle-unitid" class="level2">
-<h2 class="anchored" data-anchor-id="unitnumber-unittitle-unitid"><code>unitNumber</code>, <code>unitTitle</code>, <code>unitId</code></h2>
-<p>Diese Angaben werden benötigt, wenn der Player den gesamten verfügbaren Bildschirm des Browsers einnehmen soll. Dann kann der Host keine Orientierung darüber geben, an welcher Stelle des Testablaufes die Testperson gerade ist und der Player muss dies übernehmen. Für diesen Fall sind diese Informationen gedacht.</p>
-</section>
-<section id="logpolicy" class="level2">
-<h2 class="anchored" data-anchor-id="logpolicy"><code>logPolicy</code></h2>
-<p>Aus einem Forschungsinteresse heraus könnte der Player angehalten sein, viele Zustandsänderungen an den Host zu melden. Das kann vom Scrollverhalten bis zum Mitschreiben Mausbewegungen gehen. Allerdings gibt es sehr viele Anwendungsfälle für das Player-Modul, wo dieses Logging abgestellt werden sollte. Beispiele: Review der Unit während der Qualitätsprüfung, Verwendung als Beispielaufgabe, Präsentation der Antworten zur manuellen Kodierung. Aus diesem Grund kann dem Player differenziert mitgeteilt werden, ob bzw. in welchem Maße Logs an den Host geschickt werden sollen: <code>disabled</code>, <code>lean</code>, <code>rich</code>, <code>debug</code>. Die Interpretation der Werte ist derzeit nicht festgelegt.</p>
-</section>
-<section id="pagingmode" class="level2">
-<h2 class="anchored" data-anchor-id="pagingmode"><code>pagingMode</code></h2>
-<p>Wenn die Unit aus mehreren Seiten besteht, wird über diesen Parameter festgelegt, ob bzw. wie das Blättern erfolgen soll. Dieses Verhalten sollte in einem Test einheitlich sein, so dass es kein fixer Parameter der Unit-Definition ist. Verschiedene Tests können unterschiedliches Blätter-Verhalten wünschen, ohne dass die Unit-Definition geändert werden muss.</p>
-<p>Mögliche Werte:</p>
-<ul>
-<li><code>separate</code>: Die Seiten werden einzeln angezeigt, so wie die Seitennavigation es steuert. Die Animation des Seitenwechsels ist horizontal.</li>
-<li><code>buttons</code>: Die Seiten werden einzeln angezeigt, aber es werden Buttons eingeblendet, die auf weitere Seiten hinweisen und bei Klick eine Seitennavigation auslösen. Die Animation des Seitenwechsels ist vertikal.</li>
-<li><code>concat-scroll</code>: Alle Seiten werden zu einer einzigen Seite zusammengelegt (gestapelt). Die Testperson scrollt vertikal und bemerkt nicht, dass es mehrere Seiten gibt. Sollte eine Seitennavigation aktiv sein, wird entsprechend gescrollt.</li>
-<li><code>concat-scroll-snap</code>: Alle Seiten werden zu einer einzigen Seite zusammengelegt, jedoch ist stets nur eine Seite zu sehen. Die Testperson scrollt vertikal und die Seiten “schnappen” in den Sichtbereich, so dass nie zwei Seiten gleichzeitig zu sehen sind. Dieser Modus ist vorteilhaft, wenn die Zeit, die eine Testperson auf einer Seite verbringt, gemessen werden soll. Man erreicht eine intuitive Art des Seitenwechsels, verliert aber nicht die Information “time on page”.</li>
-</ul>
-<div class="callout callout-style-default callout-caution callout-titled">
+<section id="playerstate" class="level1">
+<h1><code>playerState</code></h1>
+<p>Hier wird der Host über die verfügbaren Seiten und die aktuelle Seite informiert. Sollte es nur eine Seite geben, kann komplett auf diese Datenbereiche verzichtet werden.</p>
+<section id="validpages" class="level2">
+<h2 class="anchored" data-anchor-id="validpages"><code>validPages</code></h2>
+<p>Dies ist ein JSON-Objekt mit der Struktur <code>key-value</code>-store. Diese Datenstruktur ist auch bekannt als dictionary oder Hash-Tabelle. Der “Key” ist hierbei die ID einer Seite, der “Value” ist das Label, das die UI bei Elementen der Seitensteuerung verwenden soll.</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Beispiel validPages</strong></pre>
+</div>
+<div class="sourceCode" id="cb2" data-filename="Beispiel validPages"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"1"</span><span class="fu">:</span> <span class="st">"Start"</span><span class="fu">,</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"2"</span><span class="fu">:</span> <span class="st">"Bestätigung"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Scroll-snap nicht verlässlich
+Subject to change
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Der Scroll-snap-Modus beim Blättern ist eine standardisierte Html-Eigenschaft. Allerdings ist dieses Verhalten unterschiedlich implementiert in den Browsern bzw. Betriebssystemen. Vor der Nutzung sollten ausgiebige Tests sicherstellen, dass sich alle verwendeten Geräte wie gewünscht verhalten.</p>
+<p>Diese Datenstruktur wurde als ungünstig evaluiert. Es ist geplant, die Struktur in ein Array von Objekten zu überführen, jeweils mit den Eigenschaften <code>id</code> und <code>label</code>.</p>
 </div>
 </div>
 </section>
-<section id="printmode" class="level2">
-<h2 class="anchored" data-anchor-id="printmode"><code>printMode</code></h2>
-<p>Im Rahmen der Qualitätssicherung müssen Testaufgaben ausgiebig überprüft werden. Normalerweise begibt sich der Prüfer bzw. die Prüferin in die Rolle der Testperson und beantwortet Schritt für Schritt die Fragen. Dies kann allerdings sehr zeitaufwändig sein, insbesondere, wenn Audio-Sequenzen abgewartet werden müssen, bevor weitere Teile der Unit sichtbar werden.</p>
-<p>Um diesen Review zu erleichtern, kann der Player in den sog. Printmodus geschaltet werden. Der Host begrenzt dann das <code>&lt;iframe&gt;</code>-Element nicht mehr auf den Bildschirm, sondern gibt so viel Höhe, wie der Player für die Unit benötigt. Es werden alle Seiten untereinander gestapelt und alle Einschränkungen der Sichtbarkeit von Seiten bzw. Seitenabschnitten aufgehoben. Weiterhin kann der Player ein separates Styling (Markierung über <code>@media print</code>) für das Drucken aus dem Browser heraus bereitstellen.</p>
-<p>Mögliche Werte:</p>
-<ul>
-<li><code>off</code>: Kein Printmodus.</li>
-<li><code>on</code>: Printmodus.</li>
-<li><code>on-with-ids</code>: Printmodus, und zusätzlich werden die IDs der Elemente der Unit eingeblendet.</li>
-</ul>
+<section id="currentpage" class="level2">
+<h2 class="anchored" data-anchor-id="currentpage"><code>currentPage</code></h2>
+<p>Der Player berichtet hierüber über eine erfolgte Seitennavigation. Es wird die ID bzw. der Key der neuen Seite übergeben.</p>
 </section>
-<section id="enablednavigationtargets" class="level2">
-<h2 class="anchored" data-anchor-id="enablednavigationtargets"><code>enabledNavigationTargets</code></h2>
-<p>Diese einfache Liste von Strings informiert den Player, welche der fünf möglichen Ziele für die Unit-Navigation zur Verfügung stehen. Dann kann der Player beispielsweise den “Weiter”-Button ausblenden, wenn es keine weiteren Units gibt. Oder es wird der “Zurück”-Button ausgeblendet, wenn der Testperson grundsätzlich ein Zurückgehen nicht gestattet ist.</p>
-<p>Mögliche Werte: <code>next</code>, <code>previous</code>, <code>first</code>, <code>last</code>, <code>end</code>.</p>
 </section>
-<section id="startpage" class="level2">
-<h2 class="anchored" data-anchor-id="startpage"><code>startPage</code></h2>
-<p>Sollte der Player sofort nach dem Start auf eine bestimmte Seite navigieren, kann dies hier angegeben werden. Dies ist beispielsweise bei der Anzeige von Units mit gegebenen Antworten bei der manuellen Kodierung gewünscht.</p>
-</section>
-<section id="directdownloadurl" class="level2">
-<h2 class="anchored" data-anchor-id="directdownloadurl"><code>directDownloadUrl</code></h2>
-<p>Sollte der Player während der Laufzeit Code nachladen müssen, kann aus Gründen der Datensicherheit nicht einfach irgendein Server genutzt werden. Dem Player muss mitgeteilt werden, welche URL dafür zulässig ist. Beispiel: GeoGebra.</p>
+<section id="log" class="level1">
+<h1><code>log</code></h1>
+<p>Die Eigenschaften <code>timeStamp</code>, <code>key</code> und <code>content</code> liefern einen Log-Eintrag. In einer Nachricht zur Statusänderung können mehrere Log-Einträge gleichzeitig geschickt werden.</p>
+<p>Es gibt keine Konventionen zur Nutzung dieses Features.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -856,14 +822,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../player/index.html" class="pagination-link" aria-label="Player">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Player</span>
+      <a href="../player-docs/vopStartCommand.html" class="pagination-link" aria-label="Start-Kommando">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Start-Kommando</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../player/vopStateChangedNotification.html" class="pagination-link" aria-label="Status-Änderung">
-        <span class="nav-page-text">Status-Änderung</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

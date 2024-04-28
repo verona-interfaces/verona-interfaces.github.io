@@ -29,7 +29,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../player/vopStartCommand.html" rel="next">
+<link href="../player-docs/vopStartCommand.html" rel="next">
 <link href="../intro/english.html" rel="prev">
 <link href="../favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js"></script>
@@ -112,7 +112,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../player/index.html">Player</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../player-docs/index.html">Player</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -179,7 +179,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../player/index.html" class="sidebar-item-text sidebar-link active">
+            <a href="../player-docs/index.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Player</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Abschnitt umschalten">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -188,13 +188,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../player/vopStartCommand.html" class="sidebar-item-text sidebar-link">
+  <a href="../player-docs/vopStartCommand.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Start-Kommando</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../player/vopStateChangedNotification.html" class="sidebar-item-text sidebar-link">
+  <a href="../player-docs/vopStateChangedNotification.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Status-Änderung</span></a>
   </div>
 </li>
@@ -312,7 +312,7 @@ Tipp
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Ausführliche Darstellung des Start-Kommandos siehe <a href="../player/vopStartCommand.html">hier</a>.</p>
+<p>Ausführliche Darstellung des Start-Kommandos siehe <a href="../player-docs/vopStartCommand.html">hier</a>.</p>
 </div>
 </div>
 <p>Nachdem der Host die Bereitschaftsmeldung erhalten hat, schickt er die Unit-Definition: Parameter <code>unitDefinition</code>, serialisiert als String. Damit stellt der Player – der nach der Initialisierung zunächst eine leere Seite zeigt – alle Elemente dar, die in der Unit-Definition vorgesehen sind und bereitet die Interaktionselemente vor.</p>
@@ -320,8 +320,8 @@ Tipp
 <p>Weitere Parameter:</p>
 <ul>
 <li><code>unitDefinitionType</code>: Sollte es Varianten oder Versionen von Unit-Definitionen geben, kann dies hier dem Player mitgeteilt werden. Alternativ (oder parallel) kann natürlich diese Information als Teil der Datenstruktur der Unit-Definition übergeben werden.</li>
-<li><code>unitState</code>: Sollte die Unit wiederholt präsentiert werden, soll der vorherige Bearbeitungsstatus wiederhergestellt werden. Weitere Erläuterungen zu diesem Datenobjekt finden Sie <a href="../player/vopStartCommand.html">hier</a>.</li>
-<li><code>playerConfig</code>: Hier werden Parameter übergeben, die die Anzeige und die Interaktion steuern. Beispielsweise kann die Art und Weise des Blätterns zur nächsten Seite festgelegt werden. Weitere Erläuterungen zu diesem Datenobjekt finden Sie <a href="../player/vopStartCommand.html">hier</a>.</li>
+<li><code>unitState</code>: Sollte die Unit wiederholt präsentiert werden, soll der vorherige Bearbeitungsstatus wiederhergestellt werden. Weitere Erläuterungen zu diesem Datenobjekt finden Sie <a href="../player-docs/vopStartCommand.html">hier</a>.</li>
+<li><code>playerConfig</code>: Hier werden Parameter übergeben, die die Anzeige und die Interaktion steuern. Beispielsweise kann die Art und Weise des Blätterns zur nächsten Seite festgelegt werden. Weitere Erläuterungen zu diesem Datenobjekt finden Sie <a href="../player-docs/vopStartCommand.html">hier</a>.</li>
 </ul>
 </section>
 <section id="statechanged-notification" class="level1">
@@ -336,16 +336,16 @@ Tipp
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Ausführliche Darstellung der Meldung zur Statusänderung siehe <a href="../player/vopStateChangedNotification.html">hier</a>.</p>
+<p>Ausführliche Darstellung der Meldung zur Statusänderung siehe <a href="../player-docs/vopStateChangedNotification.html">hier</a>.</p>
 </div>
 </div>
 <p>Sobald eine Interaktion stattgefunden hat, die als Antwort wichtig wäre oder die bei einem wiederholten Aufruf der Unit wiederhergestellt werden soll, meldet der Player diese Änderung. Parameter:</p>
 <ul>
 <li><code>sessionId</code>: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.</li>
 <li><code>timeStamp</code>: Ein String im Standard-Format <a href="https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-date-time-string-format">date-time</a>. Die Nutzung dieser Information ist dem Host überlassen, soll aber vor allem die korrekte Reihenfolge vieler asynchron eintreffenden Nachrichten sicherstellen.</li>
-<li><code>unitState</code>: Daten der Antworten im weiteren Sinne. Diese dienen der Auswertung und der Wiederherstellung beim Zurückblättern. Weitere Erläuterungen zu diesem Datenobjekt finden Sie <a href="../player/vopStateChangedNotification.html">hier</a>.</li>
-<li><code>playerState</code>: Hier schickt der Player Informationen, die dem Host helfen können, die UI anzupassen. Beispielsweise wird so ein Wechsel der Seite berichtet, damit der Host in der Navigationsdarstellung die aktive Seite anders darstellt. Weitere Erläuterungen zu diesem Datenobjekt finden Sie <a href="../player/vopStateChangedNotification.html">hier</a>.</li>
-<li><code>log</code>: Hierüber werden Log-Einträge geschickt. Dies sind Ereignisse, die nicht unbedingt einen Status ändern, sondern nur der Rekonstruktion der Beantwortung über die Zeit dienen können. Weitere Erläuterungen zu diesem Datenobjekt finden Sie <a href="../player/vopStateChangedNotification.html">hier</a>.</li>
+<li><code>unitState</code>: Daten der Antworten im weiteren Sinne. Diese dienen der Auswertung und der Wiederherstellung beim Zurückblättern. Weitere Erläuterungen zu diesem Datenobjekt finden Sie <a href="../player-docs/vopStateChangedNotification.html">hier</a>.</li>
+<li><code>playerState</code>: Hier schickt der Player Informationen, die dem Host helfen können, die UI anzupassen. Beispielsweise wird so ein Wechsel der Seite berichtet, damit der Host in der Navigationsdarstellung die aktive Seite anders darstellt. Weitere Erläuterungen zu diesem Datenobjekt finden Sie <a href="../player-docs/vopStateChangedNotification.html">hier</a>.</li>
+<li><code>log</code>: Hierüber werden Log-Einträge geschickt. Dies sind Ereignisse, die nicht unbedingt einen Status ändern, sondern nur der Rekonstruktion der Beantwortung über die Zeit dienen können. Weitere Erläuterungen zu diesem Datenobjekt finden Sie <a href="../player-docs/vopStateChangedNotification.html">hier</a>.</li>
 </ul>
 </section>
 <section id="page-navigation-command" class="level1">
@@ -827,7 +827,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../player/vopStartCommand.html" class="pagination-link" aria-label="Start-Kommando">
+      <a href="../player-docs/vopStartCommand.html" class="pagination-link" aria-label="Start-Kommando">
         <span class="nav-page-text">Start-Kommando</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
