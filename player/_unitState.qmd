@@ -1,0 +1,57 @@
+Grundsätzlich sind die Eigenschaften der Datenstruktur `unitState` optional. Es sollte nur das übergeben werden, was sich geändert hat.
+
+## `dataParts`
+
+Dies ist ein JSON-Objekt mit der Struktur `key-value`-store. Diese Datenstruktur ist auch bekannt als dictionary oder Hash-Tabelle.
+
+```{.json filename="Beispiel dataParts"}
+{
+    "part1": "3456998",
+    "part3": "{\"x\":[10,null,null,null]}"
+}
+
+```
+
+Bei Änderungen muss jeweils nur der Datenteil geschickt werden, der sich geändert hat. Der Host muss dafür sorgen, dass nur dieser Teil überschrieben wird, die anderen Teile müssen erhalten bleiben. Dieses Vorgehen verhindert, dass bei jeder kleinen Änderung eine große Datenmenge geschickt wird und das System ausbremst.
+
+Wenn der Unit-Status beim Start-Kommando zum Wiederherstellen geschickt wird, müssen natürlich alle Datenteile übergeben werden.
+
+## `presentationProgress`
+
+Bei Leistungstests ist es wichtig sicherzustellen, dass die Testperson alle Teile der Unit gesehen hat. Es muss keine Beantwortung erfolgen, aber ein unabsichtliches Auslassen ist problematisch für die Datenanalyse. Daher wird vom Player erwartet, dass er bei Änderungen der Anzeige prüft, ob alles gesehen wurde und dies berichtet. Dann kann ggf. die Teststeuerung ein Weiterblättern verhindern und einen Hinweis geben.
+
+Mögliche Werte:
+
+* `none`: Nichts wurde gesehen - Ausgangszustand
+* `some`: Einige Bereiche der Unit wurden präsentiert
+* `complete`: Alle Elemente/Bereiche wurde präsentiert
+
+Der Stand der Präsentation wird beim Start-Kommando vom Host geschickt, so dass der Player nur die Änderung zu diesem Status berichtet.
+
+## `responseProgress`
+
+Bei Befragungen ist oft wichtig, dass die befragte Person keine Frage auslässt. Aber auch bei Leistungstests können zu Beginn Units vorgesehen werden, die Übungscharakter haben und die Testperson soll erst weiterkommen, wenn sie ein Mindestmaß an Antworten geben konnte. Daher wird vom Player erwartet, dass er während der Bearbeitung prüft, ob alle notwendigen Eingaben erfolgten und auch korrekt sind. Dann kann ggf. die Teststeuerung ein Weiterblättern verhindern und einen Hinweis geben.
+
+Mögliche Werte:
+
+* `none`: Nichts wurde beantwortet - Ausgangszustand
+* `some`: Einige Antworten wurden gegeben
+* `complete`: Alle Antworten wurden gegeben
+
+Der Stand der Bearbeitung wird beim Start-Kommando vom Host geschickt, so dass der Player nur die Änderung zu diesem Status berichtet.
+
+::: {.callout-tip}
+## Hinweis Validierung
+
+Eine Validierung kann problematisch sein, wenn Elemente eines Standard-Html-Formulars verwendet werden. Wenn als Typ eines `<input>`-Elementes beispielsweise eine Zahl gesetzt ist, dann wird eine Texteingabe nicht verfügbar. Die Validierung verhindert also den Zugriff auf fehlerhafte Eingaben.
+:::
+
+::: {.callout-tip}
+## Hinweis "required"
+
+Ob eine Antwort als "erforderlich" -- also als "required" -- gewertet wird, sollte gezielt gesteuert werden. Das Player sollte "responses complete" nur für die als erforderlich markierten Elemente melden. In diesem Fall meldet der Player sofort nach Start der Unit "responses complete", wenn die Unit keine Elemente mit der Markierung "erforderlich" hat.
+:::
+
+## `unitStateDataType`
+
+Hier soll dem Host mitgeteilt werden, um welchen Datentyp es sich bei den Datenteilen `dataParts` handelt. Beispiel: `iqb-standard@1.2`. Ein Player kann also eine exotische, nicht dokumentierte Unit-Definition verwenden, erzeugt aber Antworten in einem dokumentierten Format. In diesem Fall wäre die Antwortverarbeitung einfacher.

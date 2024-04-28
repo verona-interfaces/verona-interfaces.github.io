@@ -44,9 +44,9 @@ website:
         href: player/index.qmd
         contents:
           - href: player/vopStartCommand.qmd
-            text: Start
+            text: Start-Kommando
           - href: player/vopStateChangedNotification.qmd
-            text: StateChanged
+            text: Status-Änderung
 
 format:
   html:
