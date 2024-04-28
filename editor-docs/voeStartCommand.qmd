@@ -3,77 +3,22 @@ lang: de
 title: Editor voeStartCommand
 ---
 
-Nachfolgend sind die Parameter des Payloads für die Nachricht `vopStartCommand` erläutert. Für einen Gesamtblick auf die Kommunikation des Player-Moduls mit dem Host siehe [hier](index.qmd).
+Nachfolgend sind die Parameter des Payloads für die Nachricht `voeStartCommand` erläutert. Für einen Gesamtblick auf die Kommunikation des Editor-Moduls mit dem Host siehe [hier](index.qmd).
 
 # `sessionId`
 
-Dem Player wird mit `sessionId` eine Kennung mitgeschickt, die der Player anschließend in jeder Nachricht verwenden soll. Damit wird die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit unterstützt. Diese ID ist wichtiger, wenn es mehrere Player pro Seite beim Host gibt, die gleichzeitig verwaltet werden sollen.
+Dem Editor wird mit `sessionId` eine Kennung mitgeschickt, die der Editor anschließend in jeder Nachricht über die Änderung der Unit-Definition verwenden soll. Damit wird die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit unterstützt. Diese ID ist wichtiger, wenn es mehrere Editoren pro Seite beim Host gibt, die gleichzeitig verwaltet werden sollen.
 
 # `unitDefinition`
 
 Die Unit-Definition beschreibt das Erscheinungsbild der Unit und ggf. die Interaktionselemente.
 
-> Beispiel: Bei einem Player für einen basalen Lesegeschwindigkeitstest besteht die Unit-Definition nur aus einem Text, der durch die Testperson gelesen werden soll, und dann soll einer von zwei Buttons geklickt werden -- "JA" oder "NEIN". So ein Text heißt z. B. "Eis ist warm". Als Antwort wird die Kennung des Buttons -- "A" oder "B" -- geliefert sowie die Zeit in Millisekunden, die von der Präsentation der Unit (entspricht der Bereitschaftsmeldung des Players) bis zum Klicken eines Buttons vergangen ist. Mit dem Klick wird auch gleich eine Anforderung für eine Unit-Navigation "next" abgeschickt. Dieser spezialisierte Player benötigt aufgrund umfangreicher Konventionen nur den Text als Unit-Definition.
-
-Häufig wird es sich bei der Unit-Definition um ein Datenobjekt handeln, das z. B. über `JSON.stringify()` serialisiert wurde. Die Komplexität der übergebenen Daten ist nicht bestimmbar und aus Sicht der Verona-Spezifikationen auch egal. Der Player wird die Datenstruktur wieder zu einem Datenobjekt transformieren, prüfen und auswerten.
-
 # `unitDefinitionType`
 
-Diese Angabe soll dem Player helfen, Missverständnisse bei der Interpretation der Unit-Definition zu vermeiden. Aus Sicht der Host-Anwendung ist es jedoch wichtiger, Namen und Version des erforderlichen Players zu kennen. Wenn bekannt ist, dass Player `XY@3.5` für diese Unit-Definition sinnvollerweise benutzt werden sollte, dann muss der Host diesen Player besorgen. Dann spielt der Typ der Unit-Definition eine untergeordnete Rolle.
+Diese Angabe soll dem Editor helfen, Missverständnisse bei der Interpretation der Unit-Definition zu vermeiden. Aus Sicht der Host-Anwendung ist es jedoch wichtiger, Namen und Version des erforderlichen Editors zu kennen. Wenn bekannt ist, dass Editor `XY@3.5` für diese Unit-Definition sinnvollerweise benutzt werden sollte, dann muss der Host diesen Editor besorgen. Dann spielt der Typ der Unit-Definition eine untergeordnete Rolle.
 
-# `unitState`
-
-Hierbei handelt es sich um dasselbe Objekt, das der Player zuletzt an den Host sendet hat, als sich der Status geändert hat. Der Player stellt dann den Bearbeitungsstand wieder her, den die Unit beim Verlassen hatte, und meldet als neuen Status nur Abweichungen zu diesem Stand.
-
-# `playerConfig`
-
-## `unitNumber`, `unitTitle`, `unitId`
-
-Diese Angaben werden benötigt, wenn der Player den gesamten verfügbaren Bildschirm des Browsers einnehmen soll. Dann kann der Host keine Orientierung darüber geben, an welcher Stelle des Testablaufes die Testperson gerade ist und der Player muss dies übernehmen. Für diesen Fall sind diese Informationen gedacht.
-
-## `logPolicy`
-
-Aus einem Forschungsinteresse heraus könnte der Player angehalten sein, viele Zustandsänderungen an den Host zu melden. Das kann vom Scrollverhalten bis zum Mitschreiben Mausbewegungen gehen. Allerdings gibt es sehr viele Anwendungsfälle für das Player-Modul, wo dieses Logging abgestellt werden sollte. Beispiele: Review der Unit während der Qualitätsprüfung, Verwendung als Beispielaufgabe, Präsentation der Antworten zur manuellen Kodierung. Aus diesem Grund kann dem Player differenziert mitgeteilt werden, ob bzw. in welchem Maße Logs an den Host geschickt werden sollen: `disabled`, `lean`, `rich`, `debug`. Die Interpretation der Werte ist derzeit nicht festgelegt.
-
-## `pagingMode`
-
-Wenn die Unit aus mehreren Seiten besteht, wird über diesen Parameter festgelegt, ob bzw. wie das Blättern erfolgen soll. Dieses Verhalten sollte in einem Test einheitlich sein, so dass es kein fixer Parameter der Unit-Definition ist. Verschiedene Tests können unterschiedliches Blätter-Verhalten wünschen, ohne dass die Unit-Definition geändert werden muss.
-
-Mögliche Werte:
-
-* `separate`: Die Seiten werden einzeln angezeigt, so wie die Seitennavigation es steuert. Die Animation des Seitenwechsels ist horizontal.
-* `buttons`: Die Seiten werden einzeln angezeigt, aber es werden Buttons eingeblendet, die auf weitere Seiten hinweisen und bei Klick eine Seitennavigation auslösen. Die Animation des Seitenwechsels ist vertikal.
-* `concat-scroll`: Alle Seiten werden zu einer einzigen Seite zusammengelegt (gestapelt). Die Testperson scrollt vertikal und bemerkt nicht, dass es mehrere Seiten gibt. Sollte eine Seitennavigation aktiv sein, wird entsprechend gescrollt.
-* `concat-scroll-snap`: Alle Seiten werden zu einer einzigen Seite zusammengelegt, jedoch ist stets nur eine Seite zu sehen. Die Testperson scrollt vertikal und die Seiten "schnappen" in den Sichtbereich, so dass nie zwei Seiten gleichzeitig zu sehen sind. Dieser Modus ist vorteilhaft, wenn die Zeit, die eine Testperson auf einer Seite verbringt, gemessen werden soll. Man erreicht eine intuitive Art des Seitenwechsels, verliert aber nicht die Information "time on page".
-
-::: {.callout-caution}
-## Scroll-snap nicht verlässlich
-
-Der Scroll-snap-Modus beim Blättern ist eine standardisierte Html-Eigenschaft. Allerdings ist dieses Verhalten unterschiedlich implementiert in den Browsern bzw. Betriebssystemen. Vor der Nutzung sollten ausgiebige Tests sicherstellen, dass sich alle verwendeten Geräte wie gewünscht verhalten.
-:::
-
-## `printMode`
-
-Im Rahmen der Qualitätssicherung müssen Testaufgaben ausgiebig überprüft werden. Normalerweise begibt sich der Prüfer bzw. die Prüferin in die Rolle der Testperson und beantwortet Schritt für Schritt die Fragen. Dies kann allerdings sehr zeitaufwändig sein, insbesondere, wenn Audio-Sequenzen abgewartet werden müssen, bevor weitere Teile der Unit sichtbar werden.
-
-Um diesen Review zu erleichtern, kann der Player in den sog. Printmodus geschaltet werden. Der Host begrenzt dann das `<iframe>`-Element nicht mehr auf den Bildschirm, sondern gibt so viel Höhe, wie der Player für die Unit benötigt. Es werden alle Seiten untereinander gestapelt und alle Einschränkungen der Sichtbarkeit von Seiten bzw. Seitenabschnitten aufgehoben. Weiterhin kann der Player ein separates Styling (Markierung über `@media print`) für das Drucken aus dem Browser heraus bereitstellen.
-
-Mögliche Werte:
-
-* `off`: Kein Printmodus.
-* `on`: Printmodus.
-* `on-with-ids`: Printmodus, und zusätzlich werden die IDs der Elemente der Unit eingeblendet.
-
-## `enabledNavigationTargets`
-
-Diese einfache Liste von Strings informiert den Player, welche der fünf möglichen Ziele für die Unit-Navigation zur Verfügung stehen. Dann kann der Player beispielsweise den "Weiter"-Button ausblenden, wenn es keine weiteren Units gibt. Oder es wird der "Zurück"-Button ausgeblendet, wenn der Testperson grundsätzlich ein Zurückgehen nicht gestattet ist.
-
-Mögliche Werte: `next`, `previous`, `first`, `last`, `end`.
-
-## `startPage`
-
-Sollte der Player sofort nach dem Start auf eine bestimmte Seite navigieren, kann dies hier angegeben werden. Dies ist beispielsweise bei der Anzeige von Units mit gegebenen Antworten bei der manuellen Kodierung gewünscht.
+# `editorConfig`
 
 ## `directDownloadUrl`
 
-Sollte der Player während der Laufzeit Code nachladen müssen, kann aus Gründen der Datensicherheit nicht einfach irgendein Server genutzt werden. Dem Player muss mitgeteilt werden, welche URL dafür zulässig ist. Beispiel: GeoGebra.
+Sollte der Editor während der Laufzeit Code nachladen müssen, kann aus Gründen der Datensicherheit nicht einfach irgendein Server genutzt werden. Dem Editor muss mitgeteilt werden, welche URL dafür zulässig ist. Beispiel: GeoGebra.

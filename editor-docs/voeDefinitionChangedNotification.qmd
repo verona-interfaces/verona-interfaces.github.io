@@ -3,47 +3,49 @@ lang: de
 title: Editor voeDefinitionChangedNotification
 ---
 
-Nachfolgend sind die Parameter des Payloads für die Nachricht `voeDefinitionChangedNotification` erläutert. Für einen Gesamtblick auf die Kommunikation des Player-Moduls mit dem Host siehe [hier](index.qmd).
+Nachfolgend sind die Parameter des Payloads für die Nachricht `voeDefinitionChangedNotification` erläutert. Für einen Gesamtblick auf die Kommunikation des Editor-Moduls mit dem Host siehe [hier](index.qmd).
 
 # `sessionId`
 
-Dem Player wird mit `sessionId` eine Kennung mitgeschickt, die der Player anschließend in jeder Nachricht verwenden soll. Damit wird die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit unterstützt. Diese ID ist wichtiger, wenn es mehrere Player pro Seite beim Host gibt, die gleichzeitig verwaltet werden sollen.
+Dem Editor wurde im Start-Kommando eine `sessionId` eine Kennung mitgeschickt, die der Editor anschließend in jeder Nachricht verwendet. Damit wird die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit unterstützt.
 
 # `timestamp`
 
 Ein String im Standard-Format [date-time](https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-date-time-string-format). Die Nutzung dieser Information ist dem Host überlassen, soll aber vor allem die korrekte Reihenfolge vieler asynchron eintreffenden Nachrichten sicherstellen.
 
-# `unitState`
+# `unitDefinition`, `unitDefinitionType`
 
-Hierbei handelt es sich um dasselbe Objekt, das dem Player im Start-Kommando übergeben wird, wenn der vorherige Zustand wiederhergestellt werden soll. Der Player meldet über diese Datenstruktur Änderungen.
+Dieser String enthält die neue Unit-Definition sowie deren Typ.
 
-# `playerState`
+# `variables`
 
-Hier wird der Host über die verfügbaren Seiten und die aktuelle Seite informiert. Sollte es nur eine Seite geben, kann komplett auf diese Datenbereiche verzichtet werden.
+Dass die Unit-Definition nicht dokumentiert ist, hat eine Menge Vorteile, allerdings auch Nachteile. Einige Informationen wären durchaus sinnvoll, anderen Programmierungen zur Verfügung zu stellen. Dazu gehört die Liste aller möglichen Variablen. Dies sind Werte-Tträger, also mit einer ID identifizierbare Quellen von Antwortdaten. Wie genau diese Antwortdaten entstehen oder wo, das ist uninteressant. Nur dass es sie gibt, ist z. B. für die Planung der Kodierung wichtig.
 
-## `validPages`
+Die Variablenliste wird stets gleichzeitig mit der Unit-Definition geschickt. Sie soll also immer aktuell sein. Die folgenden Parameter werden mitgeliefert:
 
-Dies ist ein JSON-Objekt mit der Struktur `key-value`-store. Diese Datenstruktur ist auch bekannt als dictionary oder Hash-Tabelle. Der "Key" ist hierbei die ID einer Seite, der "Value" ist das Label, das die UI bei Elementen der Seitensteuerung verwenden soll.
+## `id`, `type`, `format`
 
-```{.json filename="Beispiel validPages"}
-{
-    "1": "Start",
-    "2": "Bestätigung"
-}
-```
+* Eine Variable braucht eine innerhalb der Unit eindeutige Bezeichnung.
+* Ein Typ kann sein: `string`, `integer`, `number`, `boolean`, `attachment` -- letzteres bezeichnet ein erzeugtes Medium, z. B. ein Bild. Im Kern handelt es sich hier um einen String, der aber eine Referenz darstellt und dem Auswertungssystem das Auffinden des zugehörigen Mediums ermöglicht.
+* Werte für `format`:
+  - `text-selection`: Ein String, der Daten für eine Textmarkierung enthält
+  - `image`, `capture-image`, `audio`: Spezifiziert den Datentyp `attachment`
+  - `ggb-file`, `ggb-variable`: Strings mit besonderem Bezug zu GeoGebra
+  - `non-negative`: spezifiziert `integer` oder `number`
+  - `latex`, `math-ml`, `math-table`: Strings mit besonderem Bezug zu mathematischen Formeln oder Ausdrücken
 
-::: {.callout-warning}
-## Subject to change
+## `multiple`, `nullable`
 
-Diese Datenstruktur wurde als ungünstig evaluiert. Es ist geplant, die Struktur in ein Array von Objekten zu überführen, jeweils mit den Eigenschaften `id` und `label`.
-:::
+Diese booleschen Werte kennzeichnen, ob die Variable ein Array des beschriebenen Typs und Formats enthält und ob der Wert `null` möglich ist.
 
-## `currentPage`
+## `values`, `valuePositionLabels`, `valuesComplete`
 
-Der Player berichtet hierüber über eine erfolgte Seitennavigation. Es wird die ID bzw. der Key der neuen Seite übergeben.
+Diese Angaben liefern genauere Informationen über die möglichen Werte der Variablen. Wenn `valuesComplete` true ist, dann handelt es sich sogar um eine vollständige Liste, und die Kodierung kann automatisch erfolgen.
 
-# `log`
+## `page`
 
-Die Eigenschaften `timeStamp`, `key` und `content` liefern einen Log-Eintrag. In einer Nachricht zur Statusänderung können mehrere Log-Einträge gleichzeitig geschickt werden.
+Diese Information verortet die Quelle des Variablenwertes auf einer Seite der Unit.
 
-Es gibt keine Konventionen zur Nutzung dieses Features.
+# `dependenciesToPlay`, `dependenciesToEdit`
+
+Diese Einträge beschreiben Abhängigkeiten von externen Bibliotheken oder Diensten für das Editieren oder Abspielen der Unit. Dies kann der Prüfung der Testinhalte auf Vollständigkeit dienen. Wird hier z. B. GeoGebra genannt, kann eine Warnung ausgegeben werden, wenn dieses Softwarepaket nicht verfügbar ist.

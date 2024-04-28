@@ -7,7 +7,7 @@ Nachfolgend sind die Parameter des Payloads für die Nachricht `vopStateChangedN
 
 # `sessionId`
 
-Dem Player wird mit `sessionId` eine Kennung mitgeschickt, die der Player anschließend in jeder Nachricht verwenden soll. Damit wird die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit unterstützt. Diese ID ist wichtiger, wenn es mehrere Player pro Seite beim Host gibt, die gleichzeitig verwaltet werden sollen.
+Dem Player wurde im Start-Kommando eine `sessionId` eine Kennung mitgeschickt, die der Player anschließend in jeder Nachricht verwendet. Damit wird die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit unterstützt.
 
 # `timestamp`
 
