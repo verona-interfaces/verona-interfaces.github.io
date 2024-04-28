@@ -1,0 +1,64 @@
+---
+lang: de
+title: Verona Interfaces - Editor
+---
+
+Ein Editor dient der interaktiven onlinegestützten Entwicklung einer Unit. Hierbei stehen die visuelle Erscheinung und die Interaktionselemente im Vordergrund.
+
+::: {.callout-note}
+## [Spezifikation](https://verona-interfaces.github.io/editor/)
+
+Die Spezifikation der API ist als YML-Datei in der Syntax [AsyncAPI](https://www.asyncapi.com/de) ausgeführt. Nach einer Änderung wird über ein [Tool](https://www.asyncapi.com/tools/generator) eine lesbare Html-Datei erzeugt.
+:::
+
+```{mermaid}
+sequenceDiagram
+    autonumber
+    participant MH as Modul-Host
+    participant VM as Editor
+    MH->>VM:Initialisierung
+    VM->>MH:voeReadyNotification
+    MH->>VM:voeStartCommand
+    loop
+        VM->>MH:voeDefinitionChangedNotification
+    end
+```
+
+# 1 Initialisierung
+
+Der Host richtet ein `<iframe>`-Element ein und setzt für das `srcdoc`-Attribut den kompletten Inhalt des Moduls. Das Modul ist technisch eine Html-Seite, d. h. es wird durch das Laden auch die Ausführung von JavaScript-Code angestoßen, der auf oberster Ebene vorgesehen ist.
+
+# 2 Ready Notification
+
+Dieser Code sendet als letzten Schritt der eigenen Initialisierung eine Nachricht an den Host, dass das Modul bereit sei für das Start-Kommando. Als Payload wird das [Metadaten-Objekt](../intro/metadata.qmd) mitgeschickt -- hier allerdings als String serialisiert, um nicht bei jeder Änderung der Metadaten-Spezifikation alle Modul-API ändern zu müssen.
+
+# 3 Start Command
+
+::: {.callout-tip}
+Ausführliche Darstellung des Start-Kommandos siehe [hier](voeStartCommand.qmd).
+:::
+
+Nachdem der Host die Bereitschaftsmeldung erhalten hat, schickt er die Unit-Definition: Parameter `unitDefinition`, serialisiert als String. Damit stellt der Editor für die erste Seite alle Elemente dar, die in der Unit-Definition vorgesehen sind und bereitet die Oberfläche vor.
+
+Dem Editor wird mit `sessionId` eine Kennung mitgeschickt, die der Editor anschließend in jeder Nachricht zur Änderung der Definition verwenden soll. Damit wird die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit unterstützt.
+
+Weitere Parameter:
+
+* `unitDefinitionType`: Sollte es Varianten oder Versionen von Unit-Definitionen geben, kann dies hier dem Editor mitgeteilt werden. Alternativ (oder parallel) kann natürlich diese Information als Teil der Datenstruktur der Unit-Definition übergeben werden.
+* `editorConfig`: Hier werden Parameter übergeben, die die Bearbeitung steuern. Weitere Erläuterungen zu diesem Datenobjekt finden Sie [hier](voeStartCommand.qmd).
+ 
+# 4 Definition Changed Notification
+
+::: {.callout-tip}
+Ausführliche Darstellung der Meldung zur Änderung der Definition siehe [hier](voeDefinitionChangedNotification.qmd).
+:::
+
+Sobald eine Bearbeitung der Unit-Definition stattgefunden hat, meldet der Editor diese Änderung. Parameter:
+
+* `sessionId`: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.
+* `timeStamp`: Ein String im Standard-Format [date-time](https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-date-time-string-format). Die Nutzung dieser Information ist dem Host überlassen, soll aber vor allem die korrekte Reihenfolge vieler asynchron eintreffender Nachrichten sicherstellen.
+* `unitDefinition`: Die neue vollständige Unit-Definition, serialisiert als String.
+* `unitDefinitionType`: Spezifizierung des Datenformates, wenn gewünscht.
+* `variables`: Liste aller Variablen der Unit-Definition. Diese Liste wird z. B. benötigt, um die Kodierung zu erstellen.
+* `dependenciesToPlay`: Abhängigkeiten von externen Bibliotheken oder Diensten für das Abspielen der Unit.
+* `dependenciesToEdit`: Abhängigkeiten von externen Bibliotheken oder Diensten für das Editieren der Unit.

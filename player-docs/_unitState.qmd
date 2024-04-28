@@ -49,9 +49,9 @@ Eine Validierung kann problematisch sein, wenn Elemente eines Standard-Html-Form
 ::: {.callout-tip}
 ## Hinweis "required"
 
-Ob eine Antwort als "erforderlich" -- also als "required" -- gewertet wird, sollte gezielt gesteuert werden. Das Player sollte "responses complete" nur für die als erforderlich markierten Elemente melden. In diesem Fall meldet der Player sofort nach Start der Unit "responses complete", wenn die Unit keine Elemente mit der Markierung "erforderlich" hat.
+Ob eine Antwort als "erforderlich" -- also als "required" -- gewertet wird, sollte gezielt gesteuert werden. Das Player-Modul sollte "responses complete" nur für die als erforderlich markierten Elemente melden. Dann meldet der Player sofort nach Start der Unit "responses complete", wenn die Unit keine Elemente mit der Markierung "erforderlich" hat.
 :::
 
 ## `unitStateDataType`
 
-Hier soll dem Host mitgeteilt werden, um welchen Datentyp es sich bei den Datenteilen `dataParts` handelt. Beispiel: `iqb-standard@1.2`. Ein Player kann also eine exotische, nicht dokumentierte Unit-Definition verwenden, erzeugt aber Antworten in einem dokumentierten Format. In diesem Fall wäre die Antwortverarbeitung einfacher.
+Hier soll dem Host mitgeteilt werden, um welchen Datentyp es sich bei den Datenteilen `dataParts` handelt. Beispiel: `iqb-standard@1.2`. Ein Player kann also eine exotische, nicht dokumentierte Unit-Definition verwenden, erzeugt aber Antworten in einem dokumentierten Format.

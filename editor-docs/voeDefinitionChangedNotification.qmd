@@ -1,0 +1,49 @@
+---
+lang: de
+title: Editor voeDefinitionChangedNotification
+---
+
+Nachfolgend sind die Parameter des Payloads für die Nachricht `voeDefinitionChangedNotification` erläutert. Für einen Gesamtblick auf die Kommunikation des Player-Moduls mit dem Host siehe [hier](index.qmd).
+
+# `sessionId`
+
+Dem Player wird mit `sessionId` eine Kennung mitgeschickt, die der Player anschließend in jeder Nachricht verwenden soll. Damit wird die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit unterstützt. Diese ID ist wichtiger, wenn es mehrere Player pro Seite beim Host gibt, die gleichzeitig verwaltet werden sollen.
+
+# `timestamp`
+
+Ein String im Standard-Format [date-time](https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-date-time-string-format). Die Nutzung dieser Information ist dem Host überlassen, soll aber vor allem die korrekte Reihenfolge vieler asynchron eintreffenden Nachrichten sicherstellen.
+
+# `unitState`
+
+Hierbei handelt es sich um dasselbe Objekt, das dem Player im Start-Kommando übergeben wird, wenn der vorherige Zustand wiederhergestellt werden soll. Der Player meldet über diese Datenstruktur Änderungen.
+
+# `playerState`
+
+Hier wird der Host über die verfügbaren Seiten und die aktuelle Seite informiert. Sollte es nur eine Seite geben, kann komplett auf diese Datenbereiche verzichtet werden.
+
+## `validPages`
+
+Dies ist ein JSON-Objekt mit der Struktur `key-value`-store. Diese Datenstruktur ist auch bekannt als dictionary oder Hash-Tabelle. Der "Key" ist hierbei die ID einer Seite, der "Value" ist das Label, das die UI bei Elementen der Seitensteuerung verwenden soll.
+
+```{.json filename="Beispiel validPages"}
+{
+    "1": "Start",
+    "2": "Bestätigung"
+}
+```
+
+::: {.callout-warning}
+## Subject to change
+
+Diese Datenstruktur wurde als ungünstig evaluiert. Es ist geplant, die Struktur in ein Array von Objekten zu überführen, jeweils mit den Eigenschaften `id` und `label`.
+:::
+
+## `currentPage`
+
+Der Player berichtet hierüber über eine erfolgte Seitennavigation. Es wird die ID bzw. der Key der neuen Seite übergeben.
+
+# `log`
+
+Die Eigenschaften `timeStamp`, `key` und `content` liefern einen Log-Eintrag. In einer Nachricht zur Statusänderung können mehrere Log-Einträge gleichzeitig geschickt werden.
+
+Es gibt keine Konventionen zur Nutzung dieses Features.
