@@ -41,11 +41,11 @@ website:
           - intro/data-structures.qmd
           - intro/english.qmd
       - section: Player
-        href: player/index.qmd
+        href: player-docs/index.qmd
         contents:
-          - href: player/vopStartCommand.qmd
+          - href: player-docs/vopStartCommand.qmd
             text: Start-Kommando
-          - href: player/vopStateChangedNotification.qmd
+          - href: player-docs/vopStateChangedNotification.qmd
             text: Status-Änderung
 
 format:
