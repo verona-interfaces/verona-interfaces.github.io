@@ -2,7 +2,7 @@
   {
     "objectID": "intro/index.html",
     "href": "intro/index.html",
-    "title": "Verona Interfaces - Einführung",
+    "title": "Verona Interfaces – Einführung",
     "section": "",
     "text": "Es geht auf den Seiten dieser Dokumentation um große Vergleichsstudien oder Befragungen im Rahmen des nationalen Bildungsmonitorings. Hierfür ist der Begriff “Large Scale Assessments” etabliert. Die hohe Anzahl der Testpersonen soll ein datenbasiertes wissenschaftliches Monitoring des Bildungssystems ermöglichen, also Zusammenhänge sichtbar machen zwischen den Einflussfaktoren und dem Erreichen von Bildungszielen. Eine Vergleichsstudie ist in hohem Maße standardisiert und wird in einem engen Zeitfenster synchron durchgeführt.\nDer Fokus liegt also nicht auf der Einzelperson - der Schülerin oder des Schülers -, sondern auf Gruppen von Personen - Klassen, Schulen, Bezirke, Länder. Die Erkenntnisse aus den aufwändigen Testungen sollen aber nicht nur der obersten Steuerungsebene zufließen, sondern es ist an vielen Stellen eine Auswertung der Analyseergebnisse durch die Lehrkraft vorgesehen. Diese sogenannten Rückmeldungen ermöglichen durch den hohen Grad der Standardisierung eine Verortung der Leistungen der Klasse im Land und auch länderübergreifend.",
     "crumbs": [
@@ -12,7 +12,7 @@
   {
     "objectID": "intro/index.html#lesen-sie-weiter",
     "href": "intro/index.html#lesen-sie-weiter",
-    "title": "Verona Interfaces - Einführung",
+    "title": "Verona Interfaces – Einführung",
     "section": "Lesen Sie weiter",
     "text": "Lesen Sie weiter\n\nComputerbasiertes Testen: Ein Einstieg in das Thema “Computerbasierte Vergleichsstudien” und institutionelle Szenarien\nArchitektur: Hier wird das Plug-in-System erläutert\nModul-Metadaten: Einem Modul müssen bestimmte Informationen beigegeben werden. Diese sind hier erläutert.\nKommunikationsmodell: Wenn ein Verona-Modul von einer Webanwendung geladen wird, ist die dann folgende Kommunikation standardisiert.\nDatenstrukturen: Was ist eine Unit und welche Daten spielen bei Verona-Modulen eine Rolle?",
     "crumbs": [
@@ -22,7 +22,7 @@
   {
     "objectID": "intro/index.html#name-und-logo",
     "href": "intro/index.html#name-und-logo",
-    "title": "Verona Interfaces - Einführung",
+    "title": "Verona Interfaces – Einführung",
     "section": "Name und Logo",
     "text": "Name und Logo\nEine der großen Lernstandserhebungen in Deutschland ist unter dem Namen VERA bekannt (VERgleichsArbeiten), und aus der Kombination mit Online ist dann die Bezeichnung Verona entstanden. Das Logo1 stellt eine Leiter dar - italienisch “la scala”. Skalieren ist ein wichtiger methodischer Schritt bei der Auswertung der Antworten, und die Scaliger (Scaligeri, della Scala, deutsch oft auch Skaliger, historisch auch Herren von der Leiter) waren Herren der italienischen Stadt Verona von 1262 bis 1387. Die unterschiedlichen Einfärbungen zwischen den Sprossen stehen für verschiedene Endgeräte.",
     "crumbs": [
@@ -32,7 +32,7 @@
   {
     "objectID": "intro/index.html#footnotes",
     "href": "intro/index.html#footnotes",
-    "title": "Verona Interfaces - Einführung",
+    "title": "Verona Interfaces – Einführung",
     "section": "Fußnoten",
     "text": "Fußnoten\n\n\ncredits to HoffmannP 2019↩︎",
     "crumbs": [
@@ -198,7 +198,10 @@
     "href": "player/index.html",
     "title": "Verona Interfaces - Player",
     "section": "",
-    "text": "Beschreibung\nEin Player präsentiert eine Unit und sorgt für die Interaktion mit der Testperson bzw. mit den Befragten. Das grundlegende Modell hierbei ist, dass ein Test bzw. Befragung (nachfolgend synonym) eine Abfolge von inhaltlich getrennten\n\n\nSpezifikation\nPlayer | Komponente, die eine Aufgabe in einer Testanwendung abspielt | Spezifikation (Html), Modell (UML) |"
+    "text": "Ein Player präsentiert eine Unit und sorgt für die Interaktion mit der Testperson bzw. mit den Befragten. Das grundlegende Modell hierbei ist, dass ein Test bzw. Befragung (nachfolgend synonym) aus einer Abfolge von inhaltlich getrennten Units besteht und diese jeweils einzeln mit einem Player-Modul präsentiert werden.\n\n\n\n\n\n\nSpezifikation\n\n\n\nDie Spezifikation der API ist als YML-Datei in der Syntax AsyncAPI ausgeführt. Nach einer Änderung wird über ein Tool eine lesbare Html-Datei erzeugt.\n\n\n\n\n\n\n\nsequenceDiagram\n    autonumber\n    participant MH as Modul-Host\n    participant VM as Player\n    MH-&gt;&gt;VM:Initialisierung\n    VM-&gt;&gt;MH:vopReadyNotification\n    MH-&gt;&gt;VM:vopStartCommand\n    loop\n        opt\n            VM-&gt;&gt;MH:vopStateChangedNotification\n        end\n        opt\n            MH-&gt;&gt;VM:vopPageNavigationCommand\n        end\n        opt\n            VM-&gt;&gt;MH:vopUnitNavigationRequestedNotification\n        end\n        opt\n            MH-&gt;&gt;VM:vopNavigationDeniedNotification\n        end\n        opt\n            VM-&gt;&gt;MH:vopWindowFocusChangedNotification\n        end\n    end\n\n\n\n\n\n\n\n1 Initialisierung\nDer Host richtet ein &lt;iframe&gt;-Element ein und setzt für das srcdoc-Attribut den kompletten Inhalt des Moduls. Das Modul ist technisch eine Html-Seite, d. h. es wird durch das Laden auch die Ausführung von JavaScript-Code angestoßen, der auf oberster Ebene vorgesehen ist.\n\n\n2 Ready Notification\nDieser Code sendet als letzten Schritt der eigenen Initialisierung eine Nachricht an den Host, dass das Modul bereit sei für das Start-Kommando. Als Payload wird das Metadaten-Objekt mitgeschickt – hier allerdings als String serialisiert, um nicht bei jeder Änderung der Metadaten-Spezifikation alle Modul-API ändern zu müssen.\n\n\n3 Start Command\n\n\n\n\n\n\nTipp\n\n\n\nAusführliche Darstellung des Start-Kommandos siehe hier.\n\n\nNachdem der Host die Bereitschaftsmeldung erhalten hat, schickt er die Unit-Definition: Parameter unitDefinition, serialisiert als String. Damit stellt der Player – der nach der Initialisierung zunächst eine leere Seite zeigt – alle Elemente dar, die in der Unit-Definition vorgesehen sind und bereitet die Interaktionselemente vor.\nDem Player wird mit sessionId eine Kennung mitgeschickt, die der Player anschließend in jeder Nachricht verwenden soll. Damit wird die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit unterstützt.\nWeitere Parameter:\n\nunitDefinitionType: Sollte es Varianten oder Versionen von Unit-Definitionen geben, kann dies hier dem Player mitgeteilt werden. Alternativ (oder parallel) kann natürlich diese Information als Teil der Datenstruktur der Unit-Definition übergeben werden.\nunitState: Sollte die Unit wiederholt präsentiert werden, soll der vorherige Bearbeitungsstatus wiederhergestellt werden. Weitere Erläuterungen zu diesem Datenobjekt finden Sie hier.\nplayerConfig: Hier werden Parameter übergeben, die die Anzeige und die Interaktion steuern. Beispielsweise kann die Art und Weise des Blätterns zur nächsten Seite festgelegt werden. Weitere Erläuterungen zu diesem Datenobjekt finden Sie hier.\n\n\n\n4 StateChanged Notification\n\n\n\n\n\n\nTipp\n\n\n\nAusführliche Darstellung der Meldung zur Statusänderung siehe hier.\n\n\nSobald eine Interaktion stattgefunden hat, die als Antwort wichtig wäre oder die bei einem wiederholten Aufruf der Unit wiederhergestellt werden soll, meldet der Player diese Änderung. Parameter:\n\nsessionId: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.\ntimeStamp: Ein String im Standard-Format date-time. Die Nutzung dieser Information ist dem Host überlassen, soll aber vor allem die korrekte Reihenfolge vieler asynchron eintreffenden Nachrichten sicherstellen.\nunitState: Daten der Antworten im weiteren Sinne. Diese dienen der Auswertung und der Wiederherstellung beim Zurückblättern. Weitere Erläuterungen zu diesem Datenobjekt finden Sie hier.\nplayerState: Hier schickt der Player Informationen, die dem Host helfen können, die UI anzupassen. Beispielsweise wird so ein Wechsel der Seite berichtet, damit der Host in der Navigationsdarstellung die aktive Seite anders darstellt. Weitere Erläuterungen zu diesem Datenobjekt finden Sie hier.\nlog: Hierüber werden Log-Einträge geschickt. Dies sind Ereignisse, die nicht unbedingt einen Status ändern, sondern nur der Rekonstruktion der Beantwortung über die Zeit dienen können. Weitere Erläuterungen zu diesem Datenobjekt finden Sie hier.\n\n\n\n5 Page Navigation Command\nÜber dieses Kommando kann der Host den Player anweisen, zu einer bestimmten Seite zu wechseln. Dies ist sinnvoll, wenn der Host eine Seitennavigation z. B. über eine Button-Leiste anbietet. Parameter:\n\nsessionId: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.\ntarget: ID der Seite, zu der der Player navigieren soll. Die möglichen Seiten kennt der Host aus einer Nachricht vopStateChangedNotification des Players. Liegt eine solche Nachricht nicht vor, geht der Host davon aus, dass es nur eine Seite gibt und bietet keine Seitennavigation an.\n\n\n\n6 Unit Navigation Requested Notification\nDer Player kann Buttons einblenden, über die die Testperson zu einer anderen Unit navigiert. Eine Unit-Navigation kann auch über andere Bedingungen durch den Player ausgelöst werden, z. B. Ablauf einer Frist.\nÜber diese Nachricht fordert der Player eine Unit-Navigation an. Ob dann tatsächlich eine Unit-Navigation erfolgt, entscheidet der Host. Beispielsweise wird in der Voransicht einer Unit im Autorensystem IQB-Studio nur kurz eine Nachricht eingeblendet, dass eine Unit-Navigation angefordert wurde.\n\nsessionId: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.\ntarget: Ziel-Unit. Dies ist allerdings keine ID einer konkreten Unit, sondern ein Symbol für eine relativ zur aktuellen Unit befindlichen Unit: next, previous, first, last, end. Die möglichen Ziele kennt der Player aus dem Start-Kommando.\n\n\n\n7 Navigation Denied Notification\nIm Testablauf können fehlende oder falsche Antworten problematisch sein. Insbesondere bei Befragungen ist oft Vollständigkeit gewünscht. Daher meldet der Player bei einer Statusänderung auch diese Informationen mit. Der Testcontroller kann dann je nach Einstellung entscheiden, ob eine Navigation zur nächsten Unit zulässig ist oder nicht.\nSollte dies nicht der Fall sein, sollte der Player fehlende oder falsche Antworten visuell markieren. In normalen Formularen erfolgt dies, wenn der Eingabefokus auf ein Eingabeelement kommt und ohne weitere Eingabe zum nächsten Element wechselt. Aber wenn ein Eingabeelement nie den Fokus bekommt, kann die Fehlersituation nicht erzeugt werden. Die Alternative, alle Eingabeelemente beim Betreten der Unit als fehlerhaft darzustellen, wäre keine gute UI-Entscheidung.\nDie Nachricht vopNavigationDeniedNotification des Hosts ist also als Aufforderung an den Player zu verstehen, fehlende oder falsche Eingaben visuell darzustellen. Technisch kann das z. B. über markAllAsTouched() gehen. Parameter:\n\nsessionId: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.\nreason: Hinweis für den Player, warum die Navigation verweigert wurde: presentationIncomplete und/oder responsesIncomplete.\n\n\n\n8 Window Focus Changed Notification\nIn Testungen kann es wichtig sein festzustellen, ob die Testperson sich im Browser noch auf der Seite des Tests befindet. Sollte dies nicht der Fall sein, besteht der Verdacht, dass die Testperson unzulässigerweise andere Webseiten aufruft, um z. B. eine Übersetzung zu erhalten.\nDa technisch der Wechsel aus dem Host-Fensterbereich in den Bereich des &lt;iframe&gt;-Elements des Players einem Verlassen der Testseite gleichkommt, muss der Player dem Host mitteilen, dass er den Fokus erhalten bzw. verloren hat. Parameter:\n\ntimeStamp: Ein String im Standard-Format date-time.\nhasFocus: Wenn true, hat der Player den Fokus bekommen, ansonsten hat er ihn verloren und der Host muss prüfen, ob er ihn erhalten hat.\n\n\n\n\n\n\n\nTipp\n\n\n\n\nDie Ereignisse blur und focus werden an window bei einem Fokuswechsel gesendet.\nDie Funktion document.hasFocus() liefert true, wenn das Dokument den Fokus hat.",
+    "crumbs": [
+      "Player"
+    ]
   },
   {
     "objectID": "editor/index.html",
@@ -226,14 +229,209 @@
     "href": "player/vopStartCommand.html",
     "title": "Player vopStartCommand",
     "section": "",
-    "text": "Verona Interfaces - Player Message1 Start"
+    "text": "Nachfolgend sind die Parameter des Payloads für die Nachricht vopStartCommand erläutert. Für einen Gesamtblick auf die Kommunikation des Player-Moduls mit dem Host siehe hier.",
+    "crumbs": [
+      "Player",
+      "Start-Kommando"
+    ]
+  },
+  {
+    "objectID": "player/vopStartCommand.html#dataparts",
+    "href": "player/vopStartCommand.html#dataparts",
+    "title": "Player vopStartCommand",
+    "section": "dataParts",
+    "text": "dataParts\nDies ist ein JSON-Objekt mit der Struktur key-value-store. Diese Datenstruktur ist auch bekannt als dictionary oder Hash-Tabelle.\n\n\nBeispiel dataParts\n\n{\n    \"part1\": \"3456998\",\n    \"part3\": \"{\\\"x\\\":[10,null,null,null]}\"\n}\n\nBei Änderungen muss jeweils nur der Datenteil geschickt werden, der sich geändert hat. Der Host muss dafür sorgen, dass nur dieser Teil überschrieben wird, die anderen Teile müssen erhalten bleiben. Dieses Vorgehen verhindert, dass bei jeder kleinen Änderung eine große Datenmenge geschickt wird und das System ausbremst.\nWenn der Unit-Status beim Start-Kommando zum Wiederherstellen geschickt wird, müssen natürlich alle Datenteile übergeben werden.",
+    "crumbs": [
+      "Player",
+      "Start-Kommando"
+    ]
+  },
+  {
+    "objectID": "player/vopStartCommand.html#presentationprogress",
+    "href": "player/vopStartCommand.html#presentationprogress",
+    "title": "Player vopStartCommand",
+    "section": "presentationProgress",
+    "text": "presentationProgress\nBei Leistungstests ist es wichtig sicherzustellen, dass die Testperson alle Teile der Unit gesehen hat. Es muss keine Beantwortung erfolgen, aber ein unabsichtliches Auslassen ist problematisch für die Datenanalyse. Daher wird vom Player erwartet, dass er bei Änderungen der Anzeige prüft, ob alles gesehen wurde und dies berichtet. Dann kann ggf. die Teststeuerung ein Weiterblättern verhindern und einen Hinweis geben.\nMögliche Werte:\n\nnone: Nichts wurde gesehen - Ausgangszustand\nsome: Einige Bereiche der Unit wurden präsentiert\ncomplete: Alle Elemente/Bereiche wurde präsentiert\n\nDer Stand der Präsentation wird beim Start-Kommando vom Host geschickt, so dass der Player nur die Änderung zu diesem Status berichtet.",
+    "crumbs": [
+      "Player",
+      "Start-Kommando"
+    ]
+  },
+  {
+    "objectID": "player/vopStartCommand.html#responseprogress",
+    "href": "player/vopStartCommand.html#responseprogress",
+    "title": "Player vopStartCommand",
+    "section": "responseProgress",
+    "text": "responseProgress\nBei Befragungen ist oft wichtig, dass die befragte Person keine Frage auslässt. Aber auch bei Leistungstests können zu Beginn Units vorgesehen werden, die Übungscharakter haben und die Testperson soll erst weiterkommen, wenn sie ein Mindestmaß an Antworten geben konnte. Daher wird vom Player erwartet, dass er während der Bearbeitung prüft, ob alle notwendigen Eingaben erfolgten und auch korrekt sind. Dann kann ggf. die Teststeuerung ein Weiterblättern verhindern und einen Hinweis geben.\nMögliche Werte:\n\nnone: Nichts wurde beantwortet - Ausgangszustand\nsome: Einige Antworten wurden gegeben\ncomplete: Alle Antworten wurden gegeben\n\nDer Stand der Bearbeitung wird beim Start-Kommando vom Host geschickt, so dass der Player nur die Änderung zu diesem Status berichtet.\n\n\n\n\n\n\nHinweis Validierung\n\n\n\nEine Validierung kann problematisch sein, wenn Elemente eines Standard-Html-Formulars verwendet werden. Wenn als Typ eines &lt;input&gt;-Elementes beispielsweise eine Zahl gesetzt ist, dann wird eine Texteingabe nicht verfügbar. Die Validierung verhindert also den Zugriff auf fehlerhafte Eingaben.\n\n\n\n\n\n\n\n\nHinweis “required”\n\n\n\nOb eine Antwort als “erforderlich” – also als “required” – gewertet wird, sollte gezielt gesteuert werden. Das Player sollte “responses complete” nur für die als erforderlich markierten Elemente melden. In diesem Fall meldet der Player sofort nach Start der Unit “responses complete”, wenn die Unit keine Elemente mit der Markierung “erforderlich” hat.",
+    "crumbs": [
+      "Player",
+      "Start-Kommando"
+    ]
+  },
+  {
+    "objectID": "player/vopStartCommand.html#unitstatedatatype",
+    "href": "player/vopStartCommand.html#unitstatedatatype",
+    "title": "Player vopStartCommand",
+    "section": "unitStateDataType",
+    "text": "unitStateDataType\nHier soll dem Host mitgeteilt werden, um welchen Datentyp es sich bei den Datenteilen dataParts handelt. Beispiel: iqb-standard@1.2. Ein Player kann also eine exotische, nicht dokumentierte Unit-Definition verwenden, erzeugt aber Antworten in einem dokumentierten Format. In diesem Fall wäre die Antwortverarbeitung einfacher.",
+    "crumbs": [
+      "Player",
+      "Start-Kommando"
+    ]
+  },
+  {
+    "objectID": "player/vopStartCommand.html#unitnumber-unittitle-unitid",
+    "href": "player/vopStartCommand.html#unitnumber-unittitle-unitid",
+    "title": "Player vopStartCommand",
+    "section": "unitNumber, unitTitle, unitId",
+    "text": "unitNumber, unitTitle, unitId\nDiese Angaben werden benötigt, wenn der Player den gesamten verfügbaren Bildschirm des Browsers einnehmen soll. Dann kann der Host keine Orientierung darüber geben, an welcher Stelle des Testablaufes die Testperson gerade ist und der Player muss dies übernehmen. Für diesen Fall sind diese Informationen gedacht.",
+    "crumbs": [
+      "Player",
+      "Start-Kommando"
+    ]
+  },
+  {
+    "objectID": "player/vopStartCommand.html#logpolicy",
+    "href": "player/vopStartCommand.html#logpolicy",
+    "title": "Player vopStartCommand",
+    "section": "logPolicy",
+    "text": "logPolicy\nAus einem Forschungsinteresse heraus könnte der Player angehalten sein, viele Zustandsänderungen an den Host zu melden. Das kann vom Scrollverhalten bis zum Mitschreiben Mausbewegungen gehen. Allerdings gibt es sehr viele Anwendungsfälle für das Player-Modul, wo dieses Logging abgestellt werden sollte. Beispiele: Review der Unit während der Qualitätsprüfung, Verwendung als Beispielaufgabe, Präsentation der Antworten zur manuellen Kodierung. Aus diesem Grund kann dem Player differenziert mitgeteilt werden, ob bzw. in welchem Maße Logs an den Host geschickt werden sollen: disabled, lean, rich, debug. Die Interpretation der Werte ist derzeit nicht festgelegt.",
+    "crumbs": [
+      "Player",
+      "Start-Kommando"
+    ]
+  },
+  {
+    "objectID": "player/vopStartCommand.html#pagingmode",
+    "href": "player/vopStartCommand.html#pagingmode",
+    "title": "Player vopStartCommand",
+    "section": "pagingMode",
+    "text": "pagingMode\nWenn die Unit aus mehreren Seiten besteht, wird über diesen Parameter festgelegt, ob bzw. wie das Blättern erfolgen soll. Dieses Verhalten sollte in einem Test einheitlich sein, so dass es kein fixer Parameter der Unit-Definition ist. Verschiedene Tests können unterschiedliches Blätter-Verhalten wünschen, ohne dass die Unit-Definition geändert werden muss.\nMögliche Werte:\n\nseparate: Die Seiten werden einzeln angezeigt, so wie die Seitennavigation es steuert. Die Animation des Seitenwechsels ist horizontal.\nbuttons: Die Seiten werden einzeln angezeigt, aber es werden Buttons eingeblendet, die auf weitere Seiten hinweisen und bei Klick eine Seitennavigation auslösen. Die Animation des Seitenwechsels ist vertikal.\nconcat-scroll: Alle Seiten werden zu einer einzigen Seite zusammengelegt (gestapelt). Die Testperson scrollt vertikal und bemerkt nicht, dass es mehrere Seiten gibt. Sollte eine Seitennavigation aktiv sein, wird entsprechend gescrollt.\nconcat-scroll-snap: Alle Seiten werden zu einer einzigen Seite zusammengelegt, jedoch ist stets nur eine Seite zu sehen. Die Testperson scrollt vertikal und die Seiten “schnappen” in den Sichtbereich, so dass nie zwei Seiten gleichzeitig zu sehen sind. Dieser Modus ist vorteilhaft, wenn die Zeit, die eine Testperson auf einer Seite verbringt, gemessen werden soll. Man erreicht eine intuitive Art des Seitenwechsels, verliert aber nicht die Information “time on page”.\n\n\n\n\n\n\n\nScroll-snap nicht verlässlich\n\n\n\nDer Scroll-snap-Modus beim Blättern ist eine standardisierte Html-Eigenschaft. Allerdings ist dieses Verhalten unterschiedlich implementiert in den Browsern bzw. Betriebssystemen. Vor der Nutzung sollten ausgiebige Tests sicherstellen, dass sich alle verwendeten Geräte wie gewünscht verhalten.",
+    "crumbs": [
+      "Player",
+      "Start-Kommando"
+    ]
+  },
+  {
+    "objectID": "player/vopStartCommand.html#printmode",
+    "href": "player/vopStartCommand.html#printmode",
+    "title": "Player vopStartCommand",
+    "section": "printMode",
+    "text": "printMode\nIm Rahmen der Qualitätssicherung müssen Testaufgaben ausgiebig überprüft werden. Normalerweise begibt sich der Prüfer bzw. die Prüferin in die Rolle der Testperson und beantwortet Schritt für Schritt die Fragen. Dies kann allerdings sehr zeitaufwändig sein, insbesondere, wenn Audio-Sequenzen abgewartet werden müssen, bevor weitere Teile der Unit sichtbar werden.\nUm diesen Review zu erleichtern, kann der Player in den sog. Printmodus geschaltet werden. Der Host begrenzt dann das &lt;iframe&gt;-Element nicht mehr auf den Bildschirm, sondern gibt so viel Höhe, wie der Player für die Unit benötigt. Es werden alle Seiten untereinander gestapelt und alle Einschränkungen der Sichtbarkeit von Seiten bzw. Seitenabschnitten aufgehoben. Weiterhin kann der Player ein separates Styling (Markierung über @media print) für das Drucken aus dem Browser heraus bereitstellen.\nMögliche Werte:\n\noff: Kein Printmodus.\non: Printmodus.\non-with-ids: Printmodus, und zusätzlich werden die IDs der Elemente der Unit eingeblendet.",
+    "crumbs": [
+      "Player",
+      "Start-Kommando"
+    ]
+  },
+  {
+    "objectID": "player/vopStartCommand.html#enablednavigationtargets",
+    "href": "player/vopStartCommand.html#enablednavigationtargets",
+    "title": "Player vopStartCommand",
+    "section": "enabledNavigationTargets",
+    "text": "enabledNavigationTargets\nDiese einfache Liste von Strings informiert den Player, welche der fünf möglichen Ziele für die Unit-Navigation zur Verfügung stehen. Dann kann der Player beispielsweise den “Weiter”-Button ausblenden, wenn es keine weiteren Units gibt. Oder es wird der “Zurück”-Button ausgeblendet, wenn der Testperson grundsätzlich ein Zurückgehen nicht gestattet ist.\nMögliche Werte: next, previous, first, last, end.",
+    "crumbs": [
+      "Player",
+      "Start-Kommando"
+    ]
+  },
+  {
+    "objectID": "player/vopStartCommand.html#startpage",
+    "href": "player/vopStartCommand.html#startpage",
+    "title": "Player vopStartCommand",
+    "section": "startPage",
+    "text": "startPage\nSollte der Player sofort nach dem Start auf eine bestimmte Seite navigieren, kann dies hier angegeben werden. Dies ist beispielsweise bei der Anzeige von Units mit gegebenen Antworten bei der manuellen Kodierung gewünscht.",
+    "crumbs": [
+      "Player",
+      "Start-Kommando"
+    ]
+  },
+  {
+    "objectID": "player/vopStartCommand.html#directdownloadurl",
+    "href": "player/vopStartCommand.html#directdownloadurl",
+    "title": "Player vopStartCommand",
+    "section": "directDownloadUrl",
+    "text": "directDownloadUrl\nSollte der Player während der Laufzeit Code nachladen müssen, kann aus Gründen der Datensicherheit nicht einfach irgendein Server genutzt werden. Dem Player muss mitgeteilt werden, welche URL dafür zulässig ist. Beispiel: GeoGebra.",
+    "crumbs": [
+      "Player",
+      "Start-Kommando"
+    ]
   },
   {
     "objectID": "player/vopStateChangedNotification.html",
     "href": "player/vopStateChangedNotification.html",
     "title": "Player vopStateChangedNotification",
     "section": "",
-    "text": "Verona Interfaces - Player UML"
+    "text": "Nachfolgend sind die Parameter des Payloads für die Nachricht vopStateChangedNotification erläutert. Für einen Gesamtblick auf die Kommunikation des Player-Moduls mit dem Host siehe hier.",
+    "crumbs": [
+      "Player",
+      "Status-Änderung"
+    ]
+  },
+  {
+    "objectID": "player/vopStateChangedNotification.html#dataparts",
+    "href": "player/vopStateChangedNotification.html#dataparts",
+    "title": "Player vopStateChangedNotification",
+    "section": "dataParts",
+    "text": "dataParts\nDies ist ein JSON-Objekt mit der Struktur key-value-store. Diese Datenstruktur ist auch bekannt als dictionary oder Hash-Tabelle.\n\n\nBeispiel dataParts\n\n{\n    \"part1\": \"3456998\",\n    \"part3\": \"{\\\"x\\\":[10,null,null,null]}\"\n}\n\nBei Änderungen muss jeweils nur der Datenteil geschickt werden, der sich geändert hat. Der Host muss dafür sorgen, dass nur dieser Teil überschrieben wird, die anderen Teile müssen erhalten bleiben. Dieses Vorgehen verhindert, dass bei jeder kleinen Änderung eine große Datenmenge geschickt wird und das System ausbremst.\nWenn der Unit-Status beim Start-Kommando zum Wiederherstellen geschickt wird, müssen natürlich alle Datenteile übergeben werden.",
+    "crumbs": [
+      "Player",
+      "Status-Änderung"
+    ]
+  },
+  {
+    "objectID": "player/vopStateChangedNotification.html#presentationprogress",
+    "href": "player/vopStateChangedNotification.html#presentationprogress",
+    "title": "Player vopStateChangedNotification",
+    "section": "presentationProgress",
+    "text": "presentationProgress\nBei Leistungstests ist es wichtig sicherzustellen, dass die Testperson alle Teile der Unit gesehen hat. Es muss keine Beantwortung erfolgen, aber ein unabsichtliches Auslassen ist problematisch für die Datenanalyse. Daher wird vom Player erwartet, dass er bei Änderungen der Anzeige prüft, ob alles gesehen wurde und dies berichtet. Dann kann ggf. die Teststeuerung ein Weiterblättern verhindern und einen Hinweis geben.\nMögliche Werte:\n\nnone: Nichts wurde gesehen - Ausgangszustand\nsome: Einige Bereiche der Unit wurden präsentiert\ncomplete: Alle Elemente/Bereiche wurde präsentiert\n\nDer Stand der Präsentation wird beim Start-Kommando vom Host geschickt, so dass der Player nur die Änderung zu diesem Status berichtet.",
+    "crumbs": [
+      "Player",
+      "Status-Änderung"
+    ]
+  },
+  {
+    "objectID": "player/vopStateChangedNotification.html#responseprogress",
+    "href": "player/vopStateChangedNotification.html#responseprogress",
+    "title": "Player vopStateChangedNotification",
+    "section": "responseProgress",
+    "text": "responseProgress\nBei Befragungen ist oft wichtig, dass die befragte Person keine Frage auslässt. Aber auch bei Leistungstests können zu Beginn Units vorgesehen werden, die Übungscharakter haben und die Testperson soll erst weiterkommen, wenn sie ein Mindestmaß an Antworten geben konnte. Daher wird vom Player erwartet, dass er während der Bearbeitung prüft, ob alle notwendigen Eingaben erfolgten und auch korrekt sind. Dann kann ggf. die Teststeuerung ein Weiterblättern verhindern und einen Hinweis geben.\nMögliche Werte:\n\nnone: Nichts wurde beantwortet - Ausgangszustand\nsome: Einige Antworten wurden gegeben\ncomplete: Alle Antworten wurden gegeben\n\nDer Stand der Bearbeitung wird beim Start-Kommando vom Host geschickt, so dass der Player nur die Änderung zu diesem Status berichtet.\n\n\n\n\n\n\nHinweis Validierung\n\n\n\nEine Validierung kann problematisch sein, wenn Elemente eines Standard-Html-Formulars verwendet werden. Wenn als Typ eines &lt;input&gt;-Elementes beispielsweise eine Zahl gesetzt ist, dann wird eine Texteingabe nicht verfügbar. Die Validierung verhindert also den Zugriff auf fehlerhafte Eingaben.\n\n\n\n\n\n\n\n\nHinweis “required”\n\n\n\nOb eine Antwort als “erforderlich” – also als “required” – gewertet wird, sollte gezielt gesteuert werden. Das Player sollte “responses complete” nur für die als erforderlich markierten Elemente melden. In diesem Fall meldet der Player sofort nach Start der Unit “responses complete”, wenn die Unit keine Elemente mit der Markierung “erforderlich” hat.",
+    "crumbs": [
+      "Player",
+      "Status-Änderung"
+    ]
+  },
+  {
+    "objectID": "player/vopStateChangedNotification.html#unitstatedatatype",
+    "href": "player/vopStateChangedNotification.html#unitstatedatatype",
+    "title": "Player vopStateChangedNotification",
+    "section": "unitStateDataType",
+    "text": "unitStateDataType\nHier soll dem Host mitgeteilt werden, um welchen Datentyp es sich bei den Datenteilen dataParts handelt. Beispiel: iqb-standard@1.2. Ein Player kann also eine exotische, nicht dokumentierte Unit-Definition verwenden, erzeugt aber Antworten in einem dokumentierten Format. In diesem Fall wäre die Antwortverarbeitung einfacher.",
+    "crumbs": [
+      "Player",
+      "Status-Änderung"
+    ]
+  },
+  {
+    "objectID": "player/vopStateChangedNotification.html#validpages",
+    "href": "player/vopStateChangedNotification.html#validpages",
+    "title": "Player vopStateChangedNotification",
+    "section": "validPages",
+    "text": "validPages\nDies ist ein JSON-Objekt mit der Struktur key-value-store. Diese Datenstruktur ist auch bekannt als dictionary oder Hash-Tabelle. Der “Key” ist hierbei die ID einer Seite, der “Value” ist das Label, das die UI bei Elementen der Seitensteuerung verwenden soll.\n\n\nBeispiel validPages\n\n{\n    \"1\": \"Start\",\n    \"2\": \"Bestätigung\"\n}\n\n\n\n\n\n\n\nSubject to change\n\n\n\nDiese Datenstruktur wurde als ungünstig evaluiert. Es ist geplant, die Struktur in ein Array von Objekten zu überführen, jeweils mit den Eigenschaften id und label.",
+    "crumbs": [
+      "Player",
+      "Status-Änderung"
+    ]
+  },
+  {
+    "objectID": "player/vopStateChangedNotification.html#currentpage",
+    "href": "player/vopStateChangedNotification.html#currentpage",
+    "title": "Player vopStateChangedNotification",
+    "section": "currentPage",
+    "text": "currentPage\nDer Player berichtet hierüber über eine erfolgte Seitennavigation. Es wird die ID bzw. der Key der neuen Seite übergeben.",
+    "crumbs": [
+      "Player",
+      "Status-Änderung"
+    ]
   },
   {
     "objectID": "index.html",
@@ -261,7 +459,7 @@
     "href": "intro/data-structures.html",
     "title": "Datenstrukturen",
     "section": "",
-    "text": "Ein Testablauf ist stets eine Abfolge von Instruktionen oder Fragen an die Testperson, nach Bedarf angereichert mit Material (Bilder, Text, Audio, Video - sog. Stimulus), auf die sich die Fragen bzw. Handlungsanweisungen dann beziehen. Die kleinste Dateneinheit ist ein durch die Testperson geänderter Zustand, der durch Speichern reproduzierbar wird. Diese kleinste Dateneinheit nennen wir Variable. Sie kann sich auf ein Interaktionselement (z. B. Eingabefeld, Ankreuzkästchen), aber auch auf ein abgespieltes Audio beziehen (Variablenwert ist dann der Fortschritt des Abspielens).\nDer Begriff Item steht für eine Antwort der Testperson, die man mit einem Erwartungswert vergleichen kann und dann den Kategorien “Richtig” und “Falsch” zuordnen kann. Die Quelle für die Antwort ist der Wert einer oder mehrerer Variablen. D. h. die Zustandsänderungen während der Interaktion führen nicht automatisch zu auswertbaren Daten, sondern müssen ggf. aus mehreren Interaktionen zusammengeführt werden.\n\nZ. B. ist in Mathematik ein Format sehr beliebt: “Kreuze an und begründe”. Die Testperson soll sich für eine Option einer Auswahl von Ankreuzkästchen entscheiden, aber bewertet im Sinne der Datenanalyse wird die Entscheidung erst im Zusammenhang mit einem Text, der darunter in ein Eingabefeld geschrieben wurde.\n\nNun kann ein Item auf einer Seite ggf. zusammen mit einem Stimulus präsentiert werden. Über die Navigation kommt man zum nächsten Item. Oft werden jedoch mehrere Items als Gruppe präsentiert, vor allem, wenn sie sich auf denselben Stimulus beziehen. Man erreicht eine höhere Effizienz beim Testen, wenn man zu einem Stimulus nicht nur ein Item vorsieht. Als Unit bezeichnen wir eine Gruppe von Items, die aus testpraktischen oder testtheoretischen Gründen zusammen präsentiert werden.\nDie Unit ist nun die Ebene in der Datenstruktur, die man als beliebig austauschbar innerhalb eines Tests deklariert. Es gibt sogar statistische Maßzahlen, die die unerwünschten Positionseffekte von Units quantifizieren. Natürlich gibt es auch Tests und vor allem Befragungen, bei denen die Abfolge gründlich geplant wird und wo die Units nicht unabhängig voneinander sind. Aber aus Sicht der Datenstrukturen reden wir lange von Units und deren Optimierung, bevor ihr Platz in einer Testabfolge festgelegt wird. Daher sieht der Entwicklungsprozess für Tests zunächst eine Unit- – bzw. im deutschen Sprachgebrauch auch Aufgaben- – Entwicklung vor.\n\n\n\n\n\n\nUnit ist Fokus\n\n\n\nDer Fokus aller Verona-Module liegt auf der Unit. Es werden Daten verarbeitet, die sich stets auf eine Unit beziehen.",
+    "text": "Ein Testablauf ist stets eine Abfolge von Instruktionen oder Fragen an die Testperson, nach Bedarf angereichert mit Material (Bilder, Text, Audio, Video - sog. Stimulus), auf die sich die Fragen bzw. Handlungsanweisungen dann beziehen. Die kleinste Dateneinheit ist ein durch die Testperson geänderter Zustand, der durch Speichern reproduzierbar wird. Diese kleinste Dateneinheit nennen wir Variable. Sie kann sich auf ein Interaktionselement (z. B. Eingabefeld, Ankreuzkästchen), aber auch auf ein abgespieltes Audio beziehen (Variablenwert ist dann der Fortschritt des Abspielens).\nDer Begriff Item steht für eine Antwort der Testperson, die man mit einem Erwartungswert vergleichen kann und dann den Kategorien “Richtig” und “Falsch” zuordnen kann. Die Quelle für die Antwort ist der Wert einer oder mehrerer Variablen. D. h. die Zustandsänderungen während der Interaktion führen nicht automatisch zu auswertbaren Daten, sondern müssen ggf. aus mehreren Interaktionen zusammengeführt werden.\n\nZ. B. ist in Mathematik ein Format sehr beliebt: “Kreuze an und begründe”. Die Testperson soll sich für eine Option einer Auswahl von Ankreuzkästchen entscheiden, aber bewertet im Sinne der Datenanalyse wird die Entscheidung erst im Zusammenhang mit einem Text, der darunter in ein Eingabefeld geschrieben wurde.\n\nNun kann ein Item auf einer Seite ggf. zusammen mit einem Stimulus präsentiert werden. Über die Navigation kommt man zum nächsten Item. Oft werden jedoch mehrere Items als Gruppe präsentiert, vor allem, wenn sie sich auf denselben Stimulus beziehen. Man erreicht eine höhere Effizienz beim Testen, wenn man zu einem Stimulus nicht nur ein Item vorsieht. Als Unit bezeichnen wir eine Gruppe von Items, die aus testpraktischen oder testtheoretischen Gründen zusammen präsentiert werden.\n\n\n\n\n\n\nUnit ist Fokus\n\n\n\nDer Fokus aller Verona-Module liegt auf der Unit. Es werden Daten verarbeitet, die sich stets auf eine Unit beziehen.\n\n\nDie Unit ist nun die Ebene in der Datenstruktur, die man als beliebig austauschbar innerhalb eines Tests deklariert. Es gibt sogar statistische Maßzahlen, die die unerwünschten Positionseffekte von Units quantifizieren. Natürlich gibt es auch Tests und vor allem Befragungen, bei denen die Abfolge gründlich geplant wird und wo die Units nicht unabhängig voneinander sind. Aber aus Sicht der Datenstrukturen reden wir lange von Units und deren Optimierung, bevor ihr Platz in einer Testabfolge festgelegt wird. Daher sieht der Entwicklungsprozess für Tests zunächst eine Unit- – bzw. im deutschen Sprachgebrauch auch Aufgaben- – Entwicklung vor.\n\nEine Unit kann auch eine simple Seite sein, die nur begrüßt oder den nächsten Aufgabenblock ankündigt. Das IQB hat viel Arbeit in Units gestteckt, die die Bedienung von Eingabeelementen erläutern. Für die vorliegende Dokumentation spielt das keine Rolle, da es technisch nur eine Vereinfachung darstellt und stets möglich ist.",
     "crumbs": [
       "Einführung",
       "Datenstrukturen"
@@ -283,7 +481,7 @@
     "href": "intro/data-structures.html#modul-player",
     "title": "Datenstrukturen",
     "section": "Modul “Player”",
-    "text": "Modul “Player”\nEin Player-Modul dient dem “Abspielen” – also der Präsentation – von Units. Es gibt mehrere Anwendungsfälle:\n\nAnzeige im Testsystem während des Tests\nAnzeige im Testsystem für den Review\nVeröffentlichung von Beispielaufgaben\nVeröffentlichung als permanente Referenz für einen wissenschaftlichen Artikel\nVoransicht im Autorensystem\nDruckbare Ansicht für den Export\nPräsentation während des Kodierprozesses mit den Antwortdaten einer Testperson\nAnzeige für Eltern nach dem Test mit den Antwortdaten ihres Kindes\n\nDiese Liste lässt sich sicherlich erweitern. Je nach Anwendungsfall werden die Antworten gespeichert bzw. wiederhergestellt oder nicht.",
+    "text": "Modul “Player”\nEin Player-Modul dient dem “Abspielen” – also der Präsentation – von Units. Es gibt mehrere Anwendungsfälle:\n\nAnzeige im Testsystem während des Tests\nAnzeige im Testsystem für den Review\nVeröffentlichung von Beispielaufgaben\nVeröffentlichung als permanente Referenz für einen wissenschaftlichen Artikel\nVoransicht im Autorensystem\nDruckbare Ansicht für den Export\nPräsentation während der manuellen Kodierung mit den Antwortdaten einer Testperson\nAnzeige für Eltern nach dem Test mit den Antwortdaten ihres Kindes\n\nDiese Liste lässt sich sicherlich erweitern. Je nach Anwendungsfall werden die Antworten gespeichert bzw. wiederhergestellt oder nicht.",
     "crumbs": [
       "Einführung",
       "Datenstrukturen"
@@ -349,7 +547,7 @@
     "href": "intro/modelling.html",
     "title": "Kommunikationsmodell",
     "section": "",
-    "text": "sequenceDiagram\n    participant DB as Datenbank\n    participant MH as Modul-Host\n\n    DB-&gt;&gt;MH:Laden Daten\n    participant VM as Verona-Modul\n    MH-&gt;&gt;VM:Initialisierung\n    VM-&gt;&gt;MH:Melde Bereitschaft\n    MH-&gt;&gt;VM:Startkommando mit Daten\n    loop\n        Actor TP as Person\n        VM-&gt;TP:Interaktion\n        VM-&gt;&gt;MH:Melde Änderung Status\n    end\n    VM-xTP:Navigation\n    MH-&gt;&gt;DB:Speichern geänderte Daten\n    MH-xVM:Navigation\n\n\n\n\n\n\n\nInitialisierung\nVerona-Module werden üblicherweise dynamisch geladen und ausgeführt. Wenn ein bestimmtes Modul erforderlich ist und grundsätzlich im System verfügbar, dann wird es zunächst von der Hostanwendung (Frontend im Browser) in den Hauptspeicher geladen.\nAnschließend muss ein &lt;iframe&gt;-Element verfügbar sein. Die Browser unterstützen jetzt alle das Attribut srcdoc, und diesem Attribut wird der Modul-Code zugewiesen. Dies entspricht technisch dem Laden einer Webseite. Dies erfordert eine gewisse (unbekannte) Zeit.\n\n\nNachrichten empfangen\nDie Kommunikation kann nur erfolgen, wenn die Host-Anwendung Nachrichten an das window-Objekt abfängt. Das Modul kann nur allgemein an seine Host-Anwendung Nachrichten schicken, nicht gezielt an eine bestimmte Komponente oder ein bestimmtes DOM-Element. Auf höchster Ebene muss also z. B. so etwas einmalig aufgerufen werden:\n\n\nListener einrichten bei Start der Hostanwendung\n\n window.addEventListener('message', (event: MessageEvent) =&gt; {\n      const msgData = event.data;\n      const msgType = msgData.type;\n      if ((msgType !== undefined) &&\n            (msgType.substr(0, 2) === 'vo')) {\n        this.tcs.postMessage$.next(event);\n      }\n    });\n\nIn diesem Beispiel prüft die Funktion, ob der Typ der Nachricht mit ‘vo’ beginnt. In diesem Fall wird angenommen, dass es sich um eine Nachricht von einem Verona-Modul handelt und ein Observable wird auf einen neuen Wert gesetzt. An passenden Stellen im Host kann dann darauf reagiert werden.\n\n\nVerona-Modul meldet Bereitschaft\nWenn das Modul die eigene Initialisierung abgeschlossen hat, meldet es die Bereitschaft an den Host. Erst ab diesem Zeitpunkt kann man davon ausgehen, dass das Modul Nachrichten empfangen kann. Davor hört es quasi nicht zu.\nIm Verona-Kontext liefert das Modul seine Metadaten mit, d. h. der Host kann prüfen, ob das richtige Modul geladen wurde bzw. ob bestimmte Anpassungen in der Kommunikation erfolgen müssen.\n\n\n\n\n\n\nVorsicht bei mehreren Modulen auf einer Seite\n\n\n\nWenn mehrere Module desselben Typs auf einer Seite eingerichtet werden sollen, muss der Host prüfen, von welchem &lt;iframe&gt;-Element die Bereitschaftsmeldung kam (source/target). Anschließend sollte die sessionId verwendet werden, um die Nachrichten bzw. deren Daten zuzuordnen.\n\n\n\n\nStart-Kommando\nAn das &lt;iframe&gt;-Element wird dann üblicherweise ein Kommando geschickt, das die spezifischen Daten der Unit enthält (Definition, vorherige Antworten, Kodierschema usw.). Damit erstellt bzw. parametrisiert das Modul die erforderlichen Elemente und die Interaktion mit dem User (Testperson, Autorin) kann beginnen.\n\n\nBeispiel Startkommando für Player\n\n  this.postMessageTarget.postMessage({\n        type: 'vopStartCommand',\n        sessionId: this.itemPlayerSessionId,\n        unitDefinition: pendingUnitDef,\n        unitState: {\n          dataParts: pendingUnitDataToRestore\n        },\n        playerConfig: this.tcs.fullPlayerConfig\n      }, '*');\n\nWenn später ein neues Startkommando vom Host geschickt wird, stellt das Modul zunächst den Ausgangszustand nach der Initialisierung wieder her und verfährt dann wie oben. Sollten z. B. mehrere Units hintereinander denselben Player anfordern, muss nicht immer neu das gesamte Modul neu initialisiert werden. Der Player kann über ein neues Start-Kommando “nachgenutzt” werden.\n\n\nInteraktion: Zustandsänderung melden\nWährend der Interaktion meldet das Verona-Modul Änderungen je nach Typ des Moduls. Ob diese Änderungen gspeichert werden, hängt vom jeweiligen Anwendungsfall ab.\n\n\n\n\n\n\nVorsicht Datenflut\n\n\n\nBei schnellen Tastatureingaben oder ambitionierter Beobachtung des Userverhaltens (Logging) fallen sehr viele Daten an. Beim Player-Modul kann man die Daten aufteilen (sog. dataParts), aber auch sonst könnte es viel werden. Die Hostanwendung sollte einen Puffer einrichten und nicht alles sofort wegspeichern. Bei rxjs gibt es beispielsweise den Operator debounceTime.\n\n\n\n\nBeenden: unnötig\nDa Änderungen sofort gemeldet werden, ist ein formelles Beenden des Moduls unnötig. Es gibt bei keinem Verona-Modul Bedarf, vor Entfernen des Moduls bestimmte Funktionen aufzurufen. Wenn das Modul nicht mehr benötigt wird (oben dargestellt als Navigation), kann das &lt;iframe&gt;-Element entfernt oder geleert werden (srcdoc=\"\").\n\n\nKorrekte Zuordnung der Modul-Instanz bzw. der Daten\nBei den Nachrichten gibt es zwei Eigenschaften, die eine korrekte Zuordnung unterstützen:\n\nsessionId: Diese ID wird beim Startkommando vom Host vergeben und wird vom Modul bei jeder Nachricht mitgeschickt. Diese ID wird durch das Modul nicht verändert. Der Host kann darüber das Modul-Element identifizieren und daher sicherstellen, dass bei den überwiegend asynchronen Vorgängen im Browser die Daten stets z. B. der richtigen Unit zugeordnet werden.\ntimeStamp: Auch diese Eigenschaft wird stets vom Modul mitgeschickt. Darüber kann sichergestellt werden, dass die Reihenfolge der Nachrichten nicht vertauscht wird. Es ist stets die jeweils letzte Änderung feststellbar.",
+    "text": "sequenceDiagram\n    participant DB as Datenbank\n    participant MH as Modul-Host\n\n    DB-&gt;&gt;MH:Laden Daten\n    participant VM as Verona-Modul\n    MH-&gt;&gt;VM:Initialisierung\n    VM-&gt;&gt;MH:vopReadyNotification\n    MH-&gt;&gt;VM:vopStartCommand\n    loop\n        Actor TP as Person\n        VM-&gt;TP:Interaktion\n        VM-&gt;&gt;MH:vopStateChangedNotification\n    end\n    VM-xTP:Navigation\n    MH-&gt;&gt;DB:Speichern geänderte Daten\n    MH-xVM:Navigation\n\n\n\n\n\n\n\nInitialisierung\nVerona-Module werden üblicherweise dynamisch geladen und ausgeführt. Wenn ein bestimmtes Modul erforderlich ist und grundsätzlich im System verfügbar, dann wird es zunächst von der Hostanwendung (Frontend im Browser) in den Hauptspeicher geladen.\nAnschließend muss ein &lt;iframe&gt;-Element verfügbar sein. Die Browser unterstützen jetzt alle das Attribut srcdoc, und diesem Attribut wird der Modul-Code zugewiesen. Dies entspricht technisch dem Laden einer Webseite. Dies erfordert eine gewisse (unbekannte) Zeit.\n\n\nNachrichten empfangen\nDie Kommunikation kann nur erfolgen, wenn die Host-Anwendung Nachrichten an das window-Objekt abfängt. Das Modul kann nur allgemein an seine Host-Anwendung Nachrichten schicken, nicht gezielt an eine bestimmte Komponente oder ein bestimmtes DOM-Element. Auf höchster Ebene muss also z. B. so etwas einmalig aufgerufen werden:\n\n\nListener einrichten bei Start der Hostanwendung\n\n window.addEventListener('message', (event: MessageEvent) =&gt; {\n      const msgData = event.data;\n      const msgType = msgData.type;\n      if ((msgType !== undefined) &&\n            (msgType.substr(0, 2) === 'vo')) {\n        this.tcs.postMessage$.next(event);\n      }\n    });\n\nIn diesem Beispiel prüft die Funktion, ob der Typ der Nachricht mit ‘vo’ beginnt. In diesem Fall wird angenommen, dass es sich um eine Nachricht von einem Verona-Modul handelt und ein Observable wird auf einen neuen Wert gesetzt. An passenden Stellen im Host kann dann darauf reagiert werden.\n\n\nVerona-Modul meldet Bereitschaft\nWenn das Modul die eigene Initialisierung abgeschlossen hat, meldet es die Bereitschaft an den Host. Erst ab diesem Zeitpunkt kann man davon ausgehen, dass das Modul Nachrichten empfangen kann. Davor hört es quasi nicht zu.\nIm Verona-Kontext liefert das Modul seine Metadaten mit, d. h. der Host kann prüfen, ob das richtige Modul geladen wurde bzw. ob bestimmte Anpassungen in der Kommunikation erfolgen müssen.\n\n\n\n\n\n\nVorsicht bei mehreren Modulen auf einer Seite\n\n\n\nWenn mehrere Module desselben Typs auf einer Seite eingerichtet werden sollen, muss der Host prüfen, von welchem &lt;iframe&gt;-Element die Bereitschaftsmeldung kam (source/target). Anschließend sollte die sessionId verwendet werden, um die Nachrichten bzw. deren Daten zuzuordnen.\n\n\n\n\nStart-Kommando\nAn das &lt;iframe&gt;-Element wird dann üblicherweise ein Kommando geschickt, das die spezifischen Daten der Unit enthält (Definition, vorherige Antworten, Kodierschema usw.). Damit erstellt bzw. parametrisiert das Modul die erforderlichen Elemente und die Interaktion mit dem User (Testperson, Autorin) kann beginnen.\n\n\nBeispiel Startkommando für Player\n\n  this.postMessageTarget.postMessage({\n        type: 'vopStartCommand',\n        sessionId: this.itemPlayerSessionId,\n        unitDefinition: pendingUnitDef,\n        unitState: {\n          dataParts: pendingUnitDataToRestore\n        },\n        playerConfig: this.tcs.fullPlayerConfig\n      }, '*');\n\nWenn später ein neues Startkommando vom Host geschickt wird, stellt das Modul zunächst den Ausgangszustand nach der Initialisierung wieder her und verfährt dann wie oben. Sollten z. B. mehrere Units hintereinander denselben Player anfordern, muss nicht immer neu das gesamte Modul neu initialisiert werden. Der Player kann über ein neues Start-Kommando “nachgenutzt” werden.\n\n\nInteraktion: Zustandsänderung melden\nWährend der Interaktion meldet das Verona-Modul Änderungen je nach Typ des Moduls. Ob diese Änderungen gespeichert werden, hängt vom jeweiligen Anwendungsfall ab.\n\n\n\n\n\n\nVorsicht Datenflut\n\n\n\nBei schnellen Tastatureingaben oder ambitionierter Beobachtung des Userverhaltens (Logging) fallen sehr viele Daten an. Beim Player-Modul kann man die Daten aufteilen (sog. dataParts), aber auch sonst könnte es viel werden. Die Hostanwendung sollte einen Puffer einrichten und nicht alles sofort wegspeichern. Bei rxjs gibt es beispielsweise den Operator debounceTime.\n\n\n\n\nBeenden: unnötig\nDa Änderungen sofort gemeldet werden, ist ein formelles Beenden des Moduls unnötig. Es gibt bei keinem Verona-Modul Bedarf, vor Entfernen des Moduls bestimmte Funktionen aufzurufen. Wenn das Modul nicht mehr benötigt wird (oben dargestellt als Navigation), kann das &lt;iframe&gt;-Element entfernt oder geleert werden (srcdoc=\"\").\n\n\nKorrekte Zuordnung der Modul-Instanz bzw. der Daten\nBei den Nachrichten gibt es zwei Eigenschaften, die eine korrekte Zuordnung unterstützen:\n\nsessionId: Diese ID wird beim Startkommando vom Host vergeben und wird vom Modul bei jeder Nachricht mitgeschickt. Diese ID wird durch das Modul nicht verändert. Der Host kann darüber das Modul-Element identifizieren und daher sicherstellen, dass bei den überwiegend asynchronen Vorgängen im Browser die Daten stets z. B. der richtigen Unit zugeordnet werden.\ntimeStamp: Auch diese Eigenschaft wird stets vom Modul mitgeschickt. Darüber kann sichergestellt werden, dass die Reihenfolge der Nachrichten nicht vertauscht wird. Es ist stets die jeweils letzte Änderung feststellbar.",
     "crumbs": [
       "Einführung",
       "Kommunikationsmodell"

@@ -29,6 +29,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../player/vopStartCommand.html" rel="next">
+<link href="../intro/english.html" rel="prev">
 <link href="../favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -66,6 +68,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Suchen"
   }
 }</script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="../styles.css">
@@ -107,7 +112,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Verona Interfaces - Player</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../player/index.html">Player</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -172,6 +177,29 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../player/index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Player</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../player/vopStartCommand.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Start-Kommando</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../player/vopStateChangedNotification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Status-Änderung</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -182,8 +210,14 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Auf dieser Seite</h2>
    
   <ul>
-  <li><a href="#beschreibung" id="toc-beschreibung" class="nav-link active" data-scroll-target="#beschreibung">Beschreibung</a></li>
-  <li><a href="#spezifikation" id="toc-spezifikation" class="nav-link" data-scroll-target="#spezifikation">Spezifikation</a></li>
+  <li><a href="#initialisierung" id="toc-initialisierung" class="nav-link active" data-scroll-target="#initialisierung">1 Initialisierung</a></li>
+  <li><a href="#ready-notification" id="toc-ready-notification" class="nav-link" data-scroll-target="#ready-notification">2 Ready Notification</a></li>
+  <li><a href="#start-command" id="toc-start-command" class="nav-link" data-scroll-target="#start-command">3 Start Command</a></li>
+  <li><a href="#statechanged-notification" id="toc-statechanged-notification" class="nav-link" data-scroll-target="#statechanged-notification">4 StateChanged Notification</a></li>
+  <li><a href="#page-navigation-command" id="toc-page-navigation-command" class="nav-link" data-scroll-target="#page-navigation-command">5 Page Navigation Command</a></li>
+  <li><a href="#unit-navigation-requested-notification" id="toc-unit-navigation-requested-notification" class="nav-link" data-scroll-target="#unit-navigation-requested-notification">6 Unit Navigation Requested Notification</a></li>
+  <li><a href="#navigation-denied-notification" id="toc-navigation-denied-notification" class="nav-link" data-scroll-target="#navigation-denied-notification">7 Navigation Denied Notification</a></li>
+  <li><a href="#window-focus-changed-notification" id="toc-window-focus-changed-notification" class="nav-link" data-scroll-target="#window-focus-changed-notification">8 Window Focus Changed Notification</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/verona-interfaces/verona-interfaces.github.io/issues/new" class="toc-action"><i class="bi bi-github"></i>Problem melden</a></li></ul></div></nav>
     </div>
@@ -209,13 +243,162 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="beschreibung" class="level1">
-<h1>Beschreibung</h1>
-<p>Ein Player präsentiert eine Unit und sorgt für die Interaktion mit der Testperson bzw. mit den Befragten. Das grundlegende Modell hierbei ist, dass ein Test bzw. Befragung (nachfolgend synonym) eine Abfolge von inhaltlich getrennten</p>
+<p>Ein Player präsentiert eine Unit und sorgt für die Interaktion mit der Testperson bzw. mit den Befragten. Das grundlegende Modell hierbei ist, dass ein Test bzw. Befragung (nachfolgend synonym) aus einer Abfolge von inhaltlich getrennten Units besteht und diese jeweils einzeln mit einem Player-Modul präsentiert werden.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<a href="https://verona-interfaces.github.io/player/">Spezifikation</a>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Die Spezifikation der API ist als YML-Datei in der Syntax <a href="https://www.asyncapi.com/de">AsyncAPI</a> ausgeführt. Nach einer Änderung wird über ein <a href="https://www.asyncapi.com/tools/generator">Tool</a> eine lesbare Html-Datei erzeugt.</p>
+</div>
+</div>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">sequenceDiagram
+    autonumber
+    participant MH as Modul-Host
+    participant VM as Player
+    MH-&gt;&gt;VM:Initialisierung
+    VM-&gt;&gt;MH:vopReadyNotification
+    MH-&gt;&gt;VM:vopStartCommand
+    loop
+        opt
+            VM-&gt;&gt;MH:vopStateChangedNotification
+        end
+        opt
+            MH-&gt;&gt;VM:vopPageNavigationCommand
+        end
+        opt
+            VM-&gt;&gt;MH:vopUnitNavigationRequestedNotification
+        end
+        opt
+            MH-&gt;&gt;VM:vopNavigationDeniedNotification
+        end
+        opt
+            VM-&gt;&gt;MH:vopWindowFocusChangedNotification
+        end
+    end
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<section id="initialisierung" class="level1">
+<h1>1 Initialisierung</h1>
+<p>Der Host richtet ein <code>&lt;iframe&gt;</code>-Element ein und setzt für das <code>srcdoc</code>-Attribut den kompletten Inhalt des Moduls. Das Modul ist technisch eine Html-Seite, d.&nbsp;h. es wird durch das Laden auch die Ausführung von JavaScript-Code angestoßen, der auf oberster Ebene vorgesehen ist.</p>
 </section>
-<section id="spezifikation" class="level1">
-<h1>Spezifikation</h1>
-<div class="line-block"><a href="https://github.com/verona-interfaces/player#readme">Player</a> | Komponente, die eine Aufgabe in einer Testanwendung abspielt | <a href="https://verona-interfaces.github.io/player/">Spezifikation (Html)</a>, <a href="https://github.com/verona-interfaces/player/blob/master/model/model.md">Modell (UML)</a> |</div>
+<section id="ready-notification" class="level1">
+<h1>2 Ready Notification</h1>
+<p>Dieser Code sendet als letzten Schritt der eigenen Initialisierung eine Nachricht an den Host, dass das Modul bereit sei für das Start-Kommando. Als Payload wird das <a href="../intro/metadata.html">Metadaten-Objekt</a> mitgeschickt – hier allerdings als String serialisiert, um nicht bei jeder Änderung der Metadaten-Spezifikation alle Modul-API ändern zu müssen.</p>
+</section>
+<section id="start-command" class="level1">
+<h1>3 Start Command</h1>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tipp
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ausführliche Darstellung des Start-Kommandos siehe <a href="../player/vopStartCommand.html">hier</a>.</p>
+</div>
+</div>
+<p>Nachdem der Host die Bereitschaftsmeldung erhalten hat, schickt er die Unit-Definition: Parameter <code>unitDefinition</code>, serialisiert als String. Damit stellt der Player – der nach der Initialisierung zunächst eine leere Seite zeigt – alle Elemente dar, die in der Unit-Definition vorgesehen sind und bereitet die Interaktionselemente vor.</p>
+<p>Dem Player wird mit <code>sessionId</code> eine Kennung mitgeschickt, die der Player anschließend in jeder Nachricht verwenden soll. Damit wird die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit unterstützt.</p>
+<p>Weitere Parameter:</p>
+<ul>
+<li><code>unitDefinitionType</code>: Sollte es Varianten oder Versionen von Unit-Definitionen geben, kann dies hier dem Player mitgeteilt werden. Alternativ (oder parallel) kann natürlich diese Information als Teil der Datenstruktur der Unit-Definition übergeben werden.</li>
+<li><code>unitState</code>: Sollte die Unit wiederholt präsentiert werden, soll der vorherige Bearbeitungsstatus wiederhergestellt werden. Weitere Erläuterungen zu diesem Datenobjekt finden Sie <a href="../player/vopStartCommand.html">hier</a>.</li>
+<li><code>playerConfig</code>: Hier werden Parameter übergeben, die die Anzeige und die Interaktion steuern. Beispielsweise kann die Art und Weise des Blätterns zur nächsten Seite festgelegt werden. Weitere Erläuterungen zu diesem Datenobjekt finden Sie <a href="../player/vopStartCommand.html">hier</a>.</li>
+</ul>
+</section>
+<section id="statechanged-notification" class="level1">
+<h1>4 StateChanged Notification</h1>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tipp
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ausführliche Darstellung der Meldung zur Statusänderung siehe <a href="../player/vopStateChangedNotification.html">hier</a>.</p>
+</div>
+</div>
+<p>Sobald eine Interaktion stattgefunden hat, die als Antwort wichtig wäre oder die bei einem wiederholten Aufruf der Unit wiederhergestellt werden soll, meldet der Player diese Änderung. Parameter:</p>
+<ul>
+<li><code>sessionId</code>: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.</li>
+<li><code>timeStamp</code>: Ein String im Standard-Format <a href="https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-date-time-string-format">date-time</a>. Die Nutzung dieser Information ist dem Host überlassen, soll aber vor allem die korrekte Reihenfolge vieler asynchron eintreffenden Nachrichten sicherstellen.</li>
+<li><code>unitState</code>: Daten der Antworten im weiteren Sinne. Diese dienen der Auswertung und der Wiederherstellung beim Zurückblättern. Weitere Erläuterungen zu diesem Datenobjekt finden Sie <a href="../player/vopStateChangedNotification.html">hier</a>.</li>
+<li><code>playerState</code>: Hier schickt der Player Informationen, die dem Host helfen können, die UI anzupassen. Beispielsweise wird so ein Wechsel der Seite berichtet, damit der Host in der Navigationsdarstellung die aktive Seite anders darstellt. Weitere Erläuterungen zu diesem Datenobjekt finden Sie <a href="../player/vopStateChangedNotification.html">hier</a>.</li>
+<li><code>log</code>: Hierüber werden Log-Einträge geschickt. Dies sind Ereignisse, die nicht unbedingt einen Status ändern, sondern nur der Rekonstruktion der Beantwortung über die Zeit dienen können. Weitere Erläuterungen zu diesem Datenobjekt finden Sie <a href="../player/vopStateChangedNotification.html">hier</a>.</li>
+</ul>
+</section>
+<section id="page-navigation-command" class="level1">
+<h1>5 Page Navigation Command</h1>
+<p>Über dieses Kommando kann der Host den Player anweisen, zu einer bestimmten Seite zu wechseln. Dies ist sinnvoll, wenn der Host eine Seitennavigation z. B. über eine Button-Leiste anbietet. Parameter:</p>
+<ul>
+<li><code>sessionId</code>: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.</li>
+<li><code>target</code>: ID der Seite, zu der der Player navigieren soll. Die möglichen Seiten kennt der Host aus einer Nachricht <code>vopStateChangedNotification</code> des Players. Liegt eine solche Nachricht nicht vor, geht der Host davon aus, dass es nur eine Seite gibt und bietet keine Seitennavigation an.</li>
+</ul>
+</section>
+<section id="unit-navigation-requested-notification" class="level1">
+<h1>6 Unit Navigation Requested Notification</h1>
+<p>Der Player kann Buttons einblenden, über die die Testperson zu einer anderen Unit navigiert. Eine Unit-Navigation kann auch über andere Bedingungen durch den Player ausgelöst werden, z. B. Ablauf einer Frist.</p>
+<p>Über diese Nachricht fordert der Player eine Unit-Navigation an. Ob dann tatsächlich eine Unit-Navigation erfolgt, entscheidet der Host. Beispielsweise wird in der Voransicht einer Unit im Autorensystem IQB-Studio nur kurz eine Nachricht eingeblendet, dass eine Unit-Navigation angefordert wurde.</p>
+<ul>
+<li><code>sessionId</code>: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.</li>
+<li><code>target</code>: Ziel-Unit. Dies ist allerdings keine ID einer konkreten Unit, sondern ein Symbol für eine relativ zur aktuellen Unit befindlichen Unit: <code>next</code>, <code>previous</code>, <code>first</code>, <code>last</code>, <code>end</code>. Die möglichen Ziele kennt der Player aus dem Start-Kommando.</li>
+</ul>
+</section>
+<section id="navigation-denied-notification" class="level1">
+<h1>7 Navigation Denied Notification</h1>
+<p>Im Testablauf können fehlende oder falsche Antworten problematisch sein. Insbesondere bei Befragungen ist oft Vollständigkeit gewünscht. Daher meldet der Player bei einer Statusänderung auch diese Informationen mit. Der Testcontroller kann dann je nach Einstellung entscheiden, ob eine Navigation zur nächsten Unit zulässig ist oder nicht.</p>
+<p>Sollte dies nicht der Fall sein, sollte der Player fehlende oder falsche Antworten visuell markieren. In normalen Formularen erfolgt dies, wenn der Eingabefokus auf ein Eingabeelement kommt und ohne weitere Eingabe zum nächsten Element wechselt. Aber wenn ein Eingabeelement nie den Fokus bekommt, kann die Fehlersituation nicht erzeugt werden. Die Alternative, alle Eingabeelemente beim Betreten der Unit als fehlerhaft darzustellen, wäre keine gute UI-Entscheidung.</p>
+<p>Die Nachricht <code>vopNavigationDeniedNotification</code> des Hosts ist also als Aufforderung an den Player zu verstehen, fehlende oder falsche Eingaben visuell darzustellen. Technisch kann das z. B. über <code>markAllAsTouched()</code> gehen. Parameter:</p>
+<ul>
+<li><code>sessionId</code>: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.</li>
+<li><code>reason</code>: Hinweis für den Player, warum die Navigation verweigert wurde: <code>presentationIncomplete</code> und/oder <code>responsesIncomplete</code>.</li>
+</ul>
+</section>
+<section id="window-focus-changed-notification" class="level1">
+<h1>8 Window Focus Changed Notification</h1>
+<p>In Testungen kann es wichtig sein festzustellen, ob die Testperson sich im Browser noch auf der Seite des Tests befindet. Sollte dies nicht der Fall sein, besteht der Verdacht, dass die Testperson unzulässigerweise andere Webseiten aufruft, um z. B. eine Übersetzung zu erhalten.</p>
+<p>Da technisch der Wechsel aus dem Host-Fensterbereich in den Bereich des <code>&lt;iframe&gt;</code>-Elements des Players einem Verlassen der Testseite gleichkommt, muss der Player dem Host mitteilen, dass er den Fokus erhalten bzw. verloren hat. Parameter:</p>
+<ul>
+<li><code>timeStamp</code>: Ein String im Standard-Format <a href="https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-date-time-string-format">date-time</a>.</li>
+<li><code>hasFocus</code>: Wenn <code>true</code>, hat der Player den Fokus bekommen, ansonsten hat er ihn verloren und der Host muss prüfen, ob er ihn erhalten hat.</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tipp
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Die Ereignisse <code>blur</code> und <code>focus</code> werden an <code>window</code> bei einem Fokuswechsel gesendet.</li>
+<li>Die Funktion <code>document.hasFocus()</code> liefert <code>true</code>, wenn das Dokument den Fokus hat.</li>
+</ul>
+</div>
+</div>
 
 
 </section>
@@ -637,6 +820,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../intro/english.html" class="pagination-link" aria-label="English: About">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">English: About</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../player/vopStartCommand.html" class="pagination-link" aria-label="Start-Kommando">
+        <span class="nav-page-text">Start-Kommando</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

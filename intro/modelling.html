@@ -211,6 +211,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../player/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Player</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../player/vopStartCommand.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Start-Kommando</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../player/vopStateChangedNotification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Status-Änderung</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -265,12 +288,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     DB-&gt;&gt;MH:Laden Daten
     participant VM as Verona-Modul
     MH-&gt;&gt;VM:Initialisierung
-    VM-&gt;&gt;MH:Melde Bereitschaft
-    MH-&gt;&gt;VM:Startkommando mit Daten
+    VM-&gt;&gt;MH:vopReadyNotification
+    MH-&gt;&gt;VM:vopStartCommand
     loop
         Actor TP as Person
         VM-&gt;TP:Interaktion
-        VM-&gt;&gt;MH:Melde Änderung Status
+        VM-&gt;&gt;MH:vopStateChangedNotification
     end
     VM-xTP:Navigation
     MH-&gt;&gt;DB:Speichern geänderte Daten
@@ -343,7 +366,7 @@ Vorsicht bei mehreren Modulen auf einer Seite
 </section>
 <section id="interaktion-zustandsänderung-melden" class="level1">
 <h1>Interaktion: Zustandsänderung melden</h1>
-<p>Während der Interaktion meldet das Verona-Modul Änderungen je nach Typ des Moduls. Ob diese Änderungen gspeichert werden, hängt vom jeweiligen Anwendungsfall ab.</p>
+<p>Während der Interaktion meldet das Verona-Modul Änderungen je nach Typ des Moduls. Ob diese Änderungen gespeichert werden, hängt vom jeweiligen Anwendungsfall ab.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
