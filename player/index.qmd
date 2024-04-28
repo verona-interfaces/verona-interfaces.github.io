@@ -3,10 +3,117 @@ lang: de
 title: Verona Interfaces - Player
 ---
 
-# Beschreibung
+Ein Player präsentiert eine Unit und sorgt für die Interaktion mit der Testperson bzw. mit den Befragten. Das grundlegende Modell hierbei ist, dass ein Test bzw. Befragung (nachfolgend synonym) aus einer Abfolge von inhaltlich getrennten Units besteht und diese jeweils einzeln mit einem Player-Modul präsentiert werden.
 
-Ein Player präsentiert eine Unit und sorgt für die Interaktion mit der Testperson bzw. mit den Befragten. Das grundlegende Modell hierbei ist, dass ein Test bzw. Befragung (nachfolgend synonym) eine Abfolge von inhaltlich getrennten 
+::: {.callout-note}
+## [Spezifikation](https://verona-interfaces.github.io/player/)
 
-# Spezifikation
+Die Spezifikation der API ist als YML-Datei in der Syntax [AsyncAPI](https://www.asyncapi.com/de) ausgeführt. Nach einer Änderung wird über ein [Tool](https://www.asyncapi.com/tools/generator) eine lesbare Html-Datei erzeugt.
+:::
 
-| [Player](https://github.com/verona-interfaces/player#readme) | Komponente, die eine Aufgabe in einer Testanwendung abspielt | [Spezifikation (Html)](https://verona-interfaces.github.io/player/), [Modell (UML)](https://github.com/verona-interfaces/player/blob/master/model/model.md) |
+```{mermaid}
+sequenceDiagram
+    autonumber
+    participant MH as Modul-Host
+    participant VM as Player
+    MH->>VM:Initialisierung
+    VM->>MH:vopReadyNotification
+    MH->>VM:vopStartCommand
+    loop
+        opt
+            VM->>MH:vopStateChangedNotification
+        end
+        opt
+            MH->>VM:vopPageNavigationCommand
+        end
+        opt
+            VM->>MH:vopUnitNavigationRequestedNotification
+        end
+        opt
+            MH->>VM:vopNavigationDeniedNotification
+        end
+        opt
+            VM->>MH:vopWindowFocusChangedNotification
+        end
+    end
+```
+
+# 1 Initialisierung
+
+Der Host richtet ein `<iframe>`-Element ein und setzt für das `srcdoc`-Attribut den kompletten Inhalt des Moduls. Das Modul ist technisch eine Html-Seite, d. h. es wird durch das Laden auch die Ausführung von JavaScript-Code angestoßen, der auf oberster Ebene vorgesehen ist.
+
+# 2 Ready Notification
+
+Dieser Code sendet als letzten Schritt der eigenen Initialisierung eine Nachricht an den Host, dass das Modul bereit sei für das Start-Kommando. Als Payload wird das [Metadaten-Objekt](../intro/metadata.qmd) mitgeschickt -- hier allerdings als String serialisiert, um nicht bei jeder Änderung der Metadaten-Spezifikation alle Modul-API ändern zu müssen.
+
+# 3 Start Command
+
+::: {.callout-tip}
+Ausführliche Darstellung des Start-Kommandos siehe [hier](vopStartCommand.qmd).
+:::
+
+Nachdem der Host die Bereitschaftsmeldung erhalten hat, schickt er die Unit-Definition: Parameter `unitDefinition`, serialisiert als String. Damit stellt der Player -- der nach der Initialisierung zunächst eine leere Seite zeigt -- alle Elemente dar, die in der Unit-Definition vorgesehen sind und bereitet die Interaktionselemente vor.
+
+Dem Player wird mit `sessionId` eine Kennung mitgeschickt, die der Player anschließend in jeder Nachricht verwenden soll. Damit wird die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit unterstützt.
+
+Weitere Parameter:
+
+* `unitDefinitionType`: Sollte es Varianten oder Versionen von Unit-Definitionen geben, kann dies hier dem Player mitgeteilt werden. Alternativ (oder parallel) kann natürlich diese Information als Teil der Datenstruktur der Unit-Definition übergeben werden.
+* `unitState`: Sollte die Unit wiederholt präsentiert werden, soll der vorherige Bearbeitungsstatus wiederhergestellt werden. Weitere Erläuterungen zu diesem Datenobjekt finden Sie [hier](vopStartCommand.qmd).
+* `playerConfig`: Hier werden Parameter übergeben, die die Anzeige und die Interaktion steuern. Beispielsweise kann die Art und Weise des Blätterns zur nächsten Seite festgelegt werden. Weitere Erläuterungen zu diesem Datenobjekt finden Sie [hier](vopStartCommand.qmd).
+ 
+# 4 StateChanged Notification
+
+::: {.callout-tip}
+Ausführliche Darstellung der Meldung zur Statusänderung siehe [hier](vopStateChangedNotification.qmd).
+:::
+
+Sobald eine Interaktion stattgefunden hat, die als Antwort wichtig wäre oder die bei einem wiederholten Aufruf der Unit wiederhergestellt werden soll, meldet der Player diese Änderung. Parameter:
+
+* `sessionId`: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.
+* `timeStamp`: Ein String im Standard-Format [date-time](https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-date-time-string-format). Die Nutzung dieser Information ist dem Host überlassen, soll aber vor allem die korrekte Reihenfolge vieler asynchron eintreffenden Nachrichten sicherstellen.
+* `unitState`: Daten der Antworten im weiteren Sinne. Diese dienen der Auswertung und der Wiederherstellung beim Zurückblättern. Weitere Erläuterungen zu diesem Datenobjekt finden Sie [hier](vopStateChangedNotification.qmd).
+* `playerState`: Hier schickt der Player Informationen, die dem Host helfen können, die UI anzupassen. Beispielsweise wird so ein Wechsel der Seite berichtet, damit der Host in der Navigationsdarstellung die aktive Seite anders darstellt. Weitere Erläuterungen zu diesem Datenobjekt finden Sie [hier](vopStateChangedNotification.qmd).
+* `log`: Hierüber werden Log-Einträge geschickt. Dies sind Ereignisse, die nicht unbedingt einen Status ändern, sondern nur der Rekonstruktion der Beantwortung über die Zeit dienen können. Weitere Erläuterungen zu diesem Datenobjekt finden Sie [hier](vopStateChangedNotification.qmd).
+
+# 5 Page Navigation Command
+
+Über dieses Kommando kann der Host den Player anweisen, zu einer bestimmten Seite zu wechseln. Dies ist sinnvoll, wenn der Host eine Seitennavigation z. B. über eine Button-Leiste anbietet. Parameter:
+
+* `sessionId`: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.
+* `target`: ID der Seite, zu der der Player navigieren soll. Die möglichen Seiten kennt der Host aus einer Nachricht `vopStateChangedNotification` des Players. Liegt eine solche Nachricht nicht vor, geht der Host davon aus, dass es nur eine Seite gibt und bietet keine Seitennavigation an.
+
+# 6 Unit Navigation Requested Notification
+
+Der Player kann Buttons einblenden, über die die Testperson zu einer anderen Unit navigiert. Eine Unit-Navigation kann auch über andere Bedingungen durch den Player ausgelöst werden, z. B. Ablauf einer Frist.
+
+Über diese Nachricht fordert der Player eine Unit-Navigation an. Ob dann tatsächlich eine Unit-Navigation erfolgt, entscheidet der Host. Beispielsweise wird in der Voransicht einer Unit im Autorensystem IQB-Studio nur kurz eine Nachricht eingeblendet, dass eine Unit-Navigation angefordert wurde.
+
+* `sessionId`: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.
+* `target`: Ziel-Unit. Dies ist allerdings keine ID einer konkreten Unit, sondern ein Symbol für eine relativ zur aktuellen Unit befindlichen Unit: `next`, `previous`, `first`, `last`, `end`. Die möglichen Ziele kennt der Player aus dem Start-Kommando.
+
+# 7 Navigation Denied Notification
+
+Im Testablauf können fehlende oder falsche Antworten problematisch sein. Insbesondere bei Befragungen ist oft Vollständigkeit gewünscht. Daher meldet der Player bei einer Statusänderung auch diese Informationen mit. Der Testcontroller kann dann je nach Einstellung entscheiden, ob eine Navigation zur nächsten Unit zulässig ist oder nicht.
+
+Sollte dies nicht der Fall sein, sollte der Player fehlende oder falsche Antworten visuell markieren. In normalen Formularen erfolgt dies, wenn der Eingabefokus auf ein Eingabeelement kommt und ohne weitere Eingabe zum nächsten Element wechselt. Aber wenn ein Eingabeelement nie den Fokus bekommt, kann die Fehlersituation nicht erzeugt werden. Die Alternative, alle Eingabeelemente beim Betreten der Unit als fehlerhaft darzustellen, wäre keine gute UI-Entscheidung.
+
+Die Nachricht `vopNavigationDeniedNotification` des Hosts ist also als Aufforderung an den Player zu verstehen, fehlende oder falsche Eingaben visuell darzustellen. Technisch kann das z. B. über `markAllAsTouched()` gehen. Parameter:
+
+* `sessionId`: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.
+* `reason`: Hinweis für den Player, warum die Navigation verweigert wurde: `presentationIncomplete` und/oder `responsesIncomplete`.
+
+# 8 Window Focus Changed Notification
+
+In Testungen kann es wichtig sein festzustellen, ob die Testperson sich im Browser noch auf der Seite des Tests befindet. Sollte dies nicht der Fall sein, besteht der Verdacht, dass die Testperson unzulässigerweise andere Webseiten aufruft, um z. B. eine Übersetzung zu erhalten.
+
+Da technisch der Wechsel aus dem Host-Fensterbereich in den Bereich des `<iframe>`-Elements des Players einem Verlassen der Testseite gleichkommt, muss der Player dem Host mitteilen, dass er den Fokus erhalten bzw. verloren hat. Parameter:
+
+* `timeStamp`: Ein String im Standard-Format [date-time](https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-date-time-string-format).
+* `hasFocus`: Wenn `true`, hat der Player den Fokus bekommen, ansonsten hat er ihn verloren und der Host muss prüfen, ob er ihn erhalten hat.
+
+::: {.callout-tip}
+
+* Die Ereignisse `blur` und `focus` werden an `window` bei einem Fokuswechsel gesendet.
+* Die Funktion `document.hasFocus()` liefert `true`, wenn das Dokument den Fokus hat.
+:::

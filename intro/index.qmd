@@ -1,6 +1,6 @@
 ---
 lang: de
-title: Verona Interfaces - Einführung
+title: Verona Interfaces -- Einführung
 format:
   html:
     toc: false

@@ -40,6 +40,13 @@ website:
           - intro/modelling.qmd
           - intro/data-structures.qmd
           - intro/english.qmd
+      - section: Player
+        href: player/index.qmd
+        contents:
+          - href: player/vopStartCommand.qmd
+            text: Start
+          - href: player/vopStateChangedNotification.qmd
+            text: StateChanged
 
 format:
   html:

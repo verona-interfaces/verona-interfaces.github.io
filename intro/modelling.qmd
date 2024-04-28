@@ -11,12 +11,12 @@ sequenceDiagram
     DB->>MH:Laden Daten
     participant VM as Verona-Modul
     MH->>VM:Initialisierung
-    VM->>MH:Melde Bereitschaft
-    MH->>VM:Startkommando mit Daten
+    VM->>MH:vopReadyNotification
+    MH->>VM:vopStartCommand
     loop
         Actor TP as Person
         VM->TP:Interaktion
-        VM->>MH:Melde Änderung Status
+        VM->>MH:vopStateChangedNotification
     end
     VM-xTP:Navigation
     MH->>DB:Speichern geänderte Daten
@@ -79,7 +79,7 @@ Wenn später ein neues Startkommando vom Host geschickt wird, stellt das Modul z
 
 # Interaktion: Zustandsänderung melden
 
-Während der Interaktion meldet das Verona-Modul Änderungen je nach Typ des Moduls. Ob diese Änderungen gspeichert werden, hängt vom jeweiligen Anwendungsfall ab.
+Während der Interaktion meldet das Verona-Modul Änderungen je nach Typ des Moduls. Ob diese Änderungen gespeichert werden, hängt vom jeweiligen Anwendungsfall ab.
 
 ::: {.callout-warning}
 ## Vorsicht Datenflut

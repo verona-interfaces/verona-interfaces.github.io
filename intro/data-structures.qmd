@@ -13,13 +13,15 @@ Der Begriff **Item** steht für eine Antwort der Testperson, die man mit einem E
 
 Nun kann ein Item auf einer Seite ggf. zusammen mit einem Stimulus präsentiert werden. Über die Navigation kommt man zum nächsten Item. Oft werden jedoch mehrere Items als Gruppe präsentiert, vor allem, wenn sie sich auf denselben Stimulus beziehen. Man erreicht eine höhere Effizienz beim Testen, wenn man zu einem Stimulus nicht nur ein Item vorsieht. Als **Unit** bezeichnen wir eine Gruppe von Items, die aus testpraktischen oder testtheoretischen Gründen zusammen präsentiert werden.
 
-Die Unit ist nun die Ebene in der Datenstruktur, die man als beliebig austauschbar innerhalb eines Tests deklariert. Es gibt sogar statistische Maßzahlen, die die unerwünschten Positionseffekte von Units quantifizieren. Natürlich gibt es auch Tests und vor allem Befragungen, bei denen die Abfolge gründlich geplant wird und wo die Units nicht unabhängig voneinander sind. Aber aus Sicht der Datenstrukturen reden wir lange von Units und deren Optimierung, bevor ihr Platz in einer Testabfolge festgelegt wird. Daher sieht der Entwicklungsprozess für Tests zunächst eine Unit- -- bzw. im deutschen Sprachgebrauch auch Aufgaben- -- Entwicklung vor.
-
 ::: {.callout-tip}
 ## Unit ist Fokus
 
 Der Fokus aller Verona-Module liegt auf der Unit. Es werden Daten verarbeitet, die sich stets auf eine Unit beziehen.
 :::
+
+Die Unit ist nun die Ebene in der Datenstruktur, die man als beliebig austauschbar innerhalb eines Tests deklariert. Es gibt sogar statistische Maßzahlen, die die unerwünschten Positionseffekte von Units quantifizieren. Natürlich gibt es auch Tests und vor allem Befragungen, bei denen die Abfolge gründlich geplant wird und wo die Units nicht unabhängig voneinander sind. Aber aus Sicht der Datenstrukturen reden wir lange von Units und deren Optimierung, bevor ihr Platz in einer Testabfolge festgelegt wird. Daher sieht der Entwicklungsprozess für Tests zunächst eine Unit- -- bzw. im deutschen Sprachgebrauch auch Aufgaben- -- Entwicklung vor.
+
+> Eine Unit kann auch eine simple Seite sein, die nur begrüßt oder den nächsten Aufgabenblock ankündigt. Das IQB hat viel Arbeit in Units gestteckt, die die Bedienung von Eingabeelementen erläutern. Für die vorliegende Dokumentation spielt das keine Rolle, da es technisch nur eine Vereinfachung darstellt und stets möglich ist.
 
 # Dreiklang der Module
 
@@ -65,7 +67,7 @@ Ein Player-Modul dient dem "Abspielen" -- also der Präsentation -- von Units. E
 * Veröffentlichung als permanente Referenz für einen wissenschaftlichen Artikel
 * Voransicht im Autorensystem
 * Druckbare Ansicht für den Export
-* Präsentation während des Kodierprozesses mit den Antwortdaten einer Testperson
+* Präsentation während der manuellen Kodierung mit den Antwortdaten einer Testperson
 * Anzeige für Eltern nach dem Test mit den Antwortdaten ihres Kindes
 
 Diese Liste lässt sich sicherlich erweitern. Je nach Anwendungsfall werden die Antworten gespeichert bzw. wiederhergestellt oder nicht.
