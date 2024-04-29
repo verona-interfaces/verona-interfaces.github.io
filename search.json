@@ -404,7 +404,7 @@
     "href": "schemer-docs/index.html",
     "title": "Verona Interfaces – Schemer",
     "section": "",
-    "text": "Ein Schemer dient der interaktiven onlinegestützten Entwicklung eines Kodierschemas. Dies ist eine Sammlung von Vorschriften, wie die Variablenwerte – automatisch oder manuell – kodiert werden sollen. Es können auch neue Variablen als Ableitung vorhandener gebildet werden.\nsequenceDiagram\n    autonumber\n    participant MH as Modul-Host\n    participant VM as Schemer\n    MH-&gt;&gt;VM:Initialisierung\n    VM-&gt;&gt;MH:vosReadyNotification\n    MH-&gt;&gt;VM:vosStartCommand\n    loop\n        VM-&gt;&gt;MH:vosSchemeChangedNotification\n    end",
+    "text": "Ein Schemer dient der interaktiven onlinegestützten Entwicklung eines Kodierschemas. Dies ist eine Sammlung von Vorschriften, wie die Variablenwerte – automatisch oder manuell – kodiert werden sollen. Es können auch neue Variablen als Ableitung vorhandener gebildet werden.\nsequenceDiagram\n    autonumber\n    participant HA as Host-Anwendung\n    participant VM as Schemer (Verona Modul)\n    HA-&gt;&gt;VM:Initialisierung\n    VM-&gt;&gt;HA:vosReadyNotification\n    HA-&gt;&gt;VM:vosStartCommand\n    loop\n        VM-&gt;&gt;HA:vosSchemeChangedNotification\n    end",
     "crumbs": [
       "Schemer"
     ]

@@ -287,13 +287,13 @@ Spezifikation
 <div>
 <pre class="mermaid mermaid-js">sequenceDiagram
     autonumber
-    participant MH as Modul-Host
-    participant VM as Schemer
-    MH-&gt;&gt;VM:Initialisierung
-    VM-&gt;&gt;MH:vosReadyNotification
-    MH-&gt;&gt;VM:vosStartCommand
+    participant HA as Host-Anwendung
+    participant VM as Schemer (Verona Modul)
+    HA-&gt;&gt;VM:Initialisierung
+    VM-&gt;&gt;HA:vosReadyNotification
+    HA-&gt;&gt;VM:vosStartCommand
     loop
-        VM-&gt;&gt;MH:vosSchemeChangedNotification
+        VM-&gt;&gt;HA:vosSchemeChangedNotification
     end
 </pre>
 </div>
