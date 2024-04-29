@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Verona-Interfaces - Editor voeDefinitionChangedNotification</title>
+<title>Verona-Interfaces - Verona Interfaces – Schemer</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -29,7 +29,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../editor-docs/voeStartCommand.html" rel="prev">
+<link href="../editor-docs/index.html" rel="prev">
 <link href="../favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -67,6 +67,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Suchen"
   }
 }</script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="../styles.css">
@@ -108,7 +111,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../editor-docs/index.html">Editor</a></li><li class="breadcrumb-item"><a href="../editor-docs/voeDefinitionChangedNotification.html">Änderung Definition</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../schemer-docs/index.html">Schemer</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -202,29 +205,18 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../editor-docs/index.html" class="sidebar-item-text sidebar-link">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../editor-docs/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Editor</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Abschnitt umschalten">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../editor-docs/voeStartCommand.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Start-Kommando</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../editor-docs/voeDefinitionChangedNotification.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Änderung Definition</span></a>
+  <a href="../schemer-docs/index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Schemer</span></a>
   </div>
 </li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -235,26 +227,29 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Auf dieser Seite</h2>
    
   <ul>
-  <li><a href="#sessionid" id="toc-sessionid" class="nav-link active" data-scroll-target="#sessionid"><code>sessionId</code></a></li>
-  <li><a href="#timestamp" id="toc-timestamp" class="nav-link" data-scroll-target="#timestamp"><code>timestamp</code></a></li>
-  <li><a href="#unitdefinition-unitdefinitiontype" id="toc-unitdefinition-unitdefinitiontype" class="nav-link" data-scroll-target="#unitdefinition-unitdefinitiontype"><code>unitDefinition</code>, <code>unitDefinitionType</code></a></li>
-  <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables"><code>variables</code></a>
+  <li><a href="#initialisierung" id="toc-initialisierung" class="nav-link active" data-scroll-target="#initialisierung">1 Initialisierung</a></li>
+  <li><a href="#ready-notification" id="toc-ready-notification" class="nav-link" data-scroll-target="#ready-notification">2 Ready Notification</a></li>
+  <li><a href="#start-command" id="toc-start-command" class="nav-link" data-scroll-target="#start-command">3 Start Command</a>
+  <ul class="collapse">
+  <li><a href="#parameter-variables" id="toc-parameter-variables" class="nav-link" data-scroll-target="#parameter-variables">Parameter <code>variables</code></a>
   <ul class="collapse">
   <li><a href="#id-type-format" id="toc-id-type-format" class="nav-link" data-scroll-target="#id-type-format"><code>id</code>, <code>type</code>, <code>format</code></a></li>
   <li><a href="#multiple-nullable" id="toc-multiple-nullable" class="nav-link" data-scroll-target="#multiple-nullable"><code>multiple</code>, <code>nullable</code></a></li>
   <li><a href="#values-valuepositionlabels-valuescomplete" id="toc-values-valuepositionlabels-valuescomplete" class="nav-link" data-scroll-target="#values-valuepositionlabels-valuescomplete"><code>values</code>, <code>valuePositionLabels</code>, <code>valuesComplete</code></a></li>
   <li><a href="#page" id="toc-page" class="nav-link" data-scroll-target="#page"><code>page</code></a></li>
   </ul></li>
-  <li><a href="#dependenciestoplay-dependenciestoedit" id="toc-dependenciestoplay-dependenciestoedit" class="nav-link" data-scroll-target="#dependenciestoplay-dependenciestoedit"><code>dependenciesToPlay</code>, <code>dependenciesToEdit</code></a></li>
+  <li><a href="#weitere-parameter" id="toc-weitere-parameter" class="nav-link" data-scroll-target="#weitere-parameter">Weitere Parameter</a></li>
+  </ul></li>
+  <li><a href="#scheme-changed-notification" id="toc-scheme-changed-notification" class="nav-link" data-scroll-target="#scheme-changed-notification">4 Scheme Changed Notification</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/verona-interfaces/verona-interfaces.github.io/issues/new" class="toc-action"><i class="bi bi-github"></i>Problem melden</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../editor-docs/index.html">Editor</a></li><li class="breadcrumb-item"><a href="../editor-docs/voeDefinitionChangedNotification.html">Änderung Definition</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Editor voeDefinitionChangedNotification</h1>
+<h1 class="title">Verona Interfaces – Schemer</h1>
 </div>
 
 
@@ -271,25 +266,56 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Nachfolgend sind die Parameter des Payloads für die Nachricht <code>voeDefinitionChangedNotification</code> erläutert. Für einen Gesamtblick auf die Kommunikation des Editor-Moduls mit dem Host siehe <a href="../editor-docs/index.html">hier</a>.</p>
-<section id="sessionid" class="level1">
-<h1><code>sessionId</code></h1>
-<p>Dem Editor wurde im Start-Kommando eine <code>sessionId</code> eine Kennung mitgeschickt, die der Editor anschließend in jeder Nachricht verwendet. Damit wird die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit unterstützt.</p>
+<p>Ein Schemer dient der interaktiven onlinegestützten Entwicklung eines Kodierschemas. Dies ist eine Sammlung von Vorschriften, wie die Variablenwerte – automatisch oder manuell – kodiert werden sollen. Es können auch neue Variablen als Ableitung vorhandener gebildet werden.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Spezifikation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Die <a href="https://verona-interfaces.github.io/schemer/">Spezifikation der API</a> ist als YML-Datei in der Syntax <a href="https://www.asyncapi.com/de">AsyncAPI</a> ausgeführt. Nach einer Änderung wird über ein <a href="https://www.asyncapi.com/tools/generator">Tool</a> eine lesbare Html-Datei erzeugt.</p>
+</div>
+</div>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">sequenceDiagram
+    autonumber
+    participant MH as Modul-Host
+    participant VM as Schemer
+    MH-&gt;&gt;VM:Initialisierung
+    VM-&gt;&gt;MH:vosReadyNotification
+    MH-&gt;&gt;VM:vosStartCommand
+    loop
+        VM-&gt;&gt;MH:vosSchemeChangedNotification
+    end
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<section id="initialisierung" class="level1">
+<h1>1 Initialisierung</h1>
+<p>Der Host richtet ein <code>&lt;iframe&gt;</code>-Element ein und setzt für das <code>srcdoc</code>-Attribut den kompletten Inhalt des Moduls. Das Modul ist technisch eine Html-Seite, d.&nbsp;h. es wird durch das Laden auch die Ausführung von JavaScript-Code angestoßen, der auf oberster Ebene vorgesehen ist.</p>
 </section>
-<section id="timestamp" class="level1">
-<h1><code>timestamp</code></h1>
-<p>Ein String im Standard-Format <a href="https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-date-time-string-format">date-time</a>. Die Nutzung dieser Information ist dem Host überlassen, soll aber vor allem die korrekte Reihenfolge vieler asynchron eintreffenden Nachrichten sicherstellen.</p>
+<section id="ready-notification" class="level1">
+<h1>2 Ready Notification</h1>
+<p>Dieser Code sendet als letzten Schritt der eigenen Initialisierung eine Nachricht an den Host, dass das Modul bereit sei für das Start-Kommando. Als Payload wird das <a href="../intro/metadata.html">Metadaten-Objekt</a> mitgeschickt – hier allerdings als String serialisiert, um nicht bei jeder Änderung der Metadaten-Spezifikation alle Modul-API ändern zu müssen.</p>
 </section>
-<section id="unitdefinition-unitdefinitiontype" class="level1">
-<h1><code>unitDefinition</code>, <code>unitDefinitionType</code></h1>
-<p>Dieser String enthält die neue Unit-Definition sowie deren Typ.</p>
-</section>
-<section id="variables" class="level1">
-<h1><code>variables</code></h1>
-<p>Dass die Unit-Definition nicht dokumentiert ist, hat eine Menge Vorteile, allerdings auch Nachteile. Einige Informationen wären durchaus sinnvoll, anderen Programmierungen zur Verfügung zu stellen. Dazu gehört die Liste aller möglichen Variablen. Dies sind Werte-Tträger, also mit einer ID identifizierbare Quellen von Antwortdaten. Wie genau diese Antwortdaten entstehen oder wo, das ist uninteressant. Nur dass es sie gibt, ist z. B. für die Planung der Kodierung wichtig.</p>
-<p>Die Variablenliste wird stets gleichzeitig mit der Unit-Definition geschickt. Sie soll also immer aktuell sein. Die folgenden Parameter werden mitgeliefert:</p>
-<section id="id-type-format" class="level2">
-<h2 class="anchored" data-anchor-id="id-type-format"><code>id</code>, <code>type</code>, <code>format</code></h2>
+<section id="start-command" class="level1">
+<h1>3 Start Command</h1>
+<section id="parameter-variables" class="level2">
+<h2 class="anchored" data-anchor-id="parameter-variables">Parameter <code>variables</code></h2>
+<p>Nachdem der Host die Bereitschaftsmeldung erhalten hat, schickt er die Variablenliste: Parameter <code>variables</code> – so, wie der Editor diese Liste erzeugt hat. Nur auf Grundlage der Variablenliste kann ein Schemer arbeiten, denn es handelt sich bei einem Kodierschema ja um die Verarbeitung von Variablenwerten. Der Schemer initialisiert entsprechend die UI.</p>
+<section id="id-type-format" class="level3">
+<h3 class="anchored" data-anchor-id="id-type-format"><code>id</code>, <code>type</code>, <code>format</code></h3>
 <ul>
 <li>Eine Variable braucht eine innerhalb der Unit eindeutige Bezeichnung.</li>
 <li>Ein Typ kann sein: <code>string</code>, <code>integer</code>, <code>number</code>, <code>boolean</code>, <code>attachment</code> – letzteres bezeichnet ein erzeugtes Medium, z. B. ein Bild. Im Kern handelt es sich hier um einen String, der aber eine Referenz darstellt und dem Auswertungssystem das Auffinden des zugehörigen Mediums ermöglicht.</li>
@@ -302,23 +328,53 @@ ul.task-list li input[type="checkbox"] {
 <li><code>latex</code>, <code>math-ml</code>, <code>math-table</code>: Strings mit besonderem Bezug zu mathematischen Formeln oder Ausdrücken</li>
 </ul></li>
 </ul>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Subject to change
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Die Erprobung von <code>type</code> kann als erfolgreich angesehen werden, bei den <code>format</code>-Optionen wird es noch Bewegung geben. Hier sind mitunter Ideen eingebracht, deren Nützlichkeit sich erst zeigen muss.</p>
+</div>
+</div>
 </section>
-<section id="multiple-nullable" class="level2">
-<h2 class="anchored" data-anchor-id="multiple-nullable"><code>multiple</code>, <code>nullable</code></h2>
+<section id="multiple-nullable" class="level3">
+<h3 class="anchored" data-anchor-id="multiple-nullable"><code>multiple</code>, <code>nullable</code></h3>
 <p>Diese booleschen Werte kennzeichnen, ob die Variable ein Array des beschriebenen Typs und Formats enthält und ob der Wert <code>null</code> möglich ist.</p>
 </section>
-<section id="values-valuepositionlabels-valuescomplete" class="level2">
-<h2 class="anchored" data-anchor-id="values-valuepositionlabels-valuescomplete"><code>values</code>, <code>valuePositionLabels</code>, <code>valuesComplete</code></h2>
+<section id="values-valuepositionlabels-valuescomplete" class="level3">
+<h3 class="anchored" data-anchor-id="values-valuepositionlabels-valuescomplete"><code>values</code>, <code>valuePositionLabels</code>, <code>valuesComplete</code></h3>
 <p>Diese Angaben liefern genauere Informationen über die möglichen Werte der Variablen. Wenn <code>valuesComplete</code> true ist, dann handelt es sich sogar um eine vollständige Liste, und die Kodierung kann automatisch erfolgen.</p>
 </section>
-<section id="page" class="level2">
-<h2 class="anchored" data-anchor-id="page"><code>page</code></h2>
+<section id="page" class="level3">
+<h3 class="anchored" data-anchor-id="page"><code>page</code></h3>
 <p>Diese Information verortet die Quelle des Variablenwertes auf einer Seite der Unit.</p>
 </section>
 </section>
-<section id="dependenciestoplay-dependenciestoedit" class="level1">
-<h1><code>dependenciesToPlay</code>, <code>dependenciesToEdit</code></h1>
-<p>Diese Einträge beschreiben Abhängigkeiten von externen Bibliotheken oder Diensten für das Editieren oder Abspielen der Unit. Dies kann der Prüfung der Testinhalte auf Vollständigkeit dienen. Wird hier z. B. GeoGebra genannt, kann eine Warnung ausgegeben werden, wenn dieses Softwarepaket nicht verfügbar ist.</p>
+<section id="weitere-parameter" class="level2">
+<h2 class="anchored" data-anchor-id="weitere-parameter">Weitere Parameter</h2>
+<ul>
+<li><code>sessionId</code>: Dem Schemer wird eine Kennung mitgeschickt, die der Schemer anschließend in jeder Nachricht zur Änderung des Kodierschemas verwenden soll. Damit wird die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit unterstützt.</li>
+<li>Soweit vorhanden kann ein Kodierschema <code>codingScheme</code> geschickt werden, damit daran weitergearbeitet wird.</li>
+<li><code>codingSchemeType</code>: Sollte es Varianten oder Versionen von Kodierschemata geben, kann dies hier dem Schemer mitgeteilt werden. Alternativ (oder parallel) kann natürlich diese Information als Teil der Datenstruktur des Kodierschemas übergeben werden.</li>
+<li><code>schemerConfig</code> –&gt; <code>directDownloadUrl</code>: Sollte der Schemer während der Laufzeit Code nachladen müssen, kann aus Gründen der Datensicherheit nicht einfach irgendein Server genutzt werden. Dem Schemer muss mitgeteilt werden, welche URL dafür zulässig ist.</li>
+</ul>
+</section>
+</section>
+<section id="scheme-changed-notification" class="level1">
+<h1>4 Scheme Changed Notification</h1>
+<p>Sobald eine Bearbeitung des Kodierschemas stattgefunden hat, meldet der Schemer diese Änderung. Parameter:</p>
+<ul>
+<li><code>sessionId</code>: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.</li>
+<li><code>timeStamp</code>: Ein String im Standard-Format <a href="https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-date-time-string-format">date-time</a>. Die Nutzung dieser Information ist dem Host überlassen, soll aber vor allem die korrekte Reihenfolge vieler asynchron eintreffender Nachrichten sicherstellen.</li>
+<li><code>codingScheme</code>: Das neue vollständige Kodierschema, serialisiert als String.</li>
+<li><code>codingSchemeType</code>: Spezifizierung des Datenformates, wenn gewünscht.</li>
+<li><code>dependenciesToCode</code>: Abhängigkeiten von externen Bibliotheken oder Diensten für das Kodieren der Antworten der Unit.</li>
+</ul>
 
 
 </section>
@@ -742,8 +798,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../editor-docs/voeStartCommand.html" class="pagination-link" aria-label="Start-Kommando">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Start-Kommando</span>
+      <a href="../editor-docs/index.html" class="pagination-link" aria-label="Editor">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Editor</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Verona-Interfaces - Verona Interfaces - Editor</title>
+<title>Verona-Interfaces - Verona Interfaces – Editor</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -29,7 +29,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../editor-docs/voeStartCommand.html" rel="next">
+<link href="../schemer-docs/index.html" rel="next">
 <link href="../player-docs/vopStateChangedNotification.html" rel="prev">
 <link href="../favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js"></script>
@@ -206,29 +206,18 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../editor-docs/index.html" class="sidebar-item-text sidebar-link active">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../editor-docs/index.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Editor</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Abschnitt umschalten">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../editor-docs/voeStartCommand.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Start-Kommando</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../editor-docs/voeDefinitionChangedNotification.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Änderung Definition</span></a>
+  <a href="../schemer-docs/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schemer</span></a>
   </div>
 </li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -242,7 +231,16 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#initialisierung" id="toc-initialisierung" class="nav-link active" data-scroll-target="#initialisierung">1 Initialisierung</a></li>
   <li><a href="#ready-notification" id="toc-ready-notification" class="nav-link" data-scroll-target="#ready-notification">2 Ready Notification</a></li>
   <li><a href="#start-command" id="toc-start-command" class="nav-link" data-scroll-target="#start-command">3 Start Command</a></li>
-  <li><a href="#definition-changed-notification" id="toc-definition-changed-notification" class="nav-link" data-scroll-target="#definition-changed-notification">4 Definition Changed Notification</a></li>
+  <li><a href="#definition-changed-notification" id="toc-definition-changed-notification" class="nav-link" data-scroll-target="#definition-changed-notification">4 Definition Changed Notification</a>
+  <ul class="collapse">
+  <li><a href="#parameter-variables" id="toc-parameter-variables" class="nav-link" data-scroll-target="#parameter-variables">Parameter <code>variables</code></a>
+  <ul class="collapse">
+  <li><a href="#id-type-format" id="toc-id-type-format" class="nav-link" data-scroll-target="#id-type-format"><code>id</code>, <code>type</code>, <code>format</code></a></li>
+  <li><a href="#multiple-nullable" id="toc-multiple-nullable" class="nav-link" data-scroll-target="#multiple-nullable"><code>multiple</code>, <code>nullable</code></a></li>
+  <li><a href="#values-valuepositionlabels-valuescomplete" id="toc-values-valuepositionlabels-valuescomplete" class="nav-link" data-scroll-target="#values-valuepositionlabels-valuescomplete"><code>values</code>, <code>valuePositionLabels</code>, <code>valuesComplete</code></a></li>
+  <li><a href="#page" id="toc-page" class="nav-link" data-scroll-target="#page"><code>page</code></a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/verona-interfaces/verona-interfaces.github.io/issues/new" class="toc-action"><i class="bi bi-github"></i>Problem melden</a></li></ul></div></nav>
     </div>
@@ -251,7 +249,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Verona Interfaces - Editor</h1>
+<h1 class="title">Verona Interfaces – Editor</h1>
 </div>
 
 
@@ -275,11 +273,11 @@ ul.task-list li input[type="checkbox"] {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<a href="https://verona-interfaces.github.io/editor/">Spezifikation</a>
+Spezifikation
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Die Spezifikation der API ist als YML-Datei in der Syntax <a href="https://www.asyncapi.com/de">AsyncAPI</a> ausgeführt. Nach einer Änderung wird über ein <a href="https://www.asyncapi.com/tools/generator">Tool</a> eine lesbare Html-Datei erzeugt.</p>
+<p>Die <a href="https://verona-interfaces.github.io/editor/">Spezifikation der API</a> ist als YML-Datei in der Syntax <a href="https://www.asyncapi.com/de">AsyncAPI</a> ausgeführt. Nach einer Änderung wird über ein <a href="https://www.asyncapi.com/tools/generator">Tool</a> eine lesbare Html-Datei erzeugt.</p>
 </div>
 </div>
 <div class="cell" data-layout-align="default">
@@ -313,54 +311,71 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="start-command" class="level1">
 <h1>3 Start Command</h1>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tipp
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Ausführliche Darstellung des Start-Kommandos siehe <a href="../editor-docs/voeStartCommand.html">hier</a>.</p>
-</div>
-</div>
-<p>Nachdem der Host die Bereitschaftsmeldung erhalten hat, schickt er die Unit-Definition: Parameter <code>unitDefinition</code>, serialisiert als String. Damit stellt der Editor für die erste Seite alle Elemente dar, die in der Unit-Definition vorgesehen sind und bereitet die Oberfläche vor.</p>
-<p>Dem Editor wird mit <code>sessionId</code> eine Kennung mitgeschickt, die der Editor anschließend in jeder Nachricht zur Änderung der Definition verwenden soll. Damit wird die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit unterstützt.</p>
-<p>Weitere Parameter:</p>
+<p>Nachdem der Host die Bereitschaftsmeldung erhalten hat, schickt er die wichtigen Informationen zur Unit und startet so die Beaarbeitung:</p>
 <ul>
-<li><code>unitDefinitionType</code>: Sollte es Varianten oder Versionen von Unit-Definitionen geben, kann dies hier dem Editor mitgeteilt werden. Alternativ (oder parallel) kann natürlich diese Information als Teil der Datenstruktur der Unit-Definition übergeben werden.</li>
-<li><code>editorConfig</code>: Hier werden Parameter übergeben, die die Bearbeitung steuern. Weitere Erläuterungen zu diesem Datenobjekt finden Sie <a href="../editor-docs/voeStartCommand.html">hier</a>.</li>
+<li><code>sessionId</code>: Dem Editor wird vom Host mit <code>sessionId</code> eine Kennung mitgeschickt, die der Editor anschließend in jeder Nachricht über die Änderung der Unit-Definition verwenden soll. Damit wird die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit unterstützt. Diese ID ist wichtiger, wenn es mehrere Editoren pro Seite beim Host gibt, die gleichzeitig verwaltet werden sollen.</li>
+<li><code>unitDefinition</code>: Wenn es bereits eine Bearbeitung gab, dann schickt der Host die vorherigen Unit-Definition. Sie beschreibt das Erscheinungsbild der Unit und ggf. die Interaktionselemente. Es kann einfacher Text sein, aber auch kompexe Datenstrukturen – dann serialisiert als String. Dann stellt der Editor für die erste Seite alle Elemente dar, die in der Unit-Definition vorgesehen sind und bereitet die Oberfläche vor.</li>
+<li><code>unitDefinitionType</code>: Diese Angabe soll dem Editor helfen, Missverständnisse bei der Interpretation der Unit-Definition zu vermeiden. Aus Sicht der Host-Anwendung ist es jedoch wichtiger, Namen und Version des erforderlichen Editors zu kennen. Wenn bekannt ist, dass Editor <code>XY@3.5</code> für diese Unit-Definition sinnvollerweise benutzt werden sollte, dann muss der Host diesen Editor besorgen. Dann spielt der Typ der Unit-Definition eine untergeordnete Rolle.</li>
+<li><code>editorConfig</code> –&gt; <code>directDownloadUrl</code>: Sollte der Editor während der Laufzeit Code nachladen müssen, kann aus Gründen der Datensicherheit nicht einfach irgendein Server genutzt werden. Dem Editor muss mitgeteilt werden, welche URL dafür zulässig ist. Beispiel: GeoGebra.</li>
 </ul>
 </section>
 <section id="definition-changed-notification" class="level1">
 <h1>4 Definition Changed Notification</h1>
-<div class="callout callout-style-default callout-tip callout-titled">
+<p>Sobald eine Bearbeitung der Unit-Definition stattgefunden hat, meldet der Editor diese Änderung. Parameter:</p>
+<ul>
+<li><code>sessionId</code>: Dem Editor wurde im Start-Kommando eine <code>sessionId</code> eine Kennung mitgeschickt, die der Editor anschließend in jeder Nachricht verwendet. Damit wird die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit unterstützt.</li>
+<li><code>timestamp</code>: Ein String im Standard-Format <a href="https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-date-time-string-format">date-time</a>. Die Nutzung dieser Information ist dem Host überlassen, soll aber vor allem die korrekte Reihenfolge vieler asynchron eintreffenden Nachrichten sicherstellen.</li>
+<li><code>unitDefinition</code>: Dieser String enthält die neue Unit-Definition sowie deren Typ.</li>
+<li><code>unitDefinitionType</code>: Diese Angabe soll anderen Anwendungen helfen, Missverständnisse bei der Interpretation der Unit-Definition zu vermeiden.</li>
+<li><code>dependenciesToPlay</code>, <code>dependenciesToEdit</code>: Diese Einträge beschreiben Abhängigkeiten von externen Bibliotheken oder Diensten für das Editieren oder Abspielen der Unit. Dies kann der Prüfung der Testinhalte auf Vollständigkeit dienen. Wird hier z. B. GeoGebra genannt, kann eine Warnung ausgegeben werden, wenn dieses Softwarepaket nicht verfügbar ist.</li>
+</ul>
+<section id="parameter-variables" class="level2">
+<h2 class="anchored" data-anchor-id="parameter-variables">Parameter <code>variables</code></h2>
+<p>Dass die Unit-Definition nicht dokumentiert ist, hat eine Menge Vorteile, allerdings auch Nachteile. Einige Informationen wären durchaus sinnvoll, anderen Programmierungen zur Verfügung zu stellen. Dazu gehört die Liste aller möglichen Variablen. Dies sind Werte-Tträger, also mit einer ID identifizierbare Quellen von Antwortdaten. Wie genau diese Antwortdaten entstehen oder wo, das ist uninteressant. Nur dass es sie gibt, ist z. B. für die Planung der Kodierung wichtig.</p>
+<p>Die Variablenliste wird stets gleichzeitig mit der Unit-Definition geschickt. Sie soll also immer aktuell sein. Die folgenden Parameter werden mitgeliefert:</p>
+<section id="id-type-format" class="level3">
+<h3 class="anchored" data-anchor-id="id-type-format"><code>id</code>, <code>type</code>, <code>format</code></h3>
+<ul>
+<li>Eine Variable braucht eine innerhalb der Unit eindeutige Bezeichnung.</li>
+<li>Ein Typ kann sein: <code>string</code>, <code>integer</code>, <code>number</code>, <code>boolean</code>, <code>attachment</code> – letzteres bezeichnet ein erzeugtes Medium, z. B. ein Bild. Im Kern handelt es sich hier um einen String, der aber eine Referenz darstellt und dem Auswertungssystem das Auffinden des zugehörigen Mediums ermöglicht.</li>
+<li>Werte für <code>format</code>:
+<ul>
+<li><code>text-selection</code>: Ein String, der Daten für eine Textmarkierung enthält</li>
+<li><code>image</code>, <code>capture-image</code>, <code>audio</code>: Spezifiziert den Datentyp <code>attachment</code></li>
+<li><code>ggb-file</code>, <code>ggb-variable</code>: Strings mit besonderem Bezug zu GeoGebra</li>
+<li><code>non-negative</code>: spezifiziert <code>integer</code> oder <code>number</code></li>
+<li><code>latex</code>, <code>math-ml</code>, <code>math-table</code>: Strings mit besonderem Bezug zu mathematischen Formeln oder Ausdrücken</li>
+</ul></li>
+</ul>
+<div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tipp
+Subject to change
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Ausführliche Darstellung der Meldung zur Änderung der Definition siehe <a href="../editor-docs/voeDefinitionChangedNotification.html">hier</a>.</p>
+<p>Die Erprobung von <code>type</code> kann als erfolgreich angesehen werden, bei den <code>format</code>-Optionen wird es noch Bewegung geben. Hier sind mitunter Ideen eingebracht, deren Nützlichkeit sich erst zeigen muss.</p>
 </div>
 </div>
-<p>Sobald eine Bearbeitung der Unit-Definition stattgefunden hat, meldet der Editor diese Änderung. Parameter:</p>
-<ul>
-<li><code>sessionId</code>: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.</li>
-<li><code>timeStamp</code>: Ein String im Standard-Format <a href="https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-date-time-string-format">date-time</a>. Die Nutzung dieser Information ist dem Host überlassen, soll aber vor allem die korrekte Reihenfolge vieler asynchron eintreffender Nachrichten sicherstellen.</li>
-<li><code>unitDefinition</code>: Die neue vollständige Unit-Definition, serialisiert als String.</li>
-<li><code>unitDefinitionType</code>: Spezifizierung des Datenformates, wenn gewünscht.</li>
-<li><code>variables</code>: Liste aller Variablen der Unit-Definition. Diese Liste wird z. B. benötigt, um die Kodierung zu erstellen.</li>
-<li><code>dependenciesToPlay</code>: Abhängigkeiten von externen Bibliotheken oder Diensten für das Abspielen der Unit.</li>
-<li><code>dependenciesToEdit</code>: Abhängigkeiten von externen Bibliotheken oder Diensten für das Editieren der Unit.</li>
-</ul>
+</section>
+<section id="multiple-nullable" class="level3">
+<h3 class="anchored" data-anchor-id="multiple-nullable"><code>multiple</code>, <code>nullable</code></h3>
+<p>Diese booleschen Werte kennzeichnen, ob die Variable ein Array des beschriebenen Typs und Formats enthält und ob der Wert <code>null</code> möglich ist.</p>
+</section>
+<section id="values-valuepositionlabels-valuescomplete" class="level3">
+<h3 class="anchored" data-anchor-id="values-valuepositionlabels-valuescomplete"><code>values</code>, <code>valuePositionLabels</code>, <code>valuesComplete</code></h3>
+<p>Diese Angaben liefern genauere Informationen über die möglichen Werte der Variablen. Wenn <code>valuesComplete</code> true ist, dann handelt es sich sogar um eine vollständige Liste, und die Kodierung kann automatisch erfolgen.</p>
+</section>
+<section id="page" class="level3">
+<h3 class="anchored" data-anchor-id="page"><code>page</code></h3>
+<p>Diese Information verortet die Quelle des Variablenwertes auf einer Seite der Unit.</p>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -787,8 +802,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../editor-docs/voeStartCommand.html" class="pagination-link" aria-label="Start-Kommando">
-        <span class="nav-page-text">Start-Kommando</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../schemer-docs/index.html" class="pagination-link" aria-label="Schemer">
+        <span class="nav-page-text">Schemer</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

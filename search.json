@@ -149,45 +149,81 @@
     ]
   },
   {
-    "objectID": "editor-docs/index.html",
-    "href": "editor-docs/index.html",
-    "title": "Verona Interfaces - Editor",
+    "objectID": "player-docs/vopStateChangedNotification.html",
+    "href": "player-docs/vopStateChangedNotification.html",
+    "title": "Player vopStateChangedNotification",
     "section": "",
-    "text": "Ein Editor dient der interaktiven onlinegestützten Entwicklung einer Unit. Hierbei stehen die visuelle Erscheinung und die Interaktionselemente im Vordergrund.\n\n\n\n\n\n\nSpezifikation\n\n\n\nDie Spezifikation der API ist als YML-Datei in der Syntax AsyncAPI ausgeführt. Nach einer Änderung wird über ein Tool eine lesbare Html-Datei erzeugt.\n\n\n\n\n\n\n\nsequenceDiagram\n    autonumber\n    participant MH as Modul-Host\n    participant VM as Editor\n    MH-&gt;&gt;VM:Initialisierung\n    VM-&gt;&gt;MH:voeReadyNotification\n    MH-&gt;&gt;VM:voeStartCommand\n    loop\n        VM-&gt;&gt;MH:voeDefinitionChangedNotification\n    end\n\n\n\n\n\n\n\n1 Initialisierung\nDer Host richtet ein &lt;iframe&gt;-Element ein und setzt für das srcdoc-Attribut den kompletten Inhalt des Moduls. Das Modul ist technisch eine Html-Seite, d. h. es wird durch das Laden auch die Ausführung von JavaScript-Code angestoßen, der auf oberster Ebene vorgesehen ist.\n\n\n2 Ready Notification\nDieser Code sendet als letzten Schritt der eigenen Initialisierung eine Nachricht an den Host, dass das Modul bereit sei für das Start-Kommando. Als Payload wird das Metadaten-Objekt mitgeschickt – hier allerdings als String serialisiert, um nicht bei jeder Änderung der Metadaten-Spezifikation alle Modul-API ändern zu müssen.\n\n\n3 Start Command\n\n\n\n\n\n\nTipp\n\n\n\nAusführliche Darstellung des Start-Kommandos siehe hier.\n\n\nNachdem der Host die Bereitschaftsmeldung erhalten hat, schickt er die Unit-Definition: Parameter unitDefinition, serialisiert als String. Damit stellt der Editor für die erste Seite alle Elemente dar, die in der Unit-Definition vorgesehen sind und bereitet die Oberfläche vor.\nDem Editor wird mit sessionId eine Kennung mitgeschickt, die der Editor anschließend in jeder Nachricht zur Änderung der Definition verwenden soll. Damit wird die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit unterstützt.\nWeitere Parameter:\n\nunitDefinitionType: Sollte es Varianten oder Versionen von Unit-Definitionen geben, kann dies hier dem Editor mitgeteilt werden. Alternativ (oder parallel) kann natürlich diese Information als Teil der Datenstruktur der Unit-Definition übergeben werden.\neditorConfig: Hier werden Parameter übergeben, die die Bearbeitung steuern. Weitere Erläuterungen zu diesem Datenobjekt finden Sie hier.\n\n\n\n4 Definition Changed Notification\n\n\n\n\n\n\nTipp\n\n\n\nAusführliche Darstellung der Meldung zur Änderung der Definition siehe hier.\n\n\nSobald eine Bearbeitung der Unit-Definition stattgefunden hat, meldet der Editor diese Änderung. Parameter:\n\nsessionId: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.\ntimeStamp: Ein String im Standard-Format date-time. Die Nutzung dieser Information ist dem Host überlassen, soll aber vor allem die korrekte Reihenfolge vieler asynchron eintreffender Nachrichten sicherstellen.\nunitDefinition: Die neue vollständige Unit-Definition, serialisiert als String.\nunitDefinitionType: Spezifizierung des Datenformates, wenn gewünscht.\nvariables: Liste aller Variablen der Unit-Definition. Diese Liste wird z. B. benötigt, um die Kodierung zu erstellen.\ndependenciesToPlay: Abhängigkeiten von externen Bibliotheken oder Diensten für das Abspielen der Unit.\ndependenciesToEdit: Abhängigkeiten von externen Bibliotheken oder Diensten für das Editieren der Unit.",
+    "text": "Nachfolgend sind die Parameter des Payloads für die Nachricht vopStateChangedNotification erläutert. Für einen Gesamtblick auf die Kommunikation des Player-Moduls mit dem Host siehe hier.",
     "crumbs": [
-      "Editor"
+      "Player",
+      "Status-Änderung"
     ]
   },
   {
-    "objectID": "player-docs/index.html",
-    "href": "player-docs/index.html",
-    "title": "Verona Interfaces - Player",
-    "section": "",
-    "text": "Ein Player präsentiert eine Unit und sorgt für die Interaktion mit der Testperson bzw. mit den Befragten. Das grundlegende Modell hierbei ist, dass ein Test bzw. Befragung (nachfolgend synonym) aus einer Abfolge von inhaltlich getrennten Units besteht und diese jeweils einzeln mit einem Player-Modul präsentiert werden.\n\n\n\n\n\n\nSpezifikation\n\n\n\nDie Spezifikation der API ist als YML-Datei in der Syntax AsyncAPI ausgeführt. Nach einer Änderung wird über ein Tool eine lesbare Html-Datei erzeugt.\n\n\n\n\n\n\n\nsequenceDiagram\n    autonumber\n    participant MH as Modul-Host\n    participant VM as Player\n    MH-&gt;&gt;VM:Initialisierung\n    VM-&gt;&gt;MH:vopReadyNotification\n    MH-&gt;&gt;VM:vopStartCommand\n    loop\n        opt\n            VM-&gt;&gt;MH:vopStateChangedNotification\n        end\n        opt\n            MH-&gt;&gt;VM:vopPageNavigationCommand\n        end\n        opt\n            VM-&gt;&gt;MH:vopUnitNavigationRequestedNotification\n        end\n        opt\n            MH-&gt;&gt;VM:vopNavigationDeniedNotification\n        end\n        opt\n            VM-&gt;&gt;MH:vopWindowFocusChangedNotification\n        end\n    end\n\n\n\n\n\n\n\n1 Initialisierung\nDer Host richtet ein &lt;iframe&gt;-Element ein und setzt für das srcdoc-Attribut den kompletten Inhalt des Moduls. Das Modul ist technisch eine Html-Seite, d. h. es wird durch das Laden auch die Ausführung von JavaScript-Code angestoßen, der auf oberster Ebene vorgesehen ist.\n\n\n2 Ready Notification\nDieser Code sendet als letzten Schritt der eigenen Initialisierung eine Nachricht an den Host, dass das Modul bereit sei für das Start-Kommando. Als Payload wird das Metadaten-Objekt mitgeschickt – hier allerdings als String serialisiert, um nicht bei jeder Änderung der Metadaten-Spezifikation alle Modul-API ändern zu müssen.\n\n\n3 Start Command\n\n\n\n\n\n\nTipp\n\n\n\nAusführliche Darstellung des Start-Kommandos siehe hier.\n\n\nNachdem der Host die Bereitschaftsmeldung erhalten hat, schickt er die Unit-Definition: Parameter unitDefinition, serialisiert als String. Damit stellt der Player – der nach der Initialisierung zunächst eine leere Seite zeigt – alle Elemente dar, die in der Unit-Definition vorgesehen sind und bereitet die Interaktionselemente vor.\nDem Player wird mit sessionId eine Kennung mitgeschickt, die der Player anschließend in jeder Nachricht verwenden soll. Damit wird die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit unterstützt.\nWeitere Parameter:\n\nunitDefinitionType: Sollte es Varianten oder Versionen von Unit-Definitionen geben, kann dies hier dem Player mitgeteilt werden. Alternativ (oder parallel) kann natürlich diese Information als Teil der Datenstruktur der Unit-Definition übergeben werden.\nunitState: Sollte die Unit wiederholt präsentiert werden, soll der vorherige Bearbeitungsstatus wiederhergestellt werden. Weitere Erläuterungen zu diesem Datenobjekt finden Sie hier.\nplayerConfig: Hier werden Parameter übergeben, die die Anzeige und die Interaktion steuern. Beispielsweise kann die Art und Weise des Blätterns zur nächsten Seite festgelegt werden. Weitere Erläuterungen zu diesem Datenobjekt finden Sie hier.\n\n\n\n4 State Changed Notification\n\n\n\n\n\n\nTipp\n\n\n\nAusführliche Darstellung der Meldung zur Statusänderung siehe hier.\n\n\nSobald eine Interaktion stattgefunden hat, die als Antwort wichtig wäre oder die bei einem wiederholten Aufruf der Unit wiederhergestellt werden soll, meldet der Player diese Änderung. Parameter:\n\nsessionId: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.\ntimeStamp: Ein String im Standard-Format date-time. Die Nutzung dieser Information ist dem Host überlassen, soll aber vor allem die korrekte Reihenfolge vieler asynchron eintreffender Nachrichten sicherstellen.\nunitState: Daten der Antworten im weiteren Sinne. Diese dienen der Auswertung und der Wiederherstellung beim Zurückblättern. Weitere Erläuterungen zu diesem Datenobjekt finden Sie hier.\nplayerState: Hier schickt der Player Informationen, die dem Host helfen können, die UI anzupassen. Beispielsweise wird so ein Wechsel der Seite berichtet, damit der Host in der Navigationsdarstellung die aktive Seite anders darstellt. Weitere Erläuterungen zu diesem Datenobjekt finden Sie hier.\nlog: Hierüber werden Log-Einträge geschickt. Dies sind Ereignisse, die nicht unbedingt einen Status ändern, sondern nur der Rekonstruktion der Beantwortung über die Zeit dienen können. Weitere Erläuterungen zu diesem Datenobjekt finden Sie hier.\n\n\n\n5 Page Navigation Command\nÜber dieses Kommando kann der Host den Player anweisen, zu einer bestimmten Seite zu wechseln. Dies ist sinnvoll, wenn der Host eine Seitennavigation z. B. über eine Button-Leiste anbietet. Parameter:\n\nsessionId: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.\ntarget: ID der Seite, zu der der Player navigieren soll. Die möglichen Seiten kennt der Host aus einer Nachricht vopStateChangedNotification des Players. Liegt eine solche Nachricht nicht vor, geht der Host davon aus, dass es nur eine Seite gibt und bietet keine Seitennavigation an.\n\n\n\n6 Unit Navigation Requested Notification\nDer Player kann Buttons einblenden, über die die Testperson zu einer anderen Unit navigiert. Eine Unit-Navigation kann auch über andere Bedingungen durch den Player ausgelöst werden, z. B. Ablauf einer Frist.\nÜber diese Nachricht fordert der Player eine Unit-Navigation an. Ob dann tatsächlich eine Unit-Navigation erfolgt, entscheidet der Host. Beispielsweise wird in der Voransicht einer Unit im Autorensystem IQB-Studio nur kurz eine Nachricht eingeblendet, dass eine Unit-Navigation angefordert wurde.\n\nsessionId: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.\ntarget: Ziel-Unit. Dies ist allerdings keine ID einer konkreten Unit, sondern ein Symbol für eine relativ zur aktuellen Unit befindlichen Unit: next, previous, first, last, end. Die möglichen Ziele kennt der Player aus dem Start-Kommando.\n\n\n\n7 Navigation Denied Notification\nIm Testablauf können fehlende oder falsche Antworten problematisch sein. Insbesondere bei Befragungen ist oft Vollständigkeit gewünscht. Daher meldet der Player bei einer Statusänderung auch diese Informationen mit. Der Testcontroller kann dann je nach Einstellung entscheiden, ob eine Navigation zur nächsten Unit zulässig ist oder nicht.\nSollte dies nicht der Fall sein, sollte der Player fehlende oder falsche Antworten visuell markieren. In normalen Formularen erfolgt dies, wenn der Eingabefokus auf ein Eingabeelement kommt und ohne weitere Eingabe zum nächsten Element wechselt. Aber wenn ein Eingabeelement nie den Fokus bekommt, kann die Fehlersituation nicht erzeugt werden. Die Alternative, alle Eingabeelemente beim Betreten der Unit als fehlerhaft darzustellen, wäre keine gute UI-Entscheidung.\nDie Nachricht vopNavigationDeniedNotification des Hosts ist also als Aufforderung an den Player zu verstehen, fehlende oder falsche Eingaben visuell darzustellen. Technisch kann das z. B. über markAllAsTouched() gehen. Parameter:\n\nsessionId: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.\nreason: Hinweis für den Player, warum die Navigation verweigert wurde: presentationIncomplete und/oder responsesIncomplete.\n\n\n\n8 Window Focus Changed Notification\nIn Testungen kann es wichtig sein festzustellen, ob die Testperson sich im Browser noch auf der Seite des Tests befindet. Sollte dies nicht der Fall sein, besteht der Verdacht, dass die Testperson unzulässigerweise andere Webseiten aufruft, um z. B. eine Übersetzung zu erhalten.\nDa technisch der Wechsel aus dem Host-Fensterbereich in den Bereich des &lt;iframe&gt;-Elements des Players einem Verlassen der Testseite gleichkommt, muss der Player dem Host mitteilen, dass er den Fokus erhalten bzw. verloren hat. Parameter:\n\ntimeStamp: Ein String im Standard-Format date-time.\nhasFocus: Wenn true, hat der Player den Fokus bekommen, ansonsten hat er ihn verloren und der Host muss prüfen, ob er ihn erhalten hat.\n\n\n\n\n\n\n\nTipp\n\n\n\n\nDie Ereignisse blur und focus werden an window bei einem Fokuswechsel gesendet.\nDie Funktion document.hasFocus() liefert true, wenn das Dokument den Fokus hat.",
+    "objectID": "player-docs/vopStateChangedNotification.html#dataparts",
+    "href": "player-docs/vopStateChangedNotification.html#dataparts",
+    "title": "Player vopStateChangedNotification",
+    "section": "dataParts",
+    "text": "dataParts\nDies ist ein JSON-Objekt mit der Struktur key-value-store. Diese Datenstruktur ist auch bekannt als dictionary oder Hash-Tabelle.\n\n\nBeispiel dataParts\n\n{\n    \"part1\": \"3456998\",\n    \"part3\": \"{\\\"x\\\":[10,null,null,null]}\"\n}\n\nBei Änderungen muss jeweils nur der Datenteil geschickt werden, der sich geändert hat. Der Host muss dafür sorgen, dass nur dieser Teil überschrieben wird, die anderen Teile müssen erhalten bleiben. Dieses Vorgehen verhindert, dass bei jeder kleinen Änderung eine große Datenmenge geschickt wird und das System ausbremst.\nWenn der Unit-Status beim Start-Kommando zum Wiederherstellen geschickt wird, müssen natürlich alle Datenteile übergeben werden.",
     "crumbs": [
-      "Player"
+      "Player",
+      "Status-Änderung"
     ]
   },
   {
-    "objectID": "editor/index.html",
-    "href": "editor/index.html",
-    "title": "Verona Interfaces - Editor",
-    "section": "",
-    "text": "Verona Interfaces - Editor"
+    "objectID": "player-docs/vopStateChangedNotification.html#presentationprogress",
+    "href": "player-docs/vopStateChangedNotification.html#presentationprogress",
+    "title": "Player vopStateChangedNotification",
+    "section": "presentationProgress",
+    "text": "presentationProgress\nBei Leistungstests ist es wichtig sicherzustellen, dass die Testperson alle Teile der Unit gesehen hat. Es muss keine Beantwortung erfolgen, aber ein unabsichtliches Auslassen ist problematisch für die Datenanalyse. Daher wird vom Player erwartet, dass er bei Änderungen der Anzeige prüft, ob alles gesehen wurde und dies berichtet. Dann kann ggf. die Teststeuerung ein Weiterblättern verhindern und einen Hinweis geben.\nMögliche Werte:\n\nnone: Nichts wurde gesehen - Ausgangszustand\nsome: Einige Bereiche der Unit wurden präsentiert\ncomplete: Alle Elemente/Bereiche wurde präsentiert\n\nDer Stand der Präsentation wird beim Start-Kommando vom Host geschickt, so dass der Player nur die Änderung zu diesem Status berichtet.",
+    "crumbs": [
+      "Player",
+      "Status-Änderung"
+    ]
   },
   {
-    "objectID": "editor/uml.html",
-    "href": "editor/uml.html",
-    "title": "Verona Interfaces - Editor",
-    "section": "",
-    "text": "Verona Interfaces - Editor UML"
+    "objectID": "player-docs/vopStateChangedNotification.html#responseprogress",
+    "href": "player-docs/vopStateChangedNotification.html#responseprogress",
+    "title": "Player vopStateChangedNotification",
+    "section": "responseProgress",
+    "text": "responseProgress\nBei Befragungen ist oft wichtig, dass die befragte Person keine Frage auslässt. Aber auch bei Leistungstests können zu Beginn Units vorgesehen werden, die Übungscharakter haben und die Testperson soll erst weiterkommen, wenn sie ein Mindestmaß an Antworten geben konnte. Daher wird vom Player erwartet, dass er während der Bearbeitung prüft, ob alle notwendigen Eingaben erfolgten und auch korrekt sind. Dann kann ggf. die Teststeuerung ein Weiterblättern verhindern und einen Hinweis geben.\nMögliche Werte:\n\nnone: Nichts wurde beantwortet - Ausgangszustand\nsome: Einige Antworten wurden gegeben\ncomplete: Alle Antworten wurden gegeben\n\nDer Stand der Bearbeitung wird beim Start-Kommando vom Host geschickt, so dass der Player nur die Änderung zu diesem Status berichtet.\n\n\n\n\n\n\nHinweis Validierung\n\n\n\nEine Validierung kann problematisch sein, wenn Elemente eines Standard-Html-Formulars verwendet werden. Wenn als Typ eines &lt;input&gt;-Elementes beispielsweise eine Zahl gesetzt ist, dann wird eine Texteingabe nicht verfügbar. Die Validierung verhindert also den Zugriff auf fehlerhafte Eingaben.\n\n\n\n\n\n\n\n\nHinweis “required”\n\n\n\nOb eine Antwort als “erforderlich” – also als “required” – gewertet wird, sollte gezielt gesteuert werden. Das Player-Modul sollte “responses complete” nur für die als erforderlich markierten Elemente melden. Dann meldet der Player sofort nach Start der Unit “responses complete”, wenn die Unit keine Elemente mit der Markierung “erforderlich” hat.",
+    "crumbs": [
+      "Player",
+      "Status-Änderung"
+    ]
   },
   {
-    "objectID": "editor/msg1_start.html",
-    "href": "editor/msg1_start.html",
-    "title": "Verona Interfaces - Editor",
-    "section": "",
-    "text": "Verona Interfaces - Editor Message1 Start"
+    "objectID": "player-docs/vopStateChangedNotification.html#unitstatedatatype",
+    "href": "player-docs/vopStateChangedNotification.html#unitstatedatatype",
+    "title": "Player vopStateChangedNotification",
+    "section": "unitStateDataType",
+    "text": "unitStateDataType\nHier soll dem Host mitgeteilt werden, um welchen Datentyp es sich bei den Datenteilen dataParts handelt. Beispiel: iqb-standard@1.2. Ein Player kann also eine exotische, nicht dokumentierte Unit-Definition verwenden, erzeugt aber Antworten in einem dokumentierten Format.",
+    "crumbs": [
+      "Player",
+      "Status-Änderung"
+    ]
+  },
+  {
+    "objectID": "player-docs/vopStateChangedNotification.html#validpages",
+    "href": "player-docs/vopStateChangedNotification.html#validpages",
+    "title": "Player vopStateChangedNotification",
+    "section": "validPages",
+    "text": "validPages\nDies ist ein JSON-Objekt mit der Struktur key-value-store. Diese Datenstruktur ist auch bekannt als dictionary oder Hash-Tabelle. Der “Key” ist hierbei die ID einer Seite, der “Value” ist das Label, das die UI bei Elementen der Seitensteuerung verwenden soll.\n\n\nBeispiel validPages\n\n{\n    \"1\": \"Start\",\n    \"2\": \"Bestätigung\"\n}\n\n\n\n\n\n\n\nSubject to change\n\n\n\nDiese Datenstruktur wurde als ungünstig evaluiert. Es ist geplant, die Struktur in ein Array von Objekten zu überführen, jeweils mit den Eigenschaften id und label.",
+    "crumbs": [
+      "Player",
+      "Status-Änderung"
+    ]
+  },
+  {
+    "objectID": "player-docs/vopStateChangedNotification.html#currentpage",
+    "href": "player-docs/vopStateChangedNotification.html#currentpage",
+    "title": "Player vopStateChangedNotification",
+    "section": "currentPage",
+    "text": "currentPage\nDer Player berichtet hierüber über eine erfolgte Seitennavigation. Es wird die ID bzw. der Key der neuen Seite übergeben.",
+    "crumbs": [
+      "Player",
+      "Status-Änderung"
+    ]
   },
   {
     "objectID": "player-docs/vopStartCommand.html",
@@ -322,157 +358,84 @@
     ]
   },
   {
-    "objectID": "player-docs/vopStateChangedNotification.html",
-    "href": "player-docs/vopStateChangedNotification.html",
-    "title": "Player vopStateChangedNotification",
+    "objectID": "editor/msg1_start.html",
+    "href": "editor/msg1_start.html",
+    "title": "Verona Interfaces - Editor",
     "section": "",
-    "text": "Nachfolgend sind die Parameter des Payloads für die Nachricht vopStateChangedNotification erläutert. Für einen Gesamtblick auf die Kommunikation des Player-Moduls mit dem Host siehe hier.",
-    "crumbs": [
-      "Player",
-      "Status-Änderung"
-    ]
+    "text": "Verona Interfaces - Editor Message1 Start"
   },
   {
-    "objectID": "player-docs/vopStateChangedNotification.html#dataparts",
-    "href": "player-docs/vopStateChangedNotification.html#dataparts",
-    "title": "Player vopStateChangedNotification",
-    "section": "dataParts",
-    "text": "dataParts\nDies ist ein JSON-Objekt mit der Struktur key-value-store. Diese Datenstruktur ist auch bekannt als dictionary oder Hash-Tabelle.\n\n\nBeispiel dataParts\n\n{\n    \"part1\": \"3456998\",\n    \"part3\": \"{\\\"x\\\":[10,null,null,null]}\"\n}\n\nBei Änderungen muss jeweils nur der Datenteil geschickt werden, der sich geändert hat. Der Host muss dafür sorgen, dass nur dieser Teil überschrieben wird, die anderen Teile müssen erhalten bleiben. Dieses Vorgehen verhindert, dass bei jeder kleinen Änderung eine große Datenmenge geschickt wird und das System ausbremst.\nWenn der Unit-Status beim Start-Kommando zum Wiederherstellen geschickt wird, müssen natürlich alle Datenteile übergeben werden.",
-    "crumbs": [
-      "Player",
-      "Status-Änderung"
-    ]
-  },
-  {
-    "objectID": "player-docs/vopStateChangedNotification.html#presentationprogress",
-    "href": "player-docs/vopStateChangedNotification.html#presentationprogress",
-    "title": "Player vopStateChangedNotification",
-    "section": "presentationProgress",
-    "text": "presentationProgress\nBei Leistungstests ist es wichtig sicherzustellen, dass die Testperson alle Teile der Unit gesehen hat. Es muss keine Beantwortung erfolgen, aber ein unabsichtliches Auslassen ist problematisch für die Datenanalyse. Daher wird vom Player erwartet, dass er bei Änderungen der Anzeige prüft, ob alles gesehen wurde und dies berichtet. Dann kann ggf. die Teststeuerung ein Weiterblättern verhindern und einen Hinweis geben.\nMögliche Werte:\n\nnone: Nichts wurde gesehen - Ausgangszustand\nsome: Einige Bereiche der Unit wurden präsentiert\ncomplete: Alle Elemente/Bereiche wurde präsentiert\n\nDer Stand der Präsentation wird beim Start-Kommando vom Host geschickt, so dass der Player nur die Änderung zu diesem Status berichtet.",
-    "crumbs": [
-      "Player",
-      "Status-Änderung"
-    ]
-  },
-  {
-    "objectID": "player-docs/vopStateChangedNotification.html#responseprogress",
-    "href": "player-docs/vopStateChangedNotification.html#responseprogress",
-    "title": "Player vopStateChangedNotification",
-    "section": "responseProgress",
-    "text": "responseProgress\nBei Befragungen ist oft wichtig, dass die befragte Person keine Frage auslässt. Aber auch bei Leistungstests können zu Beginn Units vorgesehen werden, die Übungscharakter haben und die Testperson soll erst weiterkommen, wenn sie ein Mindestmaß an Antworten geben konnte. Daher wird vom Player erwartet, dass er während der Bearbeitung prüft, ob alle notwendigen Eingaben erfolgten und auch korrekt sind. Dann kann ggf. die Teststeuerung ein Weiterblättern verhindern und einen Hinweis geben.\nMögliche Werte:\n\nnone: Nichts wurde beantwortet - Ausgangszustand\nsome: Einige Antworten wurden gegeben\ncomplete: Alle Antworten wurden gegeben\n\nDer Stand der Bearbeitung wird beim Start-Kommando vom Host geschickt, so dass der Player nur die Änderung zu diesem Status berichtet.\n\n\n\n\n\n\nHinweis Validierung\n\n\n\nEine Validierung kann problematisch sein, wenn Elemente eines Standard-Html-Formulars verwendet werden. Wenn als Typ eines &lt;input&gt;-Elementes beispielsweise eine Zahl gesetzt ist, dann wird eine Texteingabe nicht verfügbar. Die Validierung verhindert also den Zugriff auf fehlerhafte Eingaben.\n\n\n\n\n\n\n\n\nHinweis “required”\n\n\n\nOb eine Antwort als “erforderlich” – also als “required” – gewertet wird, sollte gezielt gesteuert werden. Das Player-Modul sollte “responses complete” nur für die als erforderlich markierten Elemente melden. Dann meldet der Player sofort nach Start der Unit “responses complete”, wenn die Unit keine Elemente mit der Markierung “erforderlich” hat.",
-    "crumbs": [
-      "Player",
-      "Status-Änderung"
-    ]
-  },
-  {
-    "objectID": "player-docs/vopStateChangedNotification.html#unitstatedatatype",
-    "href": "player-docs/vopStateChangedNotification.html#unitstatedatatype",
-    "title": "Player vopStateChangedNotification",
-    "section": "unitStateDataType",
-    "text": "unitStateDataType\nHier soll dem Host mitgeteilt werden, um welchen Datentyp es sich bei den Datenteilen dataParts handelt. Beispiel: iqb-standard@1.2. Ein Player kann also eine exotische, nicht dokumentierte Unit-Definition verwenden, erzeugt aber Antworten in einem dokumentierten Format.",
-    "crumbs": [
-      "Player",
-      "Status-Änderung"
-    ]
-  },
-  {
-    "objectID": "player-docs/vopStateChangedNotification.html#validpages",
-    "href": "player-docs/vopStateChangedNotification.html#validpages",
-    "title": "Player vopStateChangedNotification",
-    "section": "validPages",
-    "text": "validPages\nDies ist ein JSON-Objekt mit der Struktur key-value-store. Diese Datenstruktur ist auch bekannt als dictionary oder Hash-Tabelle. Der “Key” ist hierbei die ID einer Seite, der “Value” ist das Label, das die UI bei Elementen der Seitensteuerung verwenden soll.\n\n\nBeispiel validPages\n\n{\n    \"1\": \"Start\",\n    \"2\": \"Bestätigung\"\n}\n\n\n\n\n\n\n\nSubject to change\n\n\n\nDiese Datenstruktur wurde als ungünstig evaluiert. Es ist geplant, die Struktur in ein Array von Objekten zu überführen, jeweils mit den Eigenschaften id und label.",
-    "crumbs": [
-      "Player",
-      "Status-Änderung"
-    ]
-  },
-  {
-    "objectID": "player-docs/vopStateChangedNotification.html#currentpage",
-    "href": "player-docs/vopStateChangedNotification.html#currentpage",
-    "title": "Player vopStateChangedNotification",
-    "section": "currentPage",
-    "text": "currentPage\nDer Player berichtet hierüber über eine erfolgte Seitennavigation. Es wird die ID bzw. der Key der neuen Seite übergeben.",
-    "crumbs": [
-      "Player",
-      "Status-Änderung"
-    ]
-  },
-  {
-    "objectID": "editor-docs/voeStartCommand.html",
-    "href": "editor-docs/voeStartCommand.html",
-    "title": "Editor voeStartCommand",
+    "objectID": "editor/uml.html",
+    "href": "editor/uml.html",
+    "title": "Verona Interfaces - Editor",
     "section": "",
-    "text": "Nachfolgend sind die Parameter des Payloads für die Nachricht voeStartCommand erläutert. Für einen Gesamtblick auf die Kommunikation des Editor-Moduls mit dem Host siehe hier.",
-    "crumbs": [
-      "Editor",
-      "Start-Kommando"
-    ]
+    "text": "Verona Interfaces - Editor UML"
   },
   {
-    "objectID": "editor-docs/voeStartCommand.html#directdownloadurl",
-    "href": "editor-docs/voeStartCommand.html#directdownloadurl",
-    "title": "Editor voeStartCommand",
-    "section": "directDownloadUrl",
-    "text": "directDownloadUrl\nSollte der Editor während der Laufzeit Code nachladen müssen, kann aus Gründen der Datensicherheit nicht einfach irgendein Server genutzt werden. Dem Editor muss mitgeteilt werden, welche URL dafür zulässig ist. Beispiel: GeoGebra.",
-    "crumbs": [
-      "Editor",
-      "Start-Kommando"
-    ]
-  },
-  {
-    "objectID": "editor-docs/voeDefinitionChangedNotification.html",
-    "href": "editor-docs/voeDefinitionChangedNotification.html",
-    "title": "Editor voeDefinitionChangedNotification",
+    "objectID": "editor/index.html",
+    "href": "editor/index.html",
+    "title": "Verona Interfaces - Editor",
     "section": "",
-    "text": "Nachfolgend sind die Parameter des Payloads für die Nachricht voeDefinitionChangedNotification erläutert. Für einen Gesamtblick auf die Kommunikation des Editor-Moduls mit dem Host siehe hier.",
+    "text": "Verona Interfaces - Editor"
+  },
+  {
+    "objectID": "player-docs/index.html",
+    "href": "player-docs/index.html",
+    "title": "Verona Interfaces – Player",
+    "section": "",
+    "text": "Ein Player präsentiert eine Unit und sorgt für die Interaktion mit der Testperson bzw. mit den Befragten. Das grundlegende Modell hierbei ist, dass ein Test bzw. Befragung (nachfolgend synonym) aus einer Abfolge von inhaltlich getrennten Units besteht und diese jeweils einzeln mit einem Player-Modul präsentiert werden.\n\n\n\n\n\n\nSpezifikation\n\n\n\nDie Spezifikation der API ist als YML-Datei in der Syntax AsyncAPI ausgeführt. Nach einer Änderung wird über ein Tool eine lesbare Html-Datei erzeugt.\n\n\n\n\n\n\n\nsequenceDiagram\n    autonumber\n    participant MH as Modul-Host\n    participant VM as Player\n    MH-&gt;&gt;VM:Initialisierung\n    VM-&gt;&gt;MH:vopReadyNotification\n    MH-&gt;&gt;VM:vopStartCommand\n    loop\n        opt\n            VM-&gt;&gt;MH:vopStateChangedNotification\n        end\n        opt\n            MH-&gt;&gt;VM:vopPageNavigationCommand\n        end\n        opt\n            VM-&gt;&gt;MH:vopUnitNavigationRequestedNotification\n        end\n        opt\n            MH-&gt;&gt;VM:vopNavigationDeniedNotification\n        end\n        opt\n            VM-&gt;&gt;MH:vopWindowFocusChangedNotification\n        end\n    end\n\n\n\n\n\n\n\n1 Initialisierung\nDer Host richtet ein &lt;iframe&gt;-Element ein und setzt für das srcdoc-Attribut den kompletten Inhalt des Moduls. Das Modul ist technisch eine Html-Seite, d. h. es wird durch das Laden auch die Ausführung von JavaScript-Code angestoßen, der auf oberster Ebene vorgesehen ist.\n\n\n2 Ready Notification\nDieser Code sendet als letzten Schritt der eigenen Initialisierung eine Nachricht an den Host, dass das Modul bereit sei für das Start-Kommando. Als Payload wird das Metadaten-Objekt mitgeschickt – hier allerdings als String serialisiert, um nicht bei jeder Änderung der Metadaten-Spezifikation alle Modul-API ändern zu müssen.\n\n\n3 Start Command\n\n\n\n\n\n\nTipp\n\n\n\nAusführliche Darstellung des Start-Kommandos siehe hier.\n\n\nNachdem der Host die Bereitschaftsmeldung erhalten hat, schickt er die Unit-Definition: Parameter unitDefinition, serialisiert als String. Damit stellt der Player – der nach der Initialisierung zunächst eine leere Seite zeigt – alle Elemente dar, die in der Unit-Definition vorgesehen sind und bereitet die Interaktionselemente vor.\nDem Player wird mit sessionId eine Kennung mitgeschickt, die der Player anschließend in jeder Nachricht verwenden soll. Damit wird die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit unterstützt.\nWeitere Parameter:\n\nunitDefinitionType: Sollte es Varianten oder Versionen von Unit-Definitionen geben, kann dies hier dem Player mitgeteilt werden. Alternativ (oder parallel) kann natürlich diese Information als Teil der Datenstruktur der Unit-Definition übergeben werden.\nunitState: Sollte die Unit wiederholt präsentiert werden, soll der vorherige Bearbeitungsstatus wiederhergestellt werden. Weitere Erläuterungen zu diesem Datenobjekt finden Sie hier.\nplayerConfig: Hier werden Parameter übergeben, die die Anzeige und die Interaktion steuern. Beispielsweise kann die Art und Weise des Blätterns zur nächsten Seite festgelegt werden. Weitere Erläuterungen zu diesem Datenobjekt finden Sie hier.\n\n\n\n4 State Changed Notification\n\n\n\n\n\n\nTipp\n\n\n\nAusführliche Darstellung der Meldung zur Statusänderung siehe hier.\n\n\nSobald eine Interaktion stattgefunden hat, die als Antwort wichtig wäre oder die bei einem wiederholten Aufruf der Unit wiederhergestellt werden soll, meldet der Player diese Änderung. Parameter:\n\nsessionId: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.\ntimeStamp: Ein String im Standard-Format date-time. Die Nutzung dieser Information ist dem Host überlassen, soll aber vor allem die korrekte Reihenfolge vieler asynchron eintreffender Nachrichten sicherstellen.\nunitState: Daten der Antworten im weiteren Sinne. Diese dienen der Auswertung und der Wiederherstellung beim Zurückblättern. Weitere Erläuterungen zu diesem Datenobjekt finden Sie hier.\nplayerState: Hier schickt der Player Informationen, die dem Host helfen können, die UI anzupassen. Beispielsweise wird so ein Wechsel der Seite berichtet, damit der Host in der Navigationsdarstellung die aktive Seite anders darstellt. Weitere Erläuterungen zu diesem Datenobjekt finden Sie hier.\nlog: Hierüber werden Log-Einträge geschickt. Dies sind Ereignisse, die nicht unbedingt einen Status ändern, sondern nur der Rekonstruktion der Beantwortung über die Zeit dienen können. Weitere Erläuterungen zu diesem Datenobjekt finden Sie hier.\n\n\n\n5 Page Navigation Command\nÜber dieses Kommando kann der Host den Player anweisen, zu einer bestimmten Seite zu wechseln. Dies ist sinnvoll, wenn der Host eine Seitennavigation z. B. über eine Button-Leiste anbietet. Parameter:\n\nsessionId: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.\ntarget: ID der Seite, zu der der Player navigieren soll. Die möglichen Seiten kennt der Host aus einer Nachricht vopStateChangedNotification des Players. Liegt eine solche Nachricht nicht vor, geht der Host davon aus, dass es nur eine Seite gibt und bietet keine Seitennavigation an.\n\n\n\n6 Unit Navigation Requested Notification\nDer Player kann Buttons einblenden, über die die Testperson zu einer anderen Unit navigiert. Eine Unit-Navigation kann auch über andere Bedingungen durch den Player ausgelöst werden, z. B. Ablauf einer Frist.\nÜber diese Nachricht fordert der Player eine Unit-Navigation an. Ob dann tatsächlich eine Unit-Navigation erfolgt, entscheidet der Host. Beispielsweise wird in der Voransicht einer Unit im Autorensystem IQB-Studio nur kurz eine Nachricht eingeblendet, dass eine Unit-Navigation angefordert wurde.\n\nsessionId: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.\ntarget: Ziel-Unit. Dies ist allerdings keine ID einer konkreten Unit, sondern ein Symbol für eine relativ zur aktuellen Unit befindlichen Unit: next, previous, first, last, end. Die möglichen Ziele kennt der Player aus dem Start-Kommando.\n\n\n\n7 Navigation Denied Notification\nIm Testablauf können fehlende oder falsche Antworten problematisch sein. Insbesondere bei Befragungen ist oft Vollständigkeit gewünscht. Daher meldet der Player bei einer Statusänderung auch diese Informationen mit. Der Testcontroller kann dann je nach Einstellung entscheiden, ob eine Navigation zur nächsten Unit zulässig ist oder nicht.\nSollte dies nicht der Fall sein, sollte der Player fehlende oder falsche Antworten visuell markieren. In normalen Formularen erfolgt dies, wenn der Eingabefokus auf ein Eingabeelement kommt und ohne weitere Eingabe zum nächsten Element wechselt. Aber wenn ein Eingabeelement nie den Fokus bekommt, kann die Fehlersituation nicht erzeugt werden. Die Alternative, alle Eingabeelemente beim Betreten der Unit als fehlerhaft darzustellen, wäre keine gute UI-Entscheidung.\nDie Nachricht vopNavigationDeniedNotification des Hosts ist also als Aufforderung an den Player zu verstehen, fehlende oder falsche Eingaben visuell darzustellen. Technisch kann das z. B. über markAllAsTouched() gehen. Parameter:\n\nsessionId: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.\nreason: Hinweis für den Player, warum die Navigation verweigert wurde: presentationIncomplete und/oder responsesIncomplete.\n\n\n\n8 Window Focus Changed Notification\nIn Testungen kann es wichtig sein festzustellen, ob die Testperson sich im Browser noch auf der Seite des Tests befindet. Sollte dies nicht der Fall sein, besteht der Verdacht, dass die Testperson unzulässigerweise andere Webseiten aufruft, um z. B. eine Übersetzung zu erhalten.\nDa technisch der Wechsel aus dem Host-Fensterbereich in den Bereich des &lt;iframe&gt;-Elements des Players einem Verlassen der Testseite gleichkommt, muss der Player dem Host mitteilen, dass er den Fokus erhalten bzw. verloren hat. Parameter:\n\ntimeStamp: Ein String im Standard-Format date-time.\nhasFocus: Wenn true, hat der Player den Fokus bekommen, ansonsten hat er ihn verloren und der Host muss prüfen, ob er ihn erhalten hat.\n\n\n\n\n\n\n\nTipp\n\n\n\n\nDie Ereignisse blur und focus werden an window bei einem Fokuswechsel gesendet.\nDie Funktion document.hasFocus() liefert true, wenn das Dokument den Fokus hat.",
     "crumbs": [
-      "Editor",
-      "Änderung Definition"
+      "Player"
     ]
   },
   {
-    "objectID": "editor-docs/voeDefinitionChangedNotification.html#id-type-format",
-    "href": "editor-docs/voeDefinitionChangedNotification.html#id-type-format",
-    "title": "Editor voeDefinitionChangedNotification",
-    "section": "id, type, format",
-    "text": "id, type, format\n\nEine Variable braucht eine innerhalb der Unit eindeutige Bezeichnung.\nEin Typ kann sein: string, integer, number, boolean, attachment – letzteres bezeichnet ein erzeugtes Medium, z. B. ein Bild. Im Kern handelt es sich hier um einen String, der aber eine Referenz darstellt und dem Auswertungssystem das Auffinden des zugehörigen Mediums ermöglicht.\nWerte für format:\n\ntext-selection: Ein String, der Daten für eine Textmarkierung enthält\nimage, capture-image, audio: Spezifiziert den Datentyp attachment\nggb-file, ggb-variable: Strings mit besonderem Bezug zu GeoGebra\nnon-negative: spezifiziert integer oder number\nlatex, math-ml, math-table: Strings mit besonderem Bezug zu mathematischen Formeln oder Ausdrücken",
+    "objectID": "schemer-docs/index.html",
+    "href": "schemer-docs/index.html",
+    "title": "Verona Interfaces – Schemer",
+    "section": "",
+    "text": "Ein Schemer dient der interaktiven onlinegestützten Entwicklung eines Kodierschemas. Dies ist eine Sammlung von Vorschriften, wie die Variablenwerte – automatisch oder manuell – kodiert werden sollen. Es können auch neue Variablen als Ableitung vorhandener gebildet werden.\nsequenceDiagram\n    autonumber\n    participant MH as Modul-Host\n    participant VM as Schemer\n    MH-&gt;&gt;VM:Initialisierung\n    VM-&gt;&gt;MH:vosReadyNotification\n    MH-&gt;&gt;VM:vosStartCommand\n    loop\n        VM-&gt;&gt;MH:vosSchemeChangedNotification\n    end",
     "crumbs": [
-      "Editor",
-      "Änderung Definition"
+      "Schemer"
     ]
   },
   {
-    "objectID": "editor-docs/voeDefinitionChangedNotification.html#multiple-nullable",
-    "href": "editor-docs/voeDefinitionChangedNotification.html#multiple-nullable",
-    "title": "Editor voeDefinitionChangedNotification",
-    "section": "multiple, nullable",
-    "text": "multiple, nullable\nDiese booleschen Werte kennzeichnen, ob die Variable ein Array des beschriebenen Typs und Formats enthält und ob der Wert null möglich ist.",
+    "objectID": "schemer-docs/index.html#parameter-variables",
+    "href": "schemer-docs/index.html#parameter-variables",
+    "title": "Verona Interfaces – Schemer",
+    "section": "Parameter variables",
+    "text": "Parameter variables\nNachdem der Host die Bereitschaftsmeldung erhalten hat, schickt er die Variablenliste: Parameter variables – so, wie der Editor diese Liste erzeugt hat. Nur auf Grundlage der Variablenliste kann ein Schemer arbeiten, denn es handelt sich bei einem Kodierschema ja um die Verarbeitung von Variablenwerten. Der Schemer initialisiert entsprechend die UI.\n\nid, type, format\n\nEine Variable braucht eine innerhalb der Unit eindeutige Bezeichnung.\nEin Typ kann sein: string, integer, number, boolean, attachment – letzteres bezeichnet ein erzeugtes Medium, z. B. ein Bild. Im Kern handelt es sich hier um einen String, der aber eine Referenz darstellt und dem Auswertungssystem das Auffinden des zugehörigen Mediums ermöglicht.\nWerte für format:\n\ntext-selection: Ein String, der Daten für eine Textmarkierung enthält\nimage, capture-image, audio: Spezifiziert den Datentyp attachment\nggb-file, ggb-variable: Strings mit besonderem Bezug zu GeoGebra\nnon-negative: spezifiziert integer oder number\nlatex, math-ml, math-table: Strings mit besonderem Bezug zu mathematischen Formeln oder Ausdrücken\n\n\n\n\n\n\n\n\nSubject to change\n\n\n\nDie Erprobung von type kann als erfolgreich angesehen werden, bei den format-Optionen wird es noch Bewegung geben. Hier sind mitunter Ideen eingebracht, deren Nützlichkeit sich erst zeigen muss.\n\n\n\n\nmultiple, nullable\nDiese booleschen Werte kennzeichnen, ob die Variable ein Array des beschriebenen Typs und Formats enthält und ob der Wert null möglich ist.\n\n\nvalues, valuePositionLabels, valuesComplete\nDiese Angaben liefern genauere Informationen über die möglichen Werte der Variablen. Wenn valuesComplete true ist, dann handelt es sich sogar um eine vollständige Liste, und die Kodierung kann automatisch erfolgen.\n\n\npage\nDiese Information verortet die Quelle des Variablenwertes auf einer Seite der Unit.",
     "crumbs": [
-      "Editor",
-      "Änderung Definition"
+      "Schemer"
     ]
   },
   {
-    "objectID": "editor-docs/voeDefinitionChangedNotification.html#values-valuepositionlabels-valuescomplete",
-    "href": "editor-docs/voeDefinitionChangedNotification.html#values-valuepositionlabels-valuescomplete",
-    "title": "Editor voeDefinitionChangedNotification",
-    "section": "values, valuePositionLabels, valuesComplete",
-    "text": "values, valuePositionLabels, valuesComplete\nDiese Angaben liefern genauere Informationen über die möglichen Werte der Variablen. Wenn valuesComplete true ist, dann handelt es sich sogar um eine vollständige Liste, und die Kodierung kann automatisch erfolgen.",
+    "objectID": "schemer-docs/index.html#weitere-parameter",
+    "href": "schemer-docs/index.html#weitere-parameter",
+    "title": "Verona Interfaces – Schemer",
+    "section": "Weitere Parameter",
+    "text": "Weitere Parameter\n\nsessionId: Dem Schemer wird eine Kennung mitgeschickt, die der Schemer anschließend in jeder Nachricht zur Änderung des Kodierschemas verwenden soll. Damit wird die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit unterstützt.\nSoweit vorhanden kann ein Kodierschema codingScheme geschickt werden, damit daran weitergearbeitet wird.\ncodingSchemeType: Sollte es Varianten oder Versionen von Kodierschemata geben, kann dies hier dem Schemer mitgeteilt werden. Alternativ (oder parallel) kann natürlich diese Information als Teil der Datenstruktur des Kodierschemas übergeben werden.\nschemerConfig –&gt; directDownloadUrl: Sollte der Schemer während der Laufzeit Code nachladen müssen, kann aus Gründen der Datensicherheit nicht einfach irgendein Server genutzt werden. Dem Schemer muss mitgeteilt werden, welche URL dafür zulässig ist.",
     "crumbs": [
-      "Editor",
-      "Änderung Definition"
+      "Schemer"
     ]
   },
   {
-    "objectID": "editor-docs/voeDefinitionChangedNotification.html#page",
-    "href": "editor-docs/voeDefinitionChangedNotification.html#page",
-    "title": "Editor voeDefinitionChangedNotification",
-    "section": "page",
-    "text": "page\nDiese Information verortet die Quelle des Variablenwertes auf einer Seite der Unit.",
+    "objectID": "editor-docs/index.html",
+    "href": "editor-docs/index.html",
+    "title": "Verona Interfaces – Editor",
+    "section": "",
+    "text": "Ein Editor dient der interaktiven onlinegestützten Entwicklung einer Unit. Hierbei stehen die visuelle Erscheinung und die Interaktionselemente im Vordergrund.\nsequenceDiagram\n    autonumber\n    participant MH as Modul-Host\n    participant VM as Editor\n    MH-&gt;&gt;VM:Initialisierung\n    VM-&gt;&gt;MH:voeReadyNotification\n    MH-&gt;&gt;VM:voeStartCommand\n    loop\n        VM-&gt;&gt;MH:voeDefinitionChangedNotification\n    end",
     "crumbs": [
-      "Editor",
-      "Änderung Definition"
+      "Editor"
+    ]
+  },
+  {
+    "objectID": "editor-docs/index.html#parameter-variables",
+    "href": "editor-docs/index.html#parameter-variables",
+    "title": "Verona Interfaces – Editor",
+    "section": "Parameter variables",
+    "text": "Parameter variables\nDass die Unit-Definition nicht dokumentiert ist, hat eine Menge Vorteile, allerdings auch Nachteile. Einige Informationen wären durchaus sinnvoll, anderen Programmierungen zur Verfügung zu stellen. Dazu gehört die Liste aller möglichen Variablen. Dies sind Werte-Tträger, also mit einer ID identifizierbare Quellen von Antwortdaten. Wie genau diese Antwortdaten entstehen oder wo, das ist uninteressant. Nur dass es sie gibt, ist z. B. für die Planung der Kodierung wichtig.\nDie Variablenliste wird stets gleichzeitig mit der Unit-Definition geschickt. Sie soll also immer aktuell sein. Die folgenden Parameter werden mitgeliefert:\n\nid, type, format\n\nEine Variable braucht eine innerhalb der Unit eindeutige Bezeichnung.\nEin Typ kann sein: string, integer, number, boolean, attachment – letzteres bezeichnet ein erzeugtes Medium, z. B. ein Bild. Im Kern handelt es sich hier um einen String, der aber eine Referenz darstellt und dem Auswertungssystem das Auffinden des zugehörigen Mediums ermöglicht.\nWerte für format:\n\ntext-selection: Ein String, der Daten für eine Textmarkierung enthält\nimage, capture-image, audio: Spezifiziert den Datentyp attachment\nggb-file, ggb-variable: Strings mit besonderem Bezug zu GeoGebra\nnon-negative: spezifiziert integer oder number\nlatex, math-ml, math-table: Strings mit besonderem Bezug zu mathematischen Formeln oder Ausdrücken\n\n\n\n\n\n\n\n\nSubject to change\n\n\n\nDie Erprobung von type kann als erfolgreich angesehen werden, bei den format-Optionen wird es noch Bewegung geben. Hier sind mitunter Ideen eingebracht, deren Nützlichkeit sich erst zeigen muss.\n\n\n\n\nmultiple, nullable\nDiese booleschen Werte kennzeichnen, ob die Variable ein Array des beschriebenen Typs und Formats enthält und ob der Wert null möglich ist.\n\n\nvalues, valuePositionLabels, valuesComplete\nDiese Angaben liefern genauere Informationen über die möglichen Werte der Variablen. Wenn valuesComplete true ist, dann handelt es sich sogar um eine vollständige Liste, und die Kodierung kann automatisch erfolgen.\n\n\npage\nDiese Information verortet die Quelle des Variablenwertes auf einer Seite der Unit.",
+    "crumbs": [
+      "Editor"
     ]
   },
   {
