@@ -1,14 +1,14 @@
 ---
 lang: de
-title: Verona Interfaces - Player
+title: Verona Interfaces -- Player
 ---
 
 Ein Player präsentiert eine Unit und sorgt für die Interaktion mit der Testperson bzw. mit den Befragten. Das grundlegende Modell hierbei ist, dass ein Test bzw. Befragung (nachfolgend synonym) aus einer Abfolge von inhaltlich getrennten Units besteht und diese jeweils einzeln mit einem Player-Modul präsentiert werden.
 
 ::: {.callout-note}
-## [Spezifikation](https://verona-interfaces.github.io/player/)
+## Spezifikation
 
-Die Spezifikation der API ist als YML-Datei in der Syntax [AsyncAPI](https://www.asyncapi.com/de) ausgeführt. Nach einer Änderung wird über ein [Tool](https://www.asyncapi.com/tools/generator) eine lesbare Html-Datei erzeugt.
+Die [Spezifikation der API](https://verona-interfaces.github.io/player/) ist als YML-Datei in der Syntax [AsyncAPI](https://www.asyncapi.com/de) ausgeführt. Nach einer Änderung wird über ein [Tool](https://www.asyncapi.com/tools/generator) eine lesbare Html-Datei erzeugt.
 :::
 
 ```{mermaid}

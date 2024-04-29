@@ -1,0 +1,58 @@
+---
+lang: de
+title: Verona Interfaces -- Schemer
+---
+
+Ein Schemer dient der interaktiven onlinegestützten Entwicklung eines Kodierschemas. Dies ist eine Sammlung von Vorschriften, wie die Variablenwerte -- automatisch oder manuell -- kodiert werden sollen. Es können auch neue Variablen als Ableitung vorhandener gebildet werden.
+
+::: {.callout-note}
+## Spezifikation
+
+Die [Spezifikation der API](https://verona-interfaces.github.io/schemer/) ist als YML-Datei in der Syntax [AsyncAPI](https://www.asyncapi.com/de) ausgeführt. Nach einer Änderung wird über ein [Tool](https://www.asyncapi.com/tools/generator) eine lesbare Html-Datei erzeugt.
+:::
+
+```{mermaid}
+sequenceDiagram
+    autonumber
+    participant MH as Modul-Host
+    participant VM as Schemer
+    MH->>VM:Initialisierung
+    VM->>MH:vosReadyNotification
+    MH->>VM:vosStartCommand
+    loop
+        VM->>MH:vosSchemeChangedNotification
+    end
+```
+
+# 1 Initialisierung
+
+Der Host richtet ein `<iframe>`-Element ein und setzt für das `srcdoc`-Attribut den kompletten Inhalt des Moduls. Das Modul ist technisch eine Html-Seite, d. h. es wird durch das Laden auch die Ausführung von JavaScript-Code angestoßen, der auf oberster Ebene vorgesehen ist.
+
+# 2 Ready Notification
+
+Dieser Code sendet als letzten Schritt der eigenen Initialisierung eine Nachricht an den Host, dass das Modul bereit sei für das Start-Kommando. Als Payload wird das [Metadaten-Objekt](../intro/metadata.qmd) mitgeschickt -- hier allerdings als String serialisiert, um nicht bei jeder Änderung der Metadaten-Spezifikation alle Modul-API ändern zu müssen.
+
+# 3 Start Command
+
+## Parameter `variables`
+
+Nachdem der Host die Bereitschaftsmeldung erhalten hat, schickt er die Variablenliste: Parameter `variables` -- so, wie der Editor diese Liste erzeugt hat. Nur auf Grundlage der Variablenliste kann ein Schemer arbeiten, denn es handelt sich bei einem Kodierschema ja um die Verarbeitung von Variablenwerten. Der Schemer initialisiert entsprechend die UI.
+
+{{< include ../editor-docs/_variables.qmd >}}
+
+## Weitere Parameter
+
+* `sessionId`: Dem Schemer wird eine Kennung mitgeschickt, die der Schemer anschließend in jeder Nachricht zur Änderung des Kodierschemas verwenden soll. Damit wird die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit unterstützt.
+* Soweit vorhanden kann ein Kodierschema `codingScheme` geschickt werden, damit daran weitergearbeitet wird.
+* `codingSchemeType`: Sollte es Varianten oder Versionen von Kodierschemata geben, kann dies hier dem Schemer mitgeteilt werden. Alternativ (oder parallel) kann natürlich diese Information als Teil der Datenstruktur des Kodierschemas übergeben werden.
+* `schemerConfig` --> `directDownloadUrl`: Sollte der Schemer während der Laufzeit Code nachladen müssen, kann aus Gründen der Datensicherheit nicht einfach irgendein Server genutzt werden. Dem Schemer muss mitgeteilt werden, welche URL dafür zulässig ist.
+
+# 4 Scheme Changed Notification
+
+Sobald eine Bearbeitung des Kodierschemas stattgefunden hat, meldet der Schemer diese Änderung. Parameter:
+
+* `sessionId`: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.
+* `timeStamp`: Ein String im Standard-Format [date-time](https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-date-time-string-format). Die Nutzung dieser Information ist dem Host überlassen, soll aber vor allem die korrekte Reihenfolge vieler asynchron eintreffender Nachrichten sicherstellen.
+* `codingScheme`: Das neue vollständige Kodierschema, serialisiert als String.
+* `codingSchemeType`: Spezifizierung des Datenformates, wenn gewünscht.
+* `dependenciesToCode`: Abhängigkeiten von externen Bibliotheken oder Diensten für das Kodieren der Antworten der Unit.

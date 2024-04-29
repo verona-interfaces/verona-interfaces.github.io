@@ -22,12 +22,12 @@ Daraus resultieren sehr hohe Anforderungen an die Modularität und Interoperabil
 
 Folgende Spezifikationen liegen vor und werden in englischer Sprache gesondert in Repositorien geführt:
 
-| Modul | Beschreibung | Spezifikation Html | Code GitHub |
-| ------ | ---------------- | :-----: | :-------: |
-| **Player** | Komponente, die eine Aufgabe in einer Testanwendung abspielt | [{{< fa file-invoice size=2x >}}](https://verona-interfaces.github.io/player/) | [{{< fa brands github size=2x >}}](https://github.com/verona-interfaces/player#readme) |
-| **Editor** | Komponente, mit der man Aufgaben gestaltet |  [{{< fa file-invoice size=2x >}}](https://verona-interfaces.github.io/editor/) | [{{< fa brands github size=2x >}}](https://github.com/verona-interfaces/editor#readme) |
-| **Schemer** | Komponente, mit der man die Kodieranweisungen für die Antwortverarbeitung festlegt | [{{< fa file-invoice size=2x >}}](https://verona-interfaces.github.io/schemer/) | [{{< fa brands github size=2x >}}](https://github.com/verona-interfaces/schemer#readme) |
-| **Metadaten** | Alle o. g. Komponenten enthalten Metadaten auf einheitliche Art, die hier beschrieben ist. |  [{{< fa file-invoice size=2x >}}](https://verona-interfaces.github.io/metadata/) | [{{< fa brands github size=2x >}}](https://github.com/verona-interfaces/metadata#readme) |
+| Modul | Beschreibung | Spezifikation Html | Code GitHub | Version |
+| ------ | ---------------- | :-----: | :-------: | :---- |
+| **Player** | Komponente, die eine Aufgabe in einer Testanwendung abspielt | [{{< fa file-invoice size=2x >}}](https://verona-interfaces.github.io/player/) | [{{< fa brands github size=2x >}}](https://github.com/verona-interfaces/player#readme) | 5.2.0 |
+| **Editor** | Komponente, mit der man Aufgaben gestaltet |  [{{< fa file-invoice size=2x >}}](https://verona-interfaces.github.io/editor/) | [{{< fa brands github size=2x >}}](https://github.com/verona-interfaces/editor#readme) | 4.2.0 |
+| **Schemer** | Komponente, mit der man die Kodieranweisungen für die Antwortverarbeitung festlegt | [{{< fa file-invoice size=2x >}}](https://verona-interfaces.github.io/schemer/) | [{{< fa brands github size=2x >}}](https://github.com/verona-interfaces/schemer#readme) | 2.0.0 |
+| **Metadaten** | Alle o. g. Komponenten enthalten Metadaten auf einheitliche Art, die hier beschrieben ist. |  [{{< fa file-invoice size=2x >}}](https://verona-interfaces.github.io/metadata/) | [{{< fa brands github size=2x >}}](https://github.com/verona-interfaces/metadata#readme) | 3.0.0 |
 
 
 # Redaktion

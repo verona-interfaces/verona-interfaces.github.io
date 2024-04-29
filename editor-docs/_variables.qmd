@@ -1,0 +1,28 @@
+### `id`, `type`, `format`
+
+* Eine Variable braucht eine innerhalb der Unit eindeutige Bezeichnung.
+* Ein Typ kann sein: `string`, `integer`, `number`, `boolean`, `attachment` -- letzteres bezeichnet ein erzeugtes Medium, z. B. ein Bild. Im Kern handelt es sich hier um einen String, der aber eine Referenz darstellt und dem Auswertungssystem das Auffinden des zugehörigen Mediums ermöglicht.
+* Werte für `format`:
+  - `text-selection`: Ein String, der Daten für eine Textmarkierung enthält
+  - `image`, `capture-image`, `audio`: Spezifiziert den Datentyp `attachment`
+  - `ggb-file`, `ggb-variable`: Strings mit besonderem Bezug zu GeoGebra
+  - `non-negative`: spezifiziert `integer` oder `number`
+  - `latex`, `math-ml`, `math-table`: Strings mit besonderem Bezug zu mathematischen Formeln oder Ausdrücken
+
+::: {.callout-warning}
+## Subject to change
+
+Die Erprobung von `type` kann als erfolgreich angesehen werden, bei den `format`-Optionen wird es noch Bewegung geben. Hier sind mitunter Ideen eingebracht, deren Nützlichkeit sich erst zeigen muss.
+:::
+
+### `multiple`, `nullable`
+
+Diese booleschen Werte kennzeichnen, ob die Variable ein Array des beschriebenen Typs und Formats enthält und ob der Wert `null` möglich ist.
+
+### `values`, `valuePositionLabels`, `valuesComplete`
+
+Diese Angaben liefern genauere Informationen über die möglichen Werte der Variablen. Wenn `valuesComplete` true ist, dann handelt es sich sogar um eine vollständige Liste, und die Kodierung kann automatisch erfolgen.
+
+### `page`
+
+Diese Information verortet die Quelle des Variablenwertes auf einer Seite der Unit.

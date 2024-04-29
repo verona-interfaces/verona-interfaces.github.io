@@ -49,13 +49,10 @@ website:
             text: Start-Kommando
           - href: player-docs/vopStateChangedNotification.qmd
             text: Status-Änderung
-      - section: Editor
-        href: editor-docs/index.qmd
-        contents:
-          - href: editor-docs/voeStartCommand.qmd
-            text: Start-Kommando
-          - href: editor-docs/voeDefinitionChangedNotification.qmd
-            text: Änderung Definition
+      - href: editor-docs/index.qmd
+        text: Editor
+      - href: schemer-docs/index.qmd
+        text: Schemer
 
 format:
   html:
