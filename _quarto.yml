@@ -39,6 +39,8 @@ website:
           - intro/metadata.qmd
           - intro/modelling.qmd
           - intro/data-structures.qmd
+          - href: intro/integration.qmd
+            text: Integration
           - intro/english.qmd
       - section: Player
         href: player-docs/index.qmd
