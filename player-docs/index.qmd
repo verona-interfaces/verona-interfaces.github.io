@@ -3,7 +3,7 @@ lang: de
 title: Verona Interfaces -- Player
 ---
 
-Ein Player präsentiert eine Unit und sorgt für die Interaktion mit der Testperson bzw. mit den Befragten. Das grundlegende Modell hierbei ist, dass ein Test bzw. Befragung (nachfolgend synonym) aus einer Abfolge von inhaltlich getrennten Units besteht und diese jeweils einzeln mit einem Player-Modul präsentiert werden.
+Ein Player präsentiert jeweils eine Unit und sorgt für die Interaktion mit der Testperson bzw. mit den Befragten. Das grundlegende Modell hierbei ist, dass ein Test bzw. Befragung (nachfolgend synonym) aus einer Abfolge von inhaltlich getrennten Units besteht und diese jeweils einzeln mit einem Player-Modul präsentiert werden.
 
 ::: {.callout-note}
 ## Spezifikation
@@ -14,26 +14,26 @@ Die [Spezifikation der API](https://verona-interfaces.github.io/player/) ist als
 ```{mermaid}
 sequenceDiagram
     autonumber
-    participant MH as Modul-Host
-    participant VM as Player
-    MH->>VM:Initialisierung
-    VM->>MH:vopReadyNotification
-    MH->>VM:vopStartCommand
+    participant HA as Host-Anwendung
+    participant VM as Player (Verona Modul)
+    HA->>VM:Initialisierung
+    VM->>HA:vopReadyNotification
+    HA->>VM:vopStartCommand
     loop
         opt
-            VM->>MH:vopStateChangedNotification
+            VM->>HA:vopStateChangedNotification
         end
         opt
-            MH->>VM:vopPageNavigationCommand
+            HA->>VM:vopPageNavigationCommand
         end
         opt
-            VM->>MH:vopUnitNavigationRequestedNotification
+            VM->>HA:vopUnitNavigationRequestedNotification
         end
         opt
-            MH->>VM:vopNavigationDeniedNotification
+            HA->>VM:vopNavigationDeniedNotification
         end
         opt
-            VM->>MH:vopWindowFocusChangedNotification
+            VM->>HA:vopWindowFocusChangedNotification
         end
     end
 ```

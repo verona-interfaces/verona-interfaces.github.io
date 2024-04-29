@@ -14,13 +14,13 @@ Die [Spezifikation der API](https://verona-interfaces.github.io/editor/) ist als
 ```{mermaid}
 sequenceDiagram
     autonumber
-    participant MH as Modul-Host
-    participant VM as Editor
-    MH->>VM:Initialisierung
-    VM->>MH:voeReadyNotification
-    MH->>VM:voeStartCommand
+participant HA as Host-Anwendung
+    participant VM as Editor (Verona-Modul)
+    HA->>VM:Initialisierung
+    VM->>HA:voeReadyNotification
+    HA->>VM:voeStartCommand
     loop
-        VM->>MH:voeDefinitionChangedNotification
+        VM->>HA:voeDefinitionChangedNotification
     end
 ```
 

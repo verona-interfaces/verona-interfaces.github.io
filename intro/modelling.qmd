@@ -3,24 +3,25 @@ lang: de
 title: Kommunikationsmodell
 ---
 
+Die Interaktion zwischen der Hostanwendung, dem integrierten Verona-Modul, der darunterliegenden Datenbank und dem Endnutzer lassen sich wie folgt beschreiben:
 ```{mermaid}
 sequenceDiagram
     participant DB as Datenbank
-    participant MH as Modul-Host
+    participant HA as Host-Anwendung
 
-    DB->>MH:Laden Daten
+    DB->>HA:Laden Daten
     participant VM as Verona-Modul
-    MH->>VM:Initialisierung
-    VM->>MH:vopReadyNotification
-    MH->>VM:vopStartCommand
+    HA->>VM:Initialisierung
+    VM->>HA:vopReadyNotification
+    HA->>VM:vopStartCommand
     loop
         Actor TP as Person
         VM->TP:Interaktion
-        VM->>MH:vopStateChangedNotification
+        VM->>HA:vopStateChangedNotification
     end
     VM-xTP:Navigation
-    MH->>DB:Speichern geänderte Daten
-    MH-xVM:Navigation
+    HA->>DB:Speichern geänderte Daten
+    HA-xVM:Navigation
 ```
 
 # Initialisierung
@@ -31,7 +32,7 @@ Anschließend muss ein `<iframe>`-Element verfügbar sein. Die Browser unterstü
 
 # Nachrichten empfangen
 
-Die Kommunikation kann nur erfolgen, wenn die Host-Anwendung Nachrichten an das `window`-Objekt abfängt. Das Modul kann nur allgemein an seine Host-Anwendung Nachrichten schicken, nicht gezielt an eine bestimmte Komponente oder ein bestimmtes DOM-Element. Auf höchster Ebene muss also z. B. so etwas einmalig aufgerufen werden:
+Die Kommunikation kann nur erfolgen, wenn die Host-Anwendung Nachrichten an das `window`-Objekt abfängt. Das Verona-Modul kann nur allgemein an seine Host-Anwendung Nachrichten schicken, nicht gezielt an eine bestimmte Komponente oder ein bestimmtes DOM-Element. Auf höchster Ebene muss also z. B. so etwas einmalig aufgerufen werden:
 
 ```{.typescript filename="Listener einrichten bei Start der Hostanwendung"}
  window.addEventListener('message', (event: MessageEvent) => {
@@ -75,7 +76,7 @@ An das `<iframe>`-Element wird dann üblicherweise ein Kommando geschickt, das d
 ```
 
 
-Wenn später ein neues Startkommando vom Host geschickt wird, stellt das Modul zunächst den Ausgangszustand nach der Initialisierung wieder her und verfährt dann wie oben. Sollten z. B. mehrere Units hintereinander denselben Player anfordern, muss nicht immer neu das gesamte Modul neu initialisiert werden. Der Player kann über ein neues Start-Kommando "nachgenutzt" werden.
+Wenn später ein neues Startkommando vom Host geschickt wird, stellt das Modul zunächst den Ausgangszustand zur Initialisierung wieder her und verfährt dann wie oben. Sollten z. B. mehrere Units hintereinander denselben Player anfordern, muss nicht immer neu das gesamte Modul neu initialisiert werden. Der Player kann über ein neues Start-Kommando "nachgenutzt" werden.
 
 # Interaktion: Zustandsänderung melden
 
@@ -87,13 +88,13 @@ Während der Interaktion meldet das Verona-Modul Änderungen je nach Typ des Mod
 Bei schnellen Tastatureingaben oder ambitionierter Beobachtung des Userverhaltens (Logging) fallen sehr viele Daten an. Beim Player-Modul kann man die Daten aufteilen (sog. `dataParts`), aber auch sonst könnte es viel werden. Die Hostanwendung sollte einen Puffer einrichten und nicht alles sofort wegspeichern. Bei `rxjs` gibt es beispielsweise den Operator `debounceTime`.
 :::
 
-# Beenden: unnötig
-
-Da Änderungen sofort gemeldet werden, ist ein formelles Beenden des Moduls unnötig. Es gibt bei keinem Verona-Modul Bedarf, vor Entfernen des Moduls bestimmte Funktionen aufzurufen. Wenn das Modul nicht mehr benötigt wird (oben dargestellt als Navigation), kann das `<iframe>`-Element entfernt oder geleert werden (`srcdoc=""`).
-
 # Korrekte Zuordnung der Modul-Instanz bzw. der Daten
 
 Bei den Nachrichten gibt es zwei Eigenschaften, die eine korrekte Zuordnung unterstützen:
 
 * `sessionId`: Diese ID wird beim Startkommando vom Host vergeben und wird vom Modul bei jeder Nachricht mitgeschickt. Diese ID wird durch das Modul nicht verändert. Der Host kann darüber das Modul-Element identifizieren und daher sicherstellen, dass bei den überwiegend asynchronen Vorgängen im Browser die Daten stets z. B. der richtigen Unit zugeordnet werden.
 * `timeStamp`: Auch diese Eigenschaft wird stets vom Modul mitgeschickt. Darüber kann sichergestellt werden, dass die Reihenfolge der Nachrichten nicht vertauscht wird. Es ist stets die jeweils letzte Änderung feststellbar.
+
+# Beenden: unnötig
+
+Da Änderungen sofort gemeldet werden, ist ein formelles Beenden des Moduls unnötig. Es gibt bei keinem Verona-Modul Bedarf, vor Entfernen des Moduls bestimmte Funktionen aufzurufen. Wenn das Modul nicht mehr benötigt wird (oben dargestellt als Navigation), kann das `<iframe>`-Element entfernt oder geleert werden (`srcdoc=""`).
