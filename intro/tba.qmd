@@ -7,7 +7,7 @@ title: Computerbasiertes Testen
 
 ## Test oder Befragung?
 
-Die folgenden Ausführungen beziehen sich stets auch auf Befragungen. Die Anforderungen an Befragungen sind ähnlich, aber meist einfacher umzusetzen. Es gibt beispielsweise keine Kodierung in "Richtig" oder "Falsch".
+Die folgenden Ausführungen beziehen sich stets auf Tests, aber finden auch Anwendung auf Befragungen. Die Anforderungen an Befragungen sind ähnlich, aber meist einfacher umzusetzen. Es gibt beispielsweise keine Kodierung in "Richtig" oder "Falsch".
 
 Dass Befragungen hier auch technisch mit abgedeckt werden (können) liegt daran, dass große Studien zur Erfassung von Kompetenzen stets auch Befragungen mit einschließen. Auf diesem Weg ist es möglich, Einflussfaktoren über Personenmerkmale zu erheben.
 
@@ -15,7 +15,7 @@ Dass Befragungen hier auch technisch mit abgedeckt werden (können) liegt daran,
 
 Das Durchführungsszenario sieht bei der Testperson ein Endgerät vor, das dem Begriff des "Computers" entspricht. Es sind also Desktop-Geräte, Laptops, Notebooks und teilweise auch Smartphones im Einsatz.
 
-Der Begriff "technologiebasiert" möchte betonen, dass es nicht unbedingt eines Computers bedarf, um digital Antworten zu erfassen. Prominentes Beispiel wäre ein Stift, der auf Spezialpapier Geschriebenes erkennt (scannen in Echtzeit) und in einen Speicher ablegt für spätere Auswertungen. Diese Überlegungen führten zum Begriff TBA - "Technologiebasiertes Assessment" oder "Technology Based Assessment", wobei Technologie hier eher als Technik verstanden wird (Papierverfahren sind eigentlich auch Technologien).
+Der Begriff "technologiebasiert" möchte betonen, dass es nicht unbedingt eines Computers bedarf, um digital Antworten zu erfassen. Prominentes Beispiel wäre ein Stift, der auf Spezialpapier Geschriebenes erkennt (scannen in Echtzeit) und in einen Speicher ablegt für spätere Auswertungen. Diese Überlegungen führten zum im Kontext des ... [//]: # "hier den Kontext nennen, in dem TBA genutzt wird. Ansonsten taucht der Begriff aus dem Nichts auf." Begriff TBA - "Technologiebasiertes Assessment" oder "Technology Based Assessment", wobei Technologie hier eher als Technik verstanden wird (Papierverfahren sind eigentlich auch Technologien). 
 
 Letztlich sind diese Unterscheidungen hier nicht relevant und werden daher synonym verwendet. Man könnte auch eAssessment, digitales Testen usw. verwenden.
 
@@ -54,7 +54,7 @@ flowchart TD
     style E fill:white
 ```
 
-Die {{< fa computer >}} Testdurchführung produziert Antwort- und Logdaten. Die Unterscheidung steht allgemein dafür, dass neben den Daten, die die Person bewusst erzeugt, auch weitere vom System generierte Informationen anfallen. Beispielsweise kann für die Auswertung die Zeit eine Rolle spielen, die die Testperson für die Beantwortung gebraucht hat.
+Die {{< fa computer >}} Testdurchführung produziert Antwort- und Logdaten. Antwortdaten werden von der Testperson bewusst erzeugt, während Logdaten weitere vom System generierte Informationen darstellen. Beispielsweise kann für die Auswertung die Zeit eine Rolle spielen, die die Testperson für die Beantwortung gebraucht hat - weswegen diese als Logdaten gespeichert werden können.
 
 Eine {{< fa circle-check >}}{{< fa circle-xmark >}} Kodierung der Testdaten ist erforderlich, um die Antworten bestimmten Kategorien zuzuordnen. Meist können Antworten nicht direkt in Analysen verwendet werden. Beispielsweise erzeugt eine Textmarkierung ein komplexes Datenobjekt, aber für die Auswertung ist nur wichtig, ob die Markierung ungefähr den Erwartungen entspricht.
 

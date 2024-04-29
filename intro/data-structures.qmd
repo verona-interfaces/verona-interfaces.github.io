@@ -5,7 +5,7 @@ title: Datenstrukturen
 
 # Begriff Unit
 
-Ein Testablauf ist stets eine Abfolge von Instruktionen oder Fragen an die Testperson, nach Bedarf angereichert mit Material (Bilder, Text, Audio, Video - sog. Stimulus), auf die sich die Fragen bzw. Handlungsanweisungen dann beziehen. Die kleinste Dateneinheit ist ein durch die Testperson geänderter Zustand, der durch Speichern reproduzierbar wird. Diese kleinste Dateneinheit nennen wir **Variable**. Sie kann sich auf ein Interaktionselement (z. B. Eingabefeld, Ankreuzkästchen), aber auch auf ein abgespieltes Audio beziehen (Variablenwert ist dann der Fortschritt des Abspielens).
+Ein Testablauf ist stets eine Abfolge von Instruktionen oder Fragen an die Testperson, nach Bedarf angereichert mit Material (Bilder, Text, Audio, Video - sog. **Stimulus**), auf die sich die Fragen bzw. Handlungsanweisungen dann beziehen. Die kleinste Dateneinheit ist ein durch die Testperson geänderter Zustand, der durch Speichern reproduzierbar wird. Diese kleinste Dateneinheit nennen wir **Variable**. Sie kann sich auf ein Interaktionselement (z. B. Eingabefeld, Ankreuzkästchen), aber auch auf ein abgespieltes Audio beziehen (Variablenwert ist dann der Fortschritt des Abspielens).
 
 Der Begriff **Item** steht für eine Antwort der Testperson, die man mit einem Erwartungswert vergleichen kann und dann den Kategorien "Richtig" und "Falsch" zuordnen kann. Die Quelle für die Antwort ist der Wert einer oder mehrerer Variablen. D. h. die Zustandsänderungen während der Interaktion führen nicht automatisch zu auswertbaren Daten, sondern müssen ggf. aus mehreren Interaktionen zusammengeführt werden.
 
@@ -21,7 +21,7 @@ Der Fokus aller Verona-Module liegt auf der Unit. Es werden Daten verarbeitet, d
 
 Die Unit ist nun die Ebene in der Datenstruktur, die man als beliebig austauschbar innerhalb eines Tests deklariert. Es gibt sogar statistische Maßzahlen, die die unerwünschten Positionseffekte von Units quantifizieren. Natürlich gibt es auch Tests und vor allem Befragungen, bei denen die Abfolge gründlich geplant wird und wo die Units nicht unabhängig voneinander sind. Aber aus Sicht der Datenstrukturen reden wir lange von Units und deren Optimierung, bevor ihr Platz in einer Testabfolge festgelegt wird. Daher sieht der Entwicklungsprozess für Tests zunächst eine Unit- -- bzw. im deutschen Sprachgebrauch auch Aufgaben- -- Entwicklung vor.
 
-> Eine Unit kann auch eine simple Seite sein, die nur begrüßt oder den nächsten Aufgabenblock ankündigt. Das IQB hat viel Arbeit in Units gestteckt, die die Bedienung von Eingabeelementen erläutern. Für die vorliegende Dokumentation spielt das keine Rolle, da es technisch nur eine Vereinfachung darstellt und stets möglich ist.
+> Eine Unit kann auch eine simple Seite sein, die nur begrüßt oder den nächsten Aufgabenblock ankündigt. Das IQB hat viel Arbeit in Units gesteckt, die die Bedienung von Eingabeelementen erläutern. Für die vorliegende Dokumentation spielt das keine Rolle, da es technisch nur eine Vereinfachung darstellt und stets möglich ist.
 
 # Dreiklang der Module
 
@@ -55,7 +55,7 @@ flowchart TD
 
 ## Modul "Editor"
 
-Hier werden in einem interaktiven Prozess alle Medien platziert und alle Interaktionselemente gebaut. Ein Editor ist auf die Autorinnen und Autoren ausgerichtet. Bei den großen Bildungsvergleichsstudien muss sich daher dessen UI/UX an den Fähigkeiten und Gewohnheiten von Lehrkräften orientieren.
+Hier werden für die Unit-Erstellung in einem interaktiven Prozess alle Medien platziert und alle Interaktionselemente gebaut. Ein Editor ist auf die Autorinnen und Autoren ausgerichtet. Bei den großen Bildungsvergleichsstudien muss sich daher dessen UI/UX an den Fähigkeiten und Gewohnheiten von Lehrkräften orientieren. 
 
 ## Modul "Player"
 
@@ -74,7 +74,7 @@ Diese Liste lässt sich sicherlich erweitern. Je nach Anwendungsfall werden die 
 
 ## Unit-Definition
 
-Die Unit-Definition ist nicht spezifiziert. Sie wird serialisiert als String gespeichert bzw. zwischen den Komponenten ausgetauscht. Aus diesem Grund ist es wichtig, dass zu der Unit-Definition auch die ID und die Version von Player- und ggf. Editormodul gespeichert werden.
+Die Unit-Definition ist nicht spezifiziert. Sie wird serialisiert als String gespeichert bzw. zwischen den Komponenten ausgetauscht. Aus diesem Grund ist es wichtig, dass zu der Unit-Definition auch die ID und die Version des Player- und ggf. des genutzten Editormodul gespeichert werden.
 
 Natürlich kann ein Entwickler entscheiden, die Unit-Definition ausführlich zu beschreiben und auch z. B. einer Versionierung zu unterziehen. Das IQB tut dies z. B. für zwei einfache Player. Eine solche Spezifikation der Unit-Definition ist aber nicht Gegenstand dieser Verona-Spezifikationen.
 

@@ -5,11 +5,14 @@ title: Architektur
 
 # Verona-Module als Plug-in
 
-Um für VERA die Länder bzw. die durchführenden Einrichtungen in die Lage zu versetzen, Aufgaben des IQB direkt einzusetzen, hat das IQB Komponenten für Webanwendungen entwickelt, die sich gut in vorhandene Webanwendungen einfügen lassen. Durch eine einfache standardisierte Schnittstelle wird diese Komponente in einen Bildschirmbereich geladen und kann anschließend die Aufgabe darstellen. Das Plug-in "Player" beispielsweise präsentiert alle Inhalte auf eine bei der Aufgabenentwicklung festgelegte Art und Weise (z. B. zeitverzögertes Audio, automatische Navigation, Textmarkierung, Aus- und Einblenden von Formular-Elementen je nach Stand der Beantwortung usw.).
+Um für VERA die Länder bzw. die durchführenden Einrichtungen in die Lage zu versetzen, Aufgaben des IQB direkt einzusetzen, hat das IQB Komponenten entwickelt, die sich gut in vorhandene Webanwendungen einfügen lassen. Durch eine einfache standardisierte Schnittstelle wird eine solche Komponente in einen Bildschirmbereich geladen und kann anschließend die Aufgabe darstellen. Das Plug-in "Player" beispielsweise präsentiert alle Inhalte auf eine bei der Aufgabenentwicklung festgelegte Art und Weise (z. B. zeitverzögertes Audio, automatische Navigation, Textmarkierung, Aus- und Einblenden von Formular-Elementen je nach Stand der Beantwortung usw.).
 
+Wir nennen die Webanwendung, die das Plug-in lädt, **"Host"**.
+
+[//]: # "der Player farblich hervorheben, sonst lässt sich schwer erkennen, worauf der Fokus liegt"
 ```{mermaid}
 flowchart BT
-    subgraph Testsystem
+    subgraph Testsystem (Host)
         TC[Testablaufsteuerung]-->|Aufgabendefinition| P[Player]
         style TC fill:white
         style P fill:white
@@ -24,8 +27,6 @@ Während einer Testung können Player-Module nach Bedarf ausgetauscht werden. Au
 * Ältere Player können alte Aufgaben lange abspielen - solange die Schnittstelle des Plug-ins unterstützt wird
 * Player für besondere Anwendungsfälle (z. B. Lesegeschwindigkeitstest, Physik-Experimente) werden nur einmal programmiert und dann allen Interessierten zur Verfügung gestellt
 
-Wir nennen die Webanwendung, die das Plug-in lädt, **"Host"**.
-
 # Technische Umsetzung
 
 Es handelt sich bei den Verona-Modulen um Code für das Frontend. Das Plug-in beansprucht einen rechteckigen Bereich des Bildschirmes und führt darin JavaScript aus. Um die Nebenwirkungen für den Host so gering wie möglich zu halten, ist das Modul technisch eine eigene Html-Seite, die in ein `iframe`-Element geladen wird. Die Kommunikation zwischen Host und Modul erfolgt asynchron über `postMessage()`.
@@ -36,12 +37,12 @@ Für alle Module gelten folgende Grundsätze:
 
 * Das Modul muss in einer einzigen Datei zusammengefasst sein. Der Build-Prozess muss also alle sonst separat vorliegenden Komponenten einer Html-Seite (Styles, Code, Schriften, Bilder usw.) zusammenbinden.
 * Außer über `postMessage()` darf das Modul keinen weiteren Kontakt mit der Außenwelt pflegen. Jedweder Zugriff auf Ressourcen des Hosts (Frontend, Backend) oder auf andere Web-Ressourcen ist nicht gestattet.
-* Dem Modul werden Daten übergeben, die dann das Verhalten, die Erscheinung usw. beeinflussen. Ein Player z. B. bekommt die sog. Unit-Definition, ein Schemer das Unit-Kodierschema. Diese Daten dürfen selbst keinen Code enthalten.
+* Dem Modul werden Daten übergeben, die dann das Verhalten, die Erscheinung usw. beeinflussen. Ein Player z. B. bekommt die sog. Unit-Definition, ein Schemer des Unit-Kodierschema. Diese Daten dürfen selbst keinen Code enthalten.
 * Das Modul muss [Metadaten](metadata.qmd) in einem JSON-LD-Format (z. B. Version, Maintainer usw., s. u.) enthalten.
 
 # Datensicherheit
  
- Diese Konventionen dienen der Datensicherheit. Es muss eine verlässliche Basis für die Abschätzung von Risiken geben, die durch die Plug-in-Technik verursacht werden. Sollten diese Konventionen nicht eingehalten werden können, muss dazu eine ausführliche Dokumentation zur Verfügung stehen. Das Modul muss alles Machbare unternehmen, die aus der Abweichung resultierenden Risiken zu minimieren und zu dokumentieren. Beispiele:
+ Die genannten Konventionen dienen der Datensicherheit. Es muss eine verlässliche Basis für die Abschätzung von Risiken geben, die durch die Plug-in-Technik verursacht werden. Sollten diese Konventionen nicht eingehalten werden können, muss dazu eine ausführliche Dokumentation zur Verfügung stehen. Das Modul muss alles Machbare unternehmen, die aus der Abweichung resultierenden Risiken zu minimieren und zu dokumentieren. Beispiele:
  
  * Player und Editor des Aspect-Paketes des IQB nutzen GeoGebra, also eine Programmierung Dritter. Dies wird während der Laufzeit je nach Bedarf nachgeladen. Das IQB steht in direktem Kontakt mit dem Entwicklungsteam, um Risiken abzuschätzen.
- * Der Simple-Player und einige andere Module des IQB haben als Teil der Datenstruktur Html-Code, der dann zur Anzeige gebracht wird. Hier besteht potenziell ein Risiko, dass Code mit eingeschleust wird. Daher wird konsequent ein sog. Sanitizer verwendet, also eine Bibliothek, die verlässlich Code vor der Anzeige aus dem Html entfernt.
+ * Der Simple-Player und einige andere Module des IQB haben als Teil der Datenstruktur Html-Code, der dann zur Anzeige gebracht wird. Hier besteht potenziell ein Risiko, dass Fremdcode von außen eingeschleust werden kann. Daher wird konsequent ein sog. Sanitizer verwendet, also eine Bibliothek, die verlässlich solchen Fremdcode vor der Anzeige aus dem Html entfernt.

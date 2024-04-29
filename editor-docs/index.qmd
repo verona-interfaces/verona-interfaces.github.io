@@ -11,16 +11,17 @@ Ein Editor dient der interaktiven onlinegestützten Entwicklung einer Unit. Hier
 Die Spezifikation der API ist als YML-Datei in der Syntax [AsyncAPI](https://www.asyncapi.com/de) ausgeführt. Nach einer Änderung wird über ein [Tool](https://www.asyncapi.com/tools/generator) eine lesbare Html-Datei erzeugt.
 :::
 
+[//] # "auch hier Modul-Host lieber umbenennen, siehe change in modeling.qmd"
 ```{mermaid}
 sequenceDiagram
     autonumber
-    participant MH as Modul-Host
-    participant VM as Editor
-    MH->>VM:Initialisierung
-    VM->>MH:voeReadyNotification
-    MH->>VM:voeStartCommand
+    participant HA as Host-Anwendung
+    participant VM as Editor (Verona-Modul)
+    HA->>VM:Initialisierung
+    VM->>HA:voeReadyNotification
+    HA->>VM:voeStartCommand
     loop
-        VM->>MH:voeDefinitionChangedNotification
+        VM->>HA:voeDefinitionChangedNotification
     end
 ```
 
