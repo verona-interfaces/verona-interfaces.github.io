@@ -40,6 +40,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -288,29 +290,34 @@ English version
 <tr class="header">
 <th>Modul</th>
 <th>Beschreibung</th>
-<th>Direkte Links</th>
+<th style="text-align: center;">Spezifikation Html</th>
+<th style="text-align: center;">Code GitHub</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><a href="https://github.com/verona-interfaces/player#readme">Player</a></td>
+<td><strong>Player</strong></td>
 <td>Komponente, die eine Aufgabe in einer Testanwendung abspielt</td>
-<td><a href="https://verona-interfaces.github.io/player/">Spezifikation (Html)</a>, <a href="https://github.com/verona-interfaces/player/blob/master/model/model.md">Modell (UML)</a></td>
+<td style="text-align: center;"><a href="https://verona-interfaces.github.io/player/"><i class="fa-solid fa-file-invoice fa-2x" aria-label="file-invoice"></i></a></td>
+<td style="text-align: center;"><a href="https://github.com/verona-interfaces/player#readme"><i class="fa-brands fa-github fa-2x" aria-label="github"></i></a></td>
 </tr>
 <tr class="even">
-<td><a href="https://github.com/verona-interfaces/editor#readme">Editor</a></td>
+<td><strong>Editor</strong></td>
 <td>Komponente, mit der man Aufgaben gestaltet</td>
-<td><a href="https://verona-interfaces.github.io/editor/">Spezifikation (Html)</a></td>
+<td style="text-align: center;"><a href="https://verona-interfaces.github.io/editor/"><i class="fa-solid fa-file-invoice fa-2x" aria-label="file-invoice"></i></a></td>
+<td style="text-align: center;"><a href="https://github.com/verona-interfaces/editor#readme"><i class="fa-brands fa-github fa-2x" aria-label="github"></i></a></td>
 </tr>
 <tr class="odd">
-<td><a href="https://github.com/verona-interfaces/schemer#readme">Schemer</a></td>
+<td><strong>Schemer</strong></td>
 <td>Komponente, mit der man die Kodieranweisungen für die Antwortverarbeitung festlegt</td>
-<td><a href="https://verona-interfaces.github.io/schemer/">Spezifikation (Html)</a></td>
+<td style="text-align: center;"><a href="https://verona-interfaces.github.io/schemer/"><i class="fa-solid fa-file-invoice fa-2x" aria-label="file-invoice"></i></a></td>
+<td style="text-align: center;"><a href="https://github.com/verona-interfaces/schemer#readme"><i class="fa-brands fa-github fa-2x" aria-label="github"></i></a></td>
 </tr>
 <tr class="even">
-<td><a href="https://github.com/verona-interfaces/metadata#readme">Metadaten</a></td>
+<td><strong>Metadaten</strong></td>
 <td>Alle o. g. Komponenten enthalten Metadaten auf einheitliche Art, die hier beschrieben ist.</td>
-<td></td>
+<td style="text-align: center;"><a href="https://verona-interfaces.github.io/metadata/"><i class="fa-solid fa-file-invoice fa-2x" aria-label="file-invoice"></i></a></td>
+<td style="text-align: center;"><a href="https://github.com/verona-interfaces/metadata#readme"><i class="fa-brands fa-github fa-2x" aria-label="github"></i></a></td>
 </tr>
 </tbody>
 </table>
@@ -321,7 +328,7 @@ English version
 </section>
 <section id="lizenz" class="level1">
 <h1>Lizenz</h1>
-<p>Alle Texte sind unter der <a href="https://open-educational-resources.de/was-die-cc0-freigabe-bedeutet-und-welche-moeglichkeiten-sie-eroeffnen/">Lizenz CC0</a> veröffentlicht. Die Leitlinien zur Sicherung guter wissenschaftlicher Praxis (s. z. B. <a href="https://www.dfg.de/resource/blob/173732/4166759430af8dc2256f0fa54e009f03/kodex-gwp-data.pdf">DFG-pdf</a>) gebieten gleichwohl, dass die Quellen von Informationen genannt werden sollten.</p>
+<p>Alle Texte und Spezifikationen<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> sind unter der <a href="https://open-educational-resources.de/was-die-cc0-freigabe-bedeutet-und-welche-moeglichkeiten-sie-eroeffnen/">Lizenz CC0</a> veröffentlicht. Die Leitlinien zur Sicherung guter wissenschaftlicher Praxis (s. z. B. <a href="https://www.dfg.de/resource/blob/173732/4166759430af8dc2256f0fa54e009f03/kodex-gwp-data.pdf">DFG-pdf</a>) gebieten gleichwohl, dass die Quellen von Informationen genannt werden sollten.</p>
 </section>
 <section id="haftungsausschluss" class="level1">
 <h1>Haftungsausschluss</h1>
@@ -339,7 +346,13 @@ English version
 
 </section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Fußnoten</h2>
+
+<ol>
+<li id="fn1"><p>In den einzelnen Repositorien der Spezifikationen ist teilweise noch CC BY-SA 4.0 als Lizenz angegeben. Das wird in Kürze angepasst.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
