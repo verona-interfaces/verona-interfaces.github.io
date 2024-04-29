@@ -259,14 +259,15 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="verona-module-als-plug-in" class="level1">
 <h1>Verona-Module als Plug-in</h1>
-<p>Um für VERA die Länder bzw. die durchführenden Einrichtungen in die Lage zu versetzen, Aufgaben des IQB direkt einzusetzen, hat das IQB Komponenten für Webanwendungen entwickelt, die sich gut in vorhandene Webanwendungen einfügen lassen. Durch eine einfache standardisierte Schnittstelle wird diese Komponente in einen Bildschirmbereich geladen und kann anschließend die Aufgabe darstellen. Das Plug-in “Player” beispielsweise präsentiert alle Inhalte auf eine bei der Aufgabenentwicklung festgelegte Art und Weise (z. B. zeitverzögertes Audio, automatische Navigation, Textmarkierung, Aus- und Einblenden von Formular-Elementen je nach Stand der Beantwortung usw.).</p>
+<p>Um für VERA die Länder bzw. die durchführenden Einrichtungen in die Lage zu versetzen, Aufgaben des IQB direkt einzusetzen, hat das IQB Komponenten entwickelt, die sich gut in vorhandene Webanwendungen einfügen lassen. Durch eine einfache standardisierte Schnittstelle wird eine solche Komponente in einen Bildschirmbereich geladen und kann anschließend die Aufgabe darstellen. Das Plug-in “Player” beispielsweise präsentiert alle Inhalte auf eine bei der Aufgabenentwicklung festgelegte Art und Weise (z. B. zeitverzögertes Audio, automatische Navigation, Textmarkierung, Aus- und Einblenden von Formular-Elementen je nach Stand der Beantwortung usw.).</p>
+<p>Wir nennen die Webanwendung, die das Plug-in lädt, <strong>“Host”</strong>.</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
 <p></p><figure class="figure"><p></p>
 <div>
 <pre class="mermaid mermaid-js">flowchart BT
-    subgraph Testsystem
+    subgraph "Testsystem (Host)"
         TC[Testablaufsteuerung]--&gt;|Aufgabendefinition| P[Player]
         style TC fill:white
         style P fill:white
@@ -285,7 +286,6 @@ ul.task-list li input[type="checkbox"] {
 <li>Ältere Player können alte Aufgaben lange abspielen - solange die Schnittstelle des Plug-ins unterstützt wird</li>
 <li>Player für besondere Anwendungsfälle (z. B. Lesegeschwindigkeitstest, Physik-Experimente) werden nur einmal programmiert und dann allen Interessierten zur Verfügung gestellt</li>
 </ul>
-<p>Wir nennen die Webanwendung, die das Plug-in lädt, <strong>“Host”</strong>.</p>
 </section>
 <section id="technische-umsetzung" class="level1">
 <h1>Technische Umsetzung</h1>
@@ -303,10 +303,10 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="datensicherheit" class="level1">
 <h1>Datensicherheit</h1>
-<p>Diese Konventionen dienen der Datensicherheit. Es muss eine verlässliche Basis für die Abschätzung von Risiken geben, die durch die Plug-in-Technik verursacht werden. Sollten diese Konventionen nicht eingehalten werden können, muss dazu eine ausführliche Dokumentation zur Verfügung stehen. Das Modul muss alles Machbare unternehmen, die aus der Abweichung resultierenden Risiken zu minimieren und zu dokumentieren. Beispiele:</p>
+<p>Die genannten Konventionen dienen der Datensicherheit. Es muss eine verlässliche Basis für die Abschätzung von Risiken geben, die durch die Plug-in-Technik verursacht werden. Sollten diese Konventionen nicht eingehalten werden können, muss dazu eine ausführliche Dokumentation zur Verfügung stehen. Das Modul muss alles Machbare unternehmen, die aus der Abweichung resultierenden Risiken zu minimieren und zu dokumentieren. Beispiele:</p>
 <ul>
 <li>Player und Editor des Aspect-Paketes des IQB nutzen GeoGebra, also eine Programmierung Dritter. Dies wird während der Laufzeit je nach Bedarf nachgeladen. Das IQB steht in direktem Kontakt mit dem Entwicklungsteam, um Risiken abzuschätzen.</li>
-<li>Der Simple-Player und einige andere Module des IQB haben als Teil der Datenstruktur Html-Code, der dann zur Anzeige gebracht wird. Hier besteht potenziell ein Risiko, dass Code mit eingeschleust wird. Daher wird konsequent ein sog. Sanitizer verwendet, also eine Bibliothek, die verlässlich Code vor der Anzeige aus dem Html entfernt.</li>
+<li>Der Simple-Player und einige andere Module des IQB haben als Teil der Datenstruktur Html-Code, der dann zur Anzeige gebracht wird. Hier besteht potenziell ein Risiko, dass Fremdcode von außen mit eingeschleust werden kann. Daher wird konsequent ein sog. Sanitizer verwendet, also eine Bibliothek, die verlässlich solchen Fremdcode vor der Anzeige aus dem Html entfernt.</li>
 </ul>
 
 

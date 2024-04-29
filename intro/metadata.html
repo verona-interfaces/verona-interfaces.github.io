@@ -260,7 +260,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Ein Verona-Modul muss Metadaten enthalten. Der wichtigste Anwendungsfall hierfür ist die Auswahl und Speicherung von Modulen in Webanwendungen. Erst wenn z. B. die Bezeichnung und die Version eines Moduls auf standardisierte Art bekannt gemacht wird, können Anwender über die Verwendung sinnvoll entscheiden.</p>
+<p>Ein Verona-Modul muss Metadaten enthalten. Der wichtigste Anwendungsfall für Metadaten ist das Bereitstellen von Informationen, um die Auswahl für das passende Verona-Modul für die eigene Webapplikation zu erleichtern. Erst wenn z. B. die Beschreibung und die Version eines Moduls auf standardisierte Art bekannt gemacht wird, können potenzielle Anwender über dessen Verwendung sinnvoll entscheiden.</p>
 <p>Eine Html-Seite kann auf diverse Arten Metadaten speichern. Im Verona-Kontext benutzen wir einen <code>&lt;script&gt;</code>-Block im Header, der ein JSON-Datenobjekt enthält. Diese Vorgehensweise wird als “Linked Data” bezeichnet, d.&nbsp;h. der Script-Typ wäre mit <code>application/ld+json</code> zu bezeichnen.</p>
 <section id="daten-erläutert" class="level1">
 <h1>Daten erläutert</h1>
@@ -268,7 +268,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="id" class="level2">
 <h2 class="anchored" data-anchor-id="id">id</h2>
 <p>Diese ID kann in internen Referenzen verwendet werden. Wenn beispielsweise eine Unitdefinition mit einem bestimmten Editor erzeugt wurde, kann die ID des Editor-Moduls die spätere Weiterarbeit sichern.</p>
-<p>Achtung: Um sicherzustellen, dass dann auch die passende Version des Moduls verwendet wird, sollte diese Version ebenfalls als Referenz abgespeichert werden, also z. B. <code>iqb-editor-aspect@2.4.9</code>. Dies kann auch der Dateiname des Moduls sein, obwohl in unixbasierten Systemen das @-Zeichen reserviert ist. Das IQB verwendet daher als Dateinamen die ID sowie die Version auf folgende Art: <code>iqb-player-aspect-2.4.11.html</code>.</p>
+<p>Achtung: Um sicherzustellen, dass dann auch die passende Version des Moduls verwendet wird, sollte diese Version ebenfalls als Referenz abgespeichert werden, also z. B. <code>iqb-editor-aspect@2.4.9</code>, statt nur <code>iqb-editor-aspect</code>. Dies kann auch der Dateiname des Moduls sein, obwohl in unixbasierten Systemen das @-Zeichen reserviert ist. Das IQB verwendet daher als Dateinamen die ID sowie die Version auf folgende Art: <code>iqb-player-aspect-2.4.11.html</code>.</p>
 </section>
 <section id="version" class="level2">
 <h2 class="anchored" data-anchor-id="version">version</h2>
@@ -298,15 +298,15 @@ ul.task-list li input[type="checkbox"] {
 <td>Ein Modul zur Änderung eines Kodierschemas für die Auswertung der Antworten</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><code>coder</code></td>
-<td>Dieses Modul ist nur eine Idee. Ursprünglich war geplant, das automatische Kodieren ebenfalls als Verona-Modul zu implementieren. Aktuell wird dies jedoch über die Bereitstellung einer JavaScript-Klasse (<a href="https://www.npmjs.com/package/@iqb/responses">npm</a>) gelöst, die in Webanwendungen beim Build-Prozess eingebunden wird. Diese Programmierung kann also nicht zur Laufzeit dynamisch geladen werden. Dies stellt aktuell die bessere Lösung dar.</td>
+<td style="text-align: left;"><code>coder</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></td>
+<td>Dieses Modul existiert derzeit nur konzeptionell. Ursprünglich war geplant, das automatische Kodieren ebenfalls als Verona-Modul zu implementieren. Aktuell wird dies jedoch über die Bereitstellung einer JavaScript-Klasse (<a href="https://www.npmjs.com/package/@iqb/responses">npm</a>) gelöst, die in Webanwendungen beim Build-Prozess eingebunden wird. Diese Programmierung kann also nicht zur Laufzeit dynamisch geladen werden. Dies stellt aktuell die bessere Lösung dar.</td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="name" class="level2">
 <h2 class="anchored" data-anchor-id="name">name</h2>
-<p>Diese Bezeichnung erscheint als Label z. B. in Auswahllisten, da die ID zu knapp und wenig verständlich ist.</p>
+<p>Diese Bezeichnung erscheint als Label z. B. in Auswahllisten, und dient als menschlich besser lesbare Version der ID.</p>
 </section>
 <section id="description" class="level2">
 <h2 class="anchored" data-anchor-id="description">description</h2>
@@ -320,12 +320,18 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="modul-register" class="level1">
 <h1>Modul-Register</h1>
-<p>Derzeit ist die Liste der verfügbaren Module noch sehr überschaubar. Nur das IQB stellt Verona-Module bereit. Sollte die Anzahl steigen, wäre die Einführung eines Registers angebracht. Webanwendungen können dann gezielt Module anbieten. Wenn dieses Register aufgebaut wird, könnten sich die Anforderungen an die Metadaten nocheinmal ändern.</p>
+<p>Die Liste der verfügbaren Module ist noch sehr überschaubar. Bisher stellt nur das IQB Verona-Module bereit. Sollte die Anzahl steigen, wäre die Einführung eines Registers angebracht. Webanwendungen können dann gezielt Module anbieten. Wenn dieses Register aufgebaut wird, könnten sich die Anforderungen an die Metadaten noch einmal ändern.</p>
 
 
 </section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Fußnoten</h2>
+
+<ol>
+<li id="fn1"><p>Die Option <code>coder</code> ist deprecated, wird also demnächst aus der Spezifikation entfernt.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

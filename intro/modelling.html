@@ -267,8 +267,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#verona-modul-meldet-bereitschaft" id="toc-verona-modul-meldet-bereitschaft" class="nav-link" data-scroll-target="#verona-modul-meldet-bereitschaft">Verona-Modul meldet Bereitschaft</a></li>
   <li><a href="#start-kommando" id="toc-start-kommando" class="nav-link" data-scroll-target="#start-kommando">Start-Kommando</a></li>
   <li><a href="#interaktion-zustandsänderung-melden" id="toc-interaktion-zustandsänderung-melden" class="nav-link" data-scroll-target="#interaktion-zustandsänderung-melden">Interaktion: Zustandsänderung melden</a></li>
-  <li><a href="#beenden-unnötig" id="toc-beenden-unnötig" class="nav-link" data-scroll-target="#beenden-unnötig">Beenden: unnötig</a></li>
   <li><a href="#korrekte-zuordnung-der-modul-instanz-bzw.-der-daten" id="toc-korrekte-zuordnung-der-modul-instanz-bzw.-der-daten" class="nav-link" data-scroll-target="#korrekte-zuordnung-der-modul-instanz-bzw.-der-daten">Korrekte Zuordnung der Modul-Instanz bzw. der Daten</a></li>
+  <li><a href="#beenden-unnötig" id="toc-beenden-unnötig" class="nav-link" data-scroll-target="#beenden-unnötig">Beenden: unnötig</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/verona-interfaces/verona-interfaces.github.io/issues/new" class="toc-action"><i class="bi bi-github"></i>Problem melden</a></li></ul></div></nav>
     </div>
@@ -294,6 +294,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<p>Die Interaktion zwischen der Hostanwendung, dem integrierten Verona-Modul, der darunterliegenden Datenbank und dem Endnutzer lassen sich wie folgt beschreiben:</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -301,21 +302,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div>
 <pre class="mermaid mermaid-js">sequenceDiagram
     participant DB as Datenbank
-    participant MH as Modul-Host
+    participant HA as Host-Anwendung
 
-    DB-&gt;&gt;MH:Laden Daten
+    DB-&gt;&gt;HA:Laden Daten
     participant VM as Verona-Modul
-    MH-&gt;&gt;VM:Initialisierung
-    VM-&gt;&gt;MH:vopReadyNotification
-    MH-&gt;&gt;VM:vopStartCommand
+    HA-&gt;&gt;VM:Initialisierung
+    VM-&gt;&gt;HA:vopReadyNotification
+    HA-&gt;&gt;VM:vopStartCommand
     loop
         Actor TP as Person
         VM-&gt;TP:Interaktion
-        VM-&gt;&gt;MH:vopStateChangedNotification
+        VM-&gt;&gt;HA:vopStateChangedNotification
     end
     VM-xTP:Navigation
-    MH-&gt;&gt;DB:Speichern geänderte Daten
-    MH-xVM:Navigation
+    HA-&gt;&gt;DB:Speichern geänderte Daten
+    HA-xVM:Navigation
 </pre>
 </div>
 <p></p></figure><p></p>
@@ -329,7 +330,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="nachrichten-empfangen" class="level1">
 <h1>Nachrichten empfangen</h1>
-<p>Die Kommunikation kann nur erfolgen, wenn die Host-Anwendung Nachrichten an das <code>window</code>-Objekt abfängt. Das Modul kann nur allgemein an seine Host-Anwendung Nachrichten schicken, nicht gezielt an eine bestimmte Komponente oder ein bestimmtes DOM-Element. Auf höchster Ebene muss also z. B. so etwas einmalig aufgerufen werden:</p>
+<p>Die Kommunikation kann nur erfolgen, wenn die Host-Anwendung Nachrichten an das <code>window</code>-Objekt abfängt. Das Verona-Modul kann nur allgemein an seine Host-Anwendung Nachrichten schicken, nicht gezielt an eine bestimmte Komponente oder ein bestimmtes DOM-Element. Auf höchster Ebene muss also z. B. so etwas einmalig aufgerufen werden:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>Listener einrichten bei Start der Hostanwendung</strong></pre>
@@ -380,7 +381,7 @@ Vorsicht bei mehreren Modulen auf einer Seite
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        playerConfig<span class="op">:</span> <span class="kw">this</span><span class="op">.</span><span class="at">tcs</span><span class="op">.</span><span class="at">fullPlayerConfig</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>      }<span class="op">,</span> <span class="st">'*'</span>)<span class="op">;</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Wenn später ein neues Startkommando vom Host geschickt wird, stellt das Modul zunächst den Ausgangszustand nach der Initialisierung wieder her und verfährt dann wie oben. Sollten z. B. mehrere Units hintereinander denselben Player anfordern, muss nicht immer neu das gesamte Modul neu initialisiert werden. Der Player kann über ein neues Start-Kommando “nachgenutzt” werden.</p>
+<p>Wenn später ein neues Startkommando vom Host geschickt wird, stellt das Modul zunächst den Ausgangszustand zur Initialisierung wieder her und verfährt dann wie oben. Sollten z. B. mehrere Units hintereinander denselben Player anfordern, muss nicht immer neu das gesamte Modul neu initialisiert werden. Der Player kann über ein neues Start-Kommando “nachgenutzt” werden.</p>
 </section>
 <section id="interaktion-zustandsänderung-melden" class="level1">
 <h1>Interaktion: Zustandsänderung melden</h1>
@@ -399,10 +400,6 @@ Vorsicht Datenflut
 </div>
 </div>
 </section>
-<section id="beenden-unnötig" class="level1">
-<h1>Beenden: unnötig</h1>
-<p>Da Änderungen sofort gemeldet werden, ist ein formelles Beenden des Moduls unnötig. Es gibt bei keinem Verona-Modul Bedarf, vor Entfernen des Moduls bestimmte Funktionen aufzurufen. Wenn das Modul nicht mehr benötigt wird (oben dargestellt als Navigation), kann das <code>&lt;iframe&gt;</code>-Element entfernt oder geleert werden (<code>srcdoc=""</code>).</p>
-</section>
 <section id="korrekte-zuordnung-der-modul-instanz-bzw.-der-daten" class="level1">
 <h1>Korrekte Zuordnung der Modul-Instanz bzw. der Daten</h1>
 <p>Bei den Nachrichten gibt es zwei Eigenschaften, die eine korrekte Zuordnung unterstützen:</p>
@@ -410,6 +407,10 @@ Vorsicht Datenflut
 <li><code>sessionId</code>: Diese ID wird beim Startkommando vom Host vergeben und wird vom Modul bei jeder Nachricht mitgeschickt. Diese ID wird durch das Modul nicht verändert. Der Host kann darüber das Modul-Element identifizieren und daher sicherstellen, dass bei den überwiegend asynchronen Vorgängen im Browser die Daten stets z. B. der richtigen Unit zugeordnet werden.</li>
 <li><code>timeStamp</code>: Auch diese Eigenschaft wird stets vom Modul mitgeschickt. Darüber kann sichergestellt werden, dass die Reihenfolge der Nachrichten nicht vertauscht wird. Es ist stets die jeweils letzte Änderung feststellbar.</li>
 </ul>
+</section>
+<section id="beenden-unnötig" class="level1">
+<h1>Beenden: unnötig</h1>
+<p>Da Änderungen sofort gemeldet werden, ist ein formelles Beenden des Moduls unnötig. Es gibt bei keinem Verona-Modul Bedarf, vor Entfernen des Moduls bestimmte Funktionen aufzurufen. Wenn das Modul nicht mehr benötigt wird (oben dargestellt als Navigation), kann das <code>&lt;iframe&gt;</code>-Element entfernt oder geleert werden (<code>srcdoc=""</code>).</p>
 
 
 </section>

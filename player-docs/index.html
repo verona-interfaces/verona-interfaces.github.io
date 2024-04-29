@@ -261,7 +261,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Ein Player präsentiert eine Unit und sorgt für die Interaktion mit der Testperson bzw. mit den Befragten. Das grundlegende Modell hierbei ist, dass ein Test bzw. Befragung (nachfolgend synonym) aus einer Abfolge von inhaltlich getrennten Units besteht und diese jeweils einzeln mit einem Player-Modul präsentiert werden.</p>
+<p>Ein Player präsentiert jeweils eine Unit und sorgt für die Interaktion mit der Testperson bzw. mit den Befragten. Das grundlegende Modell hierbei ist, dass ein Test bzw. Befragung (nachfolgend synonym) aus einer Abfolge von inhaltlich getrennten Units besteht und diese jeweils einzeln mit einem Player-Modul präsentiert werden.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -282,26 +282,26 @@ Spezifikation
 <div>
 <pre class="mermaid mermaid-js">sequenceDiagram
     autonumber
-    participant MH as Modul-Host
-    participant VM as Player
-    MH-&gt;&gt;VM:Initialisierung
-    VM-&gt;&gt;MH:vopReadyNotification
-    MH-&gt;&gt;VM:vopStartCommand
+    participant HA as Host-Anwendung
+    participant VM as Player (Verona Modul)
+    HA-&gt;&gt;VM:Initialisierung
+    VM-&gt;&gt;HA:vopReadyNotification
+    HA-&gt;&gt;VM:vopStartCommand
     loop
         opt
-            VM-&gt;&gt;MH:vopStateChangedNotification
+            VM-&gt;&gt;HA:vopStateChangedNotification
         end
         opt
-            MH-&gt;&gt;VM:vopPageNavigationCommand
+            HA-&gt;&gt;VM:vopPageNavigationCommand
         end
         opt
-            VM-&gt;&gt;MH:vopUnitNavigationRequestedNotification
+            VM-&gt;&gt;HA:vopUnitNavigationRequestedNotification
         end
         opt
-            MH-&gt;&gt;VM:vopNavigationDeniedNotification
+            HA-&gt;&gt;VM:vopNavigationDeniedNotification
         end
         opt
-            VM-&gt;&gt;MH:vopWindowFocusChangedNotification
+            VM-&gt;&gt;HA:vopWindowFocusChangedNotification
         end
     end
 </pre>
