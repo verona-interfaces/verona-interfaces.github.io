@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Verona-Interfaces - Verona Interfaces - Editor</title>
+<title>Verona-Interfaces - Integration eines Verona-Moduls</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -29,8 +29,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../editor-docs/voeStartCommand.html" rel="next">
-<link href="../player-docs/vopStateChangedNotification.html" rel="prev">
+<link href="../intro/english.html" rel="next">
+<link href="../intro/data-structures.html" rel="prev">
 <link href="../favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -41,6 +41,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,15 +70,13 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Suchen"
   }
 }</script>
-<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="integration_styles.css">
 </head>
 
-<body class="nav-sidebar docked nav-fixed">
+<body class="nav-sidebar docked nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -112,7 +112,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../editor-docs/index.html">Editor</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro/index.html">Einführung</a></li><li class="breadcrumb-item"><a href="../intro/integration.html">Integration</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -171,7 +171,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../intro/integration.html" class="sidebar-item-text sidebar-link">
+  <a href="../intro/integration.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Integration</span></a>
   </div>
 </li>
@@ -208,7 +208,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../editor-docs/index.html" class="sidebar-item-text sidebar-link active">
+            <a href="../editor-docs/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Editor</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Abschnitt umschalten">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -234,24 +234,13 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Auf dieser Seite</h2>
-   
-  <ul>
-  <li><a href="#initialisierung" id="toc-initialisierung" class="nav-link active" data-scroll-target="#initialisierung">1 Initialisierung</a></li>
-  <li><a href="#ready-notification" id="toc-ready-notification" class="nav-link" data-scroll-target="#ready-notification">2 Ready Notification</a></li>
-  <li><a href="#start-command" id="toc-start-command" class="nav-link" data-scroll-target="#start-command">3 Start Command</a></li>
-  <li><a href="#definition-changed-notification" id="toc-definition-changed-notification" class="nav-link" data-scroll-target="#definition-changed-notification">4 Definition Changed Notification</a></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/verona-interfaces/verona-interfaces.github.io/issues/new" class="toc-action"><i class="bi bi-github"></i>Problem melden</a></li></ul></div></nav>
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro/index.html">Einführung</a></li><li class="breadcrumb-item"><a href="../intro/integration.html">Integration</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Verona Interfaces - Editor</h1>
+<h1 class="title">Integration eines Verona-Moduls</h1>
 </div>
 
 
@@ -268,97 +257,42 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Ein Editor dient der interaktiven onlinegestützten Entwicklung einer Unit. Hierbei stehen die visuelle Erscheinung und die Interaktionselemente im Vordergrund.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<a href="https://verona-interfaces.github.io/editor/">Spezifikation</a>
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Die Spezifikation der API ist als YML-Datei in der Syntax <a href="https://www.asyncapi.com/de">AsyncAPI</a> ausgeführt. Nach einer Änderung wird über ein <a href="https://www.asyncapi.com/tools/generator">Tool</a> eine lesbare Html-Datei erzeugt.</p>
-</div>
-</div>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">sequenceDiagram
-    autonumber
-    participant MH as Modul-Host
-    participant VM as Editor
-    MH-&gt;&gt;VM:Initialisierung
-    VM-&gt;&gt;MH:voeReadyNotification
-    MH-&gt;&gt;VM:voeStartCommand
-    loop
-        VM-&gt;&gt;MH:voeDefinitionChangedNotification
-    end
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<section id="initialisierung" class="level1">
-<h1>1 Initialisierung</h1>
-<p>Der Host richtet ein <code>&lt;iframe&gt;</code>-Element ein und setzt für das <code>srcdoc</code>-Attribut den kompletten Inhalt des Moduls. Das Modul ist technisch eine Html-Seite, d.&nbsp;h. es wird durch das Laden auch die Ausführung von JavaScript-Code angestoßen, der auf oberster Ebene vorgesehen ist.</p>
+<p>Die folgende Checkliste gibt eine grobe Orientierung für den Aufwand, der bei einer Integration der Verona-Player-Schnittstelle in eine existierende Infrastruktur zu erwarten ist. Dies steht exemplarisch für die Integrationen von Verona-Modulen. Die Farben markieren steigenden Aufwand.</p>
+<section id="arbeitet-das-eigene-system-aufgabenweise-oder-strukturiert-nach-teststeilaufgabenitems" class="level1">
+<h1>Arbeitet das eigene System aufgabenweise oder strukturiert nach Tests/Teilaufgaben/Items?</h1>
+<p><span style="color:#79d279;"><i class="fa-solid fa-thumbs-up fa-2x" aria-label="thumbs-up"></i></span> Die Strukturierung im Testablauf folgt Aufgaben, d.&nbsp;h. Stimulus und dazu gehörende Items werden gemeinsam präsentiert und nach der Bearbeitung zur nächsten Aufgabe navigiert. Das ist genau das Szenario, das dem Verona-Player zugrunde liegt. Ein Umbau ist hier nicht erforderlich.</p>
+<p><span style="color:#ffe680;"><i class="fa-solid fa-triangle-exclamation fa-2x" aria-label="triangle-exclamation"></i></span> Mehrere Aufgaben werden gleichzeitig auf einer Seite präsentiert - entweder der gesamte Test oder zumindest Testblöcke (Aufgabenfolgen). Dann muss die Verona-Schnittstelle für jede Aufgabe einzeln implementiert werden, dann also mehrfach pro Seite. Die Kommunikation mit der Aufgabe muss dann auch mehrfach implementiert werden, was das Risiko von Datenverlust erhöht. Besser wäre ein Umbau auf die aufgabenweise Präsentation.</p>
+<p><span style="color:#ff9980;"><i class="fa-solid fa-face-frown fa-2x" aria-label="face-frown"></i></span> Die Aufgabe wird in Einzelteile zerlegt und stückchenweise präsentiert. Der Stimulus läuft völlig getrennt. Das kann die Verona-Schnittstelle nicht leisten, da die Kategorien “Stimulus”, “Instruktion”, “Item” usw. nicht transparent sind, also innerhalb der Aufgabendefinition nicht identifiziert werden können.</p>
 </section>
-<section id="ready-notification" class="level1">
-<h1>2 Ready Notification</h1>
-<p>Dieser Code sendet als letzten Schritt der eigenen Initialisierung eine Nachricht an den Host, dass das Modul bereit sei für das Start-Kommando. Als Payload wird das <a href="../intro/metadata.html">Metadaten-Objekt</a> mitgeschickt – hier allerdings als String serialisiert, um nicht bei jeder Änderung der Metadaten-Spezifikation alle Modul-API ändern zu müssen.</p>
+<section id="werden-die-html-seiten-komplett-auf-dem-server-erzeugt-oder-erst-dynamisch-im-browser" class="level1">
+<h1>Werden die Html-Seiten komplett auf dem Server erzeugt oder erst dynamisch im Browser?</h1>
+<p><span style="color:#79d279;"><i class="fa-solid fa-thumbs-up fa-2x" aria-label="thumbs-up"></i></span> Eine Programmierung im Browser (JavaScript) kontrolliert die Anzeige der Aufgaben und sorgt bei Änderungen für das Speichern. Damit kann die Verona-Schnittstelle wie gedacht eingebaut und die Kommunikation eingerichtet werden. Die Kommunikation mit dem Server ist bereits grundsätzlich verfügbar.</p>
+<p><span style="color:#ffe680;"><i class="fa-solid fa-triangle-exclamation fa-2x" aria-label="triangle-exclamation"></i></span> Der Server erzeugt große Teile der Seite, aber es gibt browserseitig Programmierungen für die Interaktion. Hierbei gäbe es u. U. Mehraufwand, weil z. B. das Laden der vorherigen Antworten vom Server bisher nicht im Ablauf vorgesehen war und neu implementiert werden muss.</p>
+<p><span style="color:#ff9980;"><i class="fa-solid fa-face-frown fa-2x" aria-label="face-frown"></i></span> Der Server erzeugt die komplette Seite. Änderungen der Anzeige werden durch Neuladen der Seite über Schalter/Aktionsflächen bzw. Navigation/Links ausgelöst. Das wäre problematisch, weil das Laden eines Players, der Aufgabendefinition und ggf. vorher gegebener Antworten Aktionen innerhalb des Browsers sind. Wenn es hierzu bisher keine Erfahrungen gibt bzw. grundsätzlich bisher keine Kommunikation zum Server eingebaut ist, dann wäre hier größerer Aufwand nötig.</p>
 </section>
-<section id="start-command" class="level1">
-<h1>3 Start Command</h1>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tipp
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Ausführliche Darstellung des Start-Kommandos siehe <a href="../editor-docs/voeStartCommand.html">hier</a>.</p>
-</div>
-</div>
-<p>Nachdem der Host die Bereitschaftsmeldung erhalten hat, schickt er die Unit-Definition: Parameter <code>unitDefinition</code>, serialisiert als String. Damit stellt der Editor für die erste Seite alle Elemente dar, die in der Unit-Definition vorgesehen sind und bereitet die Oberfläche vor.</p>
-<p>Dem Editor wird mit <code>sessionId</code> eine Kennung mitgeschickt, die der Editor anschließend in jeder Nachricht zur Änderung der Definition verwenden soll. Damit wird die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit unterstützt.</p>
-<p>Weitere Parameter:</p>
-<ul>
-<li><code>unitDefinitionType</code>: Sollte es Varianten oder Versionen von Unit-Definitionen geben, kann dies hier dem Editor mitgeteilt werden. Alternativ (oder parallel) kann natürlich diese Information als Teil der Datenstruktur der Unit-Definition übergeben werden.</li>
-<li><code>editorConfig</code>: Hier werden Parameter übergeben, die die Bearbeitung steuern. Weitere Erläuterungen zu diesem Datenobjekt finden Sie <a href="../editor-docs/voeStartCommand.html">hier</a>.</li>
-</ul>
+<section id="werden-zur-programmierung-stark-abstrahierende-frameworks-genutzt" class="level1">
+<h1>Werden zur Programmierung stark abstrahierende Frameworks genutzt?</h1>
+<p><span style="color:#79d279;"><i class="fa-solid fa-thumbs-up fa-2x" aria-label="thumbs-up"></i></span> Es werden keine Frameworks benutzt bzw. nur gut kontrollierbare Bibliotheken. Alles kann durch die beteiligten Programmierer:innen gut gesteuert werden. Der Einbau der Schnittstelle kann dann schnell erfolgen.</p>
+<p><span style="color:#ffe680;"><i class="fa-solid fa-triangle-exclamation fa-2x" aria-label="triangle-exclamation"></i></span> Das genutzte Framework verdeckt viele Teile der Programmierung, kann aber gut durch Module/Komponenten erweitert werden. Ein Verona-Host kann extern vorbereitet und dann gezielt in die Automatismen des Frameworks eingebunden werden. Unter Umständen muss diese neue Komponente umfangreicher programmiert werden als beim Vollzugriff auf die Programmierung. Andererseits muss man diesen Aufwand nur einmal leisten und jemand mit demselben Framework kann diese Komponente sofort einsetzen.</p>
+<p><span style="color:#ff9980;"><i class="fa-solid fa-face-frown fa-2x" aria-label="face-frown"></i></span> Das genutzte Framework kapselt Funktionalität und Navigation so stark, dass ein Eingreifen nicht möglich ist. Die Anpassungsmöglichkeiten durch Konfiguration bzw. Deklaration sind stark beschränkt. Dann muss nach Wegen gesucht werden, das Framework für die Aufgabenanzeige zu umgehen, d.&nbsp;h. die beteiligten Programmierer:innen begeben sich auf neues und u. U. unsicheres und undokumentiertes Terrain.</p>
 </section>
-<section id="definition-changed-notification" class="level1">
-<h1>4 Definition Changed Notification</h1>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tipp
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Ausführliche Darstellung der Meldung zur Änderung der Definition siehe <a href="../editor-docs/voeDefinitionChangedNotification.html">hier</a>.</p>
-</div>
-</div>
-<p>Sobald eine Bearbeitung der Unit-Definition stattgefunden hat, meldet der Editor diese Änderung. Parameter:</p>
-<ul>
-<li><code>sessionId</code>: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.</li>
-<li><code>timeStamp</code>: Ein String im Standard-Format <a href="https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-date-time-string-format">date-time</a>. Die Nutzung dieser Information ist dem Host überlassen, soll aber vor allem die korrekte Reihenfolge vieler asynchron eintreffender Nachrichten sicherstellen.</li>
-<li><code>unitDefinition</code>: Die neue vollständige Unit-Definition, serialisiert als String.</li>
-<li><code>unitDefinitionType</code>: Spezifizierung des Datenformates, wenn gewünscht.</li>
-<li><code>variables</code>: Liste aller Variablen der Unit-Definition. Diese Liste wird z. B. benötigt, um die Kodierung zu erstellen.</li>
-<li><code>dependenciesToPlay</code>: Abhängigkeiten von externen Bibliotheken oder Diensten für das Abspielen der Unit.</li>
-<li><code>dependenciesToEdit</code>: Abhängigkeiten von externen Bibliotheken oder Diensten für das Editieren der Unit.</li>
-</ul>
+<section id="ist-die-nutzung-des-html-elementes-iframe-problematisch" class="level1">
+<h1>Ist die Nutzung des Html-Elementes &lt;iframe&gt; problematisch?</h1>
+<p><span style="color:#79d279;"><i class="fa-solid fa-thumbs-up fa-2x" aria-label="thumbs-up"></i></span> Nein. Ein Seitenbereich kann getrost auf diese Art betrieben werden.</p>
+<p><span style="color:#ffe680;"><i class="fa-solid fa-triangle-exclamation fa-2x" aria-label="triangle-exclamation"></i></span> Einige Eigenschaften des &lt;iframe&gt;-Elements lösen unerwünschtes Verhalten aus. Z. B. könnte ein gesetzter Eingabe-Fokus innerhalb des &lt;iframe&gt;-Elements als Verlassen der Seite angesehen werden und entsprechend ein Signal gesendet werden (Testperson versucht im Internet die Antwort zu finden). Hier sind entsprechende Justierungen nötig und möglich.</p>
+<p><span style="color:#ff9980;"><i class="fa-solid fa-face-frown fa-2x" aria-label="face-frown"></i></span> Das genutzte System verhindert grundsätzlich aus Sicherheitsgründen die Nutzung eines &lt;iframe&gt;-Elements. Das könnte problematisch werden, da dann die Architektur des bisherigen Systems die Verona-Schnittstelle verhindert.</p>
+</section>
+<section id="sind-formate-für-aufgabendefinition-und-antworten-hart-vorgegeben" class="level1">
+<h1>Sind Formate für Aufgabendefinition und Antworten hart vorgegeben?</h1>
+<p><span style="color:#79d279;"><i class="fa-solid fa-thumbs-up fa-2x" aria-label="thumbs-up"></i></span> Nein. Aufgabendefinition und Antworten können ein beliebiges Format haben. Um die Antworten wie bisher auswerten zu können, reicht ein kleiner Konverter.</p>
+<p><span style="color:#ffe680;"><i class="fa-solid fa-triangle-exclamation fa-2x" aria-label="triangle-exclamation"></i></span> Aufgabendefinition und Antworten sind vorgegeben und viele Systemkomponenten verlassen sich darauf. Hier ist Aufwand zu erwarten, über ständige Datenkonvertierungen das bisherige Verhalten abzusichern.</p>
+<p><span style="color:#ff9980;"><i class="fa-solid fa-face-frown fa-2x" aria-label="face-frown"></i></span> Das gesamte System verlässt sich auf bestimmte Datenstrukturen bei Aufgabendefinition und Antworten und diese Strukturen können nicht über Datenkonvertierung aus den Verona-Daten generiert werden. Erforderliche Zusatzdaten liegen nicht vor, wie z. B. die Information, ob eine gegebene Antwort richtig ist. Hier kollidieren also grundsätzliche Auffassungen über die Datenhaltung und es ist ein erheblicher Umbau nötig.</p>
+</section>
+<section id="sind-variationen-der-aufgabenanzeige-in-anderem-zusammenhang-nötig" class="level1">
+<h1>Sind Variationen der Aufgabenanzeige in anderem Zusammenhang nötig?</h1>
+<p><span style="color:#79d279;"><i class="fa-solid fa-thumbs-up fa-2x" aria-label="thumbs-up"></i></span> Nein. Aufgaben werden zwar mit den gegebenen Antworten auch bei der Kodierung angezeigt und auch als Ansicht für Eltern, wenn sie die Antworten ihres Kindes anschauen möchten, aber es ist genau dieselbe Ansicht wie im Test. In diesen Fällen kann also einfach wieder ein Verona-Player-Host implementiert werden mit den gegebenen Antworten.</p>
+<p><span style="color:#ffe680;"><i class="fa-solid fa-triangle-exclamation fa-2x" aria-label="triangle-exclamation"></i></span> Ja. Das Testsystem soll bei der Anzeige für Kodierung und für Eltern keine Änderungen erlauben. Diese Variation ist für die aktuelle Verona-Schnittstelle nicht verfügbar. Allerdings richtet eine Änderung auch keinen Schaden an, da Änderungen nicht gespeichert werden. Ein Vor- und Zurückblättern stellt die korrekte Beantwortung wieder her.</p>
+<p><span style="color:#ff9980;"><i class="fa-solid fa-face-frown fa-2x" aria-label="face-frown"></i></span> Ja. Das Testsystem visualisiert mit einer Variation der Aufgabenansicht, ob die Antworten richtig oder falsch sind. Dazu werden in der Nähe der Antwortfelder grüne bzw. rote Symbole eingeblendet. Das wird bei der Ansicht durch die Lehrkräfte und für die Eltern verwendet. Diese Variation ist für die aktuelle Verona-Schnittstelle nicht verfügbar.</p>
 
 
 </section>
@@ -782,13 +716,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../player-docs/vopStateChangedNotification.html" class="pagination-link" aria-label="Status-Änderung">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Status-Änderung</span>
+      <a href="../intro/data-structures.html" class="pagination-link" aria-label="Datenstrukturen">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Datenstrukturen</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../editor-docs/voeStartCommand.html" class="pagination-link" aria-label="Start-Kommando">
-        <span class="nav-page-text">Start-Kommando</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../intro/english.html" class="pagination-link" aria-label="English: About">
+        <span class="nav-page-text">English: About</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -806,7 +740,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/verona-interfaces/verona-interfaces.github.io/issues/new" class="toc-action"><i class="bi bi-github"></i>Problem melden</a></li></ul></div></div>
+    <div class="toc-actions"><ul><li><a href="https://github.com/verona-interfaces/verona-interfaces.github.io/issues/new" class="toc-action"><i class="bi bi-github"></i>Problem melden</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
