@@ -84,7 +84,7 @@ Mit diesem Verona-Modul werden im Autorensystem die Vorschriften für die Antwor
 
 ## Variablenliste
 
-Damit das Kodierschema entwickelt werden kann, muss der Schemer die Variablen kennen, die im Editor angelegt wurden. Diese Datenstruktur ist als [Teil des Editors](https://verona-interfaces.github.io/editor/#schema-VariableList) spezifiziert.
+Damit das Kodierschema entwickelt werden kann, muss der Schemer die Variablen kennen, die im Editor angelegt wurden. Diese Datenstruktur ist als [Teil des Editors](../editor-docs/#parameter-variables) spezifiziert.
 
 ## Antwortdaten
 
