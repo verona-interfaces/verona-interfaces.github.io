@@ -75,6 +75,11 @@ An das `<iframe>`-Element wird dann üblicherweise ein Kommando geschickt, das d
       }, '*');
 ```
 
+::: {.callout-important}
+## `type' ist Teil des Payloads
+
+Die Konvention sieht vor, dass die Operation-ID als Eigenschaft `type` stets Teil des Datenobjektes ist. Es gibt keinen separaten Parameter dafür.
+:::
 
 Wenn später ein neues Startkommando vom Host geschickt wird, stellt das Modul zunächst den Ausgangszustand zur Initialisierung wieder her und verfährt dann wie oben. Sollten z. B. mehrere Units hintereinander denselben Player anfordern, muss nicht immer neu das gesamte Modul neu initialisiert werden. Der Player kann über ein neues Start-Kommando "nachgenutzt" werden.
 
@@ -98,3 +103,11 @@ Bei den Nachrichten gibt es zwei Eigenschaften, die eine korrekte Zuordnung unte
 # Beenden: unnötig
 
 Da Änderungen sofort gemeldet werden, ist ein formelles Beenden des Moduls unnötig. Es gibt bei keinem Verona-Modul Bedarf, vor Entfernen des Moduls bestimmte Funktionen aufzurufen. Wenn das Modul nicht mehr benötigt wird (oben dargestellt als Navigation), kann das `<iframe>`-Element entfernt oder geleert werden (`srcdoc=""`).
+
+# {{< fa skull-crossbones >}} Sicherheitshinweis
+
+Über die Verwendung von postMessage() in den [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage#notes):
+
+> Any window may access this method on any other window, at any time, regardless of the location of the document in the window, to send it a message. Consequently, any event listener used to receive messages **must** first check the identity of the sender of the message, using the `origin` and possibly `source` properties. This cannot be overstated: **Failure to check the `origin` and possibly `source` properties enables cross-site scripting attacks.**
+
+Host-Anwendung und Verona-Modul sollten also alles unternehmen, die Identität des Senders festzustellen. Dazu kann man die Html-Elemente mit IDs versehen und die sessionId verwenden.
