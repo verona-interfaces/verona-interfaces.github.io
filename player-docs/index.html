@@ -235,7 +235,9 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#page-navigation-command" id="toc-page-navigation-command" class="nav-link" data-scroll-target="#page-navigation-command">5 Page Navigation Command</a></li>
   <li><a href="#unit-navigation-requested-notification" id="toc-unit-navigation-requested-notification" class="nav-link" data-scroll-target="#unit-navigation-requested-notification">6 Unit Navigation Requested Notification</a></li>
   <li><a href="#navigation-denied-notification" id="toc-navigation-denied-notification" class="nav-link" data-scroll-target="#navigation-denied-notification">7 Navigation Denied Notification</a></li>
-  <li><a href="#window-focus-changed-notification" id="toc-window-focus-changed-notification" class="nav-link" data-scroll-target="#window-focus-changed-notification">8 Window Focus Changed Notification</a></li>
+  <li><a href="#player-config-changed-notification" id="toc-player-config-changed-notification" class="nav-link" data-scroll-target="#player-config-changed-notification">8 Player Config Changed Notification</a></li>
+  <li><a href="#runtime-error-notification" id="toc-runtime-error-notification" class="nav-link" data-scroll-target="#runtime-error-notification">9 Runtime Error Notification</a></li>
+  <li><a href="#window-focus-changed-notification" id="toc-window-focus-changed-notification" class="nav-link" data-scroll-target="#window-focus-changed-notification">10 Window Focus Changed Notification</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/verona-interfaces/verona-interfaces.github.io/issues/new" class="toc-action"><i class="bi bi-github"></i>Problem melden</a></li></ul></div></nav>
     </div>
@@ -299,6 +301,12 @@ Spezifikation
         end
         opt
             HA-&gt;&gt;VM:vopNavigationDeniedNotification
+        end
+        opt
+            HA-&gt;&gt;VM:vopPlayerConfigChangedNotification
+        end
+        opt
+            VM-&gt;&gt;HA:vopRuntimeErrorNotification
         end
         opt
             VM-&gt;&gt;HA:vopWindowFocusChangedNotification
@@ -393,8 +401,42 @@ Tipp
 <li><code>reason</code>: Hinweis für den Player, warum die Navigation verweigert wurde: <code>presentationIncomplete</code> und/oder <code>responsesIncomplete</code>.</li>
 </ul>
 </section>
+<section id="player-config-changed-notification" class="level1">
+<h1>8 Player Config Changed Notification</h1>
+<p>Diese Nachricht soll den Player darüber informieren, dass sich die Konfiguration <code>playerConfig</code>, die das Modul im Startkommando erhalten hat, geändert hat. Beispiele:</p>
+<ul>
+<li>durch Antworten oder Zeitablauf ist die Liste der möglichen Navigationsziele erweitert</li>
+<li>der User kann das Einblenden von IDs im Print-Modus ein- und ausschalten im Host</li>
+</ul>
+<p>Parameter:</p>
+<ul>
+<li><code>sessionId</code>: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.</li>
+<li><code>playerConfig</code>: Bitte diese Datenstruktur <a href="vopStartCommand.html#unitnumber-unittitle-unitid">hier nachlesen</a></li>
+</ul>
+</section>
+<section id="runtime-error-notification" class="level1">
+<h1>9 Runtime Error Notification</h1>
+<p>Diese Nachricht soll die Host-Anwendung darüber informieren, dass während der Ausführung von Code im Player ein Fehler aufgetreten ist, der die Beantwortung beeinträchtigen könnte. Die Interpretation ist dem Host überlassen. Sie reicht von Benachrichtigung des Users über die Freigabe der Navigation (presentationProgress verhindert normalerweise das Weiterblättern) bis zum Abbruch der Testung.</p>
+<ul>
+<li><code>sessionId</code>: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.</li>
+<li><code>code</code>, <code>message</code>: Strings, die den Fehler beschreiben.</li>
+</ul>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Subject to change
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Für den Code sollte es eine Liste von möglichen Werten geben, damit die Host-Anwendungen konsistent reagieren. Aktuell (Version 6.0) liegen hierzu noch zu wenig Erfahrungen vor. Beispiele: <code>AUDIO_CORRUPT</code>, <code>GEOGEBRA_CRASH</code></p>
+</div>
+</div>
+</section>
 <section id="window-focus-changed-notification" class="level1">
-<h1>8 Window Focus Changed Notification</h1>
+<h1>10 Window Focus Changed Notification</h1>
 <p>In Testungen kann es wichtig sein festzustellen, ob die Testperson sich im Browser noch auf der Seite des Tests befindet. Sollte dies nicht der Fall sein, besteht der Verdacht, dass die Testperson unzulässigerweise andere Webseiten aufruft, um z. B. eine Übersetzung zu erhalten.</p>
 <p>Da technisch der Wechsel aus dem Host-Fensterbereich in den Bereich des <code>&lt;iframe&gt;</code>-Elements des Players einem Verlassen der Testseite gleichkommt, muss der Player dem Host mitteilen, dass er den Fokus erhalten bzw. verloren hat. Parameter:</p>
 <ul>

@@ -75,6 +75,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -269,6 +271,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#interaktion-zustandsänderung-melden" id="toc-interaktion-zustandsänderung-melden" class="nav-link" data-scroll-target="#interaktion-zustandsänderung-melden">Interaktion: Zustandsänderung melden</a></li>
   <li><a href="#korrekte-zuordnung-der-modul-instanz-bzw.-der-daten" id="toc-korrekte-zuordnung-der-modul-instanz-bzw.-der-daten" class="nav-link" data-scroll-target="#korrekte-zuordnung-der-modul-instanz-bzw.-der-daten">Korrekte Zuordnung der Modul-Instanz bzw. der Daten</a></li>
   <li><a href="#beenden-unnötig" id="toc-beenden-unnötig" class="nav-link" data-scroll-target="#beenden-unnötig">Beenden: unnötig</a></li>
+  <li><a href="#sicherheitshinweis" id="toc-sicherheitshinweis" class="nav-link" data-scroll-target="#sicherheitshinweis"><i class="fa-solid fa-skull-crossbones" aria-label="skull-crossbones"></i> Sicherheitshinweis</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/verona-interfaces/verona-interfaces.github.io/issues/new" class="toc-action"><i class="bi bi-github"></i>Problem melden</a></li></ul></div></nav>
     </div>
@@ -381,6 +384,19 @@ Vorsicht bei mehreren Modulen auf einer Seite
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        playerConfig<span class="op">:</span> <span class="kw">this</span><span class="op">.</span><span class="at">tcs</span><span class="op">.</span><span class="at">fullPlayerConfig</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>      }<span class="op">,</span> <span class="st">'*'</span>)<span class="op">;</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+`type’ ist Teil des Payloads
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Die Konvention sieht vor, dass die Operation-ID als Eigenschaft <code>type</code> stets Teil des Datenobjektes ist. Es gibt keinen separaten Parameter dafür.</p>
+</div>
+</div>
 <p>Wenn später ein neues Startkommando vom Host geschickt wird, stellt das Modul zunächst den Ausgangszustand zur Initialisierung wieder her und verfährt dann wie oben. Sollten z. B. mehrere Units hintereinander denselben Player anfordern, muss nicht immer neu das gesamte Modul neu initialisiert werden. Der Player kann über ein neues Start-Kommando “nachgenutzt” werden.</p>
 </section>
 <section id="interaktion-zustandsänderung-melden" class="level1">
@@ -411,6 +427,14 @@ Vorsicht Datenflut
 <section id="beenden-unnötig" class="level1">
 <h1>Beenden: unnötig</h1>
 <p>Da Änderungen sofort gemeldet werden, ist ein formelles Beenden des Moduls unnötig. Es gibt bei keinem Verona-Modul Bedarf, vor Entfernen des Moduls bestimmte Funktionen aufzurufen. Wenn das Modul nicht mehr benötigt wird (oben dargestellt als Navigation), kann das <code>&lt;iframe&gt;</code>-Element entfernt oder geleert werden (<code>srcdoc=""</code>).</p>
+</section>
+<section id="sicherheitshinweis" class="level1">
+<h1><i class="fa-solid fa-skull-crossbones" aria-label="skull-crossbones"></i> Sicherheitshinweis</h1>
+<p>Über die Verwendung von postMessage() in den <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage#notes">MDN Web Docs</a>:</p>
+<blockquote class="blockquote">
+<p>Any window may access this method on any other window, at any time, regardless of the location of the document in the window, to send it a message. Consequently, any event listener used to receive messages <strong>must</strong> first check the identity of the sender of the message, using the <code>origin</code> and possibly <code>source</code> properties. This cannot be overstated: <strong>Failure to check the <code>origin</code> and possibly <code>source</code> properties enables cross-site scripting attacks.</strong></p>
+</blockquote>
+<p>Host-Anwendung und Verona-Modul sollten also alles unternehmen, die Identität des Senders festzustellen. Dazu kann man die Html-Elemente mit IDs versehen und die sessionId verwenden.</p>
 
 
 </section>

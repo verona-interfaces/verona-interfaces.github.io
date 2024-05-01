@@ -385,29 +385,12 @@ Hinweis “required”
 <p>Hier wird der Host über die verfügbaren Seiten und die aktuelle Seite informiert. Sollte es nur eine Seite geben, kann komplett auf diese Datenbereiche verzichtet werden.</p>
 <section id="validpages" class="level2">
 <h2 class="anchored" data-anchor-id="validpages"><code>validPages</code></h2>
-<p>Dies ist ein JSON-Objekt mit der Struktur <code>key-value</code>-store. Diese Datenstruktur ist auch bekannt als dictionary oder Hash-Tabelle. Der “Key” ist hierbei die ID einer Seite, der “Value” ist das Label, das die UI bei Elementen der Seitensteuerung verwenden soll.</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Beispiel validPages</strong></pre>
-</div>
-<div class="sourceCode" id="cb2" data-filename="Beispiel validPages"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"1"</span><span class="fu">:</span> <span class="st">"Start"</span><span class="fu">,</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"2"</span><span class="fu">:</span> <span class="st">"Bestätigung"</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Subject to change
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Diese Datenstruktur wurde als ungünstig evaluiert. Es ist geplant, die Struktur in ein Array von Objekten zu überführen, jeweils mit den Eigenschaften <code>id</code> und <code>label</code>.</p>
-</div>
-</div>
+<p>Dies ist ein Array von Objekten mit folgenden Eigenschaften (Achtung: Änderung seit Version 6.0):</p>
+<ul>
+<li><code>id</code>: Kennung der Seite</li>
+<li><code>label</code>: Text für die Navigation</li>
+</ul>
+<p>Die Reihenfolge der genannten Seiten ist relevant.</p>
 </section>
 <section id="currentpage" class="level2">
 <h2 class="anchored" data-anchor-id="currentpage"><code>currentPage</code></h2>
