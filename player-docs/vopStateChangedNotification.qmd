@@ -25,20 +25,12 @@ Hier wird der Host über die verfügbaren Seiten und die aktuelle Seite informie
 
 ## `validPages`
 
-Dies ist ein JSON-Objekt mit der Struktur `key-value`-store. Diese Datenstruktur ist auch bekannt als dictionary oder Hash-Tabelle. Der "Key" ist hierbei die ID einer Seite, der "Value" ist das Label, das die UI bei Elementen der Seitensteuerung verwenden soll.
+Dies ist ein Array von Objekten mit folgenden Eigenschaften (Achtung: Änderung seit Version 6.0):
 
-```{.json filename="Beispiel validPages"}
-{
-    "1": "Start",
-    "2": "Bestätigung"
-}
-```
+* `id`: Kennung der Seite
+* `label`: Text für die Navigation
 
-::: {.callout-warning}
-## Subject to change
-
-Diese Datenstruktur wurde als ungünstig evaluiert. Es ist geplant, die Struktur in ein Array von Objekten zu überführen, jeweils mit den Eigenschaften `id` und `label`.
-:::
+Die Reihenfolge der genannten Seiten ist relevant.
 
 ## `currentPage`
 

@@ -33,6 +33,12 @@ sequenceDiagram
             HA->>VM:vopNavigationDeniedNotification
         end
         opt
+            HA->>VM:vopPlayerConfigChangedNotification
+        end
+        opt
+            VM->>HA:vopRuntimeErrorNotification
+        end
+        opt
             VM->>HA:vopWindowFocusChangedNotification
         end
     end
@@ -103,7 +109,32 @@ Die Nachricht `vopNavigationDeniedNotification` des Hosts ist also als Aufforder
 * `sessionId`: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.
 * `reason`: Hinweis für den Player, warum die Navigation verweigert wurde: `presentationIncomplete` und/oder `responsesIncomplete`.
 
-# 8 Window Focus Changed Notification
+# 8 Player Config Changed Notification
+
+Diese Nachricht soll den Player darüber informieren, dass sich die Konfiguration `playerConfig`, die das Modul im Startkommando erhalten hat, geändert hat. Beispiele:
+
+* durch Antworten oder Zeitablauf ist die Liste der möglichen Navigationsziele erweitert
+* der User kann das Einblenden von IDs im Print-Modus ein- und ausschalten im Host
+
+Parameter:
+
+* `sessionId`: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.
+* `playerConfig`: Bitte diese Datenstruktur [hier nachlesen](vopStartCommand.html#unitnumber-unittitle-unitid)
+
+# 9 Runtime Error Notification
+
+Diese Nachricht soll die Host-Anwendung darüber informieren, dass während der Ausführung von Code im Player ein Fehler aufgetreten ist, der die Beantwortung beeinträchtigen könnte. Die Interpretation ist dem Host überlassen. Sie reicht von Benachrichtigung des Users über die Freigabe der Navigation (presentationProgress verhindert normalerweise das Weiterblättern) bis zum Abbruch der Testung.
+
+* `sessionId`: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.
+* `code`, `message`: Strings, die den Fehler beschreiben.
+
+::: {.callout-caution}
+## Subject to change
+
+Für den Code sollte es eine Liste von möglichen Werten geben, damit die Host-Anwendungen konsistent reagieren. Aktuell (Version 6.0) liegen hierzu noch zu wenig Erfahrungen vor. Beispiele: `AUDIO_CORRUPT`, `GEOGEBRA_CRASH`
+:::
+
+# 10 Window Focus Changed Notification
 
 In Testungen kann es wichtig sein festzustellen, ob die Testperson sich im Browser noch auf der Seite des Tests befindet. Sollte dies nicht der Fall sein, besteht der Verdacht, dass die Testperson unzulässigerweise andere Webseiten aufruft, um z. B. eine Übersetzung zu erhalten.
 
