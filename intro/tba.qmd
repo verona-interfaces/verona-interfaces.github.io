@@ -84,7 +84,8 @@ sequenceDiagram
     AN->>Schule: Logins
     note over Schule: Testdurchführung
     Schule->>AN: Antworten+Logs roh
-    AN->>IQB: Ergebnisse kodiert
+    note over AN: Kodierung
+    AN->>IQB: Datensatz
     note over IQB: Auswertung, Bericht
 ```
 
