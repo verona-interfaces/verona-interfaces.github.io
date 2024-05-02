@@ -11,13 +11,13 @@ Wir nennen die Webanwendung, die das Plug-in lädt, **"Host"**.
 
 ```{mermaid}
 flowchart BT
-    subgraph "Testsystem (Host)"
+    subgraph TS ["Testsystem (Host)"]
         TC[Testablaufsteuerung]-->|Aufgabendefinition| P[Player]
         style TC fill:white
         style P fill:white
         P-->|Antworten| TC
     end
-    style Testsystem fill:#d1d1e0,stroke:#d1d1e0
+    style TS fill:#d9e6f2,stroke:#d1d1e0
     DB[(Datenbank)]<--> TC
 ```
 
