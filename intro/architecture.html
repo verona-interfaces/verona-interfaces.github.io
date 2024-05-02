@@ -267,13 +267,13 @@ ul.task-list li input[type="checkbox"] {
 <p></p><figure class="figure"><p></p>
 <div>
 <pre class="mermaid mermaid-js">flowchart BT
-    subgraph "Testsystem (Host)"
+    subgraph TS ["Testsystem (Host)"]
         TC[Testablaufsteuerung]--&gt;|Aufgabendefinition| P[Player]
         style TC fill:white
         style P fill:white
         P--&gt;|Antworten| TC
     end
-    style Testsystem fill:#d1d1e0,stroke:#d1d1e0
+    style TS fill:#d9e6f2,stroke:#d1d1e0
     DB[(Datenbank)]&lt;--&gt; TC
 </pre>
 </div>
