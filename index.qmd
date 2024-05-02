@@ -35,7 +35,7 @@ Folgende Spezifikationen liegen vor und werden in englischer Sprache gesondert i
 Die vorliegenden Texte werden unter Federführung des [Instituts zur Qualitätsentwicklung im Bildungswesen](https://www.iqb.hu-berlin.de/vera) veröffentlicht. Autor\*innen sind ggf. entweder im Kopf eines Dokumentes genannt oder zu Beginn eines größeren Seitenzweiges. 
 
 # Lizenz
-Alle Texte und Spezifikationen[^1] sind unter der [Lizenz CC0](https://open-educational-resources.de/was-die-cc0-freigabe-bedeutet-und-welche-moeglichkeiten-sie-eroeffnen/) veröffentlicht. Die Leitlinien zur Sicherung guter wissenschaftlicher Praxis (s. z. B. [DFG-pdf](https://www.dfg.de/resource/blob/173732/4166759430af8dc2256f0fa54e009f03/kodex-gwp-data.pdf)) gebieten gleichwohl, dass die Quellen von Informationen genannt werden sollten.
+Alle Texte und Spezifikationen sind unter der [Lizenz CC0](https://open-educational-resources.de/was-die-cc0-freigabe-bedeutet-und-welche-moeglichkeiten-sie-eroeffnen/) veröffentlicht. Die Leitlinien zur Sicherung guter wissenschaftlicher Praxis (s. z. B. [DFG-pdf](https://www.dfg.de/resource/blob/173732/4166759430af8dc2256f0fa54e009f03/kodex-gwp-data.pdf)) gebieten gleichwohl, dass die Quellen von Informationen genannt werden sollten.
 
 # Haftungsausschluss
 
@@ -49,6 +49,4 @@ Dieser Webauftritt basiert auf Texten in einer einfachen Syntax [Markdown](https
 
 Wenn Sie Inhalte beitragen oder Probleme melden möchten, können Sie die Funktion "Problem melden" nutzen, die rechts auf jeder Seite zu finden ist. Sie werden dann zu GitHub weitergeleitet. Es ist ein Account bei GitHub erforderlich.
 
-Ansonsten kontakten Sie bitte die [IT des IQB](mailto:iqb-it@hu-berlin.de).
-
-[^1]: In den einzelnen Repositorien der Spezifikationen ist teilweise noch CC BY-SA 4.0 als Lizenz angegeben. Das wird in Kürze angepasst.
+Ansonsten kontakten Sie bitte die [IT des IQB](mailto:iqb-tbadev@hu-berlin.de).
