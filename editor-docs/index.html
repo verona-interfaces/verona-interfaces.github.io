@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.5.53">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Verona-Interfaces - Verona Interfaces – Editor</title>
+<title>Verona Interfaces – Editor – Verona-Interfaces</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -91,7 +91,7 @@ ul.task-list li input[type="checkbox"] {
     </a>
   </div>
             <div id="quarto-search" class="" title="Suchen"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Navigation umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navigation umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -103,17 +103,17 @@ ul.task-list li input[type="checkbox"] {
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../editor-docs/index.html">Editor</a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
   </nav>
@@ -134,7 +134,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a href="../intro/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Einführung</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Abschnitt umschalten">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -187,7 +187,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a href="../player-docs/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Player</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Abschnitt umschalten">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -235,7 +235,7 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#parameter-variables" id="toc-parameter-variables" class="nav-link" data-scroll-target="#parameter-variables">Parameter <code>variables</code></a>
   <ul class="collapse">
-  <li><a href="#id-type-format" id="toc-id-type-format" class="nav-link" data-scroll-target="#id-type-format"><code>id</code>, <code>type</code>, <code>format</code></a></li>
+  <li><a href="#id-alias-type-format" id="toc-id-alias-type-format" class="nav-link" data-scroll-target="#id-alias-type-format"><code>id</code>, <code>alias</code>, <code>type</code>, <code>format</code></a></li>
   <li><a href="#multiple-nullable" id="toc-multiple-nullable" class="nav-link" data-scroll-target="#multiple-nullable"><code>multiple</code>, <code>nullable</code></a></li>
   <li><a href="#values-valuepositionlabels-valuescomplete" id="toc-values-valuepositionlabels-valuescomplete" class="nav-link" data-scroll-target="#values-valuepositionlabels-valuescomplete"><code>values</code>, <code>valuePositionLabels</code>, <code>valuesComplete</code></a></li>
   <li><a href="#page" id="toc-page" class="nav-link" data-scroll-target="#page"><code>page</code></a></li>
@@ -316,7 +316,11 @@ participant HA as Host-Anwendung
 <li><code>sessionId</code>: Dem Editor wird vom Host mit <code>sessionId</code> eine Kennung mitgeschickt, die der Editor anschließend in jeder Nachricht über die Änderung der Unit-Definition verwenden soll. Damit wird die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit unterstützt. Diese ID ist wichtiger, wenn es mehrere Editoren pro Seite beim Host gibt, die gleichzeitig verwaltet werden sollen.</li>
 <li><code>unitDefinition</code>: Wenn es bereits eine Bearbeitung gab, dann schickt der Host die vorherigen Unit-Definition. Sie beschreibt das Erscheinungsbild der Unit und ggf. die Interaktionselemente. Es kann einfacher Text sein, aber auch kompexe Datenstrukturen – dann serialisiert als String. Dann stellt der Editor für die erste Seite alle Elemente dar, die in der Unit-Definition vorgesehen sind und bereitet die Oberfläche vor.</li>
 <li><code>unitDefinitionType</code>: Diese Angabe soll dem Editor helfen, Missverständnisse bei der Interpretation der Unit-Definition zu vermeiden. Aus Sicht der Host-Anwendung ist es jedoch wichtiger, Namen und Version des erforderlichen Editors zu kennen. Wenn bekannt ist, dass Editor <code>XY@3.5</code> für diese Unit-Definition sinnvollerweise benutzt werden sollte, dann muss der Host diesen Editor besorgen. Dann spielt der Typ der Unit-Definition eine untergeordnete Rolle.</li>
-<li><code>editorConfig</code> –&gt; <code>directDownloadUrl</code>: Sollte der Editor während der Laufzeit Code nachladen müssen, kann aus Gründen der Datensicherheit nicht einfach irgendein Server genutzt werden. Dem Editor muss mitgeteilt werden, welche URL dafür zulässig ist. Beispiel: GeoGebra.</li>
+<li><code>editorConfig</code>:
+<ul>
+<li><code>directDownloadUrl</code>: Sollte der Editor während der Laufzeit Code nachladen müssen, kann aus Gründen der Datensicherheit nicht einfach irgendein Server genutzt werden. Dem Editor muss mitgeteilt werden, welche URL dafür zulässig ist. Beispiel: GeoGebra.</li>
+<li><code>role</code>: Es kann gewünscht sein, dass nicht für alle Bearbeiter*innen alle Funktionen des Editors gleichermaßen zur Verfügung stehen. Ungeübte fühlen sich eventuell erschlagen von der Fülle der Parameter und nehmen ungünstige Änderungen vor. Die Rolle, die dem Editor hier mitgeteilt wird, variiert die Benutzeroberfläche. Mögliche Werte sind <code>guest</code>, <code>commentator</code>, <code>developer</code>, <code>maintainer</code>, <code>super</code> (abnehmende Beschränkungen).</li>
+</ul></li>
 </ul>
 </section>
 <section id="definition-changed-notification" class="level1">
@@ -333,10 +337,11 @@ participant HA as Host-Anwendung
 <h2 class="anchored" data-anchor-id="parameter-variables">Parameter <code>variables</code></h2>
 <p>Dass die Unit-Definition nicht dokumentiert ist, hat eine Menge Vorteile, allerdings auch Nachteile. Einige Informationen wären durchaus sinnvoll, anderen Programmierungen zur Verfügung zu stellen. Dazu gehört die Liste aller möglichen Variablen. Dies sind Werte-Tträger, also mit einer ID identifizierbare Quellen von Antwortdaten. Wie genau diese Antwortdaten entstehen oder wo, das ist uninteressant. Nur dass es sie gibt, ist z. B. für die Planung der Kodierung wichtig.</p>
 <p>Die Variablenliste wird stets gleichzeitig mit der Unit-Definition geschickt. Sie soll also immer aktuell sein. Die folgenden Parameter werden mitgeliefert:</p>
-<section id="id-type-format" class="level3">
-<h3 class="anchored" data-anchor-id="id-type-format"><code>id</code>, <code>type</code>, <code>format</code></h3>
+<section id="id-alias-type-format" class="level3">
+<h3 class="anchored" data-anchor-id="id-alias-type-format"><code>id</code>, <code>alias</code>, <code>type</code>, <code>format</code></h3>
 <ul>
 <li>Eine Variable braucht eine innerhalb der Unit eindeutige Bezeichnung.</li>
+<li>Ein <code>alias</code> ist eine alternative ID, die durch User vergeben werden kann. Dann kann die ID der Variable nicht mehr geändert werden und bleibt konstant über alle Verarbeitungsschritte und Versionen. Der Alias kann aber nach Bedarf geändert werden. Das IQB hat diese Trennung eingeführt, als sich Umbenennungen von Variablen häuften und jede Umbenennung Inkonsistenzen verursachte (Ableitungen schlugen fehl, Seitenzustände wurden falsch ermittelt).</li>
 <li>Ein Typ kann sein: <code>string</code>, <code>integer</code>, <code>number</code>, <code>boolean</code>, <code>attachment</code> – letzteres bezeichnet ein erzeugtes Medium, z. B. ein Bild. Im Kern handelt es sich hier um einen String, der aber eine Referenz darstellt und dem Auswertungssystem das Auffinden des zugehörigen Mediums ermöglicht.</li>
 <li>Werte für <code>format</code>:
 <ul>
@@ -414,18 +419,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -457,7 +451,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/verona-interfaces\.github\.io");
@@ -465,7 +481,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

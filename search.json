@@ -1,42 +1,32 @@
 [
   {
-    "objectID": "intro/index.html",
-    "href": "intro/index.html",
-    "title": "Verona Interfaces – Einführung",
+    "objectID": "editor-docs/index.html",
+    "href": "editor-docs/index.html",
+    "title": "Verona Interfaces – Editor",
     "section": "",
-    "text": "Es geht auf den Seiten dieser Dokumentation um große Vergleichsstudien oder Befragungen im Rahmen des nationalen Bildungsmonitorings. Hierfür ist der Begriff “Large Scale Assessments” etabliert. Die hohe Anzahl der Testpersonen soll ein datenbasiertes wissenschaftliches Monitoring des Bildungssystems ermöglichen, also Zusammenhänge sichtbar machen zwischen den Einflussfaktoren und dem Erreichen von Bildungszielen. Eine Vergleichsstudie ist in hohem Maße standardisiert und wird in einem engen Zeitfenster synchron durchgeführt.\nDer Fokus liegt also nicht auf der Einzelperson - der Schülerin oder des Schülers -, sondern auf Gruppen von Personen - Klassen, Schulen, Bezirke, Länder. Die Erkenntnisse aus den aufwändigen Testungen sollen aber nicht nur der obersten Steuerungsebene zufließen, sondern es ist an vielen Stellen eine Auswertung der Analyseergebnisse durch die Lehrkraft vorgesehen. Diese sogenannten Rückmeldungen ermöglichen durch den hohen Grad der Standardisierung eine Verortung der Leistungen der Klasse im Land und auch länderübergreifend.",
+    "text": "Ein Editor dient der interaktiven onlinegestützten Entwicklung einer Unit. Hierbei stehen die visuelle Erscheinung und die Interaktionselemente im Vordergrund.\nsequenceDiagram\n    autonumber\nparticipant HA as Host-Anwendung\n    participant VM as Editor (Verona-Modul)\n    HA-&gt;&gt;VM:Initialisierung\n    VM-&gt;&gt;HA:voeReadyNotification\n    HA-&gt;&gt;VM:voeStartCommand\n    loop\n        VM-&gt;&gt;HA:voeDefinitionChangedNotification\n    end",
     "crumbs": [
-      "Einführung"
+      "Editor"
     ]
   },
   {
-    "objectID": "intro/index.html#lesen-sie-weiter",
-    "href": "intro/index.html#lesen-sie-weiter",
-    "title": "Verona Interfaces – Einführung",
-    "section": "Lesen Sie weiter",
-    "text": "Lesen Sie weiter\n\nComputerbasiertes Testen: Ein Einstieg in das Thema “Computerbasierte Vergleichsstudien” und institutionelle Szenarien\nArchitektur: Hier wird das Plug-in-System erläutert\nModul-Metadaten: Einem Modul müssen bestimmte Informationen beigegeben werden. Diese sind hier erläutert.\nKommunikationsmodell: Wenn ein Verona-Modul von einer Webanwendung geladen wird, ist die dann folgende Kommunikation standardisiert.\nDatenstrukturen: Was ist eine Unit und welche Daten spielen bei Verona-Modulen eine Rolle?",
+    "objectID": "editor-docs/index.html#parameter-variables",
+    "href": "editor-docs/index.html#parameter-variables",
+    "title": "Verona Interfaces – Editor",
+    "section": "Parameter variables",
+    "text": "Parameter variables\nDass die Unit-Definition nicht dokumentiert ist, hat eine Menge Vorteile, allerdings auch Nachteile. Einige Informationen wären durchaus sinnvoll, anderen Programmierungen zur Verfügung zu stellen. Dazu gehört die Liste aller möglichen Variablen. Dies sind Werte-Tträger, also mit einer ID identifizierbare Quellen von Antwortdaten. Wie genau diese Antwortdaten entstehen oder wo, das ist uninteressant. Nur dass es sie gibt, ist z. B. für die Planung der Kodierung wichtig.\nDie Variablenliste wird stets gleichzeitig mit der Unit-Definition geschickt. Sie soll also immer aktuell sein. Die folgenden Parameter werden mitgeliefert:\n\nid, alias, type, format\n\nEine Variable braucht eine innerhalb der Unit eindeutige Bezeichnung.\nEin alias ist eine alternative ID, die durch User vergeben werden kann. Dann kann die ID der Variable nicht mehr geändert werden und bleibt konstant über alle Verarbeitungsschritte und Versionen. Der Alias kann aber nach Bedarf geändert werden. Das IQB hat diese Trennung eingeführt, als sich Umbenennungen von Variablen häuften und jede Umbenennung Inkonsistenzen verursachte (Ableitungen schlugen fehl, Seitenzustände wurden falsch ermittelt).\nEin Typ kann sein: string, integer, number, boolean, attachment – letzteres bezeichnet ein erzeugtes Medium, z. B. ein Bild. Im Kern handelt es sich hier um einen String, der aber eine Referenz darstellt und dem Auswertungssystem das Auffinden des zugehörigen Mediums ermöglicht.\nWerte für format:\n\ntext-selection: Ein String, der Daten für eine Textmarkierung enthält\nimage, capture-image, audio: Spezifiziert den Datentyp attachment\nggb-file, ggb-variable: Strings mit besonderem Bezug zu GeoGebra\nnon-negative: spezifiziert integer oder number\nlatex, math-ml, math-table: Strings mit besonderem Bezug zu mathematischen Formeln oder Ausdrücken\n\n\n\n\n\n\n\n\nSubject to change\n\n\n\nDie Erprobung von type kann als erfolgreich angesehen werden, bei den format-Optionen wird es noch Bewegung geben. Hier sind mitunter Ideen eingebracht, deren Nützlichkeit sich erst zeigen muss.\n\n\n\n\nmultiple, nullable\nDiese booleschen Werte kennzeichnen, ob die Variable ein Array des beschriebenen Typs und Formats enthält und ob der Wert null möglich ist.\n\n\nvalues, valuePositionLabels, valuesComplete\nDiese Angaben liefern genauere Informationen über die möglichen Werte der Variablen. Wenn valuesComplete true ist, dann handelt es sich sogar um eine vollständige Liste, und die Kodierung kann automatisch erfolgen.\n\n\npage\nDiese Information verortet die Quelle des Variablenwertes auf einer Seite der Unit.",
     "crumbs": [
-      "Einführung"
+      "Editor"
     ]
   },
   {
-    "objectID": "intro/index.html#name-und-logo",
-    "href": "intro/index.html#name-und-logo",
-    "title": "Verona Interfaces – Einführung",
-    "section": "Name und Logo",
-    "text": "Name und Logo\nEine der großen Lernstandserhebungen in Deutschland ist unter dem Namen VERA bekannt (VERgleichsArbeiten), und aus der Kombination mit Online ist dann die Bezeichnung Verona entstanden. Das Logo1 stellt eine Leiter dar - italienisch “la scala”. Skalieren ist ein wichtiger methodischer Schritt bei der Auswertung der Antworten, und die Scaliger (Scaligeri, della Scala, deutsch oft auch Skaliger, historisch auch Herren von der Leiter) waren Herren der italienischen Stadt Verona von 1262 bis 1387. Die unterschiedlichen Einfärbungen zwischen den Sprossen stehen für verschiedene Endgeräte.",
+    "objectID": "player-docs/index.html",
+    "href": "player-docs/index.html",
+    "title": "Verona Interfaces – Player",
+    "section": "",
+    "text": "Ein Player präsentiert jeweils eine Unit und sorgt für die Interaktion mit der Testperson bzw. mit den Befragten. Das grundlegende Modell hierbei ist, dass ein Test bzw. Befragung (nachfolgend synonym) aus einer Abfolge von inhaltlich getrennten Units besteht und diese jeweils einzeln mit einem Player-Modul präsentiert werden.\n\n\n\n\n\n\nSpezifikation\n\n\n\nDie Spezifikation der API ist als YML-Datei in der Syntax AsyncAPI ausgeführt. Nach einer Änderung wird über ein Tool eine lesbare Html-Datei erzeugt.\n\n\n\n\n\n\n\nsequenceDiagram\n    autonumber\n    participant HA as Host-Anwendung\n    participant VM as Player (Verona Modul)\n    HA-&gt;&gt;VM:Initialisierung\n    VM-&gt;&gt;HA:vopReadyNotification\n    HA-&gt;&gt;VM:vopStartCommand\n    loop\n        opt\n            VM-&gt;&gt;HA:vopStateChangedNotification\n        end\n        opt\n            HA-&gt;&gt;VM:vopPageNavigationCommand\n        end\n        opt\n            VM-&gt;&gt;HA:vopUnitNavigationRequestedNotification\n        end\n        opt\n            HA-&gt;&gt;VM:vopNavigationDeniedNotification\n        end\n        opt\n            HA-&gt;&gt;VM:vopPlayerConfigChangedNotification\n        end\n        opt\n            VM-&gt;&gt;HA:vopRuntimeErrorNotification\n        end\n        opt\n            VM-&gt;&gt;HA:vopWindowFocusChangedNotification\n        end\n    end\n\n\n\n\n\n\n\n1 Initialisierung\nDer Host richtet ein &lt;iframe&gt;-Element ein und setzt für das srcdoc-Attribut den kompletten Inhalt des Moduls. Das Modul ist technisch eine Html-Seite, d. h. es wird durch das Laden auch die Ausführung von JavaScript-Code angestoßen, der auf oberster Ebene vorgesehen ist.\n\n\n2 Ready Notification\nDieser Code sendet als letzten Schritt der eigenen Initialisierung eine Nachricht an den Host, dass das Modul bereit sei für das Start-Kommando. Als Payload wird das Metadaten-Objekt mitgeschickt – hier allerdings als String serialisiert, um nicht bei jeder Änderung der Metadaten-Spezifikation alle Modul-API ändern zu müssen.\n\n\n3 Start Command\n\n\n\n\n\n\nTipp\n\n\n\nAusführliche Darstellung des Start-Kommandos siehe hier.\n\n\nNachdem der Host die Bereitschaftsmeldung erhalten hat, schickt er die Unit-Definition: Parameter unitDefinition, serialisiert als String. Damit stellt der Player – der nach der Initialisierung zunächst eine leere Seite zeigt – alle Elemente dar, die in der Unit-Definition vorgesehen sind und bereitet die Interaktionselemente vor.\nDem Player wird mit sessionId eine Kennung mitgeschickt, die der Player anschließend in jeder Nachricht verwenden soll. Damit wird die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit unterstützt.\nWeitere Parameter:\n\nunitDefinitionType: Sollte es Varianten oder Versionen von Unit-Definitionen geben, kann dies hier dem Player mitgeteilt werden. Alternativ (oder parallel) kann natürlich diese Information als Teil der Datenstruktur der Unit-Definition übergeben werden.\nunitState: Sollte die Unit wiederholt präsentiert werden, soll der vorherige Bearbeitungsstatus wiederhergestellt werden. Weitere Erläuterungen zu diesem Datenobjekt finden Sie hier.\nplayerConfig: Hier werden Parameter übergeben, die die Anzeige und die Interaktion steuern. Beispielsweise kann die Art und Weise des Blätterns zur nächsten Seite festgelegt werden. Weitere Erläuterungen zu diesem Datenobjekt finden Sie hier.\n\n\n\n4 State Changed Notification\n\n\n\n\n\n\nTipp\n\n\n\nAusführliche Darstellung der Meldung zur Statusänderung siehe hier.\n\n\nSobald eine Interaktion stattgefunden hat, die als Antwort wichtig wäre oder die bei einem wiederholten Aufruf der Unit wiederhergestellt werden soll, meldet der Player diese Änderung. Parameter:\n\nsessionId: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.\ntimeStamp: Ein String im Standard-Format date-time. Die Nutzung dieser Information ist dem Host überlassen, soll aber vor allem die korrekte Reihenfolge vieler asynchron eintreffender Nachrichten sicherstellen.\nunitState: Daten der Antworten im weiteren Sinne. Diese dienen der Auswertung und der Wiederherstellung beim Zurückblättern. Weitere Erläuterungen zu diesem Datenobjekt finden Sie hier.\nplayerState: Hier schickt der Player Informationen, die dem Host helfen können, die UI anzupassen. Beispielsweise wird so ein Wechsel der Seite berichtet, damit der Host in der Navigationsdarstellung die aktive Seite anders darstellt. Weitere Erläuterungen zu diesem Datenobjekt finden Sie hier.\nlog: Hierüber werden Log-Einträge geschickt. Dies sind Ereignisse, die nicht unbedingt einen Status ändern, sondern nur der Rekonstruktion der Beantwortung über die Zeit dienen können. Weitere Erläuterungen zu diesem Datenobjekt finden Sie hier.\n\n\n\n5 Page Navigation Command\nÜber dieses Kommando kann der Host den Player anweisen, zu einer bestimmten Seite zu wechseln. Dies ist sinnvoll, wenn der Host eine Seitennavigation z. B. über eine Button-Leiste anbietet. Parameter:\n\nsessionId: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.\ntarget: ID der Seite, zu der der Player navigieren soll. Die möglichen Seiten kennt der Host aus einer Nachricht vopStateChangedNotification des Players. Liegt eine solche Nachricht nicht vor, geht der Host davon aus, dass es nur eine Seite gibt und bietet keine Seitennavigation an.\n\n\n\n6 Unit Navigation Requested Notification\nDer Player kann Buttons einblenden, über die die Testperson zu einer anderen Unit navigiert. Eine Unit-Navigation kann auch über andere Bedingungen durch den Player ausgelöst werden, z. B. Ablauf einer Frist.\nÜber diese Nachricht fordert der Player eine Unit-Navigation an. Ob dann tatsächlich eine Unit-Navigation erfolgt, entscheidet der Host. Beispielsweise wird in der Voransicht einer Unit im Autorensystem IQB-Studio nur kurz eine Nachricht eingeblendet, dass eine Unit-Navigation angefordert wurde.\n\nsessionId: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.\ntarget: Ziel-Unit. Dies ist allerdings keine ID einer konkreten Unit, sondern ein Symbol für eine relativ zur aktuellen Unit befindlichen Unit: next, previous, first, last, end. Die möglichen Ziele kennt der Player aus dem Start-Kommando.\n\n\n\n7 Navigation Denied Notification\nIm Testablauf können fehlende oder falsche Antworten problematisch sein. Insbesondere bei Befragungen ist oft Vollständigkeit gewünscht. Daher meldet der Player bei einer Statusänderung auch diese Informationen mit. Der Testcontroller kann dann je nach Einstellung entscheiden, ob eine Navigation zur nächsten Unit zulässig ist oder nicht.\nSollte dies nicht der Fall sein, sollte der Player fehlende oder falsche Antworten visuell markieren. In normalen Formularen erfolgt dies, wenn der Eingabefokus auf ein Eingabeelement kommt und ohne weitere Eingabe zum nächsten Element wechselt. Aber wenn ein Eingabeelement nie den Fokus bekommt, kann die Fehlersituation nicht erzeugt werden. Die Alternative, alle Eingabeelemente beim Betreten der Unit als fehlerhaft darzustellen, wäre keine gute UI-Entscheidung.\nDie Nachricht vopNavigationDeniedNotification des Hosts ist also als Aufforderung an den Player zu verstehen, fehlende oder falsche Eingaben visuell darzustellen. Technisch kann das z. B. über markAllAsTouched() gehen. Parameter:\n\nsessionId: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.\nreason: Hinweis für den Player, warum die Navigation verweigert wurde: presentationIncomplete und/oder responsesIncomplete.\n\n\n\n8 Player Config Changed Notification\nDiese Nachricht soll den Player darüber informieren, dass sich die Konfiguration playerConfig, die das Modul im Startkommando erhalten hat, geändert hat. Beispiele:\n\ndurch Antworten oder Zeitablauf ist die Liste der möglichen Navigationsziele erweitert\nder User kann das Einblenden von IDs im Print-Modus ein- und ausschalten im Host\n\nParameter:\n\nsessionId: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.\nplayerConfig: Bitte diese Datenstruktur hier nachlesen\n\n\n\n9 Runtime Error Notification\nDiese Nachricht soll die Host-Anwendung darüber informieren, dass während der Ausführung von Code im Player ein Fehler aufgetreten ist, der die Beantwortung beeinträchtigen könnte. Die Interpretation ist dem Host überlassen. Sie reicht von Benachrichtigung des Users über die Freigabe der Navigation (presentationProgress verhindert normalerweise das Weiterblättern) bis zum Abbruch der Testung.\n\nsessionId: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.\ncode, message: Strings, die den Fehler beschreiben.\n\n\n\n\n\n\n\nSubject to change\n\n\n\nFür den Code sollte es eine Liste von möglichen Werten geben, damit die Host-Anwendungen konsistent reagieren. Aktuell (Version 6.0) liegen hierzu noch zu wenig Erfahrungen vor. Beispiele: AUDIO_CORRUPT, GEOGEBRA_CRASH\n\n\n\n\n10 Window Focus Changed Notification\nIn Testungen kann es wichtig sein festzustellen, ob die Testperson sich im Browser noch auf der Seite des Tests befindet. Sollte dies nicht der Fall sein, besteht der Verdacht, dass die Testperson unzulässigerweise andere Webseiten aufruft, um z. B. eine Übersetzung zu erhalten.\nDa technisch der Wechsel aus dem Host-Fensterbereich in den Bereich des &lt;iframe&gt;-Elements des Players einem Verlassen der Testseite gleichkommt, muss der Player dem Host mitteilen, dass er den Fokus erhalten bzw. verloren hat. Parameter:\n\ntimeStamp: Ein String im Standard-Format date-time.\nhasFocus: Wenn true, hat der Player den Fokus bekommen, ansonsten hat er ihn verloren und der Host muss prüfen, ob er ihn erhalten hat.\n\n\n\n\n\n\n\nTipp\n\n\n\n\nDie Ereignisse blur und focus werden an window bei einem Fokuswechsel gesendet.\nDie Funktion document.hasFocus() liefert true, wenn das Dokument den Fokus hat.",
     "crumbs": [
-      "Einführung"
-    ]
-  },
-  {
-    "objectID": "intro/index.html#footnotes",
-    "href": "intro/index.html#footnotes",
-    "title": "Verona Interfaces – Einführung",
-    "section": "Fußnoten",
-    "text": "Fußnoten\n\n\ncredits to HoffmannP 2019↩︎",
-    "crumbs": [
-      "Einführung"
+      "Player"
     ]
   },
   {
@@ -48,6 +38,156 @@
     "crumbs": [
       "Einführung",
       "Architektur"
+    ]
+  },
+  {
+    "objectID": "intro/tba.html",
+    "href": "intro/tba.html",
+    "title": "Computerbasiertes Testen",
+    "section": "",
+    "text": "Die folgenden Ausführungen beziehen sich stets auf Tests, finden aber auch Anwendung auf Befragungen. Die Anforderungen an Befragungen sind ähnlich, aber meist einfacher umzusetzen. Es gibt beispielsweise keine Kodierung in “Richtig” oder “Falsch”.\nDass Befragungen hier auch technisch mit abgedeckt werden (können) liegt daran, dass große Studien zur Erfassung von Kompetenzen stets auch Befragungen mit einschließen. Auf diesem Weg ist es möglich, Einflussfaktoren über Personenmerkmale zu erheben.\n\n\n\nDas Durchführungsszenario sieht bei der Testperson ein Endgerät vor, das dem Begriff des “Computers” entspricht. Es sind also Desktop-Geräte, Laptops, Notebooks und teilweise auch Smartphones im Einsatz, wenn ein Test (engl. Assessment) im Bildungsbereich durchgeführt wird.\nDer Begriff “technologiebasiert” möchte betonen, dass es nicht unbedingt eines Computers bedarf, um digital Antworten zu erfassen. Prominentes Beispiel wäre ein Stift, der auf Spezialpapier Geschriebenes erkennt (scannen in Echtzeit) und in einen Speicher ablegt für spätere Auswertungen. Diese Überlegungen führten zum Begriff “Technologiebasiertes Assessment” oder “Technology Based Assessment”, wobei Technologie hier eher als Technik verstanden wird (Papierverfahren sind eigentlich auch Technologien).\nLetztlich sind diese Unterscheidungen hier nicht relevant und werden daher synonym verwendet. Man könnte auch eAssessment, digitales Testen usw. verwenden.",
+    "crumbs": [
+      "Einführung",
+      "Computerbasiertes Testen"
+    ]
+  },
+  {
+    "objectID": "intro/tba.html#test-oder-befragung",
+    "href": "intro/tba.html#test-oder-befragung",
+    "title": "Computerbasiertes Testen",
+    "section": "",
+    "text": "Die folgenden Ausführungen beziehen sich stets auf Tests, finden aber auch Anwendung auf Befragungen. Die Anforderungen an Befragungen sind ähnlich, aber meist einfacher umzusetzen. Es gibt beispielsweise keine Kodierung in “Richtig” oder “Falsch”.\nDass Befragungen hier auch technisch mit abgedeckt werden (können) liegt daran, dass große Studien zur Erfassung von Kompetenzen stets auch Befragungen mit einschließen. Auf diesem Weg ist es möglich, Einflussfaktoren über Personenmerkmale zu erheben.",
+    "crumbs": [
+      "Einführung",
+      "Computerbasiertes Testen"
+    ]
+  },
+  {
+    "objectID": "intro/tba.html#computerbasiert-vs.-technologiebasiert",
+    "href": "intro/tba.html#computerbasiert-vs.-technologiebasiert",
+    "title": "Computerbasiertes Testen",
+    "section": "",
+    "text": "Das Durchführungsszenario sieht bei der Testperson ein Endgerät vor, das dem Begriff des “Computers” entspricht. Es sind also Desktop-Geräte, Laptops, Notebooks und teilweise auch Smartphones im Einsatz, wenn ein Test (engl. Assessment) im Bildungsbereich durchgeführt wird.\nDer Begriff “technologiebasiert” möchte betonen, dass es nicht unbedingt eines Computers bedarf, um digital Antworten zu erfassen. Prominentes Beispiel wäre ein Stift, der auf Spezialpapier Geschriebenes erkennt (scannen in Echtzeit) und in einen Speicher ablegt für spätere Auswertungen. Diese Überlegungen führten zum Begriff “Technologiebasiertes Assessment” oder “Technology Based Assessment”, wobei Technologie hier eher als Technik verstanden wird (Papierverfahren sind eigentlich auch Technologien).\nLetztlich sind diese Unterscheidungen hier nicht relevant und werden daher synonym verwendet. Man könnte auch eAssessment, digitales Testen usw. verwenden.",
+    "crumbs": [
+      "Einführung",
+      "Computerbasiertes Testen"
+    ]
+  },
+  {
+    "objectID": "intro/tba.html#aufgabenentwicklung",
+    "href": "intro/tba.html#aufgabenentwicklung",
+    "title": "Computerbasiertes Testen",
+    "section": "Aufgabenentwicklung",
+    "text": "Aufgabenentwicklung\nDie Testaufgaben für die Durchführung der Bildungstrendstudien und für die Vergleichsarbeiten der Länder (VERA; s. KMK) werden am IQB entwickelt. Es erfolgt in jedem Fall eine empirische Erprobung einer jeden Aufgabe (sog. Pilotierung). Für die Aufgaben werden auch die Vorschriften für die Kodierung entwickelt.",
+    "crumbs": [
+      "Einführung",
+      "Computerbasiertes Testen"
+    ]
+  },
+  {
+    "objectID": "intro/tba.html#bildungstrend---länderübergreifend",
+    "href": "intro/tba.html#bildungstrend---länderübergreifend",
+    "title": "Computerbasiertes Testen",
+    "section": "Bildungstrend - länderübergreifend",
+    "text": "Bildungstrend - länderübergreifend\nDie Studien des Bildungstrends in den Jahrgängen 4 und 9 werden online auf Servern durchgeführt, die das IQB bereitstellt. Ein auf die Durchführung großer Bildungsstudien spezialisierter Auftragnehmer (nachfolgend “AN Durchführung”) bereitet die Testung vor und begleitet die Durchführung in den Schulen vor Ort mit Testleiterinnen und Testleitern. Hier erfolgt auch die Kodierung der Antworten, und das IQB bekommt einen umfassenden Datensatz sowie begleitende Dokumentation.\n\n\n\n\n\nsequenceDiagram\n    participant IQB\n    participant AN as AN Durchführung\n    Actor Schule\n    IQB-&gt;&gt;AN: Nennung Schulen\n    AN-&gt;&gt;Schule: System-Check\n    Schule-&gt;&gt;AN: Meldung Testpersonen\n    IQB-&gt;&gt;AN: Aufgaben\n    AN-&gt;&gt;Schule: Logins\n    note over Schule: Testdurchführung\n    Schule-&gt;&gt;AN: Antworten+Logs roh\n    note over AN: Kodierung\n    AN-&gt;&gt;IQB: Datensatz\n    note over IQB: Auswertung, Bericht",
+    "crumbs": [
+      "Einführung",
+      "Computerbasiertes Testen"
+    ]
+  },
+  {
+    "objectID": "intro/tba.html#vera---in-jedem-land-separat",
+    "href": "intro/tba.html#vera---in-jedem-land-separat",
+    "title": "Computerbasiertes Testen",
+    "section": "VERA - in jedem Land separat",
+    "text": "VERA - in jedem Land separat\nDie jährlichen Vergleichsarbeiten in den Jahrgängen 3 und 8 führt ein Land in eigener Regie durch. Das IQB liefert Aufgaben einschl. Kodierschema sowie Vorschläge für den Testablauf (Testmodule, Testhefte). Im Schema unten ist der häufige Fall dargestellt, dass das Land eine Einrichtung (z. B. ein universitäres Projekt) mit der Durchführung beauftragt.\n\n\n\n\n\nsequenceDiagram\n    participant IQB\n    participant Land\n    participant DE as Durchführende Einrichtung\n    Actor Schule\n    IQB-&gt;&gt;Land: Aufgaben\n    Land-&gt;&gt;DE: Nennung Schulen\n    DE-&gt;&gt;Schule: System-Check\n    Schule-&gt;&gt;DE: Meldung Testpersonen\n    Land-&gt;&gt;DE: Aufgaben\n    DE-&gt;&gt;Schule: Logins\n    note over Schule: Testdurchführung\n    note over Schule: Kodierung\n    Schule-&gt;&gt;DE: Antworten kodiert\n    note over DE: Auswertung\n    DE-&gt;&gt;Schule: Rückmeldung\n    DE-&gt;&gt;Land: Rückmeldung\n\n\n\n\n\n\nDie Antworten werden in diesem Szenario durch die Lehrkräfte kodiert. Nach der Auswertung durch die durchführende Einrichtung meldet diese in die Schulen und dem Auftraggeber die Ergebnisse, um die Unterrichtsentwicklung zu fördern sowie eine Evaluation auf Systemebene zu ermöglichen.\nWenn das Land keine Einrichtung mit der Durchführung beauftragt, fallen die entsprechenden Arbeiten samt Bereitstellung der technischen Infrastruktur dem Land zu.",
+    "crumbs": [
+      "Einführung",
+      "Computerbasiertes Testen"
+    ]
+  },
+  {
+    "objectID": "intro/english.html",
+    "href": "intro/english.html",
+    "title": "English: About",
+    "section": "",
+    "text": "The repositories located at /verona-interfaces consist of API specifications for assessment web applications. In Germany, every state / Bundesland conducts assessments in schools and uses different technical solutions. In order to exchange assessment units or to share code modules, the data formats and interfaces need to be specified. The initiative ‘Verona’ works on these specifications.\nThis is an early stage of this endeavour, we did some first steps. To support this process, we publish this documentation in German language. Here you find a general introduction and clarifying of terms etc.\nBesides, the specifications come in separate repositories in English language: Player, Editor, Schemer and Metadata.\nContact: Institute for Educational Quality Improvement.",
+    "crumbs": [
+      "Einführung",
+      "English: About"
+    ]
+  },
+  {
+    "objectID": "intro/integration.html",
+    "href": "intro/integration.html",
+    "title": "Integration eines Verona-Moduls",
+    "section": "",
+    "text": "Die folgende Checkliste gibt eine grobe Orientierung für den Aufwand, der bei einer Integration der Verona-Player-Schnittstelle in eine existierende Infrastruktur zu erwarten ist. Dies steht exemplarisch für die Integrationen von Verona-Modulen. Die Farben markieren steigenden Aufwand.\n\nArbeitet das eigene System aufgabenweise oder strukturiert nach Tests/Teilaufgaben/Items?\n Die Strukturierung im Testablauf folgt Aufgaben, d. h. Stimulus und dazu gehörende Items werden gemeinsam präsentiert und nach der Bearbeitung zur nächsten Aufgabe navigiert. Das ist genau das Szenario, das dem Verona-Player zugrunde liegt. Ein Umbau ist hier nicht erforderlich.\n Mehrere Aufgaben werden gleichzeitig auf einer Seite präsentiert - entweder der gesamte Test oder zumindest Testblöcke (Aufgabenfolgen). Dann muss die Verona-Schnittstelle für jede Aufgabe einzeln implementiert werden, dann also mehrfach pro Seite. Die Kommunikation mit der Aufgabe muss dann auch mehrfach implementiert werden, was das Risiko von Datenverlust erhöht. Besser wäre ein Umbau auf die aufgabenweise Präsentation.\n Die Aufgabe wird in Einzelteile zerlegt und stückchenweise präsentiert. Der Stimulus läuft völlig getrennt. Das kann die Verona-Schnittstelle nicht leisten, da die Kategorien “Stimulus”, “Instruktion”, “Item” usw. nicht transparent sind, also innerhalb der Aufgabendefinition nicht identifiziert werden können.\n\n\nWerden die Html-Seiten komplett auf dem Server erzeugt oder erst dynamisch im Browser?\n Eine Programmierung im Browser (JavaScript) kontrolliert die Anzeige der Aufgaben und sorgt bei Änderungen für das Speichern. Damit kann die Verona-Schnittstelle wie gedacht eingebaut und die Kommunikation eingerichtet werden. Die Kommunikation mit dem Server ist bereits grundsätzlich verfügbar.\n Der Server erzeugt große Teile der Seite, aber es gibt browserseitig Programmierungen für die Interaktion. Hierbei gäbe es u. U. Mehraufwand, weil z. B. das Laden der vorherigen Antworten vom Server bisher nicht im Ablauf vorgesehen war und neu implementiert werden muss.\n Der Server erzeugt die komplette Seite. Änderungen der Anzeige werden durch Neuladen der Seite über Schalter/Aktionsflächen bzw. Navigation/Links ausgelöst. Das wäre problematisch, weil das Laden eines Players, der Aufgabendefinition und ggf. vorher gegebener Antworten Aktionen innerhalb des Browsers sind. Wenn es hierzu bisher keine Erfahrungen gibt bzw. grundsätzlich bisher keine Kommunikation zum Server eingebaut ist, dann wäre hier größerer Aufwand nötig.\n\n\nWerden zur Programmierung stark abstrahierende Frameworks genutzt?\n Es werden keine Frameworks benutzt bzw. nur gut kontrollierbare Bibliotheken. Alles kann durch die beteiligten Programmierer:innen gut gesteuert werden. Der Einbau der Schnittstelle kann dann schnell erfolgen.\n Das genutzte Framework verdeckt viele Teile der Programmierung, kann aber gut durch Module/Komponenten erweitert werden. Ein Verona-Host kann extern vorbereitet und dann gezielt in die Automatismen des Frameworks eingebunden werden. Unter Umständen muss diese neue Komponente umfangreicher programmiert werden als beim Vollzugriff auf die Programmierung. Andererseits muss man diesen Aufwand nur einmal leisten und jemand mit demselben Framework kann diese Komponente sofort einsetzen.\n Das genutzte Framework kapselt Funktionalität und Navigation so stark, dass ein Eingreifen nicht möglich ist. Die Anpassungsmöglichkeiten durch Konfiguration bzw. Deklaration sind stark beschränkt. Dann muss nach Wegen gesucht werden, das Framework für die Aufgabenanzeige zu umgehen, d. h. die beteiligten Programmierer:innen begeben sich auf neues und u. U. unsicheres und undokumentiertes Terrain.\n\n\nIst die Nutzung des Html-Elementes &lt;iframe&gt; problematisch?\n Nein. Ein Seitenbereich kann getrost auf diese Art betrieben werden.\n Einige Eigenschaften des &lt;iframe&gt;-Elements lösen unerwünschtes Verhalten aus. Z. B. könnte ein gesetzter Eingabe-Fokus innerhalb des &lt;iframe&gt;-Elements als Verlassen der Seite angesehen werden und entsprechend ein Signal gesendet werden (Testperson versucht im Internet die Antwort zu finden). Hier sind entsprechende Justierungen nötig und möglich.\n Das genutzte System verhindert grundsätzlich aus Sicherheitsgründen die Nutzung eines &lt;iframe&gt;-Elements. Das könnte problematisch werden, da dann die Architektur des bisherigen Systems die Verona-Schnittstelle verhindert.\n\n\nSind Formate für Aufgabendefinition und Antworten hart vorgegeben?\n Nein. Aufgabendefinition und Antworten können ein beliebiges Format haben. Um die Antworten wie bisher auswerten zu können, reicht ein kleiner Konverter.\n Aufgabendefinition und Antworten sind vorgegeben und viele Systemkomponenten verlassen sich darauf. Hier ist Aufwand zu erwarten, über ständige Datenkonvertierungen das bisherige Verhalten abzusichern.\n Das gesamte System verlässt sich auf bestimmte Datenstrukturen bei Aufgabendefinition und Antworten und diese Strukturen können nicht über Datenkonvertierung aus den Verona-Daten generiert werden. Erforderliche Zusatzdaten liegen nicht vor, wie z. B. die Information, ob eine gegebene Antwort richtig ist. Hier kollidieren also grundsätzliche Auffassungen über die Datenhaltung und es ist ein erheblicher Umbau nötig.\n\n\nSind Variationen der Aufgabenanzeige in anderem Zusammenhang nötig?\n Nein. Aufgaben werden zwar mit den gegebenen Antworten auch bei der Kodierung angezeigt und auch als Ansicht für Eltern, wenn sie die Antworten ihres Kindes anschauen möchten, aber es ist genau dieselbe Ansicht wie im Test. In diesen Fällen kann also einfach wieder ein Verona-Player-Host implementiert werden mit den gegebenen Antworten.\n Ja. Das Testsystem soll bei der Anzeige für Kodierung und für Eltern keine Änderungen erlauben. Diese Variation ist für die aktuelle Verona-Schnittstelle nicht verfügbar. Allerdings richtet eine Änderung auch keinen Schaden an, da Änderungen nicht gespeichert werden. Ein Vor- und Zurückblättern stellt die korrekte Beantwortung wieder her.\n Ja. Das Testsystem visualisiert mit einer Variation der Aufgabenansicht, ob die Antworten richtig oder falsch sind. Dazu werden in der Nähe der Antwortfelder grüne bzw. rote Symbole eingeblendet. Das wird bei der Ansicht durch die Lehrkräfte und für die Eltern verwendet. Diese Variation ist für die aktuelle Verona-Schnittstelle nicht verfügbar.",
+    "crumbs": [
+      "Einführung",
+      "Integration"
+    ]
+  },
+  {
+    "objectID": "editor/index.html",
+    "href": "editor/index.html",
+    "title": "Verona Interfaces - Editor",
+    "section": "",
+    "text": "Verona Interfaces - Editor"
+  },
+  {
+    "objectID": "editor/uml.html",
+    "href": "editor/uml.html",
+    "title": "Verona Interfaces - Editor",
+    "section": "",
+    "text": "Verona Interfaces - Editor UML"
+  },
+  {
+    "objectID": "schemer-docs/index.html",
+    "href": "schemer-docs/index.html",
+    "title": "Verona Interfaces – Schemer",
+    "section": "",
+    "text": "Ein Schemer dient der interaktiven onlinegestützten Entwicklung eines Kodierschemas. Dies ist eine Sammlung von Vorschriften, wie die Variablenwerte – automatisch oder manuell – kodiert werden sollen. Es können auch neue Variablen als Ableitung vorhandener gebildet werden.\nsequenceDiagram\n    autonumber\n    participant HA as Host-Anwendung\n    participant VM as Schemer (Verona Modul)\n    HA-&gt;&gt;VM:Initialisierung\n    VM-&gt;&gt;HA:vosReadyNotification\n    HA-&gt;&gt;VM:vosStartCommand\n    loop\n        VM-&gt;&gt;HA:vosSchemeChangedNotification\n    end",
+    "crumbs": [
+      "Schemer"
+    ]
+  },
+  {
+    "objectID": "schemer-docs/index.html#parameter-variables",
+    "href": "schemer-docs/index.html#parameter-variables",
+    "title": "Verona Interfaces – Schemer",
+    "section": "Parameter variables",
+    "text": "Parameter variables\nNachdem der Host die Bereitschaftsmeldung erhalten hat, schickt er die Variablenliste: Parameter variables – so, wie der Editor diese Liste erzeugt hat. Nur auf Grundlage der Variablenliste kann ein Schemer arbeiten, denn es handelt sich bei einem Kodierschema ja um die Verarbeitung von Variablenwerten. Der Schemer initialisiert entsprechend die UI.\n\nid, alias, type, format\n\nEine Variable braucht eine innerhalb der Unit eindeutige Bezeichnung.\nEin alias ist eine alternative ID, die durch User vergeben werden kann. Dann kann die ID der Variable nicht mehr geändert werden und bleibt konstant über alle Verarbeitungsschritte und Versionen. Der Alias kann aber nach Bedarf geändert werden. Das IQB hat diese Trennung eingeführt, als sich Umbenennungen von Variablen häuften und jede Umbenennung Inkonsistenzen verursachte (Ableitungen schlugen fehl, Seitenzustände wurden falsch ermittelt).\nEin Typ kann sein: string, integer, number, boolean, attachment – letzteres bezeichnet ein erzeugtes Medium, z. B. ein Bild. Im Kern handelt es sich hier um einen String, der aber eine Referenz darstellt und dem Auswertungssystem das Auffinden des zugehörigen Mediums ermöglicht.\nWerte für format:\n\ntext-selection: Ein String, der Daten für eine Textmarkierung enthält\nimage, capture-image, audio: Spezifiziert den Datentyp attachment\nggb-file, ggb-variable: Strings mit besonderem Bezug zu GeoGebra\nnon-negative: spezifiziert integer oder number\nlatex, math-ml, math-table: Strings mit besonderem Bezug zu mathematischen Formeln oder Ausdrücken\n\n\n\n\n\n\n\n\nSubject to change\n\n\n\nDie Erprobung von type kann als erfolgreich angesehen werden, bei den format-Optionen wird es noch Bewegung geben. Hier sind mitunter Ideen eingebracht, deren Nützlichkeit sich erst zeigen muss.\n\n\n\n\nmultiple, nullable\nDiese booleschen Werte kennzeichnen, ob die Variable ein Array des beschriebenen Typs und Formats enthält und ob der Wert null möglich ist.\n\n\nvalues, valuePositionLabels, valuesComplete\nDiese Angaben liefern genauere Informationen über die möglichen Werte der Variablen. Wenn valuesComplete true ist, dann handelt es sich sogar um eine vollständige Liste, und die Kodierung kann automatisch erfolgen.\n\n\npage\nDiese Information verortet die Quelle des Variablenwertes auf einer Seite der Unit.",
+    "crumbs": [
+      "Schemer"
+    ]
+  },
+  {
+    "objectID": "schemer-docs/index.html#weitere-parameter",
+    "href": "schemer-docs/index.html#weitere-parameter",
+    "title": "Verona Interfaces – Schemer",
+    "section": "Weitere Parameter",
+    "text": "Weitere Parameter\n\nsessionId: Dem Schemer wird eine Kennung mitgeschickt, die der Schemer anschließend in jeder Nachricht zur Änderung des Kodierschemas verwenden soll. Damit wird die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit unterstützt.\nSoweit vorhanden kann ein Kodierschema codingScheme geschickt werden, damit daran weitergearbeitet wird.\ncodingSchemeType: Sollte es Varianten oder Versionen von Kodierschemata geben, kann dies hier dem Schemer mitgeteilt werden. Alternativ (oder parallel) kann natürlich diese Information als Teil der Datenstruktur des Kodierschemas übergeben werden.\nschemerConfig –&gt; directDownloadUrl: Sollte der Schemer während der Laufzeit Code nachladen müssen, kann aus Gründen der Datensicherheit nicht einfach irgendein Server genutzt werden. Dem Schemer muss mitgeteilt werden, welche URL dafür zulässig ist.",
+    "crumbs": [
+      "Schemer"
+    ]
+  },
+  {
+    "objectID": "editor/msg1_start.html",
+    "href": "editor/msg1_start.html",
+    "title": "Verona Interfaces - Editor",
+    "section": "",
+    "text": "Verona Interfaces - Editor Message1 Start"
+  },
+  {
+    "objectID": "intro/modelling.html",
+    "href": "intro/modelling.html",
+    "title": "Kommunikationsmodell",
+    "section": "",
+    "text": "Die Interaktion zwischen der Hostanwendung, dem integrierten Verona-Modul, der darunterliegenden Datenbank und dem Endnutzer lassen sich wie folgt beschreiben:\n\n\n\n\n\nsequenceDiagram\n    participant DB as Datenbank\n    participant HA as Host-Anwendung\n\n    DB-&gt;&gt;HA:Laden Daten\n    participant VM as Verona-Modul\n    HA-&gt;&gt;VM:Initialisierung\n    VM-&gt;&gt;HA:vopReadyNotification\n    HA-&gt;&gt;VM:vopStartCommand\n    loop\n        Actor TP as Person\n        VM-&gt;TP:Interaktion\n        VM-&gt;&gt;HA:vopStateChangedNotification\n    end\n    VM-xTP:Navigation\n    HA-&gt;&gt;DB:Speichern geänderte Daten\n    HA-xVM:Navigation\n\n\n\n\n\n\n\nInitialisierung\nVerona-Module werden üblicherweise dynamisch geladen und ausgeführt. Wenn ein bestimmtes Modul erforderlich ist und grundsätzlich im System verfügbar, dann wird es zunächst von der Hostanwendung (Frontend im Browser) in den Hauptspeicher geladen.\nAnschließend muss ein &lt;iframe&gt;-Element verfügbar sein. Die Browser unterstützen jetzt alle das Attribut srcdoc, und diesem Attribut wird der Modul-Code zugewiesen. Dies entspricht technisch dem Laden einer Webseite. Dies erfordert eine gewisse (unbekannte) Zeit.\n\n\nNachrichten empfangen\nDie Kommunikation kann nur erfolgen, wenn die Host-Anwendung Nachrichten an das window-Objekt abfängt. Das Verona-Modul kann nur allgemein an seine Host-Anwendung Nachrichten schicken, nicht gezielt an eine bestimmte Komponente oder ein bestimmtes DOM-Element. Auf höchster Ebene muss also z. B. so etwas einmalig aufgerufen werden:\n\n\nListener einrichten bei Start der Hostanwendung\n\n window.addEventListener('message', (event: MessageEvent) =&gt; {\n      const msgData = event.data;\n      const msgType = msgData.type;\n      if ((msgType !== undefined) &&\n            (msgType.substr(0, 2) === 'vo')) {\n        this.tcs.postMessage$.next(event);\n      }\n    });\n\nIn diesem Beispiel prüft die Funktion, ob der Typ der Nachricht mit ‘vo’ beginnt. In diesem Fall wird angenommen, dass es sich um eine Nachricht von einem Verona-Modul handelt und ein Observable wird auf einen neuen Wert gesetzt. An passenden Stellen im Host kann dann darauf reagiert werden.\n\n\nVerona-Modul meldet Bereitschaft\nWenn das Modul die eigene Initialisierung abgeschlossen hat, meldet es die Bereitschaft an den Host. Erst ab diesem Zeitpunkt kann man davon ausgehen, dass das Modul Nachrichten empfangen kann. Davor hört es quasi nicht zu.\nIm Verona-Kontext liefert das Modul seine Metadaten mit, d. h. der Host kann prüfen, ob das richtige Modul geladen wurde bzw. ob bestimmte Anpassungen in der Kommunikation erfolgen müssen.\n\n\n\n\n\n\nVorsicht bei mehreren Modulen auf einer Seite\n\n\n\nWenn mehrere Module desselben Typs auf einer Seite eingerichtet werden sollen, muss der Host prüfen, von welchem &lt;iframe&gt;-Element die Bereitschaftsmeldung kam (source/target). Anschließend sollte die sessionId verwendet werden, um die Nachrichten bzw. deren Daten zuzuordnen.\n\n\n\n\nStart-Kommando\nAn das &lt;iframe&gt;-Element wird dann üblicherweise ein Kommando geschickt, das die spezifischen Daten der Unit enthält (Definition, vorherige Antworten, Kodierschema usw.). Damit erstellt bzw. parametrisiert das Modul die erforderlichen Elemente und die Interaktion mit dem User (Testperson, Autorin) kann beginnen.\n\n\nBeispiel Startkommando für Player\n\n  this.postMessageTarget.postMessage({\n        type: 'vopStartCommand',\n        sessionId: this.itemPlayerSessionId,\n        unitDefinition: pendingUnitDef,\n        unitState: {\n          dataParts: pendingUnitDataToRestore\n        },\n        playerConfig: this.tcs.fullPlayerConfig\n      }, '*');\n\n\n\n\n\n\n\n`type’ ist Teil des Payloads\n\n\n\nDie Konvention sieht vor, dass die Operation-ID als Eigenschaft type stets Teil des Datenobjektes ist. Es gibt keinen separaten Parameter dafür.\n\n\nWenn später ein neues Startkommando vom Host geschickt wird, stellt das Modul zunächst den Ausgangszustand zur Initialisierung wieder her und verfährt dann wie oben. Sollten z. B. mehrere Units hintereinander denselben Player anfordern, muss nicht immer neu das gesamte Modul neu initialisiert werden. Der Player kann über ein neues Start-Kommando “nachgenutzt” werden.\n\n\nInteraktion: Zustandsänderung melden\nWährend der Interaktion meldet das Verona-Modul Änderungen je nach Typ des Moduls. Ob diese Änderungen gespeichert werden, hängt vom jeweiligen Anwendungsfall ab.\n\n\n\n\n\n\nVorsicht Datenflut\n\n\n\nBei schnellen Tastatureingaben oder ambitionierter Beobachtung des Userverhaltens (Logging) fallen sehr viele Daten an. Beim Player-Modul kann man die Daten aufteilen (sog. dataParts), aber auch sonst könnte es viel werden. Die Hostanwendung sollte einen Puffer einrichten und nicht alles sofort wegspeichern. Bei rxjs gibt es beispielsweise den Operator debounceTime.\n\n\n\n\nKorrekte Zuordnung der Modul-Instanz bzw. der Daten\nBei den Nachrichten gibt es zwei Eigenschaften, die eine korrekte Zuordnung unterstützen:\n\nsessionId: Diese ID wird beim Startkommando vom Host vergeben und wird vom Modul bei jeder Nachricht mitgeschickt. Diese ID wird durch das Modul nicht verändert. Der Host kann darüber das Modul-Element identifizieren und daher sicherstellen, dass bei den überwiegend asynchronen Vorgängen im Browser die Daten stets z. B. der richtigen Unit zugeordnet werden.\ntimeStamp: Auch diese Eigenschaft wird stets vom Modul mitgeschickt. Darüber kann sichergestellt werden, dass die Reihenfolge der Nachrichten nicht vertauscht wird. Es ist stets die jeweils letzte Änderung feststellbar.\n\n\n\nBeenden: unnötig\nDa Änderungen sofort gemeldet werden, ist ein formelles Beenden des Moduls unnötig. Es gibt bei keinem Verona-Modul Bedarf, vor Entfernen des Moduls bestimmte Funktionen aufzurufen. Wenn das Modul nicht mehr benötigt wird (oben dargestellt als Navigation), kann das &lt;iframe&gt;-Element entfernt oder geleert werden (srcdoc=\"\").\n\n\n Sicherheitshinweis\nÜber die Verwendung von postMessage() in den MDN Web Docs:\n\nAny window may access this method on any other window, at any time, regardless of the location of the document in the window, to send it a message. Consequently, any event listener used to receive messages must first check the identity of the sender of the message, using the origin and possibly source properties. This cannot be overstated: Failure to check the origin and possibly source properties enables cross-site scripting attacks.\n\nHost-Anwendung und Verona-Modul sollten also alles unternehmen, die Identität des Senders festzustellen. Dazu kann man die Html-Elemente mit IDs versehen und die sessionId verwenden.",
+    "crumbs": [
+      "Einführung",
+      "Kommunikationsmodell"
     ]
   },
   {
@@ -139,14 +279,131 @@
     ]
   },
   {
-    "objectID": "intro/integration.html",
-    "href": "intro/integration.html",
-    "title": "Integration eines Verona-Moduls",
+    "objectID": "intro/index.html",
+    "href": "intro/index.html",
+    "title": "Verona Interfaces – Einführung",
     "section": "",
-    "text": "Die folgende Checkliste gibt eine grobe Orientierung für den Aufwand, der bei einer Integration der Verona-Player-Schnittstelle in eine existierende Infrastruktur zu erwarten ist. Dies steht exemplarisch für die Integrationen von Verona-Modulen. Die Farben markieren steigenden Aufwand.\n\nArbeitet das eigene System aufgabenweise oder strukturiert nach Tests/Teilaufgaben/Items?\n Die Strukturierung im Testablauf folgt Aufgaben, d. h. Stimulus und dazu gehörende Items werden gemeinsam präsentiert und nach der Bearbeitung zur nächsten Aufgabe navigiert. Das ist genau das Szenario, das dem Verona-Player zugrunde liegt. Ein Umbau ist hier nicht erforderlich.\n Mehrere Aufgaben werden gleichzeitig auf einer Seite präsentiert - entweder der gesamte Test oder zumindest Testblöcke (Aufgabenfolgen). Dann muss die Verona-Schnittstelle für jede Aufgabe einzeln implementiert werden, dann also mehrfach pro Seite. Die Kommunikation mit der Aufgabe muss dann auch mehrfach implementiert werden, was das Risiko von Datenverlust erhöht. Besser wäre ein Umbau auf die aufgabenweise Präsentation.\n Die Aufgabe wird in Einzelteile zerlegt und stückchenweise präsentiert. Der Stimulus läuft völlig getrennt. Das kann die Verona-Schnittstelle nicht leisten, da die Kategorien “Stimulus”, “Instruktion”, “Item” usw. nicht transparent sind, also innerhalb der Aufgabendefinition nicht identifiziert werden können.\n\n\nWerden die Html-Seiten komplett auf dem Server erzeugt oder erst dynamisch im Browser?\n Eine Programmierung im Browser (JavaScript) kontrolliert die Anzeige der Aufgaben und sorgt bei Änderungen für das Speichern. Damit kann die Verona-Schnittstelle wie gedacht eingebaut und die Kommunikation eingerichtet werden. Die Kommunikation mit dem Server ist bereits grundsätzlich verfügbar.\n Der Server erzeugt große Teile der Seite, aber es gibt browserseitig Programmierungen für die Interaktion. Hierbei gäbe es u. U. Mehraufwand, weil z. B. das Laden der vorherigen Antworten vom Server bisher nicht im Ablauf vorgesehen war und neu implementiert werden muss.\n Der Server erzeugt die komplette Seite. Änderungen der Anzeige werden durch Neuladen der Seite über Schalter/Aktionsflächen bzw. Navigation/Links ausgelöst. Das wäre problematisch, weil das Laden eines Players, der Aufgabendefinition und ggf. vorher gegebener Antworten Aktionen innerhalb des Browsers sind. Wenn es hierzu bisher keine Erfahrungen gibt bzw. grundsätzlich bisher keine Kommunikation zum Server eingebaut ist, dann wäre hier größerer Aufwand nötig.\n\n\nWerden zur Programmierung stark abstrahierende Frameworks genutzt?\n Es werden keine Frameworks benutzt bzw. nur gut kontrollierbare Bibliotheken. Alles kann durch die beteiligten Programmierer:innen gut gesteuert werden. Der Einbau der Schnittstelle kann dann schnell erfolgen.\n Das genutzte Framework verdeckt viele Teile der Programmierung, kann aber gut durch Module/Komponenten erweitert werden. Ein Verona-Host kann extern vorbereitet und dann gezielt in die Automatismen des Frameworks eingebunden werden. Unter Umständen muss diese neue Komponente umfangreicher programmiert werden als beim Vollzugriff auf die Programmierung. Andererseits muss man diesen Aufwand nur einmal leisten und jemand mit demselben Framework kann diese Komponente sofort einsetzen.\n Das genutzte Framework kapselt Funktionalität und Navigation so stark, dass ein Eingreifen nicht möglich ist. Die Anpassungsmöglichkeiten durch Konfiguration bzw. Deklaration sind stark beschränkt. Dann muss nach Wegen gesucht werden, das Framework für die Aufgabenanzeige zu umgehen, d. h. die beteiligten Programmierer:innen begeben sich auf neues und u. U. unsicheres und undokumentiertes Terrain.\n\n\nIst die Nutzung des Html-Elementes &lt;iframe&gt; problematisch?\n Nein. Ein Seitenbereich kann getrost auf diese Art betrieben werden.\n Einige Eigenschaften des &lt;iframe&gt;-Elements lösen unerwünschtes Verhalten aus. Z. B. könnte ein gesetzter Eingabe-Fokus innerhalb des &lt;iframe&gt;-Elements als Verlassen der Seite angesehen werden und entsprechend ein Signal gesendet werden (Testperson versucht im Internet die Antwort zu finden). Hier sind entsprechende Justierungen nötig und möglich.\n Das genutzte System verhindert grundsätzlich aus Sicherheitsgründen die Nutzung eines &lt;iframe&gt;-Elements. Das könnte problematisch werden, da dann die Architektur des bisherigen Systems die Verona-Schnittstelle verhindert.\n\n\nSind Formate für Aufgabendefinition und Antworten hart vorgegeben?\n Nein. Aufgabendefinition und Antworten können ein beliebiges Format haben. Um die Antworten wie bisher auswerten zu können, reicht ein kleiner Konverter.\n Aufgabendefinition und Antworten sind vorgegeben und viele Systemkomponenten verlassen sich darauf. Hier ist Aufwand zu erwarten, über ständige Datenkonvertierungen das bisherige Verhalten abzusichern.\n Das gesamte System verlässt sich auf bestimmte Datenstrukturen bei Aufgabendefinition und Antworten und diese Strukturen können nicht über Datenkonvertierung aus den Verona-Daten generiert werden. Erforderliche Zusatzdaten liegen nicht vor, wie z. B. die Information, ob eine gegebene Antwort richtig ist. Hier kollidieren also grundsätzliche Auffassungen über die Datenhaltung und es ist ein erheblicher Umbau nötig.\n\n\nSind Variationen der Aufgabenanzeige in anderem Zusammenhang nötig?\n Nein. Aufgaben werden zwar mit den gegebenen Antworten auch bei der Kodierung angezeigt und auch als Ansicht für Eltern, wenn sie die Antworten ihres Kindes anschauen möchten, aber es ist genau dieselbe Ansicht wie im Test. In diesen Fällen kann also einfach wieder ein Verona-Player-Host implementiert werden mit den gegebenen Antworten.\n Ja. Das Testsystem soll bei der Anzeige für Kodierung und für Eltern keine Änderungen erlauben. Diese Variation ist für die aktuelle Verona-Schnittstelle nicht verfügbar. Allerdings richtet eine Änderung auch keinen Schaden an, da Änderungen nicht gespeichert werden. Ein Vor- und Zurückblättern stellt die korrekte Beantwortung wieder her.\n Ja. Das Testsystem visualisiert mit einer Variation der Aufgabenansicht, ob die Antworten richtig oder falsch sind. Dazu werden in der Nähe der Antwortfelder grüne bzw. rote Symbole eingeblendet. Das wird bei der Ansicht durch die Lehrkräfte und für die Eltern verwendet. Diese Variation ist für die aktuelle Verona-Schnittstelle nicht verfügbar.",
+    "text": "Es geht auf den Seiten dieser Dokumentation um große Vergleichsstudien oder Befragungen im Rahmen des nationalen Bildungsmonitorings. Hierfür ist der Begriff “Large Scale Assessments” etabliert. Die hohe Anzahl der Testpersonen soll ein datenbasiertes wissenschaftliches Monitoring des Bildungssystems ermöglichen, also Zusammenhänge sichtbar machen zwischen den Einflussfaktoren und dem Erreichen von Bildungszielen. Eine Vergleichsstudie ist in hohem Maße standardisiert und wird in einem engen Zeitfenster synchron durchgeführt.\nDer Fokus liegt also nicht auf der Einzelperson - der Schülerin oder des Schülers -, sondern auf Gruppen von Personen - Klassen, Schulen, Bezirke, Länder. Die Erkenntnisse aus den aufwändigen Testungen sollen aber nicht nur der obersten Steuerungsebene zufließen, sondern es ist an vielen Stellen eine Auswertung der Analyseergebnisse durch die Lehrkraft vorgesehen. Diese sogenannten Rückmeldungen ermöglichen durch den hohen Grad der Standardisierung eine Verortung der Leistungen der Klasse im Land und auch länderübergreifend.",
+    "crumbs": [
+      "Einführung"
+    ]
+  },
+  {
+    "objectID": "intro/index.html#lesen-sie-weiter",
+    "href": "intro/index.html#lesen-sie-weiter",
+    "title": "Verona Interfaces – Einführung",
+    "section": "Lesen Sie weiter",
+    "text": "Lesen Sie weiter\n\nComputerbasiertes Testen: Ein Einstieg in das Thema “Computerbasierte Vergleichsstudien” und institutionelle Szenarien\nArchitektur: Hier wird das Plug-in-System erläutert\nModul-Metadaten: Einem Modul müssen bestimmte Informationen beigegeben werden. Diese sind hier erläutert.\nKommunikationsmodell: Wenn ein Verona-Modul von einer Webanwendung geladen wird, ist die dann folgende Kommunikation standardisiert.\nDatenstrukturen: Was ist eine Unit und welche Daten spielen bei Verona-Modulen eine Rolle?",
+    "crumbs": [
+      "Einführung"
+    ]
+  },
+  {
+    "objectID": "intro/index.html#name-und-logo",
+    "href": "intro/index.html#name-und-logo",
+    "title": "Verona Interfaces – Einführung",
+    "section": "Name und Logo",
+    "text": "Name und Logo\nEine der großen Lernstandserhebungen in Deutschland ist unter dem Namen VERA bekannt (VERgleichsArbeiten), und aus der Kombination mit Online ist dann die Bezeichnung Verona entstanden. Das Logo1 stellt eine Leiter dar - italienisch “la scala”. Skalieren ist ein wichtiger methodischer Schritt bei der Auswertung der Antworten, und die Scaliger (Scaligeri, della Scala, deutsch oft auch Skaliger, historisch auch Herren von der Leiter) waren Herren der italienischen Stadt Verona von 1262 bis 1387. Die unterschiedlichen Einfärbungen zwischen den Sprossen stehen für verschiedene Endgeräte.",
+    "crumbs": [
+      "Einführung"
+    ]
+  },
+  {
+    "objectID": "intro/index.html#footnotes",
+    "href": "intro/index.html#footnotes",
+    "title": "Verona Interfaces – Einführung",
+    "section": "Fußnoten",
+    "text": "Fußnoten\n\n\ncredits to HoffmannP 2019↩︎",
+    "crumbs": [
+      "Einführung"
+    ]
+  },
+  {
+    "objectID": "intro/data-structures.html",
+    "href": "intro/data-structures.html",
+    "title": "Datenstrukturen",
+    "section": "",
+    "text": "Ein Testablauf ist stets eine Abfolge von Instruktionen oder Fragen an die Testperson, nach Bedarf angereichert mit Material (Bilder, Text, Audio, Video - sog. Stimulus), auf die sich die Fragen bzw. Handlungsanweisungen dann beziehen. Die kleinste Dateneinheit ist ein durch die Testperson geänderter Zustand, der durch Speichern reproduzierbar wird. Diese kleinste Dateneinheit nennen wir Variable. Sie kann sich auf ein Interaktionselement (z. B. Eingabefeld, Ankreuzkästchen), aber auch auf ein abgespieltes Audio beziehen (Variablenwert ist dann der Fortschritt des Abspielens).\nDer Begriff Item steht für eine Antwort der Testperson, die man mit einem Erwartungswert vergleichen kann und dann den Kategorien “Richtig” und “Falsch” zuordnen kann. Die Quelle für die Antwort ist der Wert einer oder mehrerer Variablen. D. h. die Zustandsänderungen während der Interaktion führen nicht automatisch zu auswertbaren Daten, sondern müssen ggf. aus mehreren Interaktionen zusammengeführt werden.\n\nZ. B. ist in Mathematik ein Format sehr beliebt: “Kreuze an und begründe”. Die Testperson soll sich für eine Option einer Auswahl von Ankreuzkästchen entscheiden, aber bewertet im Sinne der Datenanalyse wird die Entscheidung erst im Zusammenhang mit einem Text, der darunter in ein Eingabefeld geschrieben wurde.\n\nNun kann ein Item auf einer Seite ggf. zusammen mit einem Stimulus präsentiert werden. Über die Navigation kommt man zum nächsten Item. Oft werden jedoch mehrere Items als Gruppe präsentiert, vor allem, wenn sie sich auf denselben Stimulus beziehen. Man erreicht eine höhere Effizienz beim Testen, wenn man zu einem Stimulus nicht nur ein Item vorsieht. Als Unit bezeichnen wir eine Gruppe von Items, die aus testpraktischen oder testtheoretischen Gründen zusammen präsentiert werden.\n\n\n\n\n\n\nUnit ist Fokus\n\n\n\nDer Fokus aller Verona-Module liegt auf der Unit. Es werden Daten verarbeitet, die sich stets auf eine Unit beziehen.\n\n\nDie Unit ist nun die Ebene in der Datenstruktur, die man als beliebig austauschbar innerhalb eines Tests deklariert. Es gibt sogar statistische Maßzahlen, die die unerwünschten Positionseffekte von Units quantifizieren. Natürlich gibt es auch Tests und vor allem Befragungen, bei denen die Abfolge gründlich geplant wird und wo die Units nicht unabhängig voneinander sind. Aber aus Sicht der Datenstrukturen reden wir lange von Units und deren Optimierung, bevor ihr Platz in einer Testabfolge festgelegt wird. Daher sieht der Entwicklungsprozess für Tests zunächst eine Unit- – bzw. im deutschen Sprachgebrauch auch Aufgaben- – Entwicklung vor.\n\nEine Unit kann auch eine simple Seite sein, die nur begrüßt oder den nächsten Aufgabenblock ankündigt. Das IQB hat viel Arbeit in Units gesteckt, die die Bedienung von Eingabeelementen erläutern. Für die vorliegende Dokumentation spielt das keine Rolle, da es technisch nur eine Vereinfachung darstellt und stets möglich ist.",
     "crumbs": [
       "Einführung",
-      "Integration"
+      "Datenstrukturen"
+    ]
+  },
+  {
+    "objectID": "intro/data-structures.html#modul-editor",
+    "href": "intro/data-structures.html#modul-editor",
+    "title": "Datenstrukturen",
+    "section": "Modul “Editor”",
+    "text": "Modul “Editor”\nHier werden für die Unit-Erstellung in einem interaktiven Prozess alle Medien platziert und alle Interaktionselemente gebaut. Ein Editor ist auf die Autorinnen und Autoren ausgerichtet. Bei den großen Bildungsvergleichsstudien muss sich daher dessen UI/UX an den Fähigkeiten und Gewohnheiten von Lehrkräften orientieren.",
+    "crumbs": [
+      "Einführung",
+      "Datenstrukturen"
+    ]
+  },
+  {
+    "objectID": "intro/data-structures.html#modul-player",
+    "href": "intro/data-structures.html#modul-player",
+    "title": "Datenstrukturen",
+    "section": "Modul “Player”",
+    "text": "Modul “Player”\nEin Player-Modul dient dem “Abspielen” – also der Präsentation – von Units. Es gibt mehrere Anwendungsfälle:\n\nAnzeige im Testsystem während des Tests\nAnzeige im Testsystem für den Review\nVeröffentlichung von Beispielaufgaben\nVeröffentlichung als permanente Referenz für einen wissenschaftlichen Artikel\nVoransicht im Autorensystem\nDruckbare Ansicht für den Export\nPräsentation während der manuellen Kodierung mit den Antwortdaten einer Testperson\nAnzeige für Eltern nach dem Test mit den Antwortdaten ihres Kindes\n\nDiese Liste lässt sich sicherlich erweitern. Je nach Anwendungsfall werden die Antworten gespeichert bzw. wiederhergestellt oder nicht.",
+    "crumbs": [
+      "Einführung",
+      "Datenstrukturen"
+    ]
+  },
+  {
+    "objectID": "intro/data-structures.html#unit-definition",
+    "href": "intro/data-structures.html#unit-definition",
+    "title": "Datenstrukturen",
+    "section": "Unit-Definition",
+    "text": "Unit-Definition\nDie Unit-Definition ist nicht spezifiziert. Sie wird serialisiert als String gespeichert bzw. zwischen den Komponenten ausgetauscht. Aus diesem Grund ist es wichtig, dass zu der Unit-Definition auch die ID und die Version des Player- und ggf. des genutzten Editormoduls gespeichert werden.\nNatürlich kann ein Entwickler entscheiden, die Unit-Definition ausführlich zu beschreiben und auch z. B. einer Versionierung zu unterziehen. Das IQB tut dies z. B. für zwei einfache Player. Eine solche Spezifikation der Unit-Definition ist aber nicht Gegenstand dieser Verona-Spezifikationen.",
+    "crumbs": [
+      "Einführung",
+      "Datenstrukturen"
+    ]
+  },
+  {
+    "objectID": "intro/data-structures.html#modul-schemer",
+    "href": "intro/data-structures.html#modul-schemer",
+    "title": "Datenstrukturen",
+    "section": "Modul “Schemer”",
+    "text": "Modul “Schemer”\nMit diesem Verona-Modul werden im Autorensystem die Vorschriften für die Antwortverarbeitung erstellt. Dieses sog. Kodierschema wird in einfachen Fällen bereits von den Aufgabenentwicklerinnen und -entwicklern eingegeben, meist bedarf es aber aufgrund der Komplexität einer besonderen Erfahrung.",
+    "crumbs": [
+      "Einführung",
+      "Datenstrukturen"
+    ]
+  },
+  {
+    "objectID": "intro/data-structures.html#variablenliste",
+    "href": "intro/data-structures.html#variablenliste",
+    "title": "Datenstrukturen",
+    "section": "Variablenliste",
+    "text": "Variablenliste\nDamit das Kodierschema entwickelt werden kann, muss der Schemer die Variablen kennen, die im Editor angelegt wurden. Diese Datenstruktur ist als Teil des Editors spezifiziert.",
+    "crumbs": [
+      "Einführung",
+      "Datenstrukturen"
+    ]
+  },
+  {
+    "objectID": "intro/data-structures.html#antwortdaten",
+    "href": "intro/data-structures.html#antwortdaten",
+    "title": "Datenstrukturen",
+    "section": "Antwortdaten",
+    "text": "Antwortdaten\nDie Antwortdaten sind nicht spezifiziert. Sie werden serialisiert als String gespeichert bzw. zwischen den Komponenten ausgetauscht. In der Player-Schnittstelle ist die Angabe eines Datenformates als String vorgesehen, damit nachfolgende Prozesse die Daten sinnvoll verarbeiten können.\nDas IQB hat für die eigenen Module ein einheitliches Antwortformat spezifiziert. Dieses ist jedoch nicht Teil dieser Verona-Spezifikationen.",
+    "crumbs": [
+      "Einführung",
+      "Datenstrukturen"
+    ]
+  },
+  {
+    "objectID": "intro/data-structures.html#kodierschema",
+    "href": "intro/data-structures.html#kodierschema",
+    "title": "Datenstrukturen",
+    "section": "Kodierschema",
+    "text": "Kodierschema\nDas Kodierschema ist nicht spezifiziert. Es wird serialisiert als String gespeichert bzw. zwischen den Komponenten ausgetauscht. In der Schemer-Schnittstelle ist die Angabe eines Datenformates als String vorgesehen, damit nachfolgende Prozesse die Daten sinnvoll verarbeiten können.\nDas IQB hat für die eigenen Module ein einheitliches Datenformat für das Kodierschema spezifiziert. Dieses ist jedoch nicht Teil dieser Verona-Spezifikationen.",
+    "crumbs": [
+      "Einführung",
+      "Datenstrukturen"
     ]
   },
   {
@@ -366,263 +623,6 @@
     "crumbs": [
       "Player",
       "Start-Kommando"
-    ]
-  },
-  {
-    "objectID": "editor/msg1_start.html",
-    "href": "editor/msg1_start.html",
-    "title": "Verona Interfaces - Editor",
-    "section": "",
-    "text": "Verona Interfaces - Editor Message1 Start"
-  },
-  {
-    "objectID": "editor/uml.html",
-    "href": "editor/uml.html",
-    "title": "Verona Interfaces - Editor",
-    "section": "",
-    "text": "Verona Interfaces - Editor UML"
-  },
-  {
-    "objectID": "editor/index.html",
-    "href": "editor/index.html",
-    "title": "Verona Interfaces - Editor",
-    "section": "",
-    "text": "Verona Interfaces - Editor"
-  },
-  {
-    "objectID": "player-docs/index.html",
-    "href": "player-docs/index.html",
-    "title": "Verona Interfaces – Player",
-    "section": "",
-    "text": "Ein Player präsentiert jeweils eine Unit und sorgt für die Interaktion mit der Testperson bzw. mit den Befragten. Das grundlegende Modell hierbei ist, dass ein Test bzw. Befragung (nachfolgend synonym) aus einer Abfolge von inhaltlich getrennten Units besteht und diese jeweils einzeln mit einem Player-Modul präsentiert werden.\n\n\n\n\n\n\nSpezifikation\n\n\n\nDie Spezifikation der API ist als YML-Datei in der Syntax AsyncAPI ausgeführt. Nach einer Änderung wird über ein Tool eine lesbare Html-Datei erzeugt.\n\n\n\n\n\n\n\nsequenceDiagram\n    autonumber\n    participant HA as Host-Anwendung\n    participant VM as Player (Verona Modul)\n    HA-&gt;&gt;VM:Initialisierung\n    VM-&gt;&gt;HA:vopReadyNotification\n    HA-&gt;&gt;VM:vopStartCommand\n    loop\n        opt\n            VM-&gt;&gt;HA:vopStateChangedNotification\n        end\n        opt\n            HA-&gt;&gt;VM:vopPageNavigationCommand\n        end\n        opt\n            VM-&gt;&gt;HA:vopUnitNavigationRequestedNotification\n        end\n        opt\n            HA-&gt;&gt;VM:vopNavigationDeniedNotification\n        end\n        opt\n            HA-&gt;&gt;VM:vopPlayerConfigChangedNotification\n        end\n        opt\n            VM-&gt;&gt;HA:vopRuntimeErrorNotification\n        end\n        opt\n            VM-&gt;&gt;HA:vopWindowFocusChangedNotification\n        end\n    end\n\n\n\n\n\n\n\n1 Initialisierung\nDer Host richtet ein &lt;iframe&gt;-Element ein und setzt für das srcdoc-Attribut den kompletten Inhalt des Moduls. Das Modul ist technisch eine Html-Seite, d. h. es wird durch das Laden auch die Ausführung von JavaScript-Code angestoßen, der auf oberster Ebene vorgesehen ist.\n\n\n2 Ready Notification\nDieser Code sendet als letzten Schritt der eigenen Initialisierung eine Nachricht an den Host, dass das Modul bereit sei für das Start-Kommando. Als Payload wird das Metadaten-Objekt mitgeschickt – hier allerdings als String serialisiert, um nicht bei jeder Änderung der Metadaten-Spezifikation alle Modul-API ändern zu müssen.\n\n\n3 Start Command\n\n\n\n\n\n\nTipp\n\n\n\nAusführliche Darstellung des Start-Kommandos siehe hier.\n\n\nNachdem der Host die Bereitschaftsmeldung erhalten hat, schickt er die Unit-Definition: Parameter unitDefinition, serialisiert als String. Damit stellt der Player – der nach der Initialisierung zunächst eine leere Seite zeigt – alle Elemente dar, die in der Unit-Definition vorgesehen sind und bereitet die Interaktionselemente vor.\nDem Player wird mit sessionId eine Kennung mitgeschickt, die der Player anschließend in jeder Nachricht verwenden soll. Damit wird die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit unterstützt.\nWeitere Parameter:\n\nunitDefinitionType: Sollte es Varianten oder Versionen von Unit-Definitionen geben, kann dies hier dem Player mitgeteilt werden. Alternativ (oder parallel) kann natürlich diese Information als Teil der Datenstruktur der Unit-Definition übergeben werden.\nunitState: Sollte die Unit wiederholt präsentiert werden, soll der vorherige Bearbeitungsstatus wiederhergestellt werden. Weitere Erläuterungen zu diesem Datenobjekt finden Sie hier.\nplayerConfig: Hier werden Parameter übergeben, die die Anzeige und die Interaktion steuern. Beispielsweise kann die Art und Weise des Blätterns zur nächsten Seite festgelegt werden. Weitere Erläuterungen zu diesem Datenobjekt finden Sie hier.\n\n\n\n4 State Changed Notification\n\n\n\n\n\n\nTipp\n\n\n\nAusführliche Darstellung der Meldung zur Statusänderung siehe hier.\n\n\nSobald eine Interaktion stattgefunden hat, die als Antwort wichtig wäre oder die bei einem wiederholten Aufruf der Unit wiederhergestellt werden soll, meldet der Player diese Änderung. Parameter:\n\nsessionId: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.\ntimeStamp: Ein String im Standard-Format date-time. Die Nutzung dieser Information ist dem Host überlassen, soll aber vor allem die korrekte Reihenfolge vieler asynchron eintreffender Nachrichten sicherstellen.\nunitState: Daten der Antworten im weiteren Sinne. Diese dienen der Auswertung und der Wiederherstellung beim Zurückblättern. Weitere Erläuterungen zu diesem Datenobjekt finden Sie hier.\nplayerState: Hier schickt der Player Informationen, die dem Host helfen können, die UI anzupassen. Beispielsweise wird so ein Wechsel der Seite berichtet, damit der Host in der Navigationsdarstellung die aktive Seite anders darstellt. Weitere Erläuterungen zu diesem Datenobjekt finden Sie hier.\nlog: Hierüber werden Log-Einträge geschickt. Dies sind Ereignisse, die nicht unbedingt einen Status ändern, sondern nur der Rekonstruktion der Beantwortung über die Zeit dienen können. Weitere Erläuterungen zu diesem Datenobjekt finden Sie hier.\n\n\n\n5 Page Navigation Command\nÜber dieses Kommando kann der Host den Player anweisen, zu einer bestimmten Seite zu wechseln. Dies ist sinnvoll, wenn der Host eine Seitennavigation z. B. über eine Button-Leiste anbietet. Parameter:\n\nsessionId: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.\ntarget: ID der Seite, zu der der Player navigieren soll. Die möglichen Seiten kennt der Host aus einer Nachricht vopStateChangedNotification des Players. Liegt eine solche Nachricht nicht vor, geht der Host davon aus, dass es nur eine Seite gibt und bietet keine Seitennavigation an.\n\n\n\n6 Unit Navigation Requested Notification\nDer Player kann Buttons einblenden, über die die Testperson zu einer anderen Unit navigiert. Eine Unit-Navigation kann auch über andere Bedingungen durch den Player ausgelöst werden, z. B. Ablauf einer Frist.\nÜber diese Nachricht fordert der Player eine Unit-Navigation an. Ob dann tatsächlich eine Unit-Navigation erfolgt, entscheidet der Host. Beispielsweise wird in der Voransicht einer Unit im Autorensystem IQB-Studio nur kurz eine Nachricht eingeblendet, dass eine Unit-Navigation angefordert wurde.\n\nsessionId: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.\ntarget: Ziel-Unit. Dies ist allerdings keine ID einer konkreten Unit, sondern ein Symbol für eine relativ zur aktuellen Unit befindlichen Unit: next, previous, first, last, end. Die möglichen Ziele kennt der Player aus dem Start-Kommando.\n\n\n\n7 Navigation Denied Notification\nIm Testablauf können fehlende oder falsche Antworten problematisch sein. Insbesondere bei Befragungen ist oft Vollständigkeit gewünscht. Daher meldet der Player bei einer Statusänderung auch diese Informationen mit. Der Testcontroller kann dann je nach Einstellung entscheiden, ob eine Navigation zur nächsten Unit zulässig ist oder nicht.\nSollte dies nicht der Fall sein, sollte der Player fehlende oder falsche Antworten visuell markieren. In normalen Formularen erfolgt dies, wenn der Eingabefokus auf ein Eingabeelement kommt und ohne weitere Eingabe zum nächsten Element wechselt. Aber wenn ein Eingabeelement nie den Fokus bekommt, kann die Fehlersituation nicht erzeugt werden. Die Alternative, alle Eingabeelemente beim Betreten der Unit als fehlerhaft darzustellen, wäre keine gute UI-Entscheidung.\nDie Nachricht vopNavigationDeniedNotification des Hosts ist also als Aufforderung an den Player zu verstehen, fehlende oder falsche Eingaben visuell darzustellen. Technisch kann das z. B. über markAllAsTouched() gehen. Parameter:\n\nsessionId: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.\nreason: Hinweis für den Player, warum die Navigation verweigert wurde: presentationIncomplete und/oder responsesIncomplete.\n\n\n\n8 Player Config Changed Notification\nDiese Nachricht soll den Player darüber informieren, dass sich die Konfiguration playerConfig, die das Modul im Startkommando erhalten hat, geändert hat. Beispiele:\n\ndurch Antworten oder Zeitablauf ist die Liste der möglichen Navigationsziele erweitert\nder User kann das Einblenden von IDs im Print-Modus ein- und ausschalten im Host\n\nParameter:\n\nsessionId: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.\nplayerConfig: Bitte diese Datenstruktur hier nachlesen\n\n\n\n9 Runtime Error Notification\nDiese Nachricht soll die Host-Anwendung darüber informieren, dass während der Ausführung von Code im Player ein Fehler aufgetreten ist, der die Beantwortung beeinträchtigen könnte. Die Interpretation ist dem Host überlassen. Sie reicht von Benachrichtigung des Users über die Freigabe der Navigation (presentationProgress verhindert normalerweise das Weiterblättern) bis zum Abbruch der Testung.\n\nsessionId: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.\ncode, message: Strings, die den Fehler beschreiben.\n\n\n\n\n\n\n\nSubject to change\n\n\n\nFür den Code sollte es eine Liste von möglichen Werten geben, damit die Host-Anwendungen konsistent reagieren. Aktuell (Version 6.0) liegen hierzu noch zu wenig Erfahrungen vor. Beispiele: AUDIO_CORRUPT, GEOGEBRA_CRASH\n\n\n\n\n10 Window Focus Changed Notification\nIn Testungen kann es wichtig sein festzustellen, ob die Testperson sich im Browser noch auf der Seite des Tests befindet. Sollte dies nicht der Fall sein, besteht der Verdacht, dass die Testperson unzulässigerweise andere Webseiten aufruft, um z. B. eine Übersetzung zu erhalten.\nDa technisch der Wechsel aus dem Host-Fensterbereich in den Bereich des &lt;iframe&gt;-Elements des Players einem Verlassen der Testseite gleichkommt, muss der Player dem Host mitteilen, dass er den Fokus erhalten bzw. verloren hat. Parameter:\n\ntimeStamp: Ein String im Standard-Format date-time.\nhasFocus: Wenn true, hat der Player den Fokus bekommen, ansonsten hat er ihn verloren und der Host muss prüfen, ob er ihn erhalten hat.\n\n\n\n\n\n\n\nTipp\n\n\n\n\nDie Ereignisse blur und focus werden an window bei einem Fokuswechsel gesendet.\nDie Funktion document.hasFocus() liefert true, wenn das Dokument den Fokus hat.",
-    "crumbs": [
-      "Player"
-    ]
-  },
-  {
-    "objectID": "schemer-docs/index.html",
-    "href": "schemer-docs/index.html",
-    "title": "Verona Interfaces – Schemer",
-    "section": "",
-    "text": "Ein Schemer dient der interaktiven onlinegestützten Entwicklung eines Kodierschemas. Dies ist eine Sammlung von Vorschriften, wie die Variablenwerte – automatisch oder manuell – kodiert werden sollen. Es können auch neue Variablen als Ableitung vorhandener gebildet werden.\nsequenceDiagram\n    autonumber\n    participant HA as Host-Anwendung\n    participant VM as Schemer (Verona Modul)\n    HA-&gt;&gt;VM:Initialisierung\n    VM-&gt;&gt;HA:vosReadyNotification\n    HA-&gt;&gt;VM:vosStartCommand\n    loop\n        VM-&gt;&gt;HA:vosSchemeChangedNotification\n    end",
-    "crumbs": [
-      "Schemer"
-    ]
-  },
-  {
-    "objectID": "schemer-docs/index.html#parameter-variables",
-    "href": "schemer-docs/index.html#parameter-variables",
-    "title": "Verona Interfaces – Schemer",
-    "section": "Parameter variables",
-    "text": "Parameter variables\nNachdem der Host die Bereitschaftsmeldung erhalten hat, schickt er die Variablenliste: Parameter variables – so, wie der Editor diese Liste erzeugt hat. Nur auf Grundlage der Variablenliste kann ein Schemer arbeiten, denn es handelt sich bei einem Kodierschema ja um die Verarbeitung von Variablenwerten. Der Schemer initialisiert entsprechend die UI.\n\nid, type, format\n\nEine Variable braucht eine innerhalb der Unit eindeutige Bezeichnung.\nEin Typ kann sein: string, integer, number, boolean, attachment – letzteres bezeichnet ein erzeugtes Medium, z. B. ein Bild. Im Kern handelt es sich hier um einen String, der aber eine Referenz darstellt und dem Auswertungssystem das Auffinden des zugehörigen Mediums ermöglicht.\nWerte für format:\n\ntext-selection: Ein String, der Daten für eine Textmarkierung enthält\nimage, capture-image, audio: Spezifiziert den Datentyp attachment\nggb-file, ggb-variable: Strings mit besonderem Bezug zu GeoGebra\nnon-negative: spezifiziert integer oder number\nlatex, math-ml, math-table: Strings mit besonderem Bezug zu mathematischen Formeln oder Ausdrücken\n\n\n\n\n\n\n\n\nSubject to change\n\n\n\nDie Erprobung von type kann als erfolgreich angesehen werden, bei den format-Optionen wird es noch Bewegung geben. Hier sind mitunter Ideen eingebracht, deren Nützlichkeit sich erst zeigen muss.\n\n\n\n\nmultiple, nullable\nDiese booleschen Werte kennzeichnen, ob die Variable ein Array des beschriebenen Typs und Formats enthält und ob der Wert null möglich ist.\n\n\nvalues, valuePositionLabels, valuesComplete\nDiese Angaben liefern genauere Informationen über die möglichen Werte der Variablen. Wenn valuesComplete true ist, dann handelt es sich sogar um eine vollständige Liste, und die Kodierung kann automatisch erfolgen.\n\n\npage\nDiese Information verortet die Quelle des Variablenwertes auf einer Seite der Unit.",
-    "crumbs": [
-      "Schemer"
-    ]
-  },
-  {
-    "objectID": "schemer-docs/index.html#weitere-parameter",
-    "href": "schemer-docs/index.html#weitere-parameter",
-    "title": "Verona Interfaces – Schemer",
-    "section": "Weitere Parameter",
-    "text": "Weitere Parameter\n\nsessionId: Dem Schemer wird eine Kennung mitgeschickt, die der Schemer anschließend in jeder Nachricht zur Änderung des Kodierschemas verwenden soll. Damit wird die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit unterstützt.\nSoweit vorhanden kann ein Kodierschema codingScheme geschickt werden, damit daran weitergearbeitet wird.\ncodingSchemeType: Sollte es Varianten oder Versionen von Kodierschemata geben, kann dies hier dem Schemer mitgeteilt werden. Alternativ (oder parallel) kann natürlich diese Information als Teil der Datenstruktur des Kodierschemas übergeben werden.\nschemerConfig –&gt; directDownloadUrl: Sollte der Schemer während der Laufzeit Code nachladen müssen, kann aus Gründen der Datensicherheit nicht einfach irgendein Server genutzt werden. Dem Schemer muss mitgeteilt werden, welche URL dafür zulässig ist.",
-    "crumbs": [
-      "Schemer"
-    ]
-  },
-  {
-    "objectID": "editor-docs/index.html",
-    "href": "editor-docs/index.html",
-    "title": "Verona Interfaces – Editor",
-    "section": "",
-    "text": "Ein Editor dient der interaktiven onlinegestützten Entwicklung einer Unit. Hierbei stehen die visuelle Erscheinung und die Interaktionselemente im Vordergrund.\nsequenceDiagram\n    autonumber\nparticipant HA as Host-Anwendung\n    participant VM as Editor (Verona-Modul)\n    HA-&gt;&gt;VM:Initialisierung\n    VM-&gt;&gt;HA:voeReadyNotification\n    HA-&gt;&gt;VM:voeStartCommand\n    loop\n        VM-&gt;&gt;HA:voeDefinitionChangedNotification\n    end",
-    "crumbs": [
-      "Editor"
-    ]
-  },
-  {
-    "objectID": "editor-docs/index.html#parameter-variables",
-    "href": "editor-docs/index.html#parameter-variables",
-    "title": "Verona Interfaces – Editor",
-    "section": "Parameter variables",
-    "text": "Parameter variables\nDass die Unit-Definition nicht dokumentiert ist, hat eine Menge Vorteile, allerdings auch Nachteile. Einige Informationen wären durchaus sinnvoll, anderen Programmierungen zur Verfügung zu stellen. Dazu gehört die Liste aller möglichen Variablen. Dies sind Werte-Tträger, also mit einer ID identifizierbare Quellen von Antwortdaten. Wie genau diese Antwortdaten entstehen oder wo, das ist uninteressant. Nur dass es sie gibt, ist z. B. für die Planung der Kodierung wichtig.\nDie Variablenliste wird stets gleichzeitig mit der Unit-Definition geschickt. Sie soll also immer aktuell sein. Die folgenden Parameter werden mitgeliefert:\n\nid, type, format\n\nEine Variable braucht eine innerhalb der Unit eindeutige Bezeichnung.\nEin Typ kann sein: string, integer, number, boolean, attachment – letzteres bezeichnet ein erzeugtes Medium, z. B. ein Bild. Im Kern handelt es sich hier um einen String, der aber eine Referenz darstellt und dem Auswertungssystem das Auffinden des zugehörigen Mediums ermöglicht.\nWerte für format:\n\ntext-selection: Ein String, der Daten für eine Textmarkierung enthält\nimage, capture-image, audio: Spezifiziert den Datentyp attachment\nggb-file, ggb-variable: Strings mit besonderem Bezug zu GeoGebra\nnon-negative: spezifiziert integer oder number\nlatex, math-ml, math-table: Strings mit besonderem Bezug zu mathematischen Formeln oder Ausdrücken\n\n\n\n\n\n\n\n\nSubject to change\n\n\n\nDie Erprobung von type kann als erfolgreich angesehen werden, bei den format-Optionen wird es noch Bewegung geben. Hier sind mitunter Ideen eingebracht, deren Nützlichkeit sich erst zeigen muss.\n\n\n\n\nmultiple, nullable\nDiese booleschen Werte kennzeichnen, ob die Variable ein Array des beschriebenen Typs und Formats enthält und ob der Wert null möglich ist.\n\n\nvalues, valuePositionLabels, valuesComplete\nDiese Angaben liefern genauere Informationen über die möglichen Werte der Variablen. Wenn valuesComplete true ist, dann handelt es sich sogar um eine vollständige Liste, und die Kodierung kann automatisch erfolgen.\n\n\npage\nDiese Information verortet die Quelle des Variablenwertes auf einer Seite der Unit.",
-    "crumbs": [
-      "Editor"
-    ]
-  },
-  {
-    "objectID": "intro/tba.html",
-    "href": "intro/tba.html",
-    "title": "Computerbasiertes Testen",
-    "section": "",
-    "text": "Die folgenden Ausführungen beziehen sich stets auf Tests, finden aber auch Anwendung auf Befragungen. Die Anforderungen an Befragungen sind ähnlich, aber meist einfacher umzusetzen. Es gibt beispielsweise keine Kodierung in “Richtig” oder “Falsch”.\nDass Befragungen hier auch technisch mit abgedeckt werden (können) liegt daran, dass große Studien zur Erfassung von Kompetenzen stets auch Befragungen mit einschließen. Auf diesem Weg ist es möglich, Einflussfaktoren über Personenmerkmale zu erheben.\n\n\n\nDas Durchführungsszenario sieht bei der Testperson ein Endgerät vor, das dem Begriff des “Computers” entspricht. Es sind also Desktop-Geräte, Laptops, Notebooks und teilweise auch Smartphones im Einsatz, wenn ein Test (engl. Assessment) im Bildungsbereich durchgeführt wird.\nDer Begriff “technologiebasiert” möchte betonen, dass es nicht unbedingt eines Computers bedarf, um digital Antworten zu erfassen. Prominentes Beispiel wäre ein Stift, der auf Spezialpapier Geschriebenes erkennt (scannen in Echtzeit) und in einen Speicher ablegt für spätere Auswertungen. Diese Überlegungen führten zum Begriff “Technologiebasiertes Assessment” oder “Technology Based Assessment”, wobei Technologie hier eher als Technik verstanden wird (Papierverfahren sind eigentlich auch Technologien).\nLetztlich sind diese Unterscheidungen hier nicht relevant und werden daher synonym verwendet. Man könnte auch eAssessment, digitales Testen usw. verwenden.",
-    "crumbs": [
-      "Einführung",
-      "Computerbasiertes Testen"
-    ]
-  },
-  {
-    "objectID": "intro/tba.html#test-oder-befragung",
-    "href": "intro/tba.html#test-oder-befragung",
-    "title": "Computerbasiertes Testen",
-    "section": "",
-    "text": "Die folgenden Ausführungen beziehen sich stets auf Tests, finden aber auch Anwendung auf Befragungen. Die Anforderungen an Befragungen sind ähnlich, aber meist einfacher umzusetzen. Es gibt beispielsweise keine Kodierung in “Richtig” oder “Falsch”.\nDass Befragungen hier auch technisch mit abgedeckt werden (können) liegt daran, dass große Studien zur Erfassung von Kompetenzen stets auch Befragungen mit einschließen. Auf diesem Weg ist es möglich, Einflussfaktoren über Personenmerkmale zu erheben.",
-    "crumbs": [
-      "Einführung",
-      "Computerbasiertes Testen"
-    ]
-  },
-  {
-    "objectID": "intro/tba.html#computerbasiert-vs.-technologiebasiert",
-    "href": "intro/tba.html#computerbasiert-vs.-technologiebasiert",
-    "title": "Computerbasiertes Testen",
-    "section": "",
-    "text": "Das Durchführungsszenario sieht bei der Testperson ein Endgerät vor, das dem Begriff des “Computers” entspricht. Es sind also Desktop-Geräte, Laptops, Notebooks und teilweise auch Smartphones im Einsatz, wenn ein Test (engl. Assessment) im Bildungsbereich durchgeführt wird.\nDer Begriff “technologiebasiert” möchte betonen, dass es nicht unbedingt eines Computers bedarf, um digital Antworten zu erfassen. Prominentes Beispiel wäre ein Stift, der auf Spezialpapier Geschriebenes erkennt (scannen in Echtzeit) und in einen Speicher ablegt für spätere Auswertungen. Diese Überlegungen führten zum Begriff “Technologiebasiertes Assessment” oder “Technology Based Assessment”, wobei Technologie hier eher als Technik verstanden wird (Papierverfahren sind eigentlich auch Technologien).\nLetztlich sind diese Unterscheidungen hier nicht relevant und werden daher synonym verwendet. Man könnte auch eAssessment, digitales Testen usw. verwenden.",
-    "crumbs": [
-      "Einführung",
-      "Computerbasiertes Testen"
-    ]
-  },
-  {
-    "objectID": "intro/tba.html#aufgabenentwicklung",
-    "href": "intro/tba.html#aufgabenentwicklung",
-    "title": "Computerbasiertes Testen",
-    "section": "Aufgabenentwicklung",
-    "text": "Aufgabenentwicklung\nDie Testaufgaben für die Durchführung der Bildungstrendstudien und für die Vergleichsarbeiten der Länder (VERA; s. KMK) werden am IQB entwickelt. Es erfolgt in jedem Fall eine empirische Erprobung einer jeden Aufgabe (sog. Pilotierung). Für die Aufgaben werden auch die Vorschriften für die Kodierung entwickelt.",
-    "crumbs": [
-      "Einführung",
-      "Computerbasiertes Testen"
-    ]
-  },
-  {
-    "objectID": "intro/tba.html#bildungstrend---länderübergreifend",
-    "href": "intro/tba.html#bildungstrend---länderübergreifend",
-    "title": "Computerbasiertes Testen",
-    "section": "Bildungstrend - länderübergreifend",
-    "text": "Bildungstrend - länderübergreifend\nDie Studien des Bildungstrends in den Jahrgängen 4 und 9 werden online auf Servern durchgeführt, die das IQB bereitstellt. Ein auf die Durchführung großer Bildungsstudien spezialisierter Auftragnehmer (nachfolgend “AN Durchführung”) bereitet die Testung vor und begleitet die Durchführung in den Schulen vor Ort mit Testleiterinnen und Testleitern. Hier erfolgt auch die Kodierung der Antworten, und das IQB bekommt einen umfassenden Datensatz sowie begleitende Dokumentation.\n\n\n\n\n\nsequenceDiagram\n    participant IQB\n    participant AN as AN Durchführung\n    Actor Schule\n    IQB-&gt;&gt;AN: Nennung Schulen\n    AN-&gt;&gt;Schule: System-Check\n    Schule-&gt;&gt;AN: Meldung Testpersonen\n    IQB-&gt;&gt;AN: Aufgaben\n    AN-&gt;&gt;Schule: Logins\n    note over Schule: Testdurchführung\n    Schule-&gt;&gt;AN: Antworten+Logs roh\n    note over AN: Kodierung\n    AN-&gt;&gt;IQB: Datensatz\n    note over IQB: Auswertung, Bericht",
-    "crumbs": [
-      "Einführung",
-      "Computerbasiertes Testen"
-    ]
-  },
-  {
-    "objectID": "intro/tba.html#vera---in-jedem-land-separat",
-    "href": "intro/tba.html#vera---in-jedem-land-separat",
-    "title": "Computerbasiertes Testen",
-    "section": "VERA - in jedem Land separat",
-    "text": "VERA - in jedem Land separat\nDie jährlichen Vergleichsarbeiten in den Jahrgängen 3 und 8 führt ein Land in eigener Regie durch. Das IQB liefert Aufgaben einschl. Kodierschema sowie Vorschläge für den Testablauf (Testmodule, Testhefte). Im Schema unten ist der häufige Fall dargestellt, dass das Land eine Einrichtung (z. B. ein universitäres Projekt) mit der Durchführung beauftragt.\n\n\n\n\n\nsequenceDiagram\n    participant IQB\n    participant Land\n    participant DE as Durchführende Einrichtung\n    Actor Schule\n    IQB-&gt;&gt;Land: Aufgaben\n    Land-&gt;&gt;DE: Nennung Schulen\n    DE-&gt;&gt;Schule: System-Check\n    Schule-&gt;&gt;DE: Meldung Testpersonen\n    Land-&gt;&gt;DE: Aufgaben\n    DE-&gt;&gt;Schule: Logins\n    note over Schule: Testdurchführung\n    note over Schule: Kodierung\n    Schule-&gt;&gt;DE: Antworten kodiert\n    note over DE: Auswertung\n    DE-&gt;&gt;Schule: Rückmeldung\n    DE-&gt;&gt;Land: Rückmeldung\n\n\n\n\n\n\nDie Antworten werden in diesem Szenario durch die Lehrkräfte kodiert. Nach der Auswertung durch die durchführende Einrichtung meldet diese in die Schulen und dem Auftraggeber die Ergebnisse, um die Unterrichtsentwicklung zu fördern sowie eine Evaluation auf Systemebene zu ermöglichen.\nWenn das Land keine Einrichtung mit der Durchführung beauftragt, fallen die entsprechenden Arbeiten samt Bereitstellung der technischen Infrastruktur dem Land zu.",
-    "crumbs": [
-      "Einführung",
-      "Computerbasiertes Testen"
-    ]
-  },
-  {
-    "objectID": "intro/english.html",
-    "href": "intro/english.html",
-    "title": "English: About",
-    "section": "",
-    "text": "The repositories located at /verona-interfaces consist of API specifications for assessment web applications. In Germany, every state / Bundesland conducts assessments in schools and uses different technical solutions. In order to exchange assessment units or to share code modules, the data formats and interfaces need to be specified. The initiative ‘Verona’ works on these specifications.\nThis is an early stage of this endeavour, we did some first steps. To support this process, we publish this documentation in German language. Here you find a general introduction and clarifying of terms etc.\nBesides, the specifications come in separate repositories in English language: Player, Editor, Schemer and Metadata.\nContact: Institute for Educational Quality Improvement.",
-    "crumbs": [
-      "Einführung",
-      "English: About"
-    ]
-  },
-  {
-    "objectID": "intro/data-structures.html",
-    "href": "intro/data-structures.html",
-    "title": "Datenstrukturen",
-    "section": "",
-    "text": "Ein Testablauf ist stets eine Abfolge von Instruktionen oder Fragen an die Testperson, nach Bedarf angereichert mit Material (Bilder, Text, Audio, Video - sog. Stimulus), auf die sich die Fragen bzw. Handlungsanweisungen dann beziehen. Die kleinste Dateneinheit ist ein durch die Testperson geänderter Zustand, der durch Speichern reproduzierbar wird. Diese kleinste Dateneinheit nennen wir Variable. Sie kann sich auf ein Interaktionselement (z. B. Eingabefeld, Ankreuzkästchen), aber auch auf ein abgespieltes Audio beziehen (Variablenwert ist dann der Fortschritt des Abspielens).\nDer Begriff Item steht für eine Antwort der Testperson, die man mit einem Erwartungswert vergleichen kann und dann den Kategorien “Richtig” und “Falsch” zuordnen kann. Die Quelle für die Antwort ist der Wert einer oder mehrerer Variablen. D. h. die Zustandsänderungen während der Interaktion führen nicht automatisch zu auswertbaren Daten, sondern müssen ggf. aus mehreren Interaktionen zusammengeführt werden.\n\nZ. B. ist in Mathematik ein Format sehr beliebt: “Kreuze an und begründe”. Die Testperson soll sich für eine Option einer Auswahl von Ankreuzkästchen entscheiden, aber bewertet im Sinne der Datenanalyse wird die Entscheidung erst im Zusammenhang mit einem Text, der darunter in ein Eingabefeld geschrieben wurde.\n\nNun kann ein Item auf einer Seite ggf. zusammen mit einem Stimulus präsentiert werden. Über die Navigation kommt man zum nächsten Item. Oft werden jedoch mehrere Items als Gruppe präsentiert, vor allem, wenn sie sich auf denselben Stimulus beziehen. Man erreicht eine höhere Effizienz beim Testen, wenn man zu einem Stimulus nicht nur ein Item vorsieht. Als Unit bezeichnen wir eine Gruppe von Items, die aus testpraktischen oder testtheoretischen Gründen zusammen präsentiert werden.\n\n\n\n\n\n\nUnit ist Fokus\n\n\n\nDer Fokus aller Verona-Module liegt auf der Unit. Es werden Daten verarbeitet, die sich stets auf eine Unit beziehen.\n\n\nDie Unit ist nun die Ebene in der Datenstruktur, die man als beliebig austauschbar innerhalb eines Tests deklariert. Es gibt sogar statistische Maßzahlen, die die unerwünschten Positionseffekte von Units quantifizieren. Natürlich gibt es auch Tests und vor allem Befragungen, bei denen die Abfolge gründlich geplant wird und wo die Units nicht unabhängig voneinander sind. Aber aus Sicht der Datenstrukturen reden wir lange von Units und deren Optimierung, bevor ihr Platz in einer Testabfolge festgelegt wird. Daher sieht der Entwicklungsprozess für Tests zunächst eine Unit- – bzw. im deutschen Sprachgebrauch auch Aufgaben- – Entwicklung vor.\n\nEine Unit kann auch eine simple Seite sein, die nur begrüßt oder den nächsten Aufgabenblock ankündigt. Das IQB hat viel Arbeit in Units gesteckt, die die Bedienung von Eingabeelementen erläutern. Für die vorliegende Dokumentation spielt das keine Rolle, da es technisch nur eine Vereinfachung darstellt und stets möglich ist.",
-    "crumbs": [
-      "Einführung",
-      "Datenstrukturen"
-    ]
-  },
-  {
-    "objectID": "intro/data-structures.html#modul-editor",
-    "href": "intro/data-structures.html#modul-editor",
-    "title": "Datenstrukturen",
-    "section": "Modul “Editor”",
-    "text": "Modul “Editor”\nHier werden für die Unit-Erstellung in einem interaktiven Prozess alle Medien platziert und alle Interaktionselemente gebaut. Ein Editor ist auf die Autorinnen und Autoren ausgerichtet. Bei den großen Bildungsvergleichsstudien muss sich daher dessen UI/UX an den Fähigkeiten und Gewohnheiten von Lehrkräften orientieren.",
-    "crumbs": [
-      "Einführung",
-      "Datenstrukturen"
-    ]
-  },
-  {
-    "objectID": "intro/data-structures.html#modul-player",
-    "href": "intro/data-structures.html#modul-player",
-    "title": "Datenstrukturen",
-    "section": "Modul “Player”",
-    "text": "Modul “Player”\nEin Player-Modul dient dem “Abspielen” – also der Präsentation – von Units. Es gibt mehrere Anwendungsfälle:\n\nAnzeige im Testsystem während des Tests\nAnzeige im Testsystem für den Review\nVeröffentlichung von Beispielaufgaben\nVeröffentlichung als permanente Referenz für einen wissenschaftlichen Artikel\nVoransicht im Autorensystem\nDruckbare Ansicht für den Export\nPräsentation während der manuellen Kodierung mit den Antwortdaten einer Testperson\nAnzeige für Eltern nach dem Test mit den Antwortdaten ihres Kindes\n\nDiese Liste lässt sich sicherlich erweitern. Je nach Anwendungsfall werden die Antworten gespeichert bzw. wiederhergestellt oder nicht.",
-    "crumbs": [
-      "Einführung",
-      "Datenstrukturen"
-    ]
-  },
-  {
-    "objectID": "intro/data-structures.html#unit-definition",
-    "href": "intro/data-structures.html#unit-definition",
-    "title": "Datenstrukturen",
-    "section": "Unit-Definition",
-    "text": "Unit-Definition\nDie Unit-Definition ist nicht spezifiziert. Sie wird serialisiert als String gespeichert bzw. zwischen den Komponenten ausgetauscht. Aus diesem Grund ist es wichtig, dass zu der Unit-Definition auch die ID und die Version des Player- und ggf. des genutzten Editormoduls gespeichert werden.\nNatürlich kann ein Entwickler entscheiden, die Unit-Definition ausführlich zu beschreiben und auch z. B. einer Versionierung zu unterziehen. Das IQB tut dies z. B. für zwei einfache Player. Eine solche Spezifikation der Unit-Definition ist aber nicht Gegenstand dieser Verona-Spezifikationen.",
-    "crumbs": [
-      "Einführung",
-      "Datenstrukturen"
-    ]
-  },
-  {
-    "objectID": "intro/data-structures.html#modul-schemer",
-    "href": "intro/data-structures.html#modul-schemer",
-    "title": "Datenstrukturen",
-    "section": "Modul “Schemer”",
-    "text": "Modul “Schemer”\nMit diesem Verona-Modul werden im Autorensystem die Vorschriften für die Antwortverarbeitung erstellt. Dieses sog. Kodierschema wird in einfachen Fällen bereits von den Aufgabenentwicklerinnen und -entwicklern eingegeben, meist bedarf es aber aufgrund der Komplexität einer besonderen Erfahrung.",
-    "crumbs": [
-      "Einführung",
-      "Datenstrukturen"
-    ]
-  },
-  {
-    "objectID": "intro/data-structures.html#variablenliste",
-    "href": "intro/data-structures.html#variablenliste",
-    "title": "Datenstrukturen",
-    "section": "Variablenliste",
-    "text": "Variablenliste\nDamit das Kodierschema entwickelt werden kann, muss der Schemer die Variablen kennen, die im Editor angelegt wurden. Diese Datenstruktur ist als Teil des Editors spezifiziert.",
-    "crumbs": [
-      "Einführung",
-      "Datenstrukturen"
-    ]
-  },
-  {
-    "objectID": "intro/data-structures.html#antwortdaten",
-    "href": "intro/data-structures.html#antwortdaten",
-    "title": "Datenstrukturen",
-    "section": "Antwortdaten",
-    "text": "Antwortdaten\nDie Antwortdaten sind nicht spezifiziert. Sie werden serialisiert als String gespeichert bzw. zwischen den Komponenten ausgetauscht. In der Player-Schnittstelle ist die Angabe eines Datenformates als String vorgesehen, damit nachfolgende Prozesse die Daten sinnvoll verarbeiten können.\nDas IQB hat für die eigenen Module ein einheitliches Antwortformat spezifiziert. Dieses ist jedoch nicht Teil dieser Verona-Spezifikationen.",
-    "crumbs": [
-      "Einführung",
-      "Datenstrukturen"
-    ]
-  },
-  {
-    "objectID": "intro/data-structures.html#kodierschema",
-    "href": "intro/data-structures.html#kodierschema",
-    "title": "Datenstrukturen",
-    "section": "Kodierschema",
-    "text": "Kodierschema\nDas Kodierschema ist nicht spezifiziert. Es wird serialisiert als String gespeichert bzw. zwischen den Komponenten ausgetauscht. In der Schemer-Schnittstelle ist die Angabe eines Datenformates als String vorgesehen, damit nachfolgende Prozesse die Daten sinnvoll verarbeiten können.\nDas IQB hat für die eigenen Module ein einheitliches Datenformat für das Kodierschema spezifiziert. Dieses ist jedoch nicht Teil dieser Verona-Spezifikationen.",
-    "crumbs": [
-      "Einführung",
-      "Datenstrukturen"
-    ]
-  },
-  {
-    "objectID": "intro/modelling.html",
-    "href": "intro/modelling.html",
-    "title": "Kommunikationsmodell",
-    "section": "",
-    "text": "Die Interaktion zwischen der Hostanwendung, dem integrierten Verona-Modul, der darunterliegenden Datenbank und dem Endnutzer lassen sich wie folgt beschreiben:\n\n\n\n\n\nsequenceDiagram\n    participant DB as Datenbank\n    participant HA as Host-Anwendung\n\n    DB-&gt;&gt;HA:Laden Daten\n    participant VM as Verona-Modul\n    HA-&gt;&gt;VM:Initialisierung\n    VM-&gt;&gt;HA:vopReadyNotification\n    HA-&gt;&gt;VM:vopStartCommand\n    loop\n        Actor TP as Person\n        VM-&gt;TP:Interaktion\n        VM-&gt;&gt;HA:vopStateChangedNotification\n    end\n    VM-xTP:Navigation\n    HA-&gt;&gt;DB:Speichern geänderte Daten\n    HA-xVM:Navigation\n\n\n\n\n\n\n\nInitialisierung\nVerona-Module werden üblicherweise dynamisch geladen und ausgeführt. Wenn ein bestimmtes Modul erforderlich ist und grundsätzlich im System verfügbar, dann wird es zunächst von der Hostanwendung (Frontend im Browser) in den Hauptspeicher geladen.\nAnschließend muss ein &lt;iframe&gt;-Element verfügbar sein. Die Browser unterstützen jetzt alle das Attribut srcdoc, und diesem Attribut wird der Modul-Code zugewiesen. Dies entspricht technisch dem Laden einer Webseite. Dies erfordert eine gewisse (unbekannte) Zeit.\n\n\nNachrichten empfangen\nDie Kommunikation kann nur erfolgen, wenn die Host-Anwendung Nachrichten an das window-Objekt abfängt. Das Verona-Modul kann nur allgemein an seine Host-Anwendung Nachrichten schicken, nicht gezielt an eine bestimmte Komponente oder ein bestimmtes DOM-Element. Auf höchster Ebene muss also z. B. so etwas einmalig aufgerufen werden:\n\n\nListener einrichten bei Start der Hostanwendung\n\n window.addEventListener('message', (event: MessageEvent) =&gt; {\n      const msgData = event.data;\n      const msgType = msgData.type;\n      if ((msgType !== undefined) &&\n            (msgType.substr(0, 2) === 'vo')) {\n        this.tcs.postMessage$.next(event);\n      }\n    });\n\nIn diesem Beispiel prüft die Funktion, ob der Typ der Nachricht mit ‘vo’ beginnt. In diesem Fall wird angenommen, dass es sich um eine Nachricht von einem Verona-Modul handelt und ein Observable wird auf einen neuen Wert gesetzt. An passenden Stellen im Host kann dann darauf reagiert werden.\n\n\nVerona-Modul meldet Bereitschaft\nWenn das Modul die eigene Initialisierung abgeschlossen hat, meldet es die Bereitschaft an den Host. Erst ab diesem Zeitpunkt kann man davon ausgehen, dass das Modul Nachrichten empfangen kann. Davor hört es quasi nicht zu.\nIm Verona-Kontext liefert das Modul seine Metadaten mit, d. h. der Host kann prüfen, ob das richtige Modul geladen wurde bzw. ob bestimmte Anpassungen in der Kommunikation erfolgen müssen.\n\n\n\n\n\n\nVorsicht bei mehreren Modulen auf einer Seite\n\n\n\nWenn mehrere Module desselben Typs auf einer Seite eingerichtet werden sollen, muss der Host prüfen, von welchem &lt;iframe&gt;-Element die Bereitschaftsmeldung kam (source/target). Anschließend sollte die sessionId verwendet werden, um die Nachrichten bzw. deren Daten zuzuordnen.\n\n\n\n\nStart-Kommando\nAn das &lt;iframe&gt;-Element wird dann üblicherweise ein Kommando geschickt, das die spezifischen Daten der Unit enthält (Definition, vorherige Antworten, Kodierschema usw.). Damit erstellt bzw. parametrisiert das Modul die erforderlichen Elemente und die Interaktion mit dem User (Testperson, Autorin) kann beginnen.\n\n\nBeispiel Startkommando für Player\n\n  this.postMessageTarget.postMessage({\n        type: 'vopStartCommand',\n        sessionId: this.itemPlayerSessionId,\n        unitDefinition: pendingUnitDef,\n        unitState: {\n          dataParts: pendingUnitDataToRestore\n        },\n        playerConfig: this.tcs.fullPlayerConfig\n      }, '*');\n\n\n\n\n\n\n\n`type’ ist Teil des Payloads\n\n\n\nDie Konvention sieht vor, dass die Operation-ID als Eigenschaft type stets Teil des Datenobjektes ist. Es gibt keinen separaten Parameter dafür.\n\n\nWenn später ein neues Startkommando vom Host geschickt wird, stellt das Modul zunächst den Ausgangszustand zur Initialisierung wieder her und verfährt dann wie oben. Sollten z. B. mehrere Units hintereinander denselben Player anfordern, muss nicht immer neu das gesamte Modul neu initialisiert werden. Der Player kann über ein neues Start-Kommando “nachgenutzt” werden.\n\n\nInteraktion: Zustandsänderung melden\nWährend der Interaktion meldet das Verona-Modul Änderungen je nach Typ des Moduls. Ob diese Änderungen gespeichert werden, hängt vom jeweiligen Anwendungsfall ab.\n\n\n\n\n\n\nVorsicht Datenflut\n\n\n\nBei schnellen Tastatureingaben oder ambitionierter Beobachtung des Userverhaltens (Logging) fallen sehr viele Daten an. Beim Player-Modul kann man die Daten aufteilen (sog. dataParts), aber auch sonst könnte es viel werden. Die Hostanwendung sollte einen Puffer einrichten und nicht alles sofort wegspeichern. Bei rxjs gibt es beispielsweise den Operator debounceTime.\n\n\n\n\nKorrekte Zuordnung der Modul-Instanz bzw. der Daten\nBei den Nachrichten gibt es zwei Eigenschaften, die eine korrekte Zuordnung unterstützen:\n\nsessionId: Diese ID wird beim Startkommando vom Host vergeben und wird vom Modul bei jeder Nachricht mitgeschickt. Diese ID wird durch das Modul nicht verändert. Der Host kann darüber das Modul-Element identifizieren und daher sicherstellen, dass bei den überwiegend asynchronen Vorgängen im Browser die Daten stets z. B. der richtigen Unit zugeordnet werden.\ntimeStamp: Auch diese Eigenschaft wird stets vom Modul mitgeschickt. Darüber kann sichergestellt werden, dass die Reihenfolge der Nachrichten nicht vertauscht wird. Es ist stets die jeweils letzte Änderung feststellbar.\n\n\n\nBeenden: unnötig\nDa Änderungen sofort gemeldet werden, ist ein formelles Beenden des Moduls unnötig. Es gibt bei keinem Verona-Modul Bedarf, vor Entfernen des Moduls bestimmte Funktionen aufzurufen. Wenn das Modul nicht mehr benötigt wird (oben dargestellt als Navigation), kann das &lt;iframe&gt;-Element entfernt oder geleert werden (srcdoc=\"\").\n\n\n Sicherheitshinweis\nÜber die Verwendung von postMessage() in den MDN Web Docs:\n\nAny window may access this method on any other window, at any time, regardless of the location of the document in the window, to send it a message. Consequently, any event listener used to receive messages must first check the identity of the sender of the message, using the origin and possibly source properties. This cannot be overstated: Failure to check the origin and possibly source properties enables cross-site scripting attacks.\n\nHost-Anwendung und Verona-Modul sollten also alles unternehmen, die Identität des Senders festzustellen. Dazu kann man die Html-Elemente mit IDs versehen und die sessionId verwenden.",
-    "crumbs": [
-      "Einführung",
-      "Kommunikationsmodell"
     ]
   }
 ]
