@@ -1,6 +1,7 @@
-### `id`, `type`, `format`
+### `id`, `alias`, `type`, `format`
 
 * Eine Variable braucht eine innerhalb der Unit eindeutige Bezeichnung.
+* Ein `alias` ist eine alternative ID, die durch User vergeben werden kann. Dann kann die ID der Variable nicht mehr geändert werden und bleibt konstant über alle Verarbeitungsschritte und Versionen. Der Alias kann aber nach Bedarf geändert werden. Das IQB hat diese Trennung eingeführt, als sich Umbenennungen von Variablen häuften und jede Umbenennung Inkonsistenzen verursachte (Ableitungen schlugen fehl, Seitenzustände wurden falsch ermittelt).
 * Ein Typ kann sein: `string`, `integer`, `number`, `boolean`, `attachment` -- letzteres bezeichnet ein erzeugtes Medium, z. B. ein Bild. Im Kern handelt es sich hier um einen String, der aber eine Referenz darstellt und dem Auswertungssystem das Auffinden des zugehörigen Mediums ermöglicht.
 * Werte für `format`:
   - `text-selection`: Ein String, der Daten für eine Textmarkierung enthält
