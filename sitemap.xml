@@ -2,70 +2,58 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://verona-interfaces.github.io/intro/modelling.html</loc>
-    <lastmod>2025-01-08T16:06:40.747Z</lastmod>
+    <lastmod>2025-01-08T16:11:12.305Z</lastmod>
   </url>
   <url>
     <loc>https://verona-interfaces.github.io/intro/index.html</loc>
-    <lastmod>2025-01-08T16:06:40.747Z</lastmod>
+    <lastmod>2025-01-08T16:11:12.305Z</lastmod>
   </url>
   <url>
     <loc>https://verona-interfaces.github.io/intro/architecture.html</loc>
-    <lastmod>2025-01-08T16:06:40.747Z</lastmod>
+    <lastmod>2025-01-08T16:11:12.305Z</lastmod>
   </url>
   <url>
     <loc>https://verona-interfaces.github.io/intro/english.html</loc>
-    <lastmod>2025-01-08T16:06:40.747Z</lastmod>
-  </url>
-  <url>
-    <loc>https://verona-interfaces.github.io/editor/msg1_start.html</loc>
-    <lastmod>2025-01-08T16:06:40.746Z</lastmod>
-  </url>
-  <url>
-    <loc>https://verona-interfaces.github.io/editor/index.html</loc>
-    <lastmod>2025-01-08T16:06:40.746Z</lastmod>
-  </url>
-  <url>
-    <loc>https://verona-interfaces.github.io/player-docs/vopStateChangedNotification.html</loc>
-    <lastmod>2025-01-08T16:06:40.748Z</lastmod>
-  </url>
-  <url>
-    <loc>https://verona-interfaces.github.io/player-docs/index.html</loc>
-    <lastmod>2025-01-08T16:06:40.748Z</lastmod>
-  </url>
-  <url>
-    <loc>https://verona-interfaces.github.io/schemer-docs/index.html</loc>
-    <lastmod>2025-01-08T16:06:40.748Z</lastmod>
-  </url>
-  <url>
-    <loc>https://verona-interfaces.github.io/editor-docs/index.html</loc>
-    <lastmod>2025-01-08T16:06:40.746Z</lastmod>
-  </url>
-  <url>
-    <loc>https://verona-interfaces.github.io/player-docs/vopStartCommand.html</loc>
-    <lastmod>2025-01-08T16:06:40.748Z</lastmod>
+    <lastmod>2025-01-08T16:11:12.305Z</lastmod>
   </url>
   <url>
     <loc>https://verona-interfaces.github.io/index.html</loc>
-    <lastmod>2025-01-08T16:06:40.747Z</lastmod>
+    <lastmod>2025-01-08T16:11:12.305Z</lastmod>
   </url>
   <url>
-    <loc>https://verona-interfaces.github.io/editor/uml.html</loc>
-    <lastmod>2025-01-08T16:06:40.746Z</lastmod>
+    <loc>https://verona-interfaces.github.io/player-docs/vopStartCommand.html</loc>
+    <lastmod>2025-01-08T16:11:12.306Z</lastmod>
+  </url>
+  <url>
+    <loc>https://verona-interfaces.github.io/editor-docs/index.html</loc>
+    <lastmod>2025-01-08T16:11:12.304Z</lastmod>
+  </url>
+  <url>
+    <loc>https://verona-interfaces.github.io/schemer-docs/index.html</loc>
+    <lastmod>2025-01-08T16:11:12.306Z</lastmod>
+  </url>
+  <url>
+    <loc>https://verona-interfaces.github.io/player-docs/index.html</loc>
+    <lastmod>2025-01-08T16:11:12.306Z</lastmod>
+  </url>
+  <url>
+    <loc>https://verona-interfaces.github.io/player-docs/vopStateChangedNotification.html</loc>
+    <lastmod>2025-01-08T16:11:12.306Z</lastmod>
   </url>
   <url>
     <loc>https://verona-interfaces.github.io/intro/integration.html</loc>
-    <lastmod>2025-01-08T16:06:40.747Z</lastmod>
+    <lastmod>2025-01-08T16:11:12.305Z</lastmod>
   </url>
   <url>
     <loc>https://verona-interfaces.github.io/intro/tba.html</loc>
-    <lastmod>2025-01-08T16:06:40.747Z</lastmod>
+    <lastmod>2025-01-08T16:11:12.305Z</lastmod>
   </url>
   <url>
     <loc>https://verona-interfaces.github.io/intro/metadata.html</loc>
-    <lastmod>2025-01-08T16:06:40.747Z</lastmod>
+    <lastmod>2025-01-08T16:11:12.305Z</lastmod>
   </url>
   <url>
     <loc>https://verona-interfaces.github.io/intro/data-structures.html</loc>
-    <lastmod>2025-01-08T16:06:40.747Z</lastmod>
+    <lastmod>2025-01-08T16:11:12.305Z</lastmod>
   </url>
 </urlset>
