@@ -2,19 +2,19 @@
 
 * Eine Variable braucht eine innerhalb der Unit eindeutige Bezeichnung.
 * Ein `alias` ist eine alternative ID, die durch User vergeben werden kann. Dann kann die ID der Variable nicht mehr geändert werden und bleibt konstant über alle Verarbeitungsschritte und Versionen. Der Alias kann aber nach Bedarf geändert werden. Das IQB hat diese Trennung eingeführt, als sich Umbenennungen von Variablen häuften und jede Umbenennung Inkonsistenzen verursachte (Ableitungen schlugen fehl, Seitenzustände wurden falsch ermittelt).
-* Ein Typ kann sein: `string`, `integer`, `number`, `boolean`, `attachment` -- letzteres bezeichnet ein erzeugtes Medium, z. B. ein Bild. Im Kern handelt es sich hier um einen String, der aber eine Referenz darstellt und dem Auswertungssystem das Auffinden des zugehörigen Mediums ermöglicht.
+* Mögliche Werte für Typ:
+  - `string`, `integer`, `number`, `boolean`: Entsprechend gängiger simpler Datentypen
+  - `attachment`: bezeichnet ein erzeugtes Medium, z. B. ein Bild. Im Kern handelt es sich hier um einen String, der aber eine Referenz darstellt und dem Auswertungssystem das Auffinden des zugehörigen Mediums ermöglicht.
+  - `no-value`: Der Editor ist überzeugt, dass diese Variable für die Auswertung keine Rolle spielt. Manchmal ist z. B. die Sichtbarkeit eines Elementes wichtig zu speichern, aber es wird nie ein nützlicher Wert erzeugt.
+  - `json`: Der Wert ist ein stringifiziertes JSON-Objekt. Dies kann bei komplexen Eingabeelementen erforderlich sein, z. B. Text mit eingebetteten Formeln. Diese Antworten werden dann meist manuell kodiert.
+  - `coded`: Hier wird die Antwort bereits durch den Player codiert. Es kann für die Itementwicklung wesentlich angenehmer sein, die richtige bzw. falsche Antwort bereits im Editor zu definieren und nicht erst im Schemer. Der Player schickt dann die Antworten bereits mit der Information `code` und `score` und setzt als Antwortstatus `CODING_COMPLETE`. Die Kodierung wird dann als abgeschlossen angesehen und jede Kodierregel ignoriert.
 * Werte für `format`:
   - `text-selection`: Ein String, der Daten für eine Textmarkierung enthält
   - `image`, `capture-image`, `audio`: Spezifiziert den Datentyp `attachment`
   - `ggb-file`, `ggb-variable`: Strings mit besonderem Bezug zu GeoGebra
   - `non-negative`: spezifiziert `integer` oder `number`
   - `latex`, `math-ml`, `math-table`: Strings mit besonderem Bezug zu mathematischen Formeln oder Ausdrücken
-
-::: {.callout-warning}
-## Subject to change
-
-Die Erprobung von `type` kann als erfolgreich angesehen werden, bei den `format`-Optionen wird es noch Bewegung geben. Hier sind mitunter Ideen eingebracht, deren Nützlichkeit sich erst zeigen muss.
-:::
+  - `math-text-mix`: Gemischtes JSON-Objekt mit Text und Formeln
 
 ### `multiple`, `nullable`
 
