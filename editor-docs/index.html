@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.53">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -37,10 +37,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-496419665c3718b1bb6f0644f907afc3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -342,7 +342,14 @@ participant HA as Host-Anwendung
 <ul>
 <li>Eine Variable braucht eine innerhalb der Unit eindeutige Bezeichnung.</li>
 <li>Ein <code>alias</code> ist eine alternative ID, die durch User vergeben werden kann. Dann kann die ID der Variable nicht mehr geändert werden und bleibt konstant über alle Verarbeitungsschritte und Versionen. Der Alias kann aber nach Bedarf geändert werden. Das IQB hat diese Trennung eingeführt, als sich Umbenennungen von Variablen häuften und jede Umbenennung Inkonsistenzen verursachte (Ableitungen schlugen fehl, Seitenzustände wurden falsch ermittelt).</li>
-<li>Ein Typ kann sein: <code>string</code>, <code>integer</code>, <code>number</code>, <code>boolean</code>, <code>attachment</code> – letzteres bezeichnet ein erzeugtes Medium, z. B. ein Bild. Im Kern handelt es sich hier um einen String, der aber eine Referenz darstellt und dem Auswertungssystem das Auffinden des zugehörigen Mediums ermöglicht.</li>
+<li>Mögliche Werte für Typ:
+<ul>
+<li><code>string</code>, <code>integer</code>, <code>number</code>, <code>boolean</code>: Entsprechend gängiger simpler Datentypen</li>
+<li><code>attachment</code>: bezeichnet ein erzeugtes Medium, z. B. ein Bild. Im Kern handelt es sich hier um einen String, der aber eine Referenz darstellt und dem Auswertungssystem das Auffinden des zugehörigen Mediums ermöglicht.</li>
+<li><code>no-value</code>: Der Editor ist überzeugt, dass diese Variable für die Auswertung keine Rolle spielt. Manchmal ist z. B. die Sichtbarkeit eines Elementes wichtig zu speichern, aber es wird nie ein nützlicher Wert erzeugt.</li>
+<li><code>json</code>: Der Wert ist ein stringifiziertes JSON-Objekt. Dies kann bei komplexen Eingabeelementen erforderlich sein, z. B. Text mit eingebetteten Formeln. Diese Antworten werden dann meist manuell kodiert.</li>
+<li><code>coded</code>: Hier wird die Antwort bereits durch den Player codiert. Es kann für die Itementwicklung wesentlich angenehmer sein, die richtige bzw. falsche Antwort bereits im Editor zu definieren und nicht erst im Schemer. Der Player schickt dann die Antworten bereits mit der Information <code>code</code> und <code>score</code> und setzt als Antwortstatus <code>CODING_COMPLETE</code>. Die Kodierung wird dann als abgeschlossen angesehen und jede Kodierregel ignoriert.</li>
+</ul></li>
 <li>Werte für <code>format</code>:
 <ul>
 <li><code>text-selection</code>: Ein String, der Daten für eine Textmarkierung enthält</li>
@@ -350,21 +357,9 @@ participant HA as Host-Anwendung
 <li><code>ggb-file</code>, <code>ggb-variable</code>: Strings mit besonderem Bezug zu GeoGebra</li>
 <li><code>non-negative</code>: spezifiziert <code>integer</code> oder <code>number</code></li>
 <li><code>latex</code>, <code>math-ml</code>, <code>math-table</code>: Strings mit besonderem Bezug zu mathematischen Formeln oder Ausdrücken</li>
+<li><code>math-text-mix</code>: Gemischtes JSON-Objekt mit Text und Formeln</li>
 </ul></li>
 </ul>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Subject to change
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Die Erprobung von <code>type</code> kann als erfolgreich angesehen werden, bei den <code>format</code>-Optionen wird es noch Bewegung geben. Hier sind mitunter Ideen eingebracht, deren Nützlichkeit sich erst zeigen muss.</p>
-</div>
-</div>
 </section>
 <section id="multiple-nullable" class="level3">
 <h3 class="anchored" data-anchor-id="multiple-nullable"><code>multiple</code>, <code>nullable</code></h3>
@@ -466,8 +461,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -585,7 +578,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
