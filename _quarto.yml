@@ -4,14 +4,14 @@ project:
 website:
   site-url: https://verona-interfaces.github.io
   title: "Verona-Interfaces"
-  favicon: favicon.ico
+  favicon: assets/favicon.ico
   page-navigation: true
   repo-url: https://github.com/verona-interfaces/verona-interfaces.github.io
-  repo-actions: [issue]
+  repo-actions: []
   navbar:
     pinned: true
     search: true
-    logo: logo_verona_small.png
+    logo: assets/logo_verona_small.png
     right:
       - icon: github
         href: https://github.com/verona-interfaces
@@ -19,7 +19,7 @@ website:
     border: true
     background: light
     right:
-      - text: "IQB 2024"
+      - text: "IQB 2025"
         href: https://www.iqb.hu-berlin.de
     left:
       - href: index.qmd
@@ -34,7 +34,6 @@ website:
       - section: "Einführung"
         href: intro/index.qmd
         contents:
-          - intro/tba.qmd
           - intro/architecture.qmd
           - intro/metadata.qmd
           - intro/modelling.qmd

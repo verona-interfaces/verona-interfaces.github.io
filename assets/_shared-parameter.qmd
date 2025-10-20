@@ -1,0 +1,3 @@
+Unter `sharedParameters` sind Daten zu verstehen, die ein Verona-Modul einem anderen Modul weitergeben kann. Die einfache Struktur `key` und `value` soll für Einstellungen genutzt werden
+
+`key
