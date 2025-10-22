@@ -38,8 +38,7 @@ website:
           - intro/metadata.qmd
           - intro/modelling.qmd
           - intro/data-structures.qmd
-          - href: intro/integration.qmd
-            text: Integration
+          - intro/shared-parameters.qmd
           - intro/english.qmd
       - section: Player
         href: player-docs/index.qmd
@@ -48,6 +47,7 @@ website:
             text: Start-Kommando
           - href: player-docs/vopStateChangedNotification.qmd
             text: Status-Änderung
+          - player-docs/integration.qmd
       - href: editor-docs/index.qmd
         text: Editor
       - href: schemer-docs/index.qmd
