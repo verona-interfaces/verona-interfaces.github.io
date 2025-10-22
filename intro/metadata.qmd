@@ -1,53 +1,110 @@
 ---
 lang: de
 title: Modul-Metadaten
+format:
+    html:
+        other-links:
+            - text: Spezifikation Metadaten
+              href: https://verona-interfaces.github.io/verona-module-metadata/
 ---
 
 Ein Verona-Modul muss Metadaten enthalten. Der wichtigste Anwendungsfall für Metadaten ist das Bereitstellen von Informationen, um die Auswahl für das passende Verona-Modul für die eigene Webapplikation zu erleichtern. Erst wenn z. B. die Beschreibung und die Version eines Moduls auf standardisierte Art bekannt gemacht wird, können potenzielle Anwender über dessen Verwendung sinnvoll entscheiden.
 
 Eine Html-Seite kann auf diverse Arten Metadaten speichern. Im Verona-Kontext benutzen wir einen `<script>`-Block im Header, der ein JSON-Datenobjekt enthält. Diese Vorgehensweise wird als "Linked Data" bezeichnet, d. h. der Script-Typ wäre mit `application/ld+json` zu bezeichnen.
 
-# Daten erläutert
+<details><summary>Beispiel</summary>
 
-Die vollständige Spezifikation mit Beispiel finden Sie [hier](https://verona-interfaces.github.io/metadata). Der Umfang der Informationen ist recht ambitioniert. Es muss sich für viele Einträge jedoch erst herausstellen, ob sie nützlich sind bzw. ob die konkrete Umsetzung passt. Hierbei wird die Entwicklung eines Modul-Registers (s. unten) helfen. Die folgende Liste enthält die Metadaten, die bisher in den Webanwendungen des IQB verwendet werden (Version 2.0).
+```html
+  <head>
+    <meta charset="UTF-8">
+    <title>Verona Editor Aspect</title>
+    <script id="verona-metadata" type="application/ld+json">
+      {
+        "id": "iqb-editor-aspect",
+        "version": "2.10.1",
+        "specVersion": "4.0",
+        "metadataVersion": "3.0",
+        "type": "EDITOR",
+        "name": [
+          {
+            "lang": "en",
+            "value": "IQB Editor (Aspect)"
+          },
+          {
+            "lang": "de",
+            "value": "IQB-Editor (Aspect)"
+          }
+        ],
+        "description": [
+          {
+            "lang": "de",
+            "value": "Dieser Editor erstellt Aufgabendefinitionen in einem eigenen, JSON-Format. Anzeige- und Interaktionselemente können auf einer oder über mehreren Seiten frei oder in einem Grid positioniert werden."
+          },
+          {
+            "lang": "en",
+            "value": "This editor uses a JSON formatted unit definition. You can place elements for display or interaction purposes freely or in a grid on one or more pages."
+          }
+        ],
+        "maintainer": {
+          "name": [
+            {
+              "lang": "en",
+              "value": "IQB - Institute for Educational Quality Improvement."
+            },
+            {
+              "lang": "de",
+              "value": "IQB - Institut zur Qualitätsentwicklung im Bildungswesen."
+            }
+          ],
+          "url": "https://www.iqb.hu-berlin.de",
+          "email": "iqb-tbadev@hu-berlin.de"
+        },
+        "code": {
+          "repositoryType": "git",
+          "licenseType": "MIT",
+          "licenseUrl": "https://opensource.org/licenses/MIT",
+          "repositoryUrl": "https://github.com/iqb-berlin/verona-modules-apect"
+        }
+      }
+    </script>
 
-## id
+```
+</details>
 
-Diese ID kann in internen Referenzen verwendet werden. Wenn beispielsweise eine Unitdefinition mit einem bestimmten Editor erzeugt wurde, kann die ID des Editor-Moduls die spätere Weiterarbeit sichern. 
 
-Achtung: Um sicherzustellen, dass dann auch die passende Version des Moduls verwendet wird, sollte diese Version ebenfalls als Referenz abgespeichert werden, also z. B. `iqb-editor-aspect@2.4.9`, statt nur `iqb-editor-aspect`. Dies kann auch der Dateiname des Moduls sein, obwohl in unixbasierten Systemen das @-Zeichen reserviert ist. Das IQB verwendet daher als Dateinamen die ID sowie die Version auf folgende Art: `iqb-player-aspect-2.4.11.html`.
+Die vollständige Spezifikation finden Sie [hier](https://verona-interfaces.github.io/verona-module-metadata/).
 
-## version
+# Kopfdaten
 
-Hier wird eine übliche [SemVer](https://semver.org/lang/de/)-Notation erwartet, also auch mit Suffixen wie `beta` oder `rc4`.
+* `id`: Die ID kann in internen Referenzen verwendet werden. Wenn beispielsweise eine Unitdefinition mit einem bestimmten Editor erzeugt wurde, kann die ID des Editor-Moduls die spätere Weiterarbeit sichern.[^1]
+* `version`: Hier wird eine übliche [SemVer](https://semver.org/lang/de/)-Notation erwartet, also auch mit Suffixen wie `beta` oder `rc4`.
+* `type`: Die möglichen Werte dieser Aufzählung sind `PLAYER`, `EDITOR`, `SCHEMER` und Varianten von `WIDGET_XXX`. Bitte lesen die entsprechenden Teile dieser Dokumentation für ein besseres Verständnis.
+* `name`: Diese Bezeichnung erscheint als Label z. B. in Auswahllisten, und dient als menschlich besser lesbare Version der ID. Es handelt sich um eine Datenstruktur für mehrere Sprachen.
+* `description`: Hier soll eine knappe Beschreibung helfen, die Besonderheiten dieses Moduls zu erkennen und darüber zu entscheiden, ob das Modul für die eigenen Zwecke interessant sein könnte. Es handelt sich um eine Datenstruktur für mehrere Sprachen.
+* `specVersion`: Dieser String erklärt, welche Version der Modul-Interfacedefinition unterstützt wird. Da Interfacedefinitionen einer Entwicklung unterliegen und Eigenschaften geändert und hinzugefügt werden, sollte sich eine Hostanwendung darauf einstellen, welchen Dialekt der Kommunikation das Modul versteht.[^2]
+* `metadataVersion`: Diese Information kann helfen, die Metadaten gezielt zu verarbeiten.
 
-## type
+# Abhängigkeiten
 
-Die möglichen Werte dieser Aufzählung sind
+Das Datenobjekt `dependencies` soll helfen zu vermeiden, dass zur Laufzeit wichtige Objekte oder Dienste fehlen und damit die Funktionalität gefährdet ist.
 
-| Wert | Beschreibung | 
-| :--- | --------------------- |
-| `player` | Ein Modul, das der Anzeige einer Unit dient. Es wird die Definition geladen, und eine Interaktion mit der Testperson startet |
-| `editor` | Ein Modul, das dem Ändern einer Unit-Defintion dient |
-| `schemer` | Ein Modul zur Änderung eines Kodierschemas für die Auswertung der Antworten |
-| `coder`[^1] | Dieses Modul existiert derzeit nur konzeptionell. Ursprünglich war geplant, das automatische Kodieren ebenfalls als Verona-Modul zu implementieren. Aktuell wird dies jedoch über die Bereitstellung einer JavaScript-Klasse ([npm](https://www.npmjs.com/package/@iqb/responses)) gelöst, die in Webanwendungen beim Build-Prozess eingebunden wird. Diese Programmierung kann also nicht zur Laufzeit dynamisch geladen werden. Dies stellt aktuell die bessere Lösung dar. |
+* `id`: Die ID soll helfen, das Objekt oder den Dienst zu finden. Es kann sich um einen Dateinamen oder eine Uri handeln.
+* `description`: Dieser Text hilft, die Funktion des Objektes bzw. des Dienstes zu verstehen. Er sollte in Englisch verfasst sein.
+* `type`: Der Wert `FILE` steht für eine Datei, `WIDGET` für ein Verona-Widget-Modul und `SERVICE` für einen webgestützten Dienst.
+* `required`: Wenn dieser Wert `true` ist, dann benötigt das Modul zwingend für seine Funktion dieses Objekt bzw. Dienst. Ansonsten (`false` ist der Standardwert) kommt die Abhängigkeit nur in bestimmten Fällen zum Tragen. Beispielsweise benötigt der Aspect-Player GeoGebra -- allerdings nur, wenn in der Unit-Definition hierzu ein bestimmter Eintrag enthalten ist.
 
-## name
+# Herkunft, Pflege
 
-Diese Bezeichnung erscheint als Label z. B. in Auswahllisten, und dient als menschlich besser lesbare Version der ID.
+Im Datenobjekt `maintainer` finden sich Angaben zur Person, Firma oder Einrichtung, die das Modul entwickelt hat.
 
-## description
+* `name`: Bezeichnung der Person, Firma oder Einrichtung. Es handelt sich um eine Datenstruktur für mehrere Sprachen.
+* `url`: Ort im öffentlichen Internet, an dem weitere Dokumentationen und Kontaktinformationen zu finden sind.
+* `email`: E-Mail für Nachfragen, Anregungen usw.
 
-Hier soll eine knappe Beschreibung helfen, die Besonderheiten dieses Moduls zu erkennen und darüber zu entscheiden, ob das Modul für die eigenen Zwecke interessant sein könnte.
+# Programmcode
 
-## specVersion
+Sollte es sich um eine Open Source-Programmierung handeln, kann man im Datenobjekt `code` Informationen dazu mitteilen. Die Einträge `repositoryType`, `repositoryUrl`, `licenseType` und `licenseUrl` enthalten dann entsprechende Angaben.
 
-Dieser String erklärt, welche Version der Modul-Interfacedefinition unterstützt wird. Da Interfacedefinitionen einer Entwicklung unterliegen und Eigenschaften geändert und hinzugefügt werden, sollte sich eine Hostanwendung darauf einstellen, welchen Dialekt der Kommunikation das Modul versteht.
 
-Allerdings kann man diese Information auch ignorieren und als Host einfach alle Varianten unterstützen. Wenn eine bestimmte Information nicht gefunden wird in einem Datenobjekt eines Players, versucht der Host andere Bezeichnungen oder Datenformate entsprechend älterer Varianten der Spezifikation. Dieses defensive Verhalten erhöht die Robustheit der Programmierung, kann aber auch ernste Probleme verschleiern.
-
-# Modul-Register
-
-Die Liste der verfügbaren Module ist noch sehr überschaubar. Bisher stellt nur das IQB Verona-Module bereit. Sollte die Anzahl steigen, wäre die Einführung eines Registers angebracht. Webanwendungen können dann gezielt Module anbieten. Wenn dieses Register aufgebaut wird, könnten sich die Anforderungen an die Metadaten noch einmal ändern.
-
-[^1]: Die Option `coder` ist deprecated, wird also demnächst aus der Spezifikation entfernt.
+[^1]: Achtung: Um sicherzustellen, dass dann auch die passende Version des Moduls verwendet wird, sollte diese Version ebenfalls als Referenz abgespeichert werden, also z. B. `iqb-editor-aspect@2.4.9`, statt nur `iqb-editor-aspect`. Dies kann auch der Dateiname des Moduls sein, obwohl in unixbasierten Systemen das @-Zeichen reserviert ist. Das IQB verwendet daher als Dateinamen die ID sowie die Version auf folgende Art: `iqb-player-aspect-2.4.11.html`.
+[^2]: Allerdings kann man diese Information auch ignorieren und als Host einfach alle Varianten unterstützen. Wenn eine bestimmte Information nicht gefunden wird in einem Datenobjekt eines Players, versucht der Host andere Bezeichnungen oder Datenformate entsprechend älterer Varianten der Spezifikation. Dieses defensive Verhalten erhöht die Robustheit der Programmierung, kann aber auch ernste Probleme verschleiern.
