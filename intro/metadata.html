@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -42,7 +77,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-fe40e6fd23ded9488e81589c78b40d06.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-5905b6a1615c11779cf27a738634df79.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -169,8 +204,8 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../intro/integration.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Integration</span></a>
+  <a href="../intro/shared-parameters.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Gemeinsame Parameter</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -202,6 +237,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Status-Änderung</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../player-docs/integration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Integration</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -226,18 +267,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Auf dieser Seite</h2>
    
   <ul>
-  <li><a href="#daten-erläutert" id="toc-daten-erläutert" class="nav-link active" data-scroll-target="#daten-erläutert">Daten erläutert</a>
-  <ul class="collapse">
-  <li><a href="#id" id="toc-id" class="nav-link" data-scroll-target="#id">id</a></li>
-  <li><a href="#version" id="toc-version" class="nav-link" data-scroll-target="#version">version</a></li>
-  <li><a href="#type" id="toc-type" class="nav-link" data-scroll-target="#type">type</a></li>
-  <li><a href="#name" id="toc-name" class="nav-link" data-scroll-target="#name">name</a></li>
-  <li><a href="#description" id="toc-description" class="nav-link" data-scroll-target="#description">description</a></li>
-  <li><a href="#specversion" id="toc-specversion" class="nav-link" data-scroll-target="#specversion">specVersion</a></li>
-  </ul></li>
-  <li><a href="#modul-register" id="toc-modul-register" class="nav-link" data-scroll-target="#modul-register">Modul-Register</a></li>
+  <li><a href="#kopfdaten" id="toc-kopfdaten" class="nav-link active" data-scroll-target="#kopfdaten">Kopfdaten</a></li>
+  <li><a href="#abhängigkeiten" id="toc-abhängigkeiten" class="nav-link" data-scroll-target="#abhängigkeiten">Abhängigkeiten</a></li>
+  <li><a href="#herkunft-pflege" id="toc-herkunft-pflege" class="nav-link" data-scroll-target="#herkunft-pflege">Herkunft, Pflege</a></li>
+  <li><a href="#programmcode" id="toc-programmcode" class="nav-link" data-scroll-target="#programmcode">Programmcode</a></li>
   </ul>
-</nav>
+<div class="quarto-other-links"><h2>Weitere Links</h2><ul><li><a href="https://verona-interfaces.github.io/verona-module-metadata/"><i class="bi bi-link-45deg"></i>Spezifikation Metadaten</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -263,65 +298,98 @@ ul.task-list li input[type="checkbox"] {
 
 <p>Ein Verona-Modul muss Metadaten enthalten. Der wichtigste Anwendungsfall für Metadaten ist das Bereitstellen von Informationen, um die Auswahl für das passende Verona-Modul für die eigene Webapplikation zu erleichtern. Erst wenn z. B. die Beschreibung und die Version eines Moduls auf standardisierte Art bekannt gemacht wird, können potenzielle Anwender über dessen Verwendung sinnvoll entscheiden.</p>
 <p>Eine Html-Seite kann auf diverse Arten Metadaten speichern. Im Verona-Kontext benutzen wir einen <code>&lt;script&gt;</code>-Block im Header, der ein JSON-Datenobjekt enthält. Diese Vorgehensweise wird als “Linked Data” bezeichnet, d.&nbsp;h. der Script-Typ wäre mit <code>application/ld+json</code> zu bezeichnen.</p>
-<section id="daten-erläutert" class="level1">
-<h1>Daten erläutert</h1>
-<p>Die vollständige Spezifikation mit Beispiel finden Sie <a href="https://verona-interfaces.github.io/metadata">hier</a>. Der Umfang der Informationen ist recht ambitioniert. Es muss sich für viele Einträge jedoch erst herausstellen, ob sie nützlich sind bzw. ob die konkrete Umsetzung passt. Hierbei wird die Entwicklung eines Modul-Registers (s. unten) helfen. Die folgende Liste enthält die Metadaten, die bisher in den Webanwendungen des IQB verwendet werden (Version 2.0).</p>
-<section id="id" class="level2">
-<h2 class="anchored" data-anchor-id="id">id</h2>
-<p>Diese ID kann in internen Referenzen verwendet werden. Wenn beispielsweise eine Unitdefinition mit einem bestimmten Editor erzeugt wurde, kann die ID des Editor-Moduls die spätere Weiterarbeit sichern.</p>
-<p>Achtung: Um sicherzustellen, dass dann auch die passende Version des Moduls verwendet wird, sollte diese Version ebenfalls als Referenz abgespeichert werden, also z. B. <code>iqb-editor-aspect@2.4.9</code>, statt nur <code>iqb-editor-aspect</code>. Dies kann auch der Dateiname des Moduls sein, obwohl in unixbasierten Systemen das @-Zeichen reserviert ist. Das IQB verwendet daher als Dateinamen die ID sowie die Version auf folgende Art: <code>iqb-player-aspect-2.4.11.html</code>.</p>
+<details>
+<summary>
+Beispiel
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> charset</span><span class="op">=</span><span class="st">"UTF-8"</span><span class="dt">&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">title</span><span class="dt">&gt;</span>Verona Editor Aspect<span class="dt">&lt;/</span><span class="kw">title</span><span class="dt">&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">script</span><span class="ot"> id</span><span class="op">=</span><span class="st">"verona-metadata"</span><span class="ot"> type=</span><span class="st">"application/ld+json"</span><span class="dt">&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>      {</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"id"</span><span class="op">:</span> <span class="st">"iqb-editor-aspect"</span><span class="op">,</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"version"</span><span class="op">:</span> <span class="st">"2.10.1"</span><span class="op">,</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">"specVersion"</span><span class="op">:</span> <span class="st">"4.0"</span><span class="op">,</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">"metadataVersion"</span><span class="op">:</span> <span class="st">"3.0"</span><span class="op">,</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">"type"</span><span class="op">:</span> <span class="st">"EDITOR"</span><span class="op">,</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">"name"</span><span class="op">:</span> [</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>          {</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>            <span class="st">"lang"</span><span class="op">:</span> <span class="st">"en"</span><span class="op">,</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>            <span class="st">"value"</span><span class="op">:</span> <span class="st">"IQB Editor (Aspect)"</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>          }<span class="op">,</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>          {</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>            <span class="st">"lang"</span><span class="op">:</span> <span class="st">"de"</span><span class="op">,</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>            <span class="st">"value"</span><span class="op">:</span> <span class="st">"IQB-Editor (Aspect)"</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>          }</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        ]<span class="op">,</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="st">"description"</span><span class="op">:</span> [</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>          {</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>            <span class="st">"lang"</span><span class="op">:</span> <span class="st">"de"</span><span class="op">,</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>            <span class="st">"value"</span><span class="op">:</span> <span class="st">"Dieser Editor erstellt Aufgabendefinitionen in einem eigenen, JSON-Format. Anzeige- und Interaktionselemente können auf einer oder über mehreren Seiten frei oder in einem Grid positioniert werden."</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>          }<span class="op">,</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>          {</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>            <span class="st">"lang"</span><span class="op">:</span> <span class="st">"en"</span><span class="op">,</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>            <span class="st">"value"</span><span class="op">:</span> <span class="st">"This editor uses a JSON formatted unit definition. You can place elements for display or interaction purposes freely or in a grid on one or more pages."</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>          }</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>        ]<span class="op">,</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>        <span class="st">"maintainer"</span><span class="op">:</span> {</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>          <span class="st">"name"</span><span class="op">:</span> [</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>            {</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>              <span class="st">"lang"</span><span class="op">:</span> <span class="st">"en"</span><span class="op">,</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>              <span class="st">"value"</span><span class="op">:</span> <span class="st">"IQB - Institute for Educational Quality Improvement."</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>            }<span class="op">,</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>            {</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>              <span class="st">"lang"</span><span class="op">:</span> <span class="st">"de"</span><span class="op">,</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>              <span class="st">"value"</span><span class="op">:</span> <span class="st">"IQB - Institut zur Qualitätsentwicklung im Bildungswesen."</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>          ]<span class="op">,</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>          <span class="st">"url"</span><span class="op">:</span> <span class="st">"https://www.iqb.hu-berlin.de"</span><span class="op">,</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>          <span class="st">"email"</span><span class="op">:</span> <span class="st">"iqb-tbadev@hu-berlin.de"</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>        }<span class="op">,</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>        <span class="st">"code"</span><span class="op">:</span> {</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>          <span class="st">"repositoryType"</span><span class="op">:</span> <span class="st">"git"</span><span class="op">,</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>          <span class="st">"licenseType"</span><span class="op">:</span> <span class="st">"MIT"</span><span class="op">,</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>          <span class="st">"licenseUrl"</span><span class="op">:</span> <span class="st">"https://opensource.org/licenses/MIT"</span><span class="op">,</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>          <span class="st">"repositoryUrl"</span><span class="op">:</span> <span class="st">"https://github.com/iqb-berlin/verona-modules-apect"</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<p>Die vollständige Spezifikation finden Sie <a href="https://verona-interfaces.github.io/verona-module-metadata/">hier</a>.</p>
+<section id="kopfdaten" class="level1">
+<h1>Kopfdaten</h1>
+<ul>
+<li><code>id</code>: Die ID kann in internen Referenzen verwendet werden. Wenn beispielsweise eine Unitdefinition mit einem bestimmten Editor erzeugt wurde, kann die ID des Editor-Moduls die spätere Weiterarbeit sichern.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
+<li><code>version</code>: Hier wird eine übliche <a href="https://semver.org/lang/de/">SemVer</a>-Notation erwartet, also auch mit Suffixen wie <code>beta</code> oder <code>rc4</code>.</li>
+<li><code>type</code>: Die möglichen Werte dieser Aufzählung sind <code>PLAYER</code>, <code>EDITOR</code>, <code>SCHEMER</code> und Varianten von <code>WIDGET_XXX</code>. Bitte lesen die entsprechenden Teile dieser Dokumentation für ein besseres Verständnis.</li>
+<li><code>name</code>: Diese Bezeichnung erscheint als Label z. B. in Auswahllisten, und dient als menschlich besser lesbare Version der ID. Es handelt sich um eine Datenstruktur für mehrere Sprachen.</li>
+<li><code>description</code>: Hier soll eine knappe Beschreibung helfen, die Besonderheiten dieses Moduls zu erkennen und darüber zu entscheiden, ob das Modul für die eigenen Zwecke interessant sein könnte. Es handelt sich um eine Datenstruktur für mehrere Sprachen.</li>
+<li><code>specVersion</code>: Dieser String erklärt, welche Version der Modul-Interfacedefinition unterstützt wird. Da Interfacedefinitionen einer Entwicklung unterliegen und Eigenschaften geändert und hinzugefügt werden, sollte sich eine Hostanwendung darauf einstellen, welchen Dialekt der Kommunikation das Modul versteht.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></li>
+<li><code>metadataVersion</code>: Diese Information kann helfen, die Metadaten gezielt zu verarbeiten.</li>
+</ul>
 </section>
-<section id="version" class="level2">
-<h2 class="anchored" data-anchor-id="version">version</h2>
-<p>Hier wird eine übliche <a href="https://semver.org/lang/de/">SemVer</a>-Notation erwartet, also auch mit Suffixen wie <code>beta</code> oder <code>rc4</code>.</p>
+<section id="abhängigkeiten" class="level1">
+<h1>Abhängigkeiten</h1>
+<p>Das Datenobjekt <code>dependencies</code> soll helfen zu vermeiden, dass zur Laufzeit wichtige Objekte oder Dienste fehlen und damit die Funktionalität gefährdet ist.</p>
+<ul>
+<li><code>id</code>: Die ID soll helfen, das Objekt oder den Dienst zu finden. Es kann sich um einen Dateinamen oder eine Uri handeln.</li>
+<li><code>description</code>: Dieser Text hilft, die Funktion des Objektes bzw. des Dienstes zu verstehen. Er sollte in Englisch verfasst sein.</li>
+<li><code>type</code>: Der Wert <code>FILE</code> steht für eine Datei, <code>WIDGET</code> für ein Verona-Widget-Modul und <code>SERVICE</code> für einen webgestützten Dienst.</li>
+<li><code>required</code>: Wenn dieser Wert <code>true</code> ist, dann benötigt das Modul zwingend für seine Funktion dieses Objekt bzw. Dienst. Ansonsten (<code>false</code> ist der Standardwert) kommt die Abhängigkeit nur in bestimmten Fällen zum Tragen. Beispielsweise benötigt der Aspect-Player GeoGebra – allerdings nur, wenn in der Unit-Definition hierzu ein bestimmter Eintrag enthalten ist.</li>
+</ul>
 </section>
-<section id="type" class="level2">
-<h2 class="anchored" data-anchor-id="type">type</h2>
-<p>Die möglichen Werte dieser Aufzählung sind</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th style="text-align: left;">Wert</th>
-<th>Beschreibung</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><code>player</code></td>
-<td>Ein Modul, das der Anzeige einer Unit dient. Es wird die Definition geladen, und eine Interaktion mit der Testperson startet</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>editor</code></td>
-<td>Ein Modul, das dem Ändern einer Unit-Defintion dient</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>schemer</code></td>
-<td>Ein Modul zur Änderung eines Kodierschemas für die Auswertung der Antworten</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>coder</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></td>
-<td>Dieses Modul existiert derzeit nur konzeptionell. Ursprünglich war geplant, das automatische Kodieren ebenfalls als Verona-Modul zu implementieren. Aktuell wird dies jedoch über die Bereitstellung einer JavaScript-Klasse (<a href="https://www.npmjs.com/package/@iqb/responses">npm</a>) gelöst, die in Webanwendungen beim Build-Prozess eingebunden wird. Diese Programmierung kann also nicht zur Laufzeit dynamisch geladen werden. Dies stellt aktuell die bessere Lösung dar.</td>
-</tr>
-</tbody>
-</table>
+<section id="herkunft-pflege" class="level1">
+<h1>Herkunft, Pflege</h1>
+<p>Im Datenobjekt <code>maintainer</code> finden sich Angaben zur Person, Firma oder Einrichtung, die das Modul entwickelt hat.</p>
+<ul>
+<li><code>name</code>: Bezeichnung der Person, Firma oder Einrichtung. Es handelt sich um eine Datenstruktur für mehrere Sprachen.</li>
+<li><code>url</code>: Ort im öffentlichen Internet, an dem weitere Dokumentationen und Kontaktinformationen zu finden sind.</li>
+<li><code>email</code>: E-Mail für Nachfragen, Anregungen usw.</li>
+</ul>
 </section>
-<section id="name" class="level2">
-<h2 class="anchored" data-anchor-id="name">name</h2>
-<p>Diese Bezeichnung erscheint als Label z. B. in Auswahllisten, und dient als menschlich besser lesbare Version der ID.</p>
-</section>
-<section id="description" class="level2">
-<h2 class="anchored" data-anchor-id="description">description</h2>
-<p>Hier soll eine knappe Beschreibung helfen, die Besonderheiten dieses Moduls zu erkennen und darüber zu entscheiden, ob das Modul für die eigenen Zwecke interessant sein könnte.</p>
-</section>
-<section id="specversion" class="level2">
-<h2 class="anchored" data-anchor-id="specversion">specVersion</h2>
-<p>Dieser String erklärt, welche Version der Modul-Interfacedefinition unterstützt wird. Da Interfacedefinitionen einer Entwicklung unterliegen und Eigenschaften geändert und hinzugefügt werden, sollte sich eine Hostanwendung darauf einstellen, welchen Dialekt der Kommunikation das Modul versteht.</p>
-<p>Allerdings kann man diese Information auch ignorieren und als Host einfach alle Varianten unterstützen. Wenn eine bestimmte Information nicht gefunden wird in einem Datenobjekt eines Players, versucht der Host andere Bezeichnungen oder Datenformate entsprechend älterer Varianten der Spezifikation. Dieses defensive Verhalten erhöht die Robustheit der Programmierung, kann aber auch ernste Probleme verschleiern.</p>
-</section>
-</section>
-<section id="modul-register" class="level1">
-<h1>Modul-Register</h1>
-<p>Die Liste der verfügbaren Module ist noch sehr überschaubar. Bisher stellt nur das IQB Verona-Module bereit. Sollte die Anzahl steigen, wäre die Einführung eines Registers angebracht. Webanwendungen können dann gezielt Module anbieten. Wenn dieses Register aufgebaut wird, könnten sich die Anforderungen an die Metadaten noch einmal ändern.</p>
+<section id="programmcode" class="level1">
+<h1>Programmcode</h1>
+<p>Sollte es sich um eine Open Source-Programmierung handeln, kann man im Datenobjekt <code>code</code> Informationen dazu mitteilen. Die Einträge <code>repositoryType</code>, <code>repositoryUrl</code>, <code>licenseType</code> und <code>licenseUrl</code> enthalten dann entsprechende Angaben.</p>
 
 
 </section>
@@ -330,7 +398,8 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Fußnoten</h2>
 
 <ol>
-<li id="fn1"><p>Die Option <code>coder</code> ist deprecated, wird also demnächst aus der Spezifikation entfernt.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>Achtung: Um sicherzustellen, dass dann auch die passende Version des Moduls verwendet wird, sollte diese Version ebenfalls als Referenz abgespeichert werden, also z. B. <code>iqb-editor-aspect@2.4.9</code>, statt nur <code>iqb-editor-aspect</code>. Dies kann auch der Dateiname des Moduls sein, obwohl in unixbasierten Systemen das @-Zeichen reserviert ist. Das IQB verwendet daher als Dateinamen die ID sowie die Version auf folgende Art: <code>iqb-player-aspect-2.4.11.html</code>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Allerdings kann man diese Information auch ignorieren und als Host einfach alle Varianten unterstützen. Wenn eine bestimmte Information nicht gefunden wird in einem Datenobjekt eines Players, versucht der Host andere Bezeichnungen oder Datenformate entsprechend älterer Varianten der Spezifikation. Dieses defensive Verhalten erhöht die Robustheit der Programmierung, kann aber auch ernste Probleme verschleiern.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

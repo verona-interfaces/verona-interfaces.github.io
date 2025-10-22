@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Player vopStartCommand – Verona-Interfaces</title>
+<title>Integration – Verona-Interfaces</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,8 +29,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../player-docs/vopStateChangedNotification.html" rel="next">
-<link href="../player-docs/index.html" rel="prev">
+<link href="../editor-docs/index.html" rel="next">
+<link href="../player-docs/vopStateChangedNotification.html" rel="prev">
 <link href="../assets/favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -77,7 +42,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-5905b6a1615c11779cf27a738634df79.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-e25e9416ffc450a5e3bdfaccfbae2dc7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -108,6 +75,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="integration_styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-light">
@@ -147,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../player-docs/index.html">Player</a></li><li class="breadcrumb-item"><a href="../player-docs/vopStartCommand.html">Start-Kommando</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../player-docs/index.html">Player</a></li><li class="breadcrumb-item"><a href="../player-docs/integration.html">Integration</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -227,7 +195,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../player-docs/vopStartCommand.html" class="sidebar-item-text sidebar-link active">
+  <a href="../player-docs/vopStartCommand.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Start-Kommando</span></a>
   </div>
 </li>
@@ -239,7 +207,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../player-docs/integration.html" class="sidebar-item-text sidebar-link">
+  <a href="../player-docs/integration.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Integration</span></a>
   </div>
 </li>
@@ -267,35 +235,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Auf dieser Seite</h2>
    
   <ul>
-  <li><a href="#sessionid" id="toc-sessionid" class="nav-link active" data-scroll-target="#sessionid"><code>sessionId</code></a></li>
-  <li><a href="#unitdefinition" id="toc-unitdefinition" class="nav-link" data-scroll-target="#unitdefinition"><code>unitDefinition</code></a></li>
-  <li><a href="#unitdefinitiontype" id="toc-unitdefinitiontype" class="nav-link" data-scroll-target="#unitdefinitiontype"><code>unitDefinitionType</code></a></li>
-  <li><a href="#unitstate" id="toc-unitstate" class="nav-link" data-scroll-target="#unitstate"><code>unitState</code></a>
-  <ul class="collapse">
-  <li><a href="#dataparts" id="toc-dataparts" class="nav-link" data-scroll-target="#dataparts"><code>dataParts</code></a></li>
-  <li><a href="#presentationprogress" id="toc-presentationprogress" class="nav-link" data-scroll-target="#presentationprogress"><code>presentationProgress</code></a></li>
-  <li><a href="#responseprogress" id="toc-responseprogress" class="nav-link" data-scroll-target="#responseprogress"><code>responseProgress</code></a></li>
-  <li><a href="#unitstatedatatype" id="toc-unitstatedatatype" class="nav-link" data-scroll-target="#unitstatedatatype"><code>unitStateDataType</code></a></li>
-  </ul></li>
-  <li><a href="#playerconfig" id="toc-playerconfig" class="nav-link" data-scroll-target="#playerconfig"><code>playerConfig</code></a>
-  <ul class="collapse">
-  <li><a href="#unitnumber-unittitle-unitid" id="toc-unitnumber-unittitle-unitid" class="nav-link" data-scroll-target="#unitnumber-unittitle-unitid"><code>unitNumber</code>, <code>unitTitle</code>, <code>unitId</code></a></li>
-  <li><a href="#logpolicy" id="toc-logpolicy" class="nav-link" data-scroll-target="#logpolicy"><code>logPolicy</code></a></li>
-  <li><a href="#pagingmode" id="toc-pagingmode" class="nav-link" data-scroll-target="#pagingmode"><code>pagingMode</code></a></li>
-  <li><a href="#printmode" id="toc-printmode" class="nav-link" data-scroll-target="#printmode"><code>printMode</code></a></li>
-  <li><a href="#enablednavigationtargets" id="toc-enablednavigationtargets" class="nav-link" data-scroll-target="#enablednavigationtargets"><code>enabledNavigationTargets</code></a></li>
-  <li><a href="#startpage" id="toc-startpage" class="nav-link" data-scroll-target="#startpage"><code>startPage</code></a></li>
-  <li><a href="#directdownloadurl" id="toc-directdownloadurl" class="nav-link" data-scroll-target="#directdownloadurl"><code>directDownloadUrl</code></a></li>
-  </ul></li>
+  <li><a href="#arbeitet-das-eigene-system-aufgabenweise-oder-strukturiert-nach-teststeilaufgabenitems" id="toc-arbeitet-das-eigene-system-aufgabenweise-oder-strukturiert-nach-teststeilaufgabenitems" class="nav-link active" data-scroll-target="#arbeitet-das-eigene-system-aufgabenweise-oder-strukturiert-nach-teststeilaufgabenitems"><span class="header-section-number">1</span> Arbeitet das eigene System aufgabenweise oder strukturiert nach Tests/Teilaufgaben/Items?</a></li>
+  <li><a href="#werden-die-html-seiten-komplett-auf-dem-server-erzeugt-oder-erst-dynamisch-im-browser" id="toc-werden-die-html-seiten-komplett-auf-dem-server-erzeugt-oder-erst-dynamisch-im-browser" class="nav-link" data-scroll-target="#werden-die-html-seiten-komplett-auf-dem-server-erzeugt-oder-erst-dynamisch-im-browser"><span class="header-section-number">2</span> Werden die Html-Seiten komplett auf dem Server erzeugt oder erst dynamisch im Browser?</a></li>
+  <li><a href="#werden-zur-programmierung-stark-abstrahierende-frameworks-genutzt" id="toc-werden-zur-programmierung-stark-abstrahierende-frameworks-genutzt" class="nav-link" data-scroll-target="#werden-zur-programmierung-stark-abstrahierende-frameworks-genutzt"><span class="header-section-number">3</span> Werden zur Programmierung stark abstrahierende Frameworks genutzt?</a></li>
+  <li><a href="#ist-die-nutzung-des-html-elementes-iframe-problematisch" id="toc-ist-die-nutzung-des-html-elementes-iframe-problematisch" class="nav-link" data-scroll-target="#ist-die-nutzung-des-html-elementes-iframe-problematisch"><span class="header-section-number">4</span> Ist die Nutzung des Html-Elementes &lt;iframe&gt; problematisch?</a></li>
+  <li><a href="#sind-formate-für-aufgabendefinition-und-antworten-hart-vorgegeben" id="toc-sind-formate-für-aufgabendefinition-und-antworten-hart-vorgegeben" class="nav-link" data-scroll-target="#sind-formate-für-aufgabendefinition-und-antworten-hart-vorgegeben"><span class="header-section-number">5</span> Sind Formate für Aufgabendefinition und Antworten hart vorgegeben?</a></li>
+  <li><a href="#sind-variationen-der-aufgabenanzeige-in-anderem-zusammenhang-nötig" id="toc-sind-variationen-der-aufgabenanzeige-in-anderem-zusammenhang-nötig" class="nav-link" data-scroll-target="#sind-variationen-der-aufgabenanzeige-in-anderem-zusammenhang-nötig"><span class="header-section-number">6</span> Sind Variationen der Aufgabenanzeige in anderem Zusammenhang nötig?</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../player-docs/index.html">Player</a></li><li class="breadcrumb-item"><a href="../player-docs/vopStartCommand.html">Start-Kommando</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../player-docs/index.html">Player</a></li><li class="breadcrumb-item"><a href="../player-docs/integration.html">Integration</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Player vopStartCommand</h1>
+<h1 class="title">Integration</h1>
+<p class="subtitle lead">Einfügen eines Player-Moduls in ein existierendes Testsystem</p>
 </div>
 
 
@@ -312,155 +267,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Nachfolgend sind die Parameter des Payloads für die Nachricht <code>vopStartCommand</code> erläutert. Für einen Gesamtblick auf die Kommunikation des Player-Moduls mit dem Host siehe <a href="../player-docs/index.html">hier</a>.</p>
-<section id="sessionid" class="level1">
-<h1><code>sessionId</code></h1>
-<p>Dem Player wird mit <code>sessionId</code> eine Kennung mitgeschickt, die der Player anschließend in jeder Nachricht verwenden soll. Damit wird die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit unterstützt. Diese ID ist wichtiger, wenn es mehrere Player pro Seite beim Host gibt, die gleichzeitig verwaltet werden sollen.</p>
+<p>Die folgende Checkliste gibt eine grobe Orientierung für den Aufwand, der bei einer Integration der Verona-Player-Schnittstelle in eine existierende Infrastruktur zu erwarten ist. Dies steht exemplarisch für die Integrationen von Verona-Modulen. Die Farben markieren steigenden Aufwand.</p>
+<section id="arbeitet-das-eigene-system-aufgabenweise-oder-strukturiert-nach-teststeilaufgabenitems" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Arbeitet das eigene System aufgabenweise oder strukturiert nach Tests/Teilaufgaben/Items?</h1>
+<p><span style="color:#79d279;"><i class="fa-solid fa-thumbs-up fa-2x" aria-label="thumbs-up"></i></span> Die Strukturierung im Testablauf folgt Aufgaben, d.&nbsp;h. Stimulus und dazu gehörende Items werden gemeinsam präsentiert und nach der Bearbeitung zur nächsten Aufgabe navigiert. Das ist genau das Szenario, das dem Verona-Player zugrunde liegt. Ein Umbau ist hier nicht erforderlich.</p>
+<p><span style="color:#ffe680;"><i class="fa-solid fa-triangle-exclamation fa-2x" aria-label="triangle-exclamation"></i></span> Mehrere Aufgaben werden gleichzeitig auf einer Seite präsentiert - entweder der gesamte Test oder zumindest Testblöcke (Aufgabenfolgen). Dann muss die Verona-Schnittstelle für jede Aufgabe einzeln implementiert werden, dann also mehrfach pro Seite. Die Kommunikation mit der Aufgabe muss dann auch mehrfach implementiert werden, was das Risiko von Datenverlust erhöht. Besser wäre ein Umbau auf die aufgabenweise Präsentation.</p>
+<p><span style="color:#ff9980;"><i class="fa-solid fa-face-frown fa-2x" aria-label="face-frown"></i></span> Die Aufgabe wird in Einzelteile zerlegt und stückchenweise präsentiert. Der Stimulus läuft völlig getrennt. Das kann die Verona-Schnittstelle nicht leisten, da die Kategorien “Stimulus”, “Instruktion”, “Item” usw. nicht transparent sind, also innerhalb der Aufgabendefinition nicht identifiziert werden können.</p>
 </section>
-<section id="unitdefinition" class="level1">
-<h1><code>unitDefinition</code></h1>
-<p>Die Unit-Definition beschreibt das Erscheinungsbild der Unit und ggf. die Interaktionselemente.</p>
-<blockquote class="blockquote">
-<p>Beispiel: Bei einem Player für einen basalen Lesegeschwindigkeitstest besteht die Unit-Definition nur aus einem Text, der durch die Testperson gelesen werden soll, und dann soll einer von zwei Buttons geklickt werden – “JA” oder “NEIN”. So ein Text heißt z. B. “Eis ist warm”. Als Antwort wird die Kennung des Buttons – “A” oder “B” – geliefert sowie die Zeit in Millisekunden, die von der Präsentation der Unit (entspricht der Bereitschaftsmeldung des Players) bis zum Klicken eines Buttons vergangen ist. Mit dem Klick wird auch gleich eine Anforderung für eine Unit-Navigation “next” abgeschickt. Dieser spezialisierte Player benötigt aufgrund umfangreicher Konventionen nur den Text als Unit-Definition.</p>
-</blockquote>
-<p>Häufig wird es sich bei der Unit-Definition um ein Datenobjekt handeln, das z. B. über <code>JSON.stringify()</code> serialisiert wurde. Die Komplexität der übergebenen Daten ist nicht bestimmbar und aus Sicht der Verona-Spezifikationen auch egal. Der Player wird die Datenstruktur wieder zu einem Datenobjekt transformieren, prüfen und auswerten.</p>
+<section id="werden-die-html-seiten-komplett-auf-dem-server-erzeugt-oder-erst-dynamisch-im-browser" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Werden die Html-Seiten komplett auf dem Server erzeugt oder erst dynamisch im Browser?</h1>
+<p><span style="color:#79d279;"><i class="fa-solid fa-thumbs-up fa-2x" aria-label="thumbs-up"></i></span> Eine Programmierung im Browser (JavaScript) kontrolliert die Anzeige der Aufgaben und sorgt bei Änderungen für das Speichern. Damit kann die Verona-Schnittstelle wie gedacht eingebaut und die Kommunikation eingerichtet werden. Die Kommunikation mit dem Server ist bereits grundsätzlich verfügbar.</p>
+<p><span style="color:#ffe680;"><i class="fa-solid fa-triangle-exclamation fa-2x" aria-label="triangle-exclamation"></i></span> Der Server erzeugt große Teile der Seite, aber es gibt browserseitig Programmierungen für die Interaktion. Hierbei gäbe es u. U. Mehraufwand, weil z. B. das Laden der vorherigen Antworten vom Server bisher nicht im Ablauf vorgesehen war und neu implementiert werden muss.</p>
+<p><span style="color:#ff9980;"><i class="fa-solid fa-face-frown fa-2x" aria-label="face-frown"></i></span> Der Server erzeugt die komplette Seite. Änderungen der Anzeige werden durch Neuladen der Seite über Schalter/Aktionsflächen bzw. Navigation/Links ausgelöst. Das wäre problematisch, weil das Laden eines Players, der Aufgabendefinition und ggf. vorher gegebener Antworten Aktionen innerhalb des Browsers sind. Wenn es hierzu bisher keine Erfahrungen gibt bzw. grundsätzlich bisher keine Kommunikation zum Server eingebaut ist, dann wäre hier größerer Aufwand nötig.</p>
 </section>
-<section id="unitdefinitiontype" class="level1">
-<h1><code>unitDefinitionType</code></h1>
-<p>Diese Angabe soll dem Player helfen, Missverständnisse bei der Interpretation der Unit-Definition zu vermeiden. Aus Sicht der Host-Anwendung ist es jedoch wichtiger, Namen und Version des erforderlichen Players zu kennen. Wenn bekannt ist, dass Player <code>XY@3.5</code> für diese Unit-Definition sinnvollerweise benutzt werden sollte, dann muss der Host diesen Player besorgen. Dann spielt der Typ der Unit-Definition eine untergeordnete Rolle.</p>
+<section id="werden-zur-programmierung-stark-abstrahierende-frameworks-genutzt" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Werden zur Programmierung stark abstrahierende Frameworks genutzt?</h1>
+<p><span style="color:#79d279;"><i class="fa-solid fa-thumbs-up fa-2x" aria-label="thumbs-up"></i></span> Es werden keine Frameworks benutzt bzw. nur gut kontrollierbare Bibliotheken. Alles kann durch die beteiligten Programmierer:innen gut gesteuert werden. Der Einbau der Schnittstelle kann dann schnell erfolgen.</p>
+<p><span style="color:#ffe680;"><i class="fa-solid fa-triangle-exclamation fa-2x" aria-label="triangle-exclamation"></i></span> Das genutzte Framework verdeckt viele Teile der Programmierung, kann aber gut durch Module/Komponenten erweitert werden. Ein Verona-Host kann extern vorbereitet und dann gezielt in die Automatismen des Frameworks eingebunden werden. Unter Umständen muss diese neue Komponente umfangreicher programmiert werden als beim Vollzugriff auf die Programmierung. Andererseits muss man diesen Aufwand nur einmal leisten und jemand mit demselben Framework kann diese Komponente sofort einsetzen.</p>
+<p><span style="color:#ff9980;"><i class="fa-solid fa-face-frown fa-2x" aria-label="face-frown"></i></span> Das genutzte Framework kapselt Funktionalität und Navigation so stark, dass ein Eingreifen nicht möglich ist. Die Anpassungsmöglichkeiten durch Konfiguration bzw. Deklaration sind stark beschränkt. Dann muss nach Wegen gesucht werden, das Framework für die Aufgabenanzeige zu umgehen, d.&nbsp;h. die beteiligten Programmierer:innen begeben sich auf neues und u. U. unsicheres und undokumentiertes Terrain.</p>
 </section>
-<section id="unitstate" class="level1">
-<h1><code>unitState</code></h1>
-<p>Hierbei handelt es sich um dasselbe Objekt, das der Player zuletzt an den Host sendet hat, als sich der Status geändert hat. Der Player stellt dann den Bearbeitungsstand wieder her, den die Unit beim Verlassen hatte, und meldet als neuen Status nur Abweichungen zu diesem Stand.</p>
-<p>Grundsätzlich sind die Eigenschaften der Datenstruktur <code>unitState</code> optional. Es sollte nur das übergeben werden, was sich geändert hat.</p>
-<section id="dataparts" class="level2">
-<h2 class="anchored" data-anchor-id="dataparts"><code>dataParts</code></h2>
-<p>Dies ist ein JSON-Objekt mit der Struktur <code>key-value</code>-store. Diese Datenstruktur ist auch bekannt als dictionary oder Hash-Tabelle.</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Beispiel dataParts</strong></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-filename="Beispiel dataParts"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"part1"</span><span class="fu">:</span> <span class="st">"3456998"</span><span class="fu">,</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"part3"</span><span class="fu">:</span> <span class="st">"{</span><span class="ch">\"</span><span class="st">x</span><span class="ch">\"</span><span class="st">:[10,null,null,null]}"</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>Bei Änderungen muss jeweils nur der Datenteil geschickt werden, der sich geändert hat. Der Host muss dafür sorgen, dass nur dieser Teil überschrieben wird, die anderen Teile müssen erhalten bleiben. Dieses Vorgehen verhindert, dass bei jeder kleinen Änderung eine große Datenmenge geschickt wird und das System ausbremst.</p>
-<p>Wenn der Unit-Status beim Start-Kommando zum Wiederherstellen geschickt wird, müssen natürlich alle Datenteile übergeben werden.</p>
+<section id="ist-die-nutzung-des-html-elementes-iframe-problematisch" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Ist die Nutzung des Html-Elementes &lt;iframe&gt; problematisch?</h1>
+<p><span style="color:#79d279;"><i class="fa-solid fa-thumbs-up fa-2x" aria-label="thumbs-up"></i></span> Nein. Ein Seitenbereich kann getrost auf diese Art betrieben werden.</p>
+<p><span style="color:#ffe680;"><i class="fa-solid fa-triangle-exclamation fa-2x" aria-label="triangle-exclamation"></i></span> Einige Eigenschaften des &lt;iframe&gt;-Elements lösen unerwünschtes Verhalten aus. Z. B. könnte ein gesetzter Eingabe-Fokus innerhalb des &lt;iframe&gt;-Elements als Verlassen der Seite angesehen werden und entsprechend ein Signal gesendet werden (Testperson versucht im Internet die Antwort zu finden). Hier sind entsprechende Justierungen nötig und möglich.</p>
+<p><span style="color:#ff9980;"><i class="fa-solid fa-face-frown fa-2x" aria-label="face-frown"></i></span> Das genutzte System verhindert grundsätzlich aus Sicherheitsgründen die Nutzung eines &lt;iframe&gt;-Elements. Das könnte problematisch werden, da dann die Architektur des bisherigen Systems die Verona-Schnittstelle verhindert.</p>
 </section>
-<section id="presentationprogress" class="level2">
-<h2 class="anchored" data-anchor-id="presentationprogress"><code>presentationProgress</code></h2>
-<p>Bei Leistungstests ist es wichtig sicherzustellen, dass die Testperson alle Teile der Unit gesehen hat. Es muss keine Beantwortung erfolgen, aber ein unabsichtliches Auslassen ist problematisch für die Datenanalyse. Daher wird vom Player erwartet, dass er bei Änderungen der Anzeige prüft, ob alles gesehen wurde und dies berichtet. Dann kann ggf. die Teststeuerung ein Weiterblättern verhindern und einen Hinweis geben.</p>
-<p>Mögliche Werte:</p>
-<ul>
-<li><code>none</code>: Nichts wurde gesehen - Ausgangszustand</li>
-<li><code>some</code>: Einige Bereiche der Unit wurden präsentiert</li>
-<li><code>complete</code>: Alle Elemente/Bereiche wurde präsentiert</li>
-</ul>
-<p>Der Stand der Präsentation wird beim Start-Kommando vom Host geschickt, so dass der Player nur die Änderung zu diesem Status berichtet.</p>
+<section id="sind-formate-für-aufgabendefinition-und-antworten-hart-vorgegeben" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Sind Formate für Aufgabendefinition und Antworten hart vorgegeben?</h1>
+<p><span style="color:#79d279;"><i class="fa-solid fa-thumbs-up fa-2x" aria-label="thumbs-up"></i></span> Nein. Aufgabendefinition und Antworten können ein beliebiges Format haben. Um die Antworten wie bisher auswerten zu können, reicht ein kleiner Konverter.</p>
+<p><span style="color:#ffe680;"><i class="fa-solid fa-triangle-exclamation fa-2x" aria-label="triangle-exclamation"></i></span> Aufgabendefinition und Antworten sind vorgegeben und viele Systemkomponenten verlassen sich darauf. Hier ist Aufwand zu erwarten, über ständige Datenkonvertierungen das bisherige Verhalten abzusichern.</p>
+<p><span style="color:#ff9980;"><i class="fa-solid fa-face-frown fa-2x" aria-label="face-frown"></i></span> Das gesamte System verlässt sich auf bestimmte Datenstrukturen bei Aufgabendefinition und Antworten und diese Strukturen können nicht über Datenkonvertierung aus den Verona-Daten generiert werden. Erforderliche Zusatzdaten liegen nicht vor, wie z. B. die Information, ob eine gegebene Antwort richtig ist. Hier kollidieren also grundsätzliche Auffassungen über die Datenhaltung und es ist ein erheblicher Umbau nötig.</p>
 </section>
-<section id="responseprogress" class="level2">
-<h2 class="anchored" data-anchor-id="responseprogress"><code>responseProgress</code></h2>
-<p>Bei Befragungen ist oft wichtig, dass die befragte Person keine Frage auslässt. Aber auch bei Leistungstests können zu Beginn Units vorgesehen werden, die Übungscharakter haben und die Testperson soll erst weiterkommen, wenn sie ein Mindestmaß an Antworten geben konnte. Daher wird vom Player erwartet, dass er während der Bearbeitung prüft, ob alle notwendigen Eingaben erfolgten und auch korrekt sind. Dann kann ggf. die Teststeuerung ein Weiterblättern verhindern und einen Hinweis geben.</p>
-<p>Mögliche Werte:</p>
-<ul>
-<li><code>none</code>: Nichts wurde beantwortet - Ausgangszustand</li>
-<li><code>some</code>: Einige Antworten wurden gegeben</li>
-<li><code>complete</code>: Alle Antworten wurden gegeben</li>
-</ul>
-<p>Der Stand der Bearbeitung wird beim Start-Kommando vom Host geschickt, so dass der Player nur die Änderung zu diesem Status berichtet.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tipp</span>Hinweis Validierung
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Eine Validierung kann problematisch sein, wenn Elemente eines Standard-Html-Formulars verwendet werden. Wenn als Typ eines <code>&lt;input&gt;</code>-Elementes beispielsweise eine Zahl gesetzt ist, dann wird eine Texteingabe nicht verfügbar. Die Validierung verhindert also den Zugriff auf fehlerhafte Eingaben.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tipp</span>Hinweis “required”
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Ob eine Antwort als “erforderlich” – also als “required” – gewertet wird, sollte gezielt gesteuert werden. Das Player-Modul sollte “responses complete” nur für die als erforderlich markierten Elemente melden. Dann meldet der Player sofort nach Start der Unit “responses complete”, wenn die Unit keine Elemente mit der Markierung “erforderlich” hat.</p>
-</div>
-</div>
-</section>
-<section id="unitstatedatatype" class="level2">
-<h2 class="anchored" data-anchor-id="unitstatedatatype"><code>unitStateDataType</code></h2>
-<p>Hier soll dem Host mitgeteilt werden, um welchen Datentyp es sich bei den Datenteilen <code>dataParts</code> handelt. Beispiel: <code>iqb-standard@1.2</code>. Ein Player kann also eine exotische, nicht dokumentierte Unit-Definition verwenden, erzeugt aber Antworten in einem dokumentierten Format.</p>
-</section>
-</section>
-<section id="playerconfig" class="level1">
-<h1><code>playerConfig</code></h1>
-<section id="unitnumber-unittitle-unitid" class="level2">
-<h2 class="anchored" data-anchor-id="unitnumber-unittitle-unitid"><code>unitNumber</code>, <code>unitTitle</code>, <code>unitId</code></h2>
-<p>Diese Angaben werden benötigt, wenn der Player den gesamten verfügbaren Bildschirm des Browsers einnehmen soll. Dann kann der Host keine Orientierung darüber geben, an welcher Stelle des Testablaufes die Testperson gerade ist und der Player muss dies übernehmen. Für diesen Fall sind diese Informationen gedacht.</p>
-</section>
-<section id="logpolicy" class="level2">
-<h2 class="anchored" data-anchor-id="logpolicy"><code>logPolicy</code></h2>
-<p>Aus einem Forschungsinteresse heraus könnte der Player angehalten sein, viele Zustandsänderungen an den Host zu melden. Das kann vom Scrollverhalten bis zum Mitschreiben Mausbewegungen gehen. Allerdings gibt es sehr viele Anwendungsfälle für das Player-Modul, wo dieses Logging abgestellt werden sollte. Beispiele: Review der Unit während der Qualitätsprüfung, Verwendung als Beispielaufgabe, Präsentation der Antworten zur manuellen Kodierung. Aus diesem Grund kann dem Player differenziert mitgeteilt werden, ob bzw. in welchem Maße Logs an den Host geschickt werden sollen: <code>disabled</code>, <code>lean</code>, <code>rich</code>, <code>debug</code>. Die Interpretation der Werte ist derzeit nicht festgelegt.</p>
-</section>
-<section id="pagingmode" class="level2">
-<h2 class="anchored" data-anchor-id="pagingmode"><code>pagingMode</code></h2>
-<p>Wenn die Unit aus mehreren Seiten besteht, wird über diesen Parameter festgelegt, ob bzw. wie das Blättern erfolgen soll. Dieses Verhalten sollte in einem Test einheitlich sein, so dass es kein fixer Parameter der Unit-Definition ist. Verschiedene Tests können unterschiedliches Blätter-Verhalten wünschen, ohne dass die Unit-Definition geändert werden muss.</p>
-<p>Mögliche Werte:</p>
-<ul>
-<li><code>separate</code>: Die Seiten werden einzeln angezeigt, so wie die Seitennavigation es steuert. Die Animation des Seitenwechsels ist horizontal.</li>
-<li><code>buttons</code>: Die Seiten werden einzeln angezeigt, aber es werden Buttons eingeblendet, die auf weitere Seiten hinweisen und bei Klick eine Seitennavigation auslösen. Die Animation des Seitenwechsels ist vertikal.</li>
-<li><code>concat-scroll</code>: Alle Seiten werden zu einer einzigen Seite zusammengelegt (gestapelt). Die Testperson scrollt vertikal und bemerkt nicht, dass es mehrere Seiten gibt. Sollte eine Seitennavigation aktiv sein, wird entsprechend gescrollt.</li>
-<li><code>concat-scroll-snap</code>: Alle Seiten werden zu einer einzigen Seite zusammengelegt, jedoch ist stets nur eine Seite zu sehen. Die Testperson scrollt vertikal und die Seiten “schnappen” in den Sichtbereich, so dass nie zwei Seiten gleichzeitig zu sehen sind. Dieser Modus ist vorteilhaft, wenn die Zeit, die eine Testperson auf einer Seite verbringt, gemessen werden soll. Man erreicht eine intuitive Art des Seitenwechsels, verliert aber nicht die Information “time on page”.</li>
-</ul>
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Vorsicht</span>Scroll-snap nicht verlässlich
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Der Scroll-snap-Modus beim Blättern ist eine standardisierte Html-Eigenschaft. Allerdings ist dieses Verhalten unterschiedlich implementiert in den Browsern bzw. Betriebssystemen. Vor der Nutzung sollten ausgiebige Tests sicherstellen, dass sich alle verwendeten Geräte wie gewünscht verhalten.</p>
-</div>
-</div>
-</section>
-<section id="printmode" class="level2">
-<h2 class="anchored" data-anchor-id="printmode"><code>printMode</code></h2>
-<p>Im Rahmen der Qualitätssicherung müssen Testaufgaben ausgiebig überprüft werden. Normalerweise begibt sich der Prüfer bzw. die Prüferin in die Rolle der Testperson und beantwortet Schritt für Schritt die Fragen. Dies kann allerdings sehr zeitaufwändig sein, insbesondere, wenn Audio-Sequenzen abgewartet werden müssen, bevor weitere Teile der Unit sichtbar werden.</p>
-<p>Um diesen Review zu erleichtern, kann der Player in den sog. Printmodus geschaltet werden. Der Host begrenzt dann das <code>&lt;iframe&gt;</code>-Element nicht mehr auf den Bildschirm, sondern gibt so viel Höhe, wie der Player für die Unit benötigt. Es werden alle Seiten untereinander gestapelt und alle Einschränkungen der Sichtbarkeit von Seiten bzw. Seitenabschnitten aufgehoben. Weiterhin kann der Player ein separates Styling (Markierung über <code>@media print</code>) für das Drucken aus dem Browser heraus bereitstellen.</p>
-<p>Mögliche Werte:</p>
-<ul>
-<li><code>off</code>: Kein Printmodus.</li>
-<li><code>on</code>: Printmodus.</li>
-<li><code>on-with-ids</code>: Printmodus, und zusätzlich werden die IDs der Elemente der Unit eingeblendet.</li>
-</ul>
-</section>
-<section id="enablednavigationtargets" class="level2">
-<h2 class="anchored" data-anchor-id="enablednavigationtargets"><code>enabledNavigationTargets</code></h2>
-<p>Diese einfache Liste von Strings informiert den Player, welche der fünf möglichen Ziele für die Unit-Navigation zur Verfügung stehen. Dann kann der Player beispielsweise den “Weiter”-Button ausblenden, wenn es keine weiteren Units gibt. Oder es wird der “Zurück”-Button ausgeblendet, wenn der Testperson grundsätzlich ein Zurückgehen nicht gestattet ist.</p>
-<p>Mögliche Werte: <code>next</code>, <code>previous</code>, <code>first</code>, <code>last</code>, <code>end</code>.</p>
-</section>
-<section id="startpage" class="level2">
-<h2 class="anchored" data-anchor-id="startpage"><code>startPage</code></h2>
-<p>Sollte der Player sofort nach dem Start auf eine bestimmte Seite navigieren, kann dies hier angegeben werden. Dies ist beispielsweise bei der Anzeige von Units mit gegebenen Antworten bei der manuellen Kodierung gewünscht.</p>
-</section>
-<section id="directdownloadurl" class="level2">
-<h2 class="anchored" data-anchor-id="directdownloadurl"><code>directDownloadUrl</code></h2>
-<p>Sollte der Player während der Laufzeit Code nachladen müssen, kann aus Gründen der Datensicherheit nicht einfach irgendein Server genutzt werden. Dem Player muss mitgeteilt werden, welche URL dafür zulässig ist. Beispiel: GeoGebra.</p>
+<section id="sind-variationen-der-aufgabenanzeige-in-anderem-zusammenhang-nötig" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Sind Variationen der Aufgabenanzeige in anderem Zusammenhang nötig?</h1>
+<p><span style="color:#79d279;"><i class="fa-solid fa-thumbs-up fa-2x" aria-label="thumbs-up"></i></span> Nein. Aufgaben werden zwar mit den gegebenen Antworten auch bei der Kodierung angezeigt und auch als Ansicht für Eltern, wenn sie die Antworten ihres Kindes anschauen möchten, aber es ist genau dieselbe Ansicht wie im Test. In diesen Fällen kann also einfach wieder ein Verona-Player-Host implementiert werden mit den gegebenen Antworten.</p>
+<p><span style="color:#ffe680;"><i class="fa-solid fa-triangle-exclamation fa-2x" aria-label="triangle-exclamation"></i></span> Ja. Das Testsystem soll bei der Anzeige für Kodierung und für Eltern keine Änderungen erlauben. Diese Variation ist für die aktuelle Verona-Schnittstelle nicht verfügbar. Allerdings richtet eine Änderung auch keinen Schaden an, da Änderungen nicht gespeichert werden. Ein Vor- und Zurückblättern stellt die korrekte Beantwortung wieder her.</p>
+<p><span style="color:#ff9980;"><i class="fa-solid fa-face-frown fa-2x" aria-label="face-frown"></i></span> Ja. Das Testsystem visualisiert mit einer Variation der Aufgabenansicht, ob die Antworten richtig oder falsch sind. Dazu werden in der Nähe der Antwortfelder grüne bzw. rote Symbole eingeblendet. Das wird bei der Ansicht durch die Lehrkräfte und für die Eltern verwendet. Diese Variation ist für die aktuelle Verona-Schnittstelle nicht verfügbar.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -873,13 +717,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../player-docs/index.html" class="pagination-link" aria-label="Player">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Player</span>
+      <a href="../player-docs/vopStateChangedNotification.html" class="pagination-link" aria-label="Status-Änderung">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Status-Änderung</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../player-docs/vopStateChangedNotification.html" class="pagination-link" aria-label="Status-Änderung">
-        <span class="nav-page-text">Status-Änderung</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../editor-docs/index.html" class="pagination-link" aria-label="Editor">
+        <span class="nav-page-text">Editor</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

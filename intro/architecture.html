@@ -42,7 +42,10 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-fe40e6fd23ded9488e81589c78b40d06.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-5905b6a1615c11779cf27a738634df79.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -70,9 +73,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Suchen"
   }
 }</script>
-<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="../styles.css">
@@ -172,8 +172,8 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../intro/integration.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Integration</span></a>
+  <a href="../intro/shared-parameters.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Gemeinsame Parameter</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -205,6 +205,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Status-Änderung</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../player-docs/integration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Integration</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -229,9 +235,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Auf dieser Seite</h2>
    
   <ul>
-  <li><a href="#verona-module-als-plug-in" id="toc-verona-module-als-plug-in" class="nav-link active" data-scroll-target="#verona-module-als-plug-in">Verona-Module als Plug-in</a></li>
+  <li><a href="#verona-module-als-plug-in" id="toc-verona-module-als-plug-in" class="nav-link active" data-scroll-target="#verona-module-als-plug-in">Verona-Module als Plug-in</a>
+  <ul class="collapse">
+  <li><a href="#beispiel-player" id="toc-beispiel-player" class="nav-link" data-scroll-target="#beispiel-player">Beispiel Player</a></li>
+  </ul></li>
   <li><a href="#technische-umsetzung" id="toc-technische-umsetzung" class="nav-link" data-scroll-target="#technische-umsetzung">Technische Umsetzung</a></li>
-  <li><a href="#konventionen" id="toc-konventionen" class="nav-link" data-scroll-target="#konventionen">Konventionen</a></li>
   <li><a href="#datensicherheit" id="toc-datensicherheit" class="nav-link" data-scroll-target="#datensicherheit">Datensicherheit</a></li>
   </ul>
 </nav>
@@ -260,46 +268,35 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="verona-module-als-plug-in" class="level1">
 <h1>Verona-Module als Plug-in</h1>
-<p>Um für VERA die Länder bzw. die durchführenden Einrichtungen in die Lage zu versetzen, Aufgaben des IQB direkt einzusetzen, hat das IQB Komponenten entwickelt, die sich gut in vorhandene Webanwendungen einfügen lassen. Durch eine einfache standardisierte Schnittstelle wird eine solche Komponente in einen Bildschirmbereich geladen und kann anschließend die Aufgabe darstellen. Das Plug-in “Player” beispielsweise präsentiert alle Inhalte auf eine bei der Aufgabenentwicklung festgelegte Art und Weise (z. B. zeitverzögertes Audio, automatische Navigation, Textmarkierung, Aus- und Einblenden von Formular-Elementen je nach Stand der Beantwortung usw.).</p>
-<p>Wir nennen die Webanwendung, die das Plug-in lädt, <strong>“Host”</strong>.</p>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart BT
-    subgraph TS ["Testsystem (Host)"]
-        TC[Testablaufsteuerung]--&gt;|Aufgabendefinition| P[Player]
-        style TC fill:white
-        style P fill:white
-        P--&gt;|Antworten| TC
-    end
-    style TS fill:#d9e6f2,stroke:#d1d1e0
-    DB[(Datenbank)]&lt;--&gt; TC
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
+<p>Wenn man Programmierungen nur einmal ausführen möchte und dann anderen zur Verfügung stellt, kann man unterschiedliche Wege gehen:</p>
+<ul>
+<li>Bereitstellung von Code-Bibliotheken: Dieser Weg ist günstig, wenn man eine einheitliche Programmiersprache oder zumindest ähnliche Technologie benutzt. Php-Bibliotheken sind nur in php-Umgebungen nutzbar. Auch für Frontends gibt es sehr unterschiedliche Frameworks, so dass Bibliotheken passgenau bereitgestellt werden müssen.</li>
+<li>Bereitstellung von Web-Komponenten: Der Standard von Web Components ist sehr universell nutzbar. Man kann Webkomponenten zur Erstellungszeit in die eigene Programmierung einbinden oder später dynamisch laden.</li>
+<li>Man kann in einem iFrame-Element beliebige Html-Seiten einschließlich Programmcode zur Laufzeit laden. Diesen Weg gehen die Verona-Module.</li>
+</ul>
+<section id="beispiel-player" class="level2">
+<h2 class="anchored" data-anchor-id="beispiel-player">Beispiel Player</h2>
+<p>Im klassischen Szenario übernimmt die Webanwendung zur Testdurchführung neben der Anmeldung, dem Laden der Inhalte und der Navigation auch die Darstellung einer einzelnen Aufgabe. Die untere Darstellung zeigt dieses integrierte Modell.</p>
+<p><a href="assets/player-1.png" class="lightbox" data-gallery="architecture"><img src="assets/player-1.png" class="img-fluid" width="600"></a></p>
+<p>Wenn man jedoch die Programmierung für die Darstellung einer Aufgabe abtrennt, kann man später Interaktionsformate nachladen. Dann ist bei neuen Aufgabentypen keine Programmierung und Veröffentlichung einer neuen Webanwendung erforderlich, sondern man bindet dynamisch einen neuen Player ein.</p>
+<p><a href="assets/player-2.png" class="lightbox" data-gallery="architecture"><img src="assets/player-2.png" class="img-fluid" width="600"></a></p>
+<p>Hierzu muss die Kommunikation zwischen dem Player (Verona-Modul) und der Webanwendung (Host) spezifiziert werden. In der obigen Darstellung ist diese Schnittstelle rot markiert.</p>
 <p>Während einer Testung können Player-Module nach Bedarf ausgetauscht werden. Aus diesem Plug-in-Modell ergibt sich eine hohe Flexibilität für das Testsystem: Neue Funktionen der Interaktion führen nur zum Laden einer neuen Player-Version - das Testsystem bleibt unverändert. Weitere Vorteile:</p>
 <ul>
 <li>Ältere Player können alte Aufgaben lange abspielen - solange die Schnittstelle des Plug-ins unterstützt wird</li>
 <li>Player für besondere Anwendungsfälle (z. B. Lesegeschwindigkeitstest, Physik-Experimente) werden nur einmal programmiert und dann allen Interessierten zur Verfügung gestellt</li>
 </ul>
 </section>
+</section>
 <section id="technische-umsetzung" class="level1">
 <h1>Technische Umsetzung</h1>
-<p>Es handelt sich bei den Verona-Modulen um Code für das Frontend. Das Plug-in beansprucht einen rechteckigen Bereich des Bildschirmes und führt darin JavaScript aus. Um die Nebenwirkungen für den Host so gering wie möglich zu halten, ist das Modul technisch eine eigene Html-Seite, die in ein <code>iframe</code>-Element geladen wird. Die Kommunikation zwischen Host und Modul erfolgt asynchron über <code>postMessage()</code>.</p>
-</section>
-<section id="konventionen" class="level1">
-<h1>Konventionen</h1>
+<p>Das Modul ist technisch eine eigene Html-Seite, die in ein <code>iframe</code>-Element geladen wird. Die Kommunikation zwischen Host und Modul erfolgt asynchron über <code>postMessage()</code>.</p>
 <p>Für alle Module gelten folgende Grundsätze:</p>
 <ul>
 <li>Das Modul muss in einer einzigen Datei zusammengefasst sein. Der Build-Prozess muss also alle sonst separat vorliegenden Komponenten einer Html-Seite (Styles, Code, Schriften, Bilder usw.) zusammenbinden.</li>
-<li>Außer über <code>postMessage()</code> darf das Modul keinen weiteren Kontakt mit der Außenwelt pflegen. Jedweder Zugriff auf Ressourcen des Hosts (Frontend, Backend) oder auf andere Web-Ressourcen ist nicht gestattet.</li>
-<li>Dem Modul werden Daten übergeben, die dann das Verhalten, die Erscheinung usw. beeinflussen. Ein Player z. B. bekommt die sog. Unit-Definition, ein Schemer das Unit-Kodierschema. Diese Daten dürfen selbst keinen Code enthalten.</li>
-<li>Das Modul muss <a href="../intro/metadata.html">Metadaten</a> in einem JSON-LD-Format (z. B. Version, Maintainer usw., s. u.) enthalten.</li>
+<li>Außer über <code>postMessage()</code> darf das Modul keinen weiteren Kontakt mit der Außenwelt pflegen. Jedweder Zugriff auf Ressourcen des Hosts (Frontend, Backend) oder auf andere Web-Ressourcen ist nicht gestattet. Als Ausnahme gilt nur beim Player über den Parameter <code>directUrl</code>.</li>
+<li>Dem Modul können Daten übergeben werden, die dann das Verhalten, die Erscheinung usw. beeinflussen. Ein Player z. B. bekommt die sog. Unit-Definition, ein Schemer das Unit-Kodierschema. Diese Daten dürfen selbst keinen Code enthalten.</li>
+<li>Das Modul muss Metadaten in einem JSON-LD-Format (z. B. Version, Maintainer usw., s. u.) enthalten. Weitere Informationen dazu <a href="../intro/metadata.html">siehe hier</a>.</li>
 </ul>
 </section>
 <section id="datensicherheit" class="level1">
@@ -759,6 +756,38 @@ ul.task-list li input[type="checkbox"] {
     </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
