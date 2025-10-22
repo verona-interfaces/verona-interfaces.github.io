@@ -1,25 +1,28 @@
 ---
 lang: de
 title: Architektur
+lightbox: true
 ---
 
 # Verona-Module als Plug-in
 
-Um für VERA die Länder bzw. die durchführenden Einrichtungen in die Lage zu versetzen, Aufgaben des IQB direkt einzusetzen, hat das IQB Komponenten entwickelt, die sich gut in vorhandene Webanwendungen einfügen lassen. Durch eine einfache standardisierte Schnittstelle wird eine solche Komponente in einen Bildschirmbereich geladen und kann anschließend die Aufgabe darstellen. Das Plug-in "Player" beispielsweise präsentiert alle Inhalte auf eine bei der Aufgabenentwicklung festgelegte Art und Weise (z. B. zeitverzögertes Audio, automatische Navigation, Textmarkierung, Aus- und Einblenden von Formular-Elementen je nach Stand der Beantwortung usw.).
+Wenn man Programmierungen nur einmal ausführen möchte und dann anderen zur Verfügung stellt, kann man unterschiedliche Wege gehen:
 
-Wir nennen die Webanwendung, die das Plug-in lädt, **"Host"**.
+* Bereitstellung von Code-Bibliotheken: Dieser Weg ist günstig, wenn man eine einheitliche Programmiersprache oder zumindest ähnliche Technologie benutzt. Php-Bibliotheken sind nur in php-Umgebungen nutzbar. Auch für Frontends gibt es sehr unterschiedliche Frameworks, so dass Bibliotheken passgenau bereitgestellt werden müssen.
+* Bereitstellung von Web-Komponenten: Der Standard von Web Components ist sehr universell nutzbar. Man kann Webkomponenten zur Erstellungszeit in die eigene Programmierung einbinden oder später dynamisch laden.
+* Man kann in einem iFrame-Element beliebige Html-Seiten einschließlich Programmcode zur Laufzeit laden. Diesen Weg gehen die Verona-Module.
 
-```{mermaid}
-flowchart BT
-    subgraph TS ["Testsystem (Host)"]
-        TC[Testablaufsteuerung]-->|Aufgabendefinition| P[Player]
-        style TC fill:white
-        style P fill:white
-        P-->|Antworten| TC
-    end
-    style TS fill:#d9e6f2,stroke:#d1d1e0
-    DB[(Datenbank)]<--> TC
-```
+## Beispiel Player
+
+Im klassischen Szenario übernimmt die Webanwendung zur Testdurchführung neben der Anmeldung, dem Laden der Inhalte und der Navigation auch die Darstellung einer einzelnen Aufgabe. Die untere Darstellung zeigt dieses integrierte Modell.
+
+![](assets/player-1.png){width="600" group="architecture"}
+
+Wenn man jedoch die Programmierung für die Darstellung einer Aufgabe abtrennt, kann man später Interaktionsformate nachladen. Dann ist bei neuen Aufgabentypen keine Programmierung und Veröffentlichung einer neuen Webanwendung erforderlich, sondern man bindet dynamisch einen neuen Player ein.
+
+![](assets/player-2.png){width="600" group="architecture"}
+
+Hierzu muss die Kommunikation zwischen dem Player (Verona-Modul) und der Webanwendung (Host) spezifiziert werden. In der obigen Darstellung ist diese Schnittstelle rot markiert.
 
 Während einer Testung können Player-Module nach Bedarf ausgetauscht werden. Aus diesem Plug-in-Modell ergibt sich eine hohe Flexibilität für das Testsystem: Neue Funktionen der Interaktion führen nur zum Laden einer neuen Player-Version - das Testsystem bleibt unverändert. Weitere Vorteile:
 
@@ -28,16 +31,14 @@ Während einer Testung können Player-Module nach Bedarf ausgetauscht werden. Au
 
 # Technische Umsetzung
 
-Es handelt sich bei den Verona-Modulen um Code für das Frontend. Das Plug-in beansprucht einen rechteckigen Bereich des Bildschirmes und führt darin JavaScript aus. Um die Nebenwirkungen für den Host so gering wie möglich zu halten, ist das Modul technisch eine eigene Html-Seite, die in ein `iframe`-Element geladen wird. Die Kommunikation zwischen Host und Modul erfolgt asynchron über `postMessage()`.
-
-# Konventionen
+Das Modul ist technisch eine eigene Html-Seite, die in ein `iframe`-Element geladen wird. Die Kommunikation zwischen Host und Modul erfolgt asynchron über `postMessage()`.
 
 Für alle Module gelten folgende Grundsätze:
 
 * Das Modul muss in einer einzigen Datei zusammengefasst sein. Der Build-Prozess muss also alle sonst separat vorliegenden Komponenten einer Html-Seite (Styles, Code, Schriften, Bilder usw.) zusammenbinden.
-* Außer über `postMessage()` darf das Modul keinen weiteren Kontakt mit der Außenwelt pflegen. Jedweder Zugriff auf Ressourcen des Hosts (Frontend, Backend) oder auf andere Web-Ressourcen ist nicht gestattet.
-* Dem Modul werden Daten übergeben, die dann das Verhalten, die Erscheinung usw. beeinflussen. Ein Player z. B. bekommt die sog. Unit-Definition, ein Schemer das Unit-Kodierschema. Diese Daten dürfen selbst keinen Code enthalten.
-* Das Modul muss [Metadaten](metadata.qmd) in einem JSON-LD-Format (z. B. Version, Maintainer usw., s. u.) enthalten.
+* Außer über `postMessage()` darf das Modul keinen weiteren Kontakt mit der Außenwelt pflegen. Jedweder Zugriff auf Ressourcen des Hosts (Frontend, Backend) oder auf andere Web-Ressourcen ist nicht gestattet. Als Ausnahme gilt nur beim Player über den Parameter `directUrl`.
+* Dem Modul können Daten übergeben werden, die dann das Verhalten, die Erscheinung usw. beeinflussen. Ein Player z. B. bekommt die sog. Unit-Definition, ein Schemer das Unit-Kodierschema. Diese Daten dürfen selbst keinen Code enthalten.
+* Das Modul muss Metadaten in einem JSON-LD-Format (z. B. Version, Maintainer usw., s. u.) enthalten. Weitere Informationen dazu [siehe hier](metadata.qmd).
 
 # Datensicherheit
  

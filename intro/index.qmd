@@ -6,13 +6,10 @@ format:
     toc: false
 ---
 
-Es geht auf den Seiten dieser Dokumentation um große Vergleichsstudien oder Befragungen im Rahmen des nationalen Bildungsmonitorings. Hierfür ist der Begriff "Large Scale Assessments" etabliert. Die hohe Anzahl der Testpersonen soll ein datenbasiertes wissenschaftliches Monitoring des Bildungssystems ermöglichen.
-
-Der Fokus liegt also nicht auf der Einzelperson - der Schülerin oder des Schülers -, sondern auf Gruppen von Personen - Klassen, Schulen, Bezirke, Länder. Die Erkenntnisse aus den aufwändigen Testungen sollen aber nicht nur der obersten Steuerungsebene zufließen, sondern es ist an vielen Stellen eine Auswertung der Analyseergebnisse durch die Lehrkraft vorgesehen. Diese sogenannten Rückmeldungen ermöglichen durch den hohen Grad der Standardisierung eine Verortung der Leistungen der Klasse im Land und auch länderübergreifend.
+Es geht auf den Seiten dieser Dokumentation um große Vergleichsstudien oder Befragungen im Rahmen des nationalen Bildungsmonitorings. Hierfür ist der Begriff "Large Scale Assessments" etabliert. Die hohe Anzahl der Testpersonen soll ein datenbasiertes wissenschaftliches Monitoring des Bildungssystems ermöglichen. Der Fokus liegt also nicht auf der Einzelperson - der Schülerin oder des Schülers -, sondern auf Gruppen von Personen: Klassen, Schulen, Bezirke, Länder.
 
 ## Lesen Sie weiter
 
-* [Computerbasiertes Testen](tba.qmd): Ein Einstieg in das Thema "Computerbasierte Vergleichsstudien" und institutionelle Szenarien
 * [Architektur](architecture.qmd): Hier wird das Plug-in-System erläutert
 * [Modul-Metadaten](metadata.qmd): Einem Modul müssen bestimmte Informationen beigegeben werden. Diese sind hier erläutert.
 * [Kommunikationsmodell](modelling.qmd): Wenn ein Verona-Modul von einer Webanwendung geladen wird, ist die dann folgende Kommunikation standardisiert.
