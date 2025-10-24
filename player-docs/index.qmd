@@ -1,6 +1,11 @@
 ---
 lang: de
 title: Verona Interfaces -- Player
+format:
+    html:
+        other-links:
+            - text: Spezifikation Player
+              href: https://verona-interfaces.github.io/player/
 ---
 
 Ein Player-Modul dient dem "Abspielen" -- also der Präsentation -- von Units. Es gibt mehrere Anwendungsfälle:
@@ -14,11 +19,8 @@ Ein Player-Modul dient dem "Abspielen" -- also der Präsentation -- von Units. E
 * Präsentation während der manuellen Kodierung mit den Antwortdaten einer Testperson
 * Anzeige für Eltern nach dem Test mit den Antwortdaten ihres Kindes
 
-::: {.callout-note}
-## Spezifikation
+Die Spezifikation der API finden Sie [hier](https://verona-interfaces.github.io/player/).
 
-Die [Spezifikation der API](https://verona-interfaces.github.io/player/) ist als YML-Datei in der Syntax [AsyncAPI](https://www.asyncapi.com/de) ausgeführt. Nach einer Änderung wird über ein [Tool](https://www.asyncapi.com/tools/generator) eine lesbare Html-Datei erzeugt.
-:::
 
 ```{mermaid}
 sequenceDiagram
@@ -46,6 +48,10 @@ sequenceDiagram
         end
         opt
             VM->>HA:vopRuntimeErrorNotification
+        end
+        opt
+            VM->>HA:vopWidgetCall
+            HA->>VM:vopWidgetReturn
         end
         opt
             VM->>HA:vopWindowFocusChangedNotification
@@ -143,7 +149,25 @@ Diese Nachricht soll die Host-Anwendung darüber informieren, dass während der 
 Für den Code sollte es eine Liste von möglichen Werten geben, damit die Host-Anwendungen konsistent reagieren. Aktuell (Version 6.0) liegen hierzu noch zu wenig Erfahrungen vor. Beispiele: `AUDIO_CORRUPT`, `GEOGEBRA_CRASH`
 :::
 
-# 10 Window Focus Changed Notification
+# 10 Widget Call
+
+Es wird ein [Widget](../widget-docs/index.qmd) angefordert.
+
+* `sessionId`: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.
+* `callId`: Sollte es in einer Unit mehrere Punkte geben, die das Widget anfordern könnten, muss hier eine ID übergeben werden. Dadurch kann dann beim korrespondierenden Return eine korrekte Zuordnung der erhaltenen Daten erfolgen.
+* `widgetType`: Hier ist der Typ des Widgets anzugeben: `WIDGET_CALC` für einen virtuellen Taschenrechner, `WIDGET_PERIODIC_TABLE` für ein Periodensystem der Elemente, `WIDGET_MOLECULE_EDITOR` für einen Molekül-Editor.[^1]
+* `parameters`: Einfache Liste von `key`/`value`-Paaren, die Varianten des Widgets steuern. Es könnte darüber beispielsweise eine bestimmte Funktionalität des Taschenrechners angefordert werden.
+* `state`: Ein Zustand aus einem vorherige Aufruf des Widgets oder ein spezifischer Default-Wert kann die UX verbessern.
+
+# 11 Widget Return
+
+Nachdem ein Widget angefordert wurde, meldet diese Nachricht, dass das Widget wieder geschlossen wurde.
+
+* `sessionId`: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.
+* `callId`: Sollte es in einer Unit mehrere Punkte geben, die das Widget anfordern könnten, wird hier die bei der Anforderung übergebene ID genannt.
+* `state`: Der letzte Bearbeitungsstand des Widgets.
+
+# 12 Window Focus Changed Notification
 
 In Testungen kann es wichtig sein festzustellen, ob die Testperson sich im Browser noch auf der Seite des Tests befindet. Sollte dies nicht der Fall sein, besteht der Verdacht, dass die Testperson unzulässigerweise andere Webseiten aufruft, um z. B. eine Übersetzung zu erhalten.
 
@@ -157,3 +181,5 @@ Da technisch der Wechsel aus dem Host-Fensterbereich in den Bereich des `<iframe
 * Die Ereignisse `blur` und `focus` werden an `window` bei einem Fokuswechsel gesendet.
 * Die Funktion `document.hasFocus()` liefert `true`, wenn das Dokument den Fokus hat.
 :::
+
+[^1]: Der Widget-Typ `UNIT` soll statt eines Widgets eine normale Unit anzeigen (über einen Player). Anwendungsfall hierfür sind Hilfeseiten, die der Player anfordern kann, um ergänzende Informationen anzuzeigen, ohne dass der Testablauf unterbrochen wird. Dieses Verfahren befindet sich erst in Erprobung.

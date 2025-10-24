@@ -1,0 +1,76 @@
+---
+lang: de
+title: Verona Interfaces -- Widget
+format:
+    html:
+        other-links:
+            - text: Spezifikation Widget
+              href: https://verona-interfaces.github.io/widget/
+---
+
+Ein Widget ist ein Interaktionselement, das vom Player angefordert wird. Es erweitert die Interaktionsmöglichkeiten auf universelle Art. Beispiel Taschenrechner: Ein Player kann der Testperson anbieten, einen Wert über einen virtuellen Taschenrechner zu ermitteln.
+
+Die konkrete Einbindung des Widgets in eine Testumgebung ist nicht spezifiziert. Es sind folgende Szenarien denkbar:
+
+* Das Widget unterbricht die Interaktion mit dem Player und dem übrigen Testsystem und legt sich als Overlay über die Applikationsseite (modaler Dialog). Erst nach Schließen/Beenden kehrt die Testperson zum Player zurück.
+* Das Widget wird in einem weiteren Tab des Browsers geöffnet.
+
+Es können Daten zwischen dem Player und dem Widget ausgetauscht werden. Die Spezifikation der API finden Sie [hier](https://verona-interfaces.github.io/widget/).
+
+::: {.callout-important}
+## Typ des Widgets
+
+Es wird nie ein spezifisches Widget angefordert. Statt dessen wird ein Widget-Typ gerufen. Welches Widget dann konkret bereitgestellt wird, hängt von der Testumgebung ab. Hintergrund dieses Verfahrens ist die Möglichkeit, über den gesamten Test ein einheitliches Widget bereitzustellen. Beispielsweise ist es nicht sinnvoll, dass jede Unit einen anderen Taschenrechner anfordert. Dieser sollte in Design und Bedienung gleich sein.
+
+Die Spezifikationen der Typen werden an dieser Stelle veröffentlicht, sobald Erfahrungen hierzu vorliegen. Dann werden die Datenstrukturen `state` und `parameters` beschrieben.
+:::
+```{mermaid}
+sequenceDiagram
+    autonumber
+    participant HA as Host-Anwendung
+    participant VM as Widget (Verona Modul)
+    HA->>VM:Initialisierung
+    VM->>HA:vowReadyNotification
+    opt
+        HA->>VM:vowStartCommand
+    end
+    opt
+        loop
+            VM->>HA:vowStageChangedNotification
+        end
+    end
+    opt
+        VM->>HA:vowReturnRequest
+    end
+```
+
+# 1 Initialisierung
+
+Der Host richtet ein `<iframe>`-Element ein und setzt für das `srcdoc`-Attribut den kompletten Inhalt des Moduls. Das Modul ist technisch eine Html-Seite, d. h. es wird durch das Laden auch die Ausführung von JavaScript-Code angestoßen, der auf oberster Ebene vorgesehen ist.
+
+# 2 Ready Notification
+
+Dieser Code sendet als letzten Schritt der eigenen Initialisierung eine Nachricht an den Host, dass das Modul bereit sei für das Start-Kommando. Als Payload wird das [Metadaten-Objekt](../intro/metadata.qmd) mitgeschickt -- hier allerdings als String serialisiert, um nicht bei jeder Änderung der Metadaten-Spezifikation alle Modul-API ändern zu müssen.
+
+# 3 Start Command
+
+Das Startkommando ist nicht für alle Widgets zwingend erforderlich. Es könnte sich z. B. um eine statische Anzeige handeln, die keine weiteren Daten benötigt (z. B. interaktive Weltkarte).
+
+Der Host kann jedoch über das Startkommando Daten schicken:
+
+* `parameters`: Einfache Liste von `key`/`value`-Paaren, die Varianten des Widgets steuern. Es könnte darüber beispielsweise eine bestimmte Funktionalität des Taschenrechners angefordert werden.
+* `sharedParameters`: Einfache Liste von `key`/`value`-Paaren. Bedeutung siehe [hier](../intro/shared-parameters.qmd).
+* `state`: Ein Zustand aus einem vorherige Aufruf des Widgets kann die UX verbessern.
+
+# 4 State Changed Notification
+
+Sobald eine Interaktion stattgefunden hat, meldet das Widget diese Änderung. Parameter:
+
+* `sessionId`: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.
+* `timeStamp`: Ein String im Standard-Format [date-time](https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-date-time-string-format). Die Nutzung dieser Information ist dem Host überlassen, soll aber vor allem die korrekte Reihenfolge vieler asynchron eintreffender Nachrichten sicherstellen.
+* `sharedParameters`: Einfache Liste von `key`/`value`-Paaren. Bedeutung siehe [hier](../intro/shared-parameters.qmd).
+* `state`: Der neue Bearbeitungsstatus als serialisiertes Datenobjekt (string).
+
+# 4 Return Request
+
+Diese Meldung wird an den Host geschickt, wenn die Testperson die Arbeit mit dem Widget beenden möchte. Über den Parameter `saveState` teilt das Widget mit, ob die Änderungen am Zustand/State wirksam (also an den Player geschickt) werden sollen, oder ob das Schließen ohne Speichern erfolgen soll (entspricht "Abbruch").

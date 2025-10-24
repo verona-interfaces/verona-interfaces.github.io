@@ -1,15 +1,14 @@
 ---
 lang: de
 title: Verona Interfaces -- Schemer
+format:
+    html:
+        other-links:
+            - text: Spezifikation Schemer
+              href: https://verona-interfaces.github.io/schemer/
 ---
 
-Ein Schemer dient der interaktiven onlinegestützten Entwicklung eines Kodierschemas. Dies ist eine Sammlung von Vorschriften, wie die Variablenwerte -- automatisch oder manuell -- kodiert werden sollen. Es können auch neue Variablen als Ableitung vorhandener gebildet werden.
-
-::: {.callout-note}
-## Spezifikation
-
-Die [Spezifikation der API](https://verona-interfaces.github.io/schemer/) ist als YML-Datei in der Syntax [AsyncAPI](https://www.asyncapi.com/de) ausgeführt. Nach einer Änderung wird über ein [Tool](https://www.asyncapi.com/tools/generator) eine lesbare Html-Datei erzeugt.
-:::
+Ein Schemer dient der interaktiven onlinegestützten Entwicklung eines Kodierschemas. Dies ist eine Sammlung von Vorschriften, wie die Variablenwerte -- automatisch oder manuell -- kodiert werden sollen. Es können auch neue Variablen als Ableitung vorhandener gebildet werden. Die Spezifikation der API finden Sie [hier](https://verona-interfaces.github.io/schemer/).
 
 ```{mermaid}
 sequenceDiagram
@@ -45,7 +44,10 @@ Nachdem der Host die Bereitschaftsmeldung erhalten hat, schickt er die Variablen
 * `sessionId`: Dem Schemer wird eine Kennung mitgeschickt, die der Schemer anschließend in jeder Nachricht zur Änderung des Kodierschemas verwenden soll. Damit wird die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit unterstützt.
 * Soweit vorhanden kann ein Kodierschema `codingScheme` geschickt werden, damit daran weitergearbeitet wird.
 * `codingSchemeType`: Sollte es Varianten oder Versionen von Kodierschemata geben, kann dies hier dem Schemer mitgeteilt werden. Alternativ (oder parallel) kann natürlich diese Information als Teil der Datenstruktur des Kodierschemas übergeben werden.
-* `schemerConfig` --> `directDownloadUrl`: Sollte der Schemer während der Laufzeit Code nachladen müssen, kann aus Gründen der Datensicherheit nicht einfach irgendein Server genutzt werden. Dem Schemer muss mitgeteilt werden, welche URL dafür zulässig ist.
+* `schemerConfig`
+  - `directDownloadUrl`: Sollte der Schemer während der Laufzeit Code nachladen müssen, kann aus Gründen der Datensicherheit nicht einfach irgendein Server genutzt werden. Dem Schemer muss mitgeteilt werden, welche URL dafür zulässig ist.
+  - `sharedParameters`: Daten, die zur Laufzeit zwischen Schemer-Modulen ausgetauscht werden sollen. Details siehe [hier](../intro/shared-parameters.qmd).
+
 
 # 4 Scheme Changed Notification
 
@@ -56,3 +58,4 @@ Sobald eine Bearbeitung des Kodierschemas stattgefunden hat, meldet der Schemer 
 * `codingScheme`: Das neue vollständige Kodierschema, serialisiert als String.
 * `codingSchemeType`: Spezifizierung des Datenformates, wenn gewünscht.
 * `dependenciesToCode`: Abhängigkeiten von externen Bibliotheken oder Diensten für das Kodieren der Antworten der Unit.
+* `sharedParameters`: Daten, die zur Laufzeit zwischen Schemer-Modulen ausgetauscht werden sollen. Details siehe [hier](../intro/shared-parameters.qmd).

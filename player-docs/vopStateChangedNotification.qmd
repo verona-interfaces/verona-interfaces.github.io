@@ -36,6 +36,10 @@ Die Reihenfolge der genannten Seiten ist relevant.
 
 Der Player berichtet hierüber über eine erfolgte Seitennavigation. Es wird die ID bzw. der Key der neuen Seite übergeben.
 
+## `sharedParameters`
+
+Daten, die zur Laufzeit zwischen Player-Modulen ausgetauscht werden sollen. Details siehe [hier](../intro/shared-parameters.qmd).
+
 # `log`
 
 Die Eigenschaften `timeStamp`, `key` und `content` liefern einen Log-Eintrag. In einer Nachricht zur Statusänderung können mehrere Log-Einträge gleichzeitig geschickt werden.

@@ -1,15 +1,15 @@
 ---
 lang: de
 title: Verona Interfaces -- Editor
+format:
+    html:
+        other-links:
+            - text: Spezifikation Editor
+              href: https://verona-interfaces.github.io/editor/
 ---
 
-Ein Editor dient der interaktiven onlinegestützten Entwicklung einer Unit. Hierbei stehen die visuelle Erscheinung und die Interaktionselemente im Vordergrund.
+Ein Editor dient der interaktiven onlinegestützten Entwicklung einer Unit. Hierbei stehen die visuelle Erscheinung und die Interaktionselemente im Vordergrund. Die Spezifikation der API finden Sie [hier](https://verona-interfaces.github.io/editor/).
 
-::: {.callout-note}
-## Spezifikation
-
-Die [Spezifikation der API](https://verona-interfaces.github.io/editor/) ist als YML-Datei in der Syntax [AsyncAPI](https://www.asyncapi.com/de) ausgeführt. Nach einer Änderung wird über ein [Tool](https://www.asyncapi.com/tools/generator) eine lesbare Html-Datei erzeugt.
-:::
 
 ```{mermaid}
 sequenceDiagram
@@ -42,6 +42,7 @@ Nachdem der Host die Bereitschaftsmeldung erhalten hat, schickt er die wichtigen
 * `editorConfig`:
   - `directDownloadUrl`: Sollte der Editor während der Laufzeit Code nachladen müssen, kann aus Gründen der Datensicherheit nicht einfach irgendein Server genutzt werden. Dem Editor muss mitgeteilt werden, welche URL dafür zulässig ist. Beispiel: GeoGebra.
   - `role`: Es kann gewünscht sein, dass nicht für alle Bearbeiter\*innen alle Funktionen des Editors gleichermaßen zur Verfügung stehen. Ungeübte fühlen sich eventuell erschlagen von der Fülle der Parameter und nehmen ungünstige Änderungen vor. Die Rolle, die dem Editor hier mitgeteilt wird, variiert die Benutzeroberfläche. Mögliche Werte sind `guest`, `commentator`, `developer`, `maintainer`, `super` (abnehmende Beschränkungen).
+  - `sharedParameters`: Daten, die zur Laufzeit zwischen Editor-Modulen ausgetauscht werden sollen. Details siehe [hier](../intro/shared-parameters.qmd).
 
 # 4 Definition Changed Notification
 
@@ -52,6 +53,7 @@ Sobald eine Bearbeitung der Unit-Definition stattgefunden hat, meldet der Editor
 * `unitDefinition`: Dieser String enthält die neue Unit-Definition sowie deren Typ.
 * `unitDefinitionType`: Diese Angabe soll anderen Anwendungen helfen, Missverständnisse bei der Interpretation der Unit-Definition zu vermeiden. 
 * `dependenciesToPlay`, `dependenciesToEdit`: Diese Einträge beschreiben Abhängigkeiten von externen Bibliotheken oder Diensten für das Editieren oder Abspielen der Unit. Dies kann der Prüfung der Testinhalte auf Vollständigkeit dienen. Wird hier z. B. GeoGebra genannt, kann eine Warnung ausgegeben werden, wenn dieses Softwarepaket nicht verfügbar ist.
+* `sharedParameters`: Daten, die zur Laufzeit zwischen Editor-Modulen ausgetauscht werden sollen. Details siehe [hier](../intro/shared-parameters.qmd).
 
 ## Parameter `variables`
 

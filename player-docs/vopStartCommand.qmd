@@ -79,3 +79,7 @@ Sollte der Player sofort nach dem Start auf eine bestimmte Seite navigieren, kan
 ## `directDownloadUrl`
 
 Sollte der Player während der Laufzeit Code nachladen müssen, kann aus Gründen der Datensicherheit nicht einfach irgendein Server genutzt werden. Dem Player muss mitgeteilt werden, welche URL dafür zulässig ist. Beispiel: GeoGebra.
+
+## `sharedParameters`
+
+Daten, die zur Laufzeit zwischen Player-Modulen ausgetauscht werden sollen. Details siehe [hier](../intro/shared-parameters.qmd).
