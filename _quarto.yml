@@ -34,10 +34,10 @@ website:
       - section: "Einführung"
         href: intro/index.qmd
         contents:
+          - intro/data-structures.qmd
           - intro/architecture.qmd
           - intro/metadata.qmd
           - intro/modelling.qmd
-          - intro/data-structures.qmd
           - intro/shared-parameters.qmd
           - intro/english.qmd
       - section: Player

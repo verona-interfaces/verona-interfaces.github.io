@@ -3,7 +3,16 @@ lang: de
 title: Verona Interfaces -- Player
 ---
 
-Ein Player präsentiert jeweils eine Unit und sorgt für die Interaktion mit der Testperson bzw. mit den Befragten. Das grundlegende Modell hierbei ist, dass ein Test bzw. Befragung (nachfolgend synonym) aus einer Abfolge von inhaltlich getrennten Units besteht und diese jeweils einzeln mit einem Player-Modul präsentiert werden.
+Ein Player-Modul dient dem "Abspielen" -- also der Präsentation -- von Units. Es gibt mehrere Anwendungsfälle:
+
+* Anzeige im Testsystem während des Tests
+* Anzeige im Testsystem für den Review
+* Veröffentlichung von Beispielaufgaben
+* Veröffentlichung als permanente Referenz für einen wissenschaftlichen Artikel
+* Voransicht im Autorensystem
+* Druckbare Ansicht für den Export
+* Präsentation während der manuellen Kodierung mit den Antwortdaten einer Testperson
+* Anzeige für Eltern nach dem Test mit den Antwortdaten ihres Kindes
 
 ::: {.callout-note}
 ## Spezifikation
