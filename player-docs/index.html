@@ -148,6 +148,12 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../intro/data-structures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Testablauf</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../intro/architecture.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Architektur</span></a>
   </div>
@@ -162,12 +168,6 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="../intro/modelling.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Kommunikationsmodell</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../intro/data-structures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Datenstrukturen</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -225,6 +225,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Schemer</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../widget-docs/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Widget</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -244,9 +250,11 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#navigation-denied-notification" id="toc-navigation-denied-notification" class="nav-link" data-scroll-target="#navigation-denied-notification">7 Navigation Denied Notification</a></li>
   <li><a href="#player-config-changed-notification" id="toc-player-config-changed-notification" class="nav-link" data-scroll-target="#player-config-changed-notification">8 Player Config Changed Notification</a></li>
   <li><a href="#runtime-error-notification" id="toc-runtime-error-notification" class="nav-link" data-scroll-target="#runtime-error-notification">9 Runtime Error Notification</a></li>
-  <li><a href="#window-focus-changed-notification" id="toc-window-focus-changed-notification" class="nav-link" data-scroll-target="#window-focus-changed-notification">10 Window Focus Changed Notification</a></li>
+  <li><a href="#widget-call" id="toc-widget-call" class="nav-link" data-scroll-target="#widget-call">10 Widget Call</a></li>
+  <li><a href="#widget-return" id="toc-widget-return" class="nav-link" data-scroll-target="#widget-return">11 Widget Return</a></li>
+  <li><a href="#window-focus-changed-notification" id="toc-window-focus-changed-notification" class="nav-link" data-scroll-target="#window-focus-changed-notification">12 Window Focus Changed Notification</a></li>
   </ul>
-</nav>
+<div class="quarto-other-links"><h2>Weitere Links</h2><ul><li><a href="https://verona-interfaces.github.io/player/"><i class="bi bi-link-45deg"></i>Spezifikation Player</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -270,20 +278,18 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Ein Player präsentiert jeweils eine Unit und sorgt für die Interaktion mit der Testperson bzw. mit den Befragten. Das grundlegende Modell hierbei ist, dass ein Test bzw. Befragung (nachfolgend synonym) aus einer Abfolge von inhaltlich getrennten Units besteht und diese jeweils einzeln mit einem Player-Modul präsentiert werden.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Hinweis</span>Spezifikation
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Die <a href="https://verona-interfaces.github.io/player/">Spezifikation der API</a> ist als YML-Datei in der Syntax <a href="https://www.asyncapi.com/de">AsyncAPI</a> ausgeführt. Nach einer Änderung wird über ein <a href="https://www.asyncapi.com/tools/generator">Tool</a> eine lesbare Html-Datei erzeugt.</p>
-</div>
-</div>
+<p>Ein Player-Modul dient dem “Abspielen” – also der Präsentation – von Units. Es gibt mehrere Anwendungsfälle:</p>
+<ul>
+<li>Anzeige im Testsystem während des Tests</li>
+<li>Anzeige im Testsystem für den Review</li>
+<li>Veröffentlichung von Beispielaufgaben</li>
+<li>Veröffentlichung als permanente Referenz für einen wissenschaftlichen Artikel</li>
+<li>Voransicht im Autorensystem</li>
+<li>Druckbare Ansicht für den Export</li>
+<li>Präsentation während der manuellen Kodierung mit den Antwortdaten einer Testperson</li>
+<li>Anzeige für Eltern nach dem Test mit den Antwortdaten ihres Kindes</li>
+</ul>
+<p>Die Spezifikation der API finden Sie <a href="https://verona-interfaces.github.io/player/">hier</a>.</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -314,6 +320,10 @@ ul.task-list li input[type="checkbox"] {
         end
         opt
             VM-&gt;&gt;HA:vopRuntimeErrorNotification
+        end
+        opt
+            VM-&gt;&gt;HA:vopWidgetCall
+            HA-&gt;&gt;VM:vopWidgetReturn
         end
         opt
             VM-&gt;&gt;HA:vopWindowFocusChangedNotification
@@ -442,8 +452,28 @@ Tipp
 </div>
 </div>
 </section>
+<section id="widget-call" class="level1">
+<h1>10 Widget Call</h1>
+<p>Es wird ein <a href="../widget-docs/index.html">Widget</a> angefordert.</p>
+<ul>
+<li><code>sessionId</code>: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.</li>
+<li><code>callId</code>: Sollte es in einer Unit mehrere Punkte geben, die das Widget anfordern könnten, muss hier eine ID übergeben werden. Dadurch kann dann beim korrespondierenden Return eine korrekte Zuordnung der erhaltenen Daten erfolgen.</li>
+<li><code>widgetType</code>: Hier ist der Typ des Widgets anzugeben: <code>WIDGET_CALC</code> für einen virtuellen Taschenrechner, <code>WIDGET_PERIODIC_TABLE</code> für ein Periodensystem der Elemente, <code>WIDGET_MOLECULE_EDITOR</code> für einen Molekül-Editor.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
+<li><code>parameters</code>: Einfache Liste von <code>key</code>/<code>value</code>-Paaren, die Varianten des Widgets steuern. Es könnte darüber beispielsweise eine bestimmte Funktionalität des Taschenrechners angefordert werden.</li>
+<li><code>state</code>: Ein Zustand aus einem vorherige Aufruf des Widgets oder ein spezifischer Default-Wert kann die UX verbessern.</li>
+</ul>
+</section>
+<section id="widget-return" class="level1">
+<h1>11 Widget Return</h1>
+<p>Nachdem ein Widget angefordert wurde, meldet diese Nachricht, dass das Widget wieder geschlossen wurde.</p>
+<ul>
+<li><code>sessionId</code>: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.</li>
+<li><code>callId</code>: Sollte es in einer Unit mehrere Punkte geben, die das Widget anfordern könnten, wird hier die bei der Anforderung übergebene ID genannt.</li>
+<li><code>state</code>: Der letzte Bearbeitungsstand des Widgets.</li>
+</ul>
+</section>
 <section id="window-focus-changed-notification" class="level1">
-<h1>10 Window Focus Changed Notification</h1>
+<h1>12 Window Focus Changed Notification</h1>
 <p>In Testungen kann es wichtig sein festzustellen, ob die Testperson sich im Browser noch auf der Seite des Tests befindet. Sollte dies nicht der Fall sein, besteht der Verdacht, dass die Testperson unzulässigerweise andere Webseiten aufruft, um z. B. eine Übersetzung zu erhalten.</p>
 <p>Da technisch der Wechsel aus dem Host-Fensterbereich in den Bereich des <code>&lt;iframe&gt;</code>-Elements des Players einem Verlassen der Testseite gleichkommt, muss der Player dem Host mitteilen, dass er den Fokus erhalten bzw. verloren hat. Parameter:</p>
 <ul>
@@ -470,7 +500,13 @@ Tipp
 
 </section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Fußnoten</h2>
+
+<ol>
+<li id="fn1"><p>Der Widget-Typ <code>UNIT</code> soll statt eines Widgets eine normale Unit anzeigen (über einen Player). Anwendungsfall hierfür sind Hilfeseiten, die der Player anfordern kann, um ergänzende Informationen anzuzeigen, ohne dass der Testablauf unterbrochen wird. Dieses Verfahren befindet sich erst in Erprobung.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

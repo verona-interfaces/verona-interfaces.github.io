@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Datenstrukturen – Verona-Interfaces</title>
+<title>Testablauf – Verona-Interfaces</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -29,8 +29,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../intro/shared-parameters.html" rel="next">
-<link href="../intro/modelling.html" rel="prev">
+<link href="../intro/architecture.html" rel="next">
+<link href="../intro/index.html" rel="prev">
 <link href="../assets/favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -70,9 +70,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Suchen"
   }
 }</script>
-<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="../styles.css">
@@ -115,7 +112,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro/index.html">Einführung</a></li><li class="breadcrumb-item"><a href="../intro/data-structures.html">Datenstrukturen</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro/index.html">Einführung</a></li><li class="breadcrumb-item"><a href="../intro/data-structures.html">Testablauf</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -148,6 +145,12 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../intro/data-structures.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Testablauf</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../intro/architecture.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Architektur</span></a>
   </div>
@@ -162,12 +165,6 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="../intro/modelling.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Kommunikationsmodell</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../intro/data-structures.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Datenstrukturen</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -225,6 +222,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Schemer</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../widget-docs/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Widget</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -235,26 +238,19 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Auf dieser Seite</h2>
    
   <ul>
-  <li><a href="#begriff-unit" id="toc-begriff-unit" class="nav-link active" data-scroll-target="#begriff-unit">Begriff Unit</a></li>
-  <li><a href="#dreiklang-der-module" id="toc-dreiklang-der-module" class="nav-link" data-scroll-target="#dreiklang-der-module">Dreiklang der Module</a>
-  <ul class="collapse">
-  <li><a href="#modul-editor" id="toc-modul-editor" class="nav-link" data-scroll-target="#modul-editor">Modul “Editor”</a></li>
-  <li><a href="#modul-player" id="toc-modul-player" class="nav-link" data-scroll-target="#modul-player">Modul “Player”</a></li>
-  <li><a href="#unit-definition" id="toc-unit-definition" class="nav-link" data-scroll-target="#unit-definition">Unit-Definition</a></li>
-  <li><a href="#modul-schemer" id="toc-modul-schemer" class="nav-link" data-scroll-target="#modul-schemer">Modul “Schemer”</a></li>
-  <li><a href="#variablenliste" id="toc-variablenliste" class="nav-link" data-scroll-target="#variablenliste">Variablenliste</a></li>
-  <li><a href="#antwortdaten" id="toc-antwortdaten" class="nav-link" data-scroll-target="#antwortdaten">Antwortdaten</a></li>
-  <li><a href="#kodierschema" id="toc-kodierschema" class="nav-link" data-scroll-target="#kodierschema">Kodierschema</a></li>
-  </ul></li>
+  <li><a href="#basismodell" id="toc-basismodell" class="nav-link active" data-scroll-target="#basismodell">Basismodell</a></li>
+  <li><a href="#varianten" id="toc-varianten" class="nav-link" data-scroll-target="#varianten">Varianten</a></li>
+  <li><a href="#unitbezogene-verona-module" id="toc-unitbezogene-verona-module" class="nav-link" data-scroll-target="#unitbezogene-verona-module">Unitbezogene Verona-Module</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro/index.html">Einführung</a></li><li class="breadcrumb-item"><a href="../intro/data-structures.html">Datenstrukturen</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro/index.html">Einführung</a></li><li class="breadcrumb-item"><a href="../intro/data-structures.html">Testablauf</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Datenstrukturen</h1>
+<h1 class="title">Testablauf</h1>
+<p class="subtitle lead">Modell als Folge von Units</p>
 </div>
 
 
@@ -271,114 +267,33 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="begriff-unit" class="level1">
-<h1>Begriff Unit</h1>
-<p>Ein Testablauf ist stets eine Abfolge von Instruktionen oder Fragen an die Testperson, nach Bedarf angereichert mit Material (Bilder, Text, Audio, Video - sog. <strong>Stimulus</strong>), auf die sich die Fragen bzw. Handlungsanweisungen dann beziehen. Die kleinste Dateneinheit ist ein durch die Testperson geänderter Zustand, der durch Speichern reproduzierbar wird. Diese kleinste Dateneinheit nennen wir <strong>Variable</strong>. Sie kann sich auf ein Interaktionselement (z. B. Eingabefeld, Ankreuzkästchen), aber auch auf ein abgespieltes Audio beziehen (Variablenwert ist dann der Fortschritt des Abspielens).</p>
-<p>Der Begriff <strong>Item</strong> steht für eine Antwort der Testperson, die man mit einem Erwartungswert vergleichen kann und dann den Kategorien “Richtig” und “Falsch” zuordnen kann. Die Quelle für die Antwort ist der Wert einer oder mehrerer Variablen. D. h. die Zustandsänderungen während der Interaktion führen nicht automatisch zu auswertbaren Daten, sondern müssen ggf. aus mehreren Interaktionen zusammengeführt werden.</p>
-<blockquote class="blockquote">
-<p>Z. B. ist in Mathematik ein Format sehr beliebt: “Kreuze an und begründe”. Die Testperson soll sich für eine Option einer Auswahl von Ankreuzkästchen entscheiden, aber bewertet im Sinne der Datenanalyse wird die Entscheidung erst im Zusammenhang mit einem Text, der darunter in ein Eingabefeld geschrieben wurde.</p>
-</blockquote>
-<p>Nun kann ein Item auf einer Seite ggf. zusammen mit einem Stimulus präsentiert werden. Über die Navigation kommt man zum nächsten Item. Oft werden jedoch mehrere Items als Gruppe präsentiert, vor allem, wenn sie sich auf denselben Stimulus beziehen. Man erreicht eine höhere Effizienz beim Testen, wenn man zu einem Stimulus nicht nur ein Item vorsieht. Als <strong>Unit</strong> bezeichnen wir eine Gruppe von Items, die aus testpraktischen oder testtheoretischen Gründen zusammen präsentiert werden.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tipp</span>Unit ist Fokus
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Der Fokus aller Verona-Module liegt auf der Unit. Es werden Daten verarbeitet, die sich stets auf eine Unit beziehen.</p>
-</div>
-</div>
-<p>Die Unit ist nun die Ebene in der Datenstruktur, die man als beliebig austauschbar innerhalb eines Tests deklariert. Es gibt sogar statistische Maßzahlen, die die unerwünschten Positionseffekte von Units quantifizieren. Natürlich gibt es auch Tests und vor allem Befragungen, bei denen die Abfolge gründlich geplant wird und wo die Units nicht unabhängig voneinander sind. Aber aus Sicht der Datenstrukturen reden wir lange von Units und deren Optimierung, bevor ihr Platz in einer Testabfolge festgelegt wird. Daher sieht der Entwicklungsprozess für Tests zunächst eine Unit- – bzw. im deutschen Sprachgebrauch auch Aufgaben- – Entwicklung vor.</p>
-<blockquote class="blockquote">
-<p>Eine Unit kann auch eine simple Seite sein, die nur begrüßt oder den nächsten Aufgabenblock ankündigt. Das IQB hat viel Arbeit in Units gesteckt, die die Bedienung von Eingabeelementen erläutern. Für die vorliegende Dokumentation spielt das keine Rolle, da es technisch nur eine Vereinfachung darstellt und stets möglich ist.</p>
-</blockquote>
-</section>
-<section id="dreiklang-der-module" class="level1">
-<h1>Dreiklang der Module</h1>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart TD
-    subgraph Aufgabenentwicklung
-        E(((Editor)))
-        style E fill:white
-        S(((Schemer)))
-        style S fill:white
-    end
-    style Aufgabenentwicklung fill:#e6eeff,stroke-width:0
-    subgraph Testsystem
-        P(((Player)))
-        style P fill:white
-    end
-    style Testsystem fill:#e6eeff,stroke-width:0
-    subgraph Auswertung
-        K[Kodierung]--&gt;A[Datenanalyse]
-        style K fill:white
-        style A fill:white
-    end
-    style Auswertung fill:#e6eeff,stroke-width:0
-
-
-    E--&gt;|Unit-Definition|P
-    E--&gt;|Variablenliste|S
-    P--&gt;|Antwortdaten|K
-    S--&gt;|Kodierschema|K
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<section id="modul-editor" class="level2">
-<h2 class="anchored" data-anchor-id="modul-editor">Modul “Editor”</h2>
-<p>Hier werden für die Unit-Erstellung in einem interaktiven Prozess alle Medien platziert und alle Interaktionselemente gebaut. Ein Editor ist auf die Autorinnen und Autoren ausgerichtet. Bei den großen Bildungsvergleichsstudien muss sich daher dessen UI/UX an den Fähigkeiten und Gewohnheiten von Lehrkräften orientieren.</p>
-</section>
-<section id="modul-player" class="level2">
-<h2 class="anchored" data-anchor-id="modul-player">Modul “Player”</h2>
-<p>Ein Player-Modul dient dem “Abspielen” – also der Präsentation – von Units. Es gibt mehrere Anwendungsfälle:</p>
+<p>Um die Module “Player”, “Editor” und “Schemer” richtig einsetzen zu können, muss geklärt sein, worauf sie sich jeweils beziehen. Ein Testablauf besteht aus einführenden Texten, Stimuli (Text-/Audio-Input), Aufgaben, Teilaufgaben, Items, vielleicht Itemgruppen usw. Für die technische Umsetzung muss diese heterogene Mischung klar strukturiert werden.</p>
+<section id="basismodell" class="level1">
+<h1>Basismodell</h1>
+<p>Wir gehen in der computerbasierten Testung davon aus, dass ein Testheft eine <strong>Folge von Units</strong> darstellt. Der Begriff “Unit” steht für:</p>
 <ul>
-<li>Anzeige im Testsystem während des Tests</li>
-<li>Anzeige im Testsystem für den Review</li>
-<li>Veröffentlichung von Beispielaufgaben</li>
-<li>Veröffentlichung als permanente Referenz für einen wissenschaftlichen Artikel</li>
-<li>Voransicht im Autorensystem</li>
-<li>Druckbare Ansicht für den Export</li>
-<li>Präsentation während der manuellen Kodierung mit den Antwortdaten einer Testperson</li>
-<li>Anzeige für Eltern nach dem Test mit den Antwortdaten ihres Kindes</li>
+<li>Eine einzelne <strong>Seite</strong>. Eine Interaktion wird nicht von der Testperson erwartet. Beispielsweise enthält eine Seite “Hallo willkommen” nur eine nette animierte Grafik und etwas Text. Eine solche Seite wird als erste Unit im Testablauf platziert.</li>
+<li>Eine <strong>Aufgabe</strong> mit Interaktionselementen, die zu auswertbaren Antwortdaten führen. Ein Stimulus muss als Teil der Aufgabe gestaltet sein. Ob innerhalb der Aufgabe die Interaktionselemente als Teilaufgaben, Itemgruppen und Items angelegt sind, ist nicht spezifiziert.</li>
 </ul>
-<p>Diese Liste lässt sich sicherlich erweitern. Je nach Anwendungsfall werden die Antworten gespeichert bzw. wiederhergestellt oder nicht.</p>
+<p>Mit diesem Modell gibt es neben den Units keine weiteren Bestandteile eines Testheftes. Welche Funktion die Aufgaben konkret haben (Präsentation, Interaktion) ist dabei nicht wichtig.</p>
 </section>
-<section id="unit-definition" class="level2">
-<h2 class="anchored" data-anchor-id="unit-definition">Unit-Definition</h2>
-<p>Die Unit-Definition ist nicht spezifiziert. Sie wird serialisiert als String gespeichert bzw. zwischen den Komponenten ausgetauscht. Aus diesem Grund ist es wichtig, dass zu der Unit-Definition auch die ID und die Version des Player- und ggf. des genutzten Editormoduls gespeichert werden.</p>
-<p>Natürlich kann ein Entwickler entscheiden, die Unit-Definition ausführlich zu beschreiben und auch z. B. einer Versionierung zu unterziehen. Das IQB tut dies z. B. für zwei einfache Player. Eine solche Spezifikation der Unit-Definition ist aber nicht Gegenstand dieser Verona-Spezifikationen.</p>
+<section id="varianten" class="level1">
+<h1>Varianten</h1>
+<ul>
+<li>In einem Testsystem kann entschieden werden, dass Units in <strong>Blöcke</strong> platziert werden. Dann kann der Testcontroller bestimmte Blöcke überspringen. Diese Blockbildung wird in den Verona-Spezifikationen nicht thematisiert.</li>
+<li>Bestimmte <strong>Unit-Varianten</strong> können bestimmte Layoutvarianten auslösen. Beispielsweise können Units für die Einführung und das Training von Itemformaten in einer separaten Navigationsliste geführt werden. Eine Typologie der Units wird in den Verona-Spezifikationen nicht thematisiert.</li>
+<li>Innerhalb einer Unit könnte es <strong>Unterseiten</strong> geben. Diese “Teilaufgaben” sind ein häufig genutzter Weg zur besseren Orientierung einer Testperson im Testablauf. Die Verona-Spezifikationen berücksichtigen dies in Datenstrukturen unter dem Begriff <code>page</code>.</li>
+</ul>
 </section>
-<section id="modul-schemer" class="level2">
-<h2 class="anchored" data-anchor-id="modul-schemer">Modul “Schemer”</h2>
-<p>Mit diesem Verona-Modul werden im Autorensystem die Vorschriften für die Antwortverarbeitung erstellt. Dieses sog. Kodierschema wird in einfachen Fällen bereits von den Aufgabenentwicklerinnen und -entwicklern eingegeben, meist bedarf es aber aufgrund der Komplexität einer besonderen Erfahrung.</p>
-</section>
-<section id="variablenliste" class="level2">
-<h2 class="anchored" data-anchor-id="variablenliste">Variablenliste</h2>
-<p>Damit das Kodierschema entwickelt werden kann, muss der Schemer die Variablen kennen, die im Editor angelegt wurden. Diese Datenstruktur ist als <a href="../editor-docs/#parameter-variables">Teil des Editors</a> spezifiziert.</p>
-</section>
-<section id="antwortdaten" class="level2">
-<h2 class="anchored" data-anchor-id="antwortdaten">Antwortdaten</h2>
-<p>Die Antwortdaten sind nicht spezifiziert. Sie werden serialisiert als String gespeichert bzw. zwischen den Komponenten ausgetauscht. In der Player-Schnittstelle ist die Angabe eines Datenformates als String vorgesehen, damit nachfolgende Prozesse die Daten sinnvoll verarbeiten können.</p>
-<p>Das IQB hat für die eigenen Module ein einheitliches Antwortformat spezifiziert. Dieses ist jedoch nicht Teil dieser Verona-Spezifikationen.</p>
-</section>
-<section id="kodierschema" class="level2">
-<h2 class="anchored" data-anchor-id="kodierschema">Kodierschema</h2>
-<p>Das Kodierschema ist nicht spezifiziert. Es wird serialisiert als String gespeichert bzw. zwischen den Komponenten ausgetauscht. In der Schemer-Schnittstelle ist die Angabe eines Datenformates als String vorgesehen, damit nachfolgende Prozesse die Daten sinnvoll verarbeiten können.</p>
-<p>Das IQB hat für die eigenen Module ein einheitliches Datenformat für das Kodierschema spezifiziert. Dieses ist jedoch nicht Teil dieser Verona-Spezifikationen.</p>
+<section id="unitbezogene-verona-module" class="level1">
+<h1>Unitbezogene Verona-Module</h1>
+<ul>
+<li>Ein <strong>Player</strong>-Modul zeigt genau eine Unit an und startet die Interaktion mit der Testperson. Dazu benötigt der Player die sog. Unit-Definition oder auch UI-Definition. Der Player schickt an das Testsystem die Antwortdaten.</li>
+<li>Mit einem <strong>Editor</strong>-Modul kann man die UI-Defintion einer Unit editieren. Es ist damit auf einen bestimmten Player abgestimmt. Das IQB veröffentlicht üblicherweise Player und Editor zusammen als ein Modulpaket. Der Editor bekommt den Stand der UI-Definition und erzeugt die geänderte UI-Definition.</li>
+<li>Mit einem <strong>Schemer</strong>-Modul werden Definitionen erzeugt, wie die Antwortdaten einer Unit zu verarbeiten sind. Das sog. Kodierschema enthält Regeln für die automatische Kodierung und/oder Instruktionen für die manuelle Kodierung. Die Syntax eines Kodierschemas ist auf ein bestimmtes Antwortformat abgestimmt.</li>
+</ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -791,13 +706,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../intro/modelling.html" class="pagination-link" aria-label="Kommunikationsmodell">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Kommunikationsmodell</span>
+      <a href="../intro/index.html" class="pagination-link" aria-label="Einführung">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Einführung</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../intro/shared-parameters.html" class="pagination-link" aria-label="Gemeinsame Parameter">
-        <span class="nav-page-text">Gemeinsame Parameter</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../intro/architecture.html" class="pagination-link" aria-label="Architektur">
+        <span class="nav-page-text">Architektur</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

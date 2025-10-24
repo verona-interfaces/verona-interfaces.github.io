@@ -29,6 +29,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../widget-docs/index.html" rel="next">
 <link href="../editor-docs/index.html" rel="prev">
 <link href="../assets/favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -147,6 +148,12 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../intro/data-structures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Testablauf</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../intro/architecture.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Architektur</span></a>
   </div>
@@ -161,12 +168,6 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="../intro/modelling.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Kommunikationsmodell</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../intro/data-structures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Datenstrukturen</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -224,6 +225,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Schemer</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../widget-docs/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Widget</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -249,7 +256,7 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   <li><a href="#scheme-changed-notification" id="toc-scheme-changed-notification" class="nav-link" data-scroll-target="#scheme-changed-notification">4 Scheme Changed Notification</a></li>
   </ul>
-</nav>
+<div class="quarto-other-links"><h2>Weitere Links</h2><ul><li><a href="https://verona-interfaces.github.io/schemer/"><i class="bi bi-link-45deg"></i>Spezifikation Schemer</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -273,20 +280,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Ein Schemer dient der interaktiven onlinegestützten Entwicklung eines Kodierschemas. Dies ist eine Sammlung von Vorschriften, wie die Variablenwerte – automatisch oder manuell – kodiert werden sollen. Es können auch neue Variablen als Ableitung vorhandener gebildet werden.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Hinweis</span>Spezifikation
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Die <a href="https://verona-interfaces.github.io/schemer/">Spezifikation der API</a> ist als YML-Datei in der Syntax <a href="https://www.asyncapi.com/de">AsyncAPI</a> ausgeführt. Nach einer Änderung wird über ein <a href="https://www.asyncapi.com/tools/generator">Tool</a> eine lesbare Html-Datei erzeugt.</p>
-</div>
-</div>
+<p>Ein Schemer dient der interaktiven onlinegestützten Entwicklung eines Kodierschemas. Dies ist eine Sammlung von Vorschriften, wie die Variablenwerte – automatisch oder manuell – kodiert werden sollen. Es können auch neue Variablen als Ableitung vorhandener gebildet werden. Die Spezifikation der API finden Sie <a href="https://verona-interfaces.github.io/schemer/">hier</a>.</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -364,7 +358,11 @@ ul.task-list li input[type="checkbox"] {
 <li><code>sessionId</code>: Dem Schemer wird eine Kennung mitgeschickt, die der Schemer anschließend in jeder Nachricht zur Änderung des Kodierschemas verwenden soll. Damit wird die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit unterstützt.</li>
 <li>Soweit vorhanden kann ein Kodierschema <code>codingScheme</code> geschickt werden, damit daran weitergearbeitet wird.</li>
 <li><code>codingSchemeType</code>: Sollte es Varianten oder Versionen von Kodierschemata geben, kann dies hier dem Schemer mitgeteilt werden. Alternativ (oder parallel) kann natürlich diese Information als Teil der Datenstruktur des Kodierschemas übergeben werden.</li>
-<li><code>schemerConfig</code> –&gt; <code>directDownloadUrl</code>: Sollte der Schemer während der Laufzeit Code nachladen müssen, kann aus Gründen der Datensicherheit nicht einfach irgendein Server genutzt werden. Dem Schemer muss mitgeteilt werden, welche URL dafür zulässig ist.</li>
+<li><code>schemerConfig</code>
+<ul>
+<li><code>directDownloadUrl</code>: Sollte der Schemer während der Laufzeit Code nachladen müssen, kann aus Gründen der Datensicherheit nicht einfach irgendein Server genutzt werden. Dem Schemer muss mitgeteilt werden, welche URL dafür zulässig ist.</li>
+<li><code>sharedParameters</code>: Daten, die zur Laufzeit zwischen Schemer-Modulen ausgetauscht werden sollen. Details siehe <a href="../intro/shared-parameters.html">hier</a>.</li>
+</ul></li>
 </ul>
 </section>
 </section>
@@ -377,6 +375,7 @@ ul.task-list li input[type="checkbox"] {
 <li><code>codingScheme</code>: Das neue vollständige Kodierschema, serialisiert als String.</li>
 <li><code>codingSchemeType</code>: Spezifizierung des Datenformates, wenn gewünscht.</li>
 <li><code>dependenciesToCode</code>: Abhängigkeiten von externen Bibliotheken oder Diensten für das Kodieren der Antworten der Unit.</li>
+<li><code>sharedParameters</code>: Daten, die zur Laufzeit zwischen Schemer-Modulen ausgetauscht werden sollen. Details siehe <a href="../intro/shared-parameters.html">hier</a>.</li>
 </ul>
 
 
@@ -797,6 +796,9 @@ ul.task-list li input[type="checkbox"] {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../widget-docs/index.html" class="pagination-link" aria-label="Widget">
+        <span class="nav-page-text">Widget</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
