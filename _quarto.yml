@@ -52,8 +52,11 @@ website:
         text: Editor
       - href: schemer-docs/index.qmd
         text: Schemer
-      - href: widget-docs/index.qmd
-        text: Widget
+      - section: Widget
+        href: widget-docs/index.qmd
+        contents:
+          - href: widget-docs/pse.qmd
+            text: Periodensystem
 
 format:
   html:

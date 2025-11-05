@@ -24,6 +24,9 @@ Es wird nie ein spezifisches Widget angefordert. Statt dessen wird ein Widget-Ty
 
 Die Spezifikationen der Typen werden an dieser Stelle veröffentlicht, sobald Erfahrungen hierzu vorliegen. Dann werden die Datenstrukturen `state` und `parameters` beschrieben.
 :::
+
+* [Periodensystem der Elemente](pse.qmd)
+
 ```{mermaid}
 sequenceDiagram
     autonumber
