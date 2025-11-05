@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Architektur – Verona-Interfaces</title>
+<title>Periodensystem der Elemente – Verona-Interfaces</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -29,8 +29,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../intro/metadata.html" rel="next">
-<link href="../intro/data-structures.html" rel="prev">
+<link href="../widget-docs/index.html" rel="prev">
 <link href="../assets/favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -43,9 +42,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-5905b6a1615c11779cf27a738634df79.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -115,7 +111,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro/index.html">Einführung</a></li><li class="breadcrumb-item"><a href="../intro/architecture.html">Architektur</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../widget-docs/index.html">Widget</a></li><li class="breadcrumb-item"><a href="../widget-docs/pse.html">Periodensystem</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -154,7 +150,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../intro/architecture.html" class="sidebar-item-text sidebar-link active">
+  <a href="../intro/architecture.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Architektur</span></a>
   </div>
 </li>
@@ -236,7 +232,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../widget-docs/pse.html" class="sidebar-item-text sidebar-link">
+  <a href="../widget-docs/pse.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Periodensystem</span></a>
   </div>
 </li>
@@ -252,21 +248,18 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Auf dieser Seite</h2>
    
   <ul>
-  <li><a href="#verona-module-als-plug-in" id="toc-verona-module-als-plug-in" class="nav-link active" data-scroll-target="#verona-module-als-plug-in">Verona-Module als Plug-in</a>
-  <ul class="collapse">
-  <li><a href="#beispiel-player" id="toc-beispiel-player" class="nav-link" data-scroll-target="#beispiel-player">Beispiel Player</a></li>
-  </ul></li>
-  <li><a href="#technische-umsetzung" id="toc-technische-umsetzung" class="nav-link" data-scroll-target="#technische-umsetzung">Technische Umsetzung</a></li>
-  <li><a href="#datensicherheit" id="toc-datensicherheit" class="nav-link" data-scroll-target="#datensicherheit">Datensicherheit</a></li>
+  <li><a href="#aufrufparameter" id="toc-aufrufparameter" class="nav-link active" data-scroll-target="#aufrufparameter">Aufrufparameter</a></li>
+  <li><a href="#state" id="toc-state" class="nav-link" data-scroll-target="#state">State</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../intro/index.html">Einführung</a></li><li class="breadcrumb-item"><a href="../intro/architecture.html">Architektur</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../widget-docs/index.html">Widget</a></li><li class="breadcrumb-item"><a href="../widget-docs/pse.html">Periodensystem</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Architektur</h1>
+<h1 class="title">Periodensystem der Elemente</h1>
+<p class="subtitle lead">Verona-Modul Widget</p>
 </div>
 
 
@@ -283,46 +276,49 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="verona-module-als-plug-in" class="level1">
-<h1>Verona-Module als Plug-in</h1>
-<p>Wenn man Programmierungen nur einmal ausführen möchte und dann anderen zur Verfügung stellt, kann man unterschiedliche Wege gehen:</p>
-<ul>
-<li>Bereitstellung von Code-Bibliotheken: Dieser Weg ist günstig, wenn man eine einheitliche Programmiersprache oder zumindest ähnliche Technologie benutzt. Php-Bibliotheken sind nur in php-Umgebungen nutzbar. Auch für Frontends gibt es sehr unterschiedliche Frameworks, so dass Bibliotheken passgenau bereitgestellt werden müssen.</li>
-<li>Bereitstellung von Web-Komponenten: Der Standard von Web Components ist sehr universell nutzbar. Man kann Webkomponenten zur Erstellungszeit in die eigene Programmierung einbinden oder später dynamisch laden.</li>
-<li>Man kann in einem iFrame-Element beliebige Html-Seiten einschließlich Programmcode zur Laufzeit laden. Diesen Weg gehen die Verona-Module.</li>
-</ul>
-<section id="beispiel-player" class="level2">
-<h2 class="anchored" data-anchor-id="beispiel-player">Beispiel Player</h2>
-<p>Im klassischen Szenario übernimmt die Webanwendung zur Testdurchführung neben der Anmeldung, dem Laden der Inhalte und der Navigation auch die Darstellung einer einzelnen Aufgabe. Die untere Darstellung zeigt dieses integrierte Modell.</p>
-<p><a href="assets/player-1.png" class="lightbox" data-gallery="architecture"><img src="assets/player-1.png" class="img-fluid" width="600"></a></p>
-<p>Wenn man jedoch die Programmierung für die Darstellung einer Aufgabe abtrennt, kann man später Interaktionsformate nachladen. Dann ist bei neuen Aufgabentypen keine Programmierung und Veröffentlichung einer neuen Webanwendung erforderlich, sondern man bindet dynamisch einen neuen Player ein.</p>
-<p><a href="assets/player-2.png" class="lightbox" data-gallery="architecture"><img src="assets/player-2.png" class="img-fluid" width="600"></a></p>
-<p>Hierzu muss die Kommunikation zwischen dem Player (Verona-Modul) und der Webanwendung (Host) spezifiziert werden. In der obigen Darstellung ist diese Schnittstelle rot markiert.</p>
-<p>Während einer Testung können Player-Module nach Bedarf ausgetauscht werden. Aus diesem Plug-in-Modell ergibt sich eine hohe Flexibilität für das Testsystem: Neue Funktionen der Interaktion führen nur zum Laden einer neuen Player-Version - das Testsystem bleibt unverändert. Weitere Vorteile:</p>
-<ul>
-<li>Ältere Player können alte Aufgaben lange abspielen - solange die Schnittstelle des Plug-ins unterstützt wird</li>
-<li>Player für besondere Anwendungsfälle (z. B. Lesegeschwindigkeitstest, Physik-Experimente) werden nur einmal programmiert und dann allen Interessierten zur Verfügung gestellt</li>
-</ul>
+<p>Es wird ein Periodensystem der Elemente angezeigt und man kann ein oder mehrere Elemente auswählen.</p>
+<section id="aufrufparameter" class="level1">
+<h1>Aufrufparameter</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 36%">
+<col style="width: 31%">
+<col style="width: 31%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Key</th>
+<th>Value</th>
+<th>Erläuterung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>SHOW_INFO_ORDER</code></td>
+<td>“0” steht für Nein, “1” steht für Ja</td>
+<td>legt fest, ob im Periodensystem die Ordnungszahl angezeigt wird</td>
+</tr>
+<tr class="even">
+<td><code>SHOW_INFO_E_NEG</code></td>
+<td>“0” steht für Nein, “1” steht für Ja</td>
+<td>legt fest, ob im Periodensystem die Elektronegativität (nach Pauling) angezeigt wird</td>
+</tr>
+<tr class="odd">
+<td><code>SHOW_INFO_A_MASS</code></td>
+<td>“0” steht für Nein, “1” steht für Ja</td>
+<td>legt fest, ob im Periodensystem die mittlere relative Atommasse in u angezeigt wird</td>
+</tr>
+<tr class="even">
+<td><code>MAX_NUMBER_OF_SELECTIONS</code></td>
+<td>Zahl als String</td>
+<td>“0” steht für unbegrenzte Anzahl, “1” steht für nur eine Selektion (das Selektieren eines weiteren Elements ersetzt die vorherige Selection), Wert &gt; 1 führt bei Erreichen der Zahl zu einer Meldung</td>
+</tr>
+</tbody>
+</table>
 </section>
-</section>
-<section id="technische-umsetzung" class="level1">
-<h1>Technische Umsetzung</h1>
-<p>Das Modul ist technisch eine eigene Html-Seite, die in ein <code>iframe</code>-Element geladen wird. Die Kommunikation zwischen Host und Modul erfolgt asynchron über <code>postMessage()</code>.</p>
-<p>Für alle Module gelten folgende Grundsätze:</p>
-<ul>
-<li>Das Modul muss in einer einzigen Datei zusammengefasst sein. Der Build-Prozess muss also alle sonst separat vorliegenden Komponenten einer Html-Seite (Styles, Code, Schriften, Bilder usw.) zusammenbinden.</li>
-<li>Außer über <code>postMessage()</code> darf das Modul keinen weiteren Kontakt mit der Außenwelt pflegen. Jedweder Zugriff auf Ressourcen des Hosts (Frontend, Backend) oder auf andere Web-Ressourcen ist nicht gestattet. Als Ausnahme gilt nur beim Player über den Parameter <code>directUrl</code>.</li>
-<li>Dem Modul können Daten übergeben werden, die dann das Verhalten, die Erscheinung usw. beeinflussen. Ein Player z. B. bekommt die sog. Unit-Definition, ein Schemer das Unit-Kodierschema. Diese Daten dürfen selbst keinen Code enthalten.</li>
-<li>Das Modul muss Metadaten in einem JSON-LD-Format (z. B. Version, Maintainer usw., s. u.) enthalten. Weitere Informationen dazu <a href="../intro/metadata.html">siehe hier</a>.</li>
-</ul>
-</section>
-<section id="datensicherheit" class="level1">
-<h1>Datensicherheit</h1>
-<p>Die genannten Konventionen dienen der Datensicherheit. Es muss eine verlässliche Basis für die Abschätzung von Risiken geben, die durch die Plug-in-Technik verursacht werden. Sollten diese Konventionen nicht eingehalten werden können, muss dazu eine ausführliche Dokumentation zur Verfügung stehen. Das Modul muss alles Machbare unternehmen, die aus der Abweichung resultierenden Risiken zu minimieren und zu dokumentieren. Beispiele:</p>
-<ul>
-<li>Player und Editor des Aspect-Paketes des IQB nutzen GeoGebra, also eine Programmierung Dritter. Dies wird während der Laufzeit je nach Bedarf nachgeladen. Das IQB steht in direktem Kontakt mit dem Entwicklungsteam, um Risiken abzuschätzen.</li>
-<li>Der Simple-Player und einige andere Module des IQB haben als Teil der Datenstruktur Html-Code, der dann zur Anzeige gebracht wird. Hier besteht potenziell ein Risiko, dass Fremdcode von außen mit eingeschleust werden kann. Daher wird konsequent ein sog. Sanitizer verwendet, also eine Bibliothek, die verlässlich solchen Fremdcode vor der Anzeige aus dem Html entfernt.</li>
-</ul>
+<section id="state" class="level1">
+<h1>State</h1>
+<p>Als Status wird ein <strong>String</strong> übergeben, der mit <strong>Leerzeichen getrennt</strong> die Kürzel der gewählten Elemente enthält.</p>
 
 
 </section>
@@ -737,14 +733,11 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../intro/data-structures.html" class="pagination-link" aria-label="Testablauf">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Testablauf</span>
+      <a href="../widget-docs/index.html" class="pagination-link" aria-label="Widget">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Widget</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../intro/metadata.html" class="pagination-link" aria-label="Modul-Metadaten">
-        <span class="nav-page-text">Modul-Metadaten</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
@@ -773,38 +766,6 @@ ul.task-list li input[type="checkbox"] {
     </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
-(function() {
-  let previousOnload = window.onload;
-  window.onload = () => {
-    if (previousOnload) {
-      previousOnload();
-    }
-    lightboxQuarto.on('slide_before_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      const href = trigger.getAttribute('href');
-      if (href !== null) {
-        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
-        if (imgEl !== null) {
-          const srcAttr = imgEl.getAttribute("src");
-          if (srcAttr && srcAttr.startsWith("data:")) {
-            slideConfig.href = srcAttr;
-          }
-        }
-      } 
-    });
-  
-    lightboxQuarto.on('slide_after_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(slideNode);
-      }
-    });
-  
-  };
-  
-})();
-          </script>
 
 
 
