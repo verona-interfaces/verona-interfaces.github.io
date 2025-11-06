@@ -29,7 +29,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../widget-docs/pse.html" rel="next">
+<link href="../widget-docs/calc.html" rel="next">
 <link href="../schemer-docs/index.html" rel="prev">
 <link href="../assets/favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -236,8 +236,20 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../widget-docs/calc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Taschenrechner</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../widget-docs/pse.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Periodensystem</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../widget-docs/molecule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Molekül-Editor</span></a>
   </div>
 </li>
       </ul>
@@ -252,11 +264,15 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Auf dieser Seite</h2>
    
   <ul>
-  <li><a href="#initialisierung" id="toc-initialisierung" class="nav-link active" data-scroll-target="#initialisierung">1 Initialisierung</a></li>
+  <li><a href="#widget-typ" id="toc-widget-typ" class="nav-link active" data-scroll-target="#widget-typ">Widget-Typ</a></li>
+  <li><a href="#kommunikation" id="toc-kommunikation" class="nav-link" data-scroll-target="#kommunikation">Kommunikation</a>
+  <ul class="collapse">
+  <li><a href="#initialisierung" id="toc-initialisierung" class="nav-link" data-scroll-target="#initialisierung">1 Initialisierung</a></li>
   <li><a href="#ready-notification" id="toc-ready-notification" class="nav-link" data-scroll-target="#ready-notification">2 Ready Notification</a></li>
   <li><a href="#start-command" id="toc-start-command" class="nav-link" data-scroll-target="#start-command">3 Start Command</a></li>
   <li><a href="#state-changed-notification" id="toc-state-changed-notification" class="nav-link" data-scroll-target="#state-changed-notification">4 State Changed Notification</a></li>
-  <li><a href="#return-request" id="toc-return-request" class="nav-link" data-scroll-target="#return-request">4 Return Request</a></li>
+  <li><a href="#return-request" id="toc-return-request" class="nav-link" data-scroll-target="#return-request">5 Return Request</a></li>
+  </ul></li>
   </ul>
 <div class="quarto-other-links"><h2>Weitere Links</h2><ul><li><a href="https://verona-interfaces.github.io/widget/"><i class="bi bi-link-45deg"></i>Spezifikation Widget</a></li></ul></div></nav>
     </div>
@@ -283,29 +299,21 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>Ein Widget ist ein Interaktionselement, das vom Player angefordert wird. Es erweitert die Interaktionsmöglichkeiten auf universelle Art. Beispiel Taschenrechner: Ein Player kann der Testperson anbieten, einen Wert über einen virtuellen Taschenrechner zu ermitteln.</p>
-<p>Die konkrete Einbindung des Widgets in eine Testumgebung ist nicht spezifiziert. Es sind folgende Szenarien denkbar:</p>
-<ul>
-<li>Das Widget unterbricht die Interaktion mit dem Player und dem übrigen Testsystem und legt sich als Overlay über die Applikationsseite (modaler Dialog). Erst nach Schließen/Beenden kehrt die Testperson zum Player zurück.</li>
-<li>Das Widget wird in einem weiteren Tab des Browsers geöffnet.</li>
-</ul>
+<p>Die konkrete Einbindung des Widgets in eine Testumgebung ist nicht spezifiziert. Im IQB-Testcenter wird folgendes Verfahren umgesetzt: Das Widget unterbricht die Interaktion mit dem Player und dem übrigen Testsystem und legt sich als Overlay über die Applikationsseite (modaler Dialog). Erst nach Schließen/Beenden kehrt die Testperson zum Player zurück.</p>
 <p>Es können Daten zwischen dem Player und dem Widget ausgetauscht werden. Die Spezifikation der API finden Sie <a href="https://verona-interfaces.github.io/widget/">hier</a>.</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Wichtig</span>Typ des Widgets
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Es wird nie ein spezifisches Widget angefordert. Statt dessen wird ein Widget-Typ gerufen. Welches Widget dann konkret bereitgestellt wird, hängt von der Testumgebung ab. Hintergrund dieses Verfahrens ist die Möglichkeit, über den gesamten Test ein einheitliches Widget bereitzustellen. Beispielsweise ist es nicht sinnvoll, dass jede Unit einen anderen Taschenrechner anfordert. Dieser sollte in Design und Bedienung gleich sein.</p>
-<p>Die Spezifikationen der Typen werden an dieser Stelle veröffentlicht, sobald Erfahrungen hierzu vorliegen. Dann werden die Datenstrukturen <code>state</code> und <code>parameters</code> beschrieben.</p>
-</div>
-</div>
+<section id="widget-typ" class="level1">
+<h1>Widget-Typ</h1>
+<p>Es wird nie eine spezifische Widget-Implementation angefordert. Statt dessen wird ein Widget-Typ gerufen. Welches Widget dann konkret bereitgestellt wird, hängt von der Testumgebung ab. Hintergrund dieses Verfahrens ist die Möglichkeit, über den gesamten Test ein einheitliches Widget bereitzustellen.</p>
+<p>Für die folgenden Widget-Typen werden aktuell Prototypen programmiert:</p>
 <ul>
-<li><a href="../widget-docs/pse.html">Periodensystem der Elemente</a></li>
+<li><a href="../widget-docs/calc.html">Taschenrechner</a> <code>WIDGET_CALC</code></li>
+<li><a href="../widget-docs/pse.html">Periodensystem der Elemente</a> <code>WIDGET_PERIODIC_TABLE</code></li>
+<li><a href="../widget-docs/molecule.html">Molekül-Editor</a> <code>WIDGET_MOLECULE_EDITOR</code></li>
 </ul>
+<p>Sobald stabile Versionen veröffentlicht wurden, sind die entsprechenden Links hier verfügbar.</p>
+</section>
+<section id="kommunikation" class="level1">
+<h1>Kommunikation</h1>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -322,7 +330,7 @@ ul.task-list li input[type="checkbox"] {
     end
     opt
         loop
-            VM-&gt;&gt;HA:vowStageChangedNotification
+            VM-&gt;&gt;HA:vowStateChangedNotification
         end
     end
     opt
@@ -334,16 +342,16 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<section id="initialisierung" class="level1">
-<h1>1 Initialisierung</h1>
+<section id="initialisierung" class="level2">
+<h2 class="anchored" data-anchor-id="initialisierung">1 Initialisierung</h2>
 <p>Der Host richtet ein <code>&lt;iframe&gt;</code>-Element ein und setzt für das <code>srcdoc</code>-Attribut den kompletten Inhalt des Moduls. Das Modul ist technisch eine Html-Seite, d.&nbsp;h. es wird durch das Laden auch die Ausführung von JavaScript-Code angestoßen, der auf oberster Ebene vorgesehen ist.</p>
 </section>
-<section id="ready-notification" class="level1">
-<h1>2 Ready Notification</h1>
+<section id="ready-notification" class="level2">
+<h2 class="anchored" data-anchor-id="ready-notification">2 Ready Notification</h2>
 <p>Dieser Code sendet als letzten Schritt der eigenen Initialisierung eine Nachricht an den Host, dass das Modul bereit sei für das Start-Kommando. Als Payload wird das <a href="../intro/metadata.html">Metadaten-Objekt</a> mitgeschickt – hier allerdings als String serialisiert, um nicht bei jeder Änderung der Metadaten-Spezifikation alle Modul-API ändern zu müssen.</p>
 </section>
-<section id="start-command" class="level1">
-<h1>3 Start Command</h1>
+<section id="start-command" class="level2">
+<h2 class="anchored" data-anchor-id="start-command">3 Start Command</h2>
 <p>Das Startkommando ist nicht für alle Widgets zwingend erforderlich. Es könnte sich z. B. um eine statische Anzeige handeln, die keine weiteren Daten benötigt (z. B. interaktive Weltkarte).</p>
 <p>Der Host kann jedoch über das Startkommando Daten schicken:</p>
 <ul>
@@ -352,8 +360,8 @@ ul.task-list li input[type="checkbox"] {
 <li><code>state</code>: Ein Zustand aus einem vorherige Aufruf des Widgets kann die UX verbessern.</li>
 </ul>
 </section>
-<section id="state-changed-notification" class="level1">
-<h1>4 State Changed Notification</h1>
+<section id="state-changed-notification" class="level2">
+<h2 class="anchored" data-anchor-id="state-changed-notification">4 State Changed Notification</h2>
 <p>Sobald eine Interaktion stattgefunden hat, meldet das Widget diese Änderung. Parameter:</p>
 <ul>
 <li><code>sessionId</code>: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.</li>
@@ -362,11 +370,12 @@ ul.task-list li input[type="checkbox"] {
 <li><code>state</code>: Der neue Bearbeitungsstatus als serialisiertes Datenobjekt (string).</li>
 </ul>
 </section>
-<section id="return-request" class="level1">
-<h1>4 Return Request</h1>
+<section id="return-request" class="level2">
+<h2 class="anchored" data-anchor-id="return-request">5 Return Request</h2>
 <p>Diese Meldung wird an den Host geschickt, wenn die Testperson die Arbeit mit dem Widget beenden möchte. Über den Parameter <code>saveState</code> teilt das Widget mit, ob die Änderungen am Zustand/State wirksam (also an den Player geschickt) werden sollen, oder ob das Schließen ohne Speichern erfolgen soll (entspricht “Abbruch”).</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -784,8 +793,8 @@ ul.task-list li input[type="checkbox"] {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../widget-docs/pse.html" class="pagination-link" aria-label="Periodensystem">
-        <span class="nav-page-text">Periodensystem</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../widget-docs/calc.html" class="pagination-link" aria-label="Taschenrechner">
+        <span class="nav-page-text">Taschenrechner</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

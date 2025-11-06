@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Verona Interfaces – Player – Verona-Interfaces</title>
+<title>Molekül-Editor – Verona-Interfaces</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -29,8 +29,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../player-docs/vopStartCommand.html" rel="next">
-<link href="../intro/english.html" rel="prev">
+<link href="../widget-docs/pse.html" rel="prev">
 <link href="../assets/favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -70,9 +69,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Suchen"
   }
 }</script>
-<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="../styles.css">
@@ -115,7 +111,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../player-docs/index.html">Player</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../widget-docs/index.html">Widget</a></li><li class="breadcrumb-item"><a href="../widget-docs/molecule.html">Molekül-Editor</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -186,7 +182,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../player-docs/index.html" class="sidebar-item-text sidebar-link active">
+            <a href="../player-docs/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Player</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -248,7 +244,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../widget-docs/molecule.html" class="sidebar-item-text sidebar-link">
+  <a href="../widget-docs/molecule.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Molekül-Editor</span></a>
   </div>
 </li>
@@ -264,27 +260,19 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Auf dieser Seite</h2>
    
   <ul>
-  <li><a href="#initialisierung" id="toc-initialisierung" class="nav-link active" data-scroll-target="#initialisierung">1 Initialisierung</a></li>
-  <li><a href="#ready-notification" id="toc-ready-notification" class="nav-link" data-scroll-target="#ready-notification">2 Ready Notification</a></li>
-  <li><a href="#start-command" id="toc-start-command" class="nav-link" data-scroll-target="#start-command">3 Start Command</a></li>
-  <li><a href="#state-changed-notification" id="toc-state-changed-notification" class="nav-link" data-scroll-target="#state-changed-notification">4 State Changed Notification</a></li>
-  <li><a href="#page-navigation-command" id="toc-page-navigation-command" class="nav-link" data-scroll-target="#page-navigation-command">5 Page Navigation Command</a></li>
-  <li><a href="#unit-navigation-requested-notification" id="toc-unit-navigation-requested-notification" class="nav-link" data-scroll-target="#unit-navigation-requested-notification">6 Unit Navigation Requested Notification</a></li>
-  <li><a href="#navigation-denied-notification" id="toc-navigation-denied-notification" class="nav-link" data-scroll-target="#navigation-denied-notification">7 Navigation Denied Notification</a></li>
-  <li><a href="#player-config-changed-notification" id="toc-player-config-changed-notification" class="nav-link" data-scroll-target="#player-config-changed-notification">8 Player Config Changed Notification</a></li>
-  <li><a href="#runtime-error-notification" id="toc-runtime-error-notification" class="nav-link" data-scroll-target="#runtime-error-notification">9 Runtime Error Notification</a></li>
-  <li><a href="#widget-call" id="toc-widget-call" class="nav-link" data-scroll-target="#widget-call">10 Widget Call</a></li>
-  <li><a href="#widget-return" id="toc-widget-return" class="nav-link" data-scroll-target="#widget-return">11 Widget Return</a></li>
-  <li><a href="#window-focus-changed-notification" id="toc-window-focus-changed-notification" class="nav-link" data-scroll-target="#window-focus-changed-notification">12 Window Focus Changed Notification</a></li>
+  <li><a href="#aufrufparameter" id="toc-aufrufparameter" class="nav-link active" data-scroll-target="#aufrufparameter">Aufrufparameter</a></li>
+  <li><a href="#state" id="toc-state" class="nav-link" data-scroll-target="#state">State</a></li>
+  <li><a href="#shared-parameters" id="toc-shared-parameters" class="nav-link" data-scroll-target="#shared-parameters">Shared Parameters</a></li>
   </ul>
-<div class="quarto-other-links"><h2>Weitere Links</h2><ul><li><a href="https://verona-interfaces.github.io/player/"><i class="bi bi-link-45deg"></i>Spezifikation Player</a></li></ul></div></nav>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../widget-docs/index.html">Widget</a></li><li class="breadcrumb-item"><a href="../widget-docs/molecule.html">Molekül-Editor</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Verona Interfaces – Player</h1>
+<h1 class="title">Molekül-Editor</h1>
+<p class="subtitle lead">Verona-Modul Widget</p>
 </div>
 
 
@@ -301,235 +289,50 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Ein Player-Modul dient dem “Abspielen” – also der Präsentation – von Units. Es gibt mehrere Anwendungsfälle:</p>
-<ul>
-<li>Anzeige im Testsystem während des Tests</li>
-<li>Anzeige im Testsystem für den Review</li>
-<li>Veröffentlichung von Beispielaufgaben</li>
-<li>Veröffentlichung als permanente Referenz für einen wissenschaftlichen Artikel</li>
-<li>Voransicht im Autorensystem</li>
-<li>Druckbare Ansicht für den Export</li>
-<li>Präsentation während der manuellen Kodierung mit den Antwortdaten einer Testperson</li>
-<li>Anzeige für Eltern nach dem Test mit den Antwortdaten ihres Kindes</li>
-</ul>
-<p>Die Spezifikation der API finden Sie <a href="https://verona-interfaces.github.io/player/">hier</a>.</p>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">sequenceDiagram
-    autonumber
-    participant HA as Host-Anwendung
-    participant VM as Player (Verona Modul)
-    HA-&gt;&gt;VM:Initialisierung
-    VM-&gt;&gt;HA:vopReadyNotification
-    HA-&gt;&gt;VM:vopStartCommand
-    loop
-        opt
-            VM-&gt;&gt;HA:vopStateChangedNotification
-        end
-        opt
-            HA-&gt;&gt;VM:vopPageNavigationCommand
-        end
-        opt
-            VM-&gt;&gt;HA:vopUnitNavigationRequestedNotification
-        end
-        opt
-            HA-&gt;&gt;VM:vopNavigationDeniedNotification
-        end
-        opt
-            HA-&gt;&gt;VM:vopPlayerConfigChangedNotification
-        end
-        opt
-            VM-&gt;&gt;HA:vopRuntimeErrorNotification
-        end
-        opt
-            VM-&gt;&gt;HA:vopWidgetCall
-            HA-&gt;&gt;VM:vopWidgetReturn
-        end
-        opt
-            VM-&gt;&gt;HA:vopWindowFocusChangedNotification
-        end
-    end
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<section id="initialisierung" class="level1">
-<h1>1 Initialisierung</h1>
-<p>Der Host richtet ein <code>&lt;iframe&gt;</code>-Element ein und setzt für das <code>srcdoc</code>-Attribut den kompletten Inhalt des Moduls. Das Modul ist technisch eine Html-Seite, d.&nbsp;h. es wird durch das Laden auch die Ausführung von JavaScript-Code angestoßen, der auf oberster Ebene vorgesehen ist.</p>
+<p>Es wird ein Editor dargestellt, mit dem man einfache Moleküle (Atome mit ihren Beziehungen) darstellen kann.</p>
+<section id="aufrufparameter" class="level1">
+<h1>Aufrufparameter</h1>
+<p>Keine.</p>
 </section>
-<section id="ready-notification" class="level1">
-<h1>2 Ready Notification</h1>
-<p>Dieser Code sendet als letzten Schritt der eigenen Initialisierung eine Nachricht an den Host, dass das Modul bereit sei für das Start-Kommando. Als Payload wird das <a href="../intro/metadata.html">Metadaten-Objekt</a> mitgeschickt – hier allerdings als String serialisiert, um nicht bei jeder Änderung der Metadaten-Spezifikation alle Modul-API ändern zu müssen.</p>
+<section id="state" class="level1">
+<h1>State</h1>
+<p>Als Status wird ein <strong>JSON-Objekt</strong> übergeben (als String). Zum gegenwärtigen Arbeitsstand ist nur der erste Parameter festgelegt:</p>
+<ul>
+<li><code>asImage</code>: Hierbei handelt es sich um ein Bild, das den letzten Bearbeitungsstand darstellt. Als Format wird jpg oder png erwartet, serialisiert in Form von base64. Dieses Bild kann der aufrufende Player anzeigen und es wird für die manuelle Kodierung genutzt. Die Molekül-Darstellung sollte beschnitten sein, um Platz zu sparen.</li>
+</ul>
+<p>Alle anderen Parameter sind geeignet, den Bearbeitungsstand ggf. wiederherzustellen.</p>
 </section>
-<section id="start-command" class="level1">
-<h1>3 Start Command</h1>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tipp
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Ausführliche Darstellung des Start-Kommandos siehe <a href="../player-docs/vopStartCommand.html">hier</a>.</p>
-</div>
-</div>
-<p>Nachdem der Host die Bereitschaftsmeldung erhalten hat, schickt er die Unit-Definition: Parameter <code>unitDefinition</code>, serialisiert als String. Damit stellt der Player – der nach der Initialisierung zunächst eine leere Seite zeigt – alle Elemente dar, die in der Unit-Definition vorgesehen sind und bereitet die Interaktionselemente vor.</p>
-<p>Dem Player wird mit <code>sessionId</code> eine Kennung mitgeschickt, die der Player anschließend in jeder Nachricht verwenden soll. Damit wird die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit unterstützt.</p>
-<p>Weitere Parameter:</p>
-<ul>
-<li><code>unitDefinitionType</code>: Sollte es Varianten oder Versionen von Unit-Definitionen geben, kann dies hier dem Player mitgeteilt werden. Alternativ (oder parallel) kann natürlich diese Information als Teil der Datenstruktur der Unit-Definition übergeben werden.</li>
-<li><code>unitState</code>: Sollte die Unit wiederholt präsentiert werden, soll der vorherige Bearbeitungsstatus wiederhergestellt werden. Weitere Erläuterungen zu diesem Datenobjekt finden Sie <a href="../player-docs/vopStartCommand.html">hier</a>.</li>
-<li><code>playerConfig</code>: Hier werden Parameter übergeben, die die Anzeige und die Interaktion steuern. Beispielsweise kann die Art und Weise des Blätterns zur nächsten Seite festgelegt werden. Weitere Erläuterungen zu diesem Datenobjekt finden Sie <a href="../player-docs/vopStartCommand.html">hier</a>.</li>
-</ul>
-</section>
-<section id="state-changed-notification" class="level1">
-<h1>4 State Changed Notification</h1>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tipp
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Ausführliche Darstellung der Meldung zur Statusänderung siehe <a href="../player-docs/vopStateChangedNotification.html">hier</a>.</p>
-</div>
-</div>
-<p>Sobald eine Interaktion stattgefunden hat, die als Antwort wichtig wäre oder die bei einem wiederholten Aufruf der Unit wiederhergestellt werden soll, meldet der Player diese Änderung. Parameter:</p>
-<ul>
-<li><code>sessionId</code>: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.</li>
-<li><code>timeStamp</code>: Ein String im Standard-Format <a href="https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-date-time-string-format">date-time</a>. Die Nutzung dieser Information ist dem Host überlassen, soll aber vor allem die korrekte Reihenfolge vieler asynchron eintreffender Nachrichten sicherstellen.</li>
-<li><code>unitState</code>: Daten der Antworten im weiteren Sinne. Diese dienen der Auswertung und der Wiederherstellung beim Zurückblättern. Weitere Erläuterungen zu diesem Datenobjekt finden Sie <a href="../player-docs/vopStateChangedNotification.html">hier</a>.</li>
-<li><code>playerState</code>: Hier schickt der Player Informationen, die dem Host helfen können, die UI anzupassen. Beispielsweise wird so ein Wechsel der Seite berichtet, damit der Host in der Navigationsdarstellung die aktive Seite anders darstellt. Weitere Erläuterungen zu diesem Datenobjekt finden Sie <a href="../player-docs/vopStateChangedNotification.html">hier</a>.</li>
-<li><code>log</code>: Hierüber werden Log-Einträge geschickt. Dies sind Ereignisse, die nicht unbedingt einen Status ändern, sondern nur der Rekonstruktion der Beantwortung über die Zeit dienen können. Weitere Erläuterungen zu diesem Datenobjekt finden Sie <a href="../player-docs/vopStateChangedNotification.html">hier</a>.</li>
-</ul>
-</section>
-<section id="page-navigation-command" class="level1">
-<h1>5 Page Navigation Command</h1>
-<p>Über dieses Kommando kann der Host den Player anweisen, zu einer bestimmten Seite zu wechseln. Dies ist sinnvoll, wenn der Host eine Seitennavigation z. B. über eine Button-Leiste anbietet. Parameter:</p>
-<ul>
-<li><code>sessionId</code>: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.</li>
-<li><code>target</code>: ID der Seite, zu der der Player navigieren soll. Die möglichen Seiten kennt der Host aus einer Nachricht <code>vopStateChangedNotification</code> des Players. Liegt eine solche Nachricht nicht vor, geht der Host davon aus, dass es nur eine Seite gibt und bietet keine Seitennavigation an.</li>
-</ul>
-</section>
-<section id="unit-navigation-requested-notification" class="level1">
-<h1>6 Unit Navigation Requested Notification</h1>
-<p>Der Player kann Buttons einblenden, über die die Testperson zu einer anderen Unit navigiert. Eine Unit-Navigation kann auch über andere Bedingungen durch den Player ausgelöst werden, z. B. Ablauf einer Frist.</p>
-<p>Über diese Nachricht fordert der Player eine Unit-Navigation an. Ob dann tatsächlich eine Unit-Navigation erfolgt, entscheidet der Host. Beispielsweise wird in der Voransicht einer Unit im Autorensystem IQB-Studio nur kurz eine Nachricht eingeblendet, dass eine Unit-Navigation angefordert wurde.</p>
-<ul>
-<li><code>sessionId</code>: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.</li>
-<li><code>target</code>: Ziel-Unit. Dies ist allerdings keine ID einer konkreten Unit, sondern ein Symbol für eine relativ zur aktuellen Unit befindlichen Unit: <code>next</code>, <code>previous</code>, <code>first</code>, <code>last</code>, <code>end</code>. Die möglichen Ziele kennt der Player aus dem Start-Kommando.</li>
-</ul>
-</section>
-<section id="navigation-denied-notification" class="level1">
-<h1>7 Navigation Denied Notification</h1>
-<p>Im Testablauf können fehlende oder falsche Antworten problematisch sein. Insbesondere bei Befragungen ist oft Vollständigkeit gewünscht. Daher meldet der Player bei einer Statusänderung auch diese Informationen mit. Der Testcontroller kann dann je nach Einstellung entscheiden, ob eine Navigation zur nächsten Unit zulässig ist oder nicht.</p>
-<p>Sollte dies nicht der Fall sein, sollte der Player fehlende oder falsche Antworten visuell markieren. In normalen Formularen erfolgt dies, wenn der Eingabefokus auf ein Eingabeelement kommt und ohne weitere Eingabe zum nächsten Element wechselt. Aber wenn ein Eingabeelement nie den Fokus bekommt, kann die Fehlersituation nicht erzeugt werden. Die Alternative, alle Eingabeelemente beim Betreten der Unit als fehlerhaft darzustellen, wäre keine gute UI-Entscheidung.</p>
-<p>Die Nachricht <code>vopNavigationDeniedNotification</code> des Hosts ist also als Aufforderung an den Player zu verstehen, fehlende oder falsche Eingaben visuell darzustellen. Technisch kann das z. B. über <code>markAllAsTouched()</code> gehen. Parameter:</p>
-<ul>
-<li><code>sessionId</code>: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.</li>
-<li><code>reason</code>: Hinweis für den Player, warum die Navigation verweigert wurde: <code>presentationIncomplete</code> und/oder <code>responsesIncomplete</code>.</li>
-</ul>
-</section>
-<section id="player-config-changed-notification" class="level1">
-<h1>8 Player Config Changed Notification</h1>
-<p>Diese Nachricht soll den Player darüber informieren, dass sich die Konfiguration <code>playerConfig</code>, die das Modul im Startkommando erhalten hat, geändert hat. Beispiele:</p>
-<ul>
-<li>durch Antworten oder Zeitablauf ist die Liste der möglichen Navigationsziele erweitert</li>
-<li>der User kann das Einblenden von IDs im Print-Modus ein- und ausschalten im Host</li>
-</ul>
-<p>Parameter:</p>
-<ul>
-<li><code>sessionId</code>: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.</li>
-<li><code>playerConfig</code>: Bitte diese Datenstruktur <a href="vopStartCommand.html#unitnumber-unittitle-unitid">hier nachlesen</a></li>
-</ul>
-</section>
-<section id="runtime-error-notification" class="level1">
-<h1>9 Runtime Error Notification</h1>
-<p>Diese Nachricht soll die Host-Anwendung darüber informieren, dass während der Ausführung von Code im Player ein Fehler aufgetreten ist, der die Beantwortung beeinträchtigen könnte. Die Interpretation ist dem Host überlassen. Sie reicht von Benachrichtigung des Users über die Freigabe der Navigation (presentationProgress verhindert normalerweise das Weiterblättern) bis zum Abbruch der Testung.</p>
-<ul>
-<li><code>sessionId</code>: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.</li>
-<li><code>code</code>, <code>message</code>: Strings, die den Fehler beschreiben.</li>
-</ul>
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Vorsicht</span>Subject to change
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Für den Code sollte es eine Liste von möglichen Werten geben, damit die Host-Anwendungen konsistent reagieren. Aktuell (Version 6.0) liegen hierzu noch zu wenig Erfahrungen vor. Beispiele: <code>AUDIO_CORRUPT</code>, <code>GEOGEBRA_CRASH</code></p>
-</div>
-</div>
-</section>
-<section id="widget-call" class="level1">
-<h1>10 Widget Call</h1>
-<p>Es wird ein <a href="../widget-docs/index.html">Widget</a> angefordert.</p>
-<ul>
-<li><code>sessionId</code>: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.</li>
-<li><code>callId</code>: Sollte es in einer Unit mehrere Punkte geben, die das Widget anfordern könnten, muss hier eine ID übergeben werden. Dadurch kann dann beim korrespondierenden Return eine korrekte Zuordnung der erhaltenen Daten erfolgen.</li>
-<li><code>widgetType</code>: Hier ist der Typ des Widgets anzugeben: <code>WIDGET_CALC</code> für einen virtuellen Taschenrechner, <code>WIDGET_PERIODIC_TABLE</code> für ein Periodensystem der Elemente, <code>WIDGET_MOLECULE_EDITOR</code> für einen Molekül-Editor.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
-<li><code>parameters</code>: Einfache Liste von <code>key</code>/<code>value</code>-Paaren, die Varianten des Widgets steuern. Es könnte darüber beispielsweise eine bestimmte Funktionalität des Taschenrechners angefordert werden.</li>
-<li><code>state</code>: Ein Zustand aus einem vorherige Aufruf des Widgets oder ein spezifischer Default-Wert kann die UX verbessern.</li>
-</ul>
-</section>
-<section id="widget-return" class="level1">
-<h1>11 Widget Return</h1>
-<p>Nachdem ein Widget angefordert wurde, meldet diese Nachricht, dass das Widget wieder geschlossen wurde.</p>
-<ul>
-<li><code>sessionId</code>: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.</li>
-<li><code>callId</code>: Sollte es in einer Unit mehrere Punkte geben, die das Widget anfordern könnten, wird hier die bei der Anforderung übergebene ID genannt.</li>
-<li><code>state</code>: Der letzte Bearbeitungsstand des Widgets.</li>
-</ul>
-</section>
-<section id="window-focus-changed-notification" class="level1">
-<h1>12 Window Focus Changed Notification</h1>
-<p>In Testungen kann es wichtig sein festzustellen, ob die Testperson sich im Browser noch auf der Seite des Tests befindet. Sollte dies nicht der Fall sein, besteht der Verdacht, dass die Testperson unzulässigerweise andere Webseiten aufruft, um z. B. eine Übersetzung zu erhalten.</p>
-<p>Da technisch der Wechsel aus dem Host-Fensterbereich in den Bereich des <code>&lt;iframe&gt;</code>-Elements des Players einem Verlassen der Testseite gleichkommt, muss der Player dem Host mitteilen, dass er den Fokus erhalten bzw. verloren hat. Parameter:</p>
-<ul>
-<li><code>timeStamp</code>: Ein String im Standard-Format <a href="https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-date-time-string-format">date-time</a>.</li>
-<li><code>hasFocus</code>: Wenn <code>true</code>, hat der Player den Fokus bekommen, ansonsten hat er ihn verloren und der Host muss prüfen, ob er ihn erhalten hat.</li>
-</ul>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tipp
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li>Die Ereignisse <code>blur</code> und <code>focus</code> werden an <code>window</code> bei einem Fokuswechsel gesendet.</li>
-<li>Die Funktion <code>document.hasFocus()</code> liefert <code>true</code>, wenn das Dokument den Fokus hat.</li>
-</ul>
-</div>
-</div>
+<section id="shared-parameters" class="level1">
+<h1>Shared Parameters</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 43%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Key</th>
+<th>Value</th>
+<th>Erläuterung</th>
+<th>Standardwert</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>BONDING_TYPE</code></td>
+<td>“VALENCE” für Valenzstrichformel, “ELECTRONS” für Elektronenformel</td>
+<td>Die Testperson soll zwischen den beiden Darstellungsformen von Bindungen wählen können. Diese Wahl soll beim nächsten Aufruf des Widgets wiederhergestellt werden.</td>
+<td>“ELECTRONS”</td>
+</tr>
+</tbody>
+</table>
 
 
 </section>
 
-
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Fußnoten</h2>
-
-<ol>
-<li id="fn1"><p>Der Widget-Typ <code>UNIT</code> soll statt eines Widgets eine normale Unit anzeigen (über einen Player). Anwendungsfall hierfür sind Hilfeseiten, die der Player anfordern kann, um ergänzende Informationen anzuzeigen, ohne dass der Testablauf unterbrochen wird. Dieses Verfahren befindet sich erst in Erprobung.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -939,14 +742,11 @@ Tipp
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../intro/english.html" class="pagination-link" aria-label="English: About">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">English: About</span>
+      <a href="../widget-docs/pse.html" class="pagination-link" aria-label="Periodensystem">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Periodensystem</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../player-docs/vopStartCommand.html" class="pagination-link" aria-label="Start-Kommando">
-        <span class="nav-page-text">Start-Kommando</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

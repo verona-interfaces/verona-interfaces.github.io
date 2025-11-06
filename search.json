@@ -172,13 +172,25 @@
     ]
   },
   {
-    "objectID": "widget-docs/index.html",
-    "href": "widget-docs/index.html",
-    "title": "Verona Interfaces – Widget",
+    "objectID": "widget-docs/calc.html",
+    "href": "widget-docs/calc.html",
+    "title": "Taschenrechner",
     "section": "",
-    "text": "Ein Widget ist ein Interaktionselement, das vom Player angefordert wird. Es erweitert die Interaktionsmöglichkeiten auf universelle Art. Beispiel Taschenrechner: Ein Player kann der Testperson anbieten, einen Wert über einen virtuellen Taschenrechner zu ermitteln.\nDie konkrete Einbindung des Widgets in eine Testumgebung ist nicht spezifiziert. Es sind folgende Szenarien denkbar:\n\nDas Widget unterbricht die Interaktion mit dem Player und dem übrigen Testsystem und legt sich als Overlay über die Applikationsseite (modaler Dialog). Erst nach Schließen/Beenden kehrt die Testperson zum Player zurück.\nDas Widget wird in einem weiteren Tab des Browsers geöffnet.\n\nEs können Daten zwischen dem Player und dem Widget ausgetauscht werden. Die Spezifikation der API finden Sie hier.\n\n\n\n\n\n\nWichtigTyp des Widgets\n\n\n\nEs wird nie ein spezifisches Widget angefordert. Statt dessen wird ein Widget-Typ gerufen. Welches Widget dann konkret bereitgestellt wird, hängt von der Testumgebung ab. Hintergrund dieses Verfahrens ist die Möglichkeit, über den gesamten Test ein einheitliches Widget bereitzustellen. Beispielsweise ist es nicht sinnvoll, dass jede Unit einen anderen Taschenrechner anfordert. Dieser sollte in Design und Bedienung gleich sein.\nDie Spezifikationen der Typen werden an dieser Stelle veröffentlicht, sobald Erfahrungen hierzu vorliegen. Dann werden die Datenstrukturen state und parameters beschrieben.\n\n\n\nPeriodensystem der Elemente\n\n\n\n\n\n\nsequenceDiagram\n    autonumber\n    participant HA as Host-Anwendung\n    participant VM as Widget (Verona Modul)\n    HA-&gt;&gt;VM:Initialisierung\n    VM-&gt;&gt;HA:vowReadyNotification\n    opt\n        HA-&gt;&gt;VM:vowStartCommand\n    end\n    opt\n        loop\n            VM-&gt;&gt;HA:vowStageChangedNotification\n        end\n    end\n    opt\n        VM-&gt;&gt;HA:vowReturnRequest\n    end\n\n\n\n\n\n\n\n1 Initialisierung\nDer Host richtet ein &lt;iframe&gt;-Element ein und setzt für das srcdoc-Attribut den kompletten Inhalt des Moduls. Das Modul ist technisch eine Html-Seite, d. h. es wird durch das Laden auch die Ausführung von JavaScript-Code angestoßen, der auf oberster Ebene vorgesehen ist.\n\n\n2 Ready Notification\nDieser Code sendet als letzten Schritt der eigenen Initialisierung eine Nachricht an den Host, dass das Modul bereit sei für das Start-Kommando. Als Payload wird das Metadaten-Objekt mitgeschickt – hier allerdings als String serialisiert, um nicht bei jeder Änderung der Metadaten-Spezifikation alle Modul-API ändern zu müssen.\n\n\n3 Start Command\nDas Startkommando ist nicht für alle Widgets zwingend erforderlich. Es könnte sich z. B. um eine statische Anzeige handeln, die keine weiteren Daten benötigt (z. B. interaktive Weltkarte).\nDer Host kann jedoch über das Startkommando Daten schicken:\n\nparameters: Einfache Liste von key/value-Paaren, die Varianten des Widgets steuern. Es könnte darüber beispielsweise eine bestimmte Funktionalität des Taschenrechners angefordert werden.\nsharedParameters: Einfache Liste von key/value-Paaren. Bedeutung siehe hier.\nstate: Ein Zustand aus einem vorherige Aufruf des Widgets kann die UX verbessern.\n\n\n\n4 State Changed Notification\nSobald eine Interaktion stattgefunden hat, meldet das Widget diese Änderung. Parameter:\n\nsessionId: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.\ntimeStamp: Ein String im Standard-Format date-time. Die Nutzung dieser Information ist dem Host überlassen, soll aber vor allem die korrekte Reihenfolge vieler asynchron eintreffender Nachrichten sicherstellen.\nsharedParameters: Einfache Liste von key/value-Paaren. Bedeutung siehe hier.\nstate: Der neue Bearbeitungsstatus als serialisiertes Datenobjekt (string).\n\n\n\n4 Return Request\nDiese Meldung wird an den Host geschickt, wenn die Testperson die Arbeit mit dem Widget beenden möchte. Über den Parameter saveState teilt das Widget mit, ob die Änderungen am Zustand/State wirksam (also an den Player geschickt) werden sollen, oder ob das Schließen ohne Speichern erfolgen soll (entspricht “Abbruch”).",
+    "text": "Es wird ein Taschenrechner angezeigt und man kann einfache Rechenoperationen ausführen.\n\nAufrufparameter\n\n\n\n\n\n\n\n\n\nKey\nValue\nErläuterung\nStandardwert\n\n\n\n\nMODE\n“SIMPLE”, “SCIENTIFIC”\nlegt das Spektrum der verfügbaren Funktionen fest\n“SIMPLE”\n\n\nJOURNAL_LINES\n“0” steht für keine, &gt; “0” steht für die Anzahl der Zeilen\nlegt fest, ob vorherige Rechenoperationen und Eingaben angezeigt werden\n“0”\n\n\n\n\n\nState\nDer Status ist eine Zahl.\n\n\nShared Parameters\nKeine.",
     "crumbs": [
-      "Widget"
+      "Widget",
+      "Taschenrechner"
+    ]
+  },
+  {
+    "objectID": "widget-docs/molecule.html",
+    "href": "widget-docs/molecule.html",
+    "title": "Molekül-Editor",
+    "section": "",
+    "text": "Es wird ein Editor dargestellt, mit dem man einfache Moleküle (Atome mit ihren Beziehungen) darstellen kann.\n\nAufrufparameter\nKeine.\n\n\nState\nAls Status wird ein JSON-Objekt übergeben (als String). Zum gegenwärtigen Arbeitsstand ist nur der erste Parameter festgelegt:\n\nasImage: Hierbei handelt es sich um ein Bild, das den letzten Bearbeitungsstand darstellt. Als Format wird jpg oder png erwartet, serialisiert in Form von base64. Dieses Bild kann der aufrufende Player anzeigen und es wird für die manuelle Kodierung genutzt. Die Molekül-Darstellung sollte beschnitten sein, um Platz zu sparen.\n\nAlle anderen Parameter sind geeignet, den Bearbeitungsstand ggf. wiederherzustellen.\n\n\nShared Parameters\n\n\n\n\n\n\n\n\n\nKey\nValue\nErläuterung\nStandardwert\n\n\n\n\nBONDING_TYPE\n“VALENCE” für Valenzstrichformel, “ELECTRONS” für Elektronenformel\nDie Testperson soll zwischen den beiden Darstellungsformen von Bindungen wählen können. Diese Wahl soll beim nächsten Aufruf des Widgets wiederhergestellt werden.\n“ELECTRONS”",
+    "crumbs": [
+      "Widget",
+      "Molekül-Editor"
     ]
   },
   {
@@ -222,11 +234,71 @@
     ]
   },
   {
+    "objectID": "widget-docs/index.html",
+    "href": "widget-docs/index.html",
+    "title": "Verona Interfaces – Widget",
+    "section": "",
+    "text": "Ein Widget ist ein Interaktionselement, das vom Player angefordert wird. Es erweitert die Interaktionsmöglichkeiten auf universelle Art. Beispiel Taschenrechner: Ein Player kann der Testperson anbieten, einen Wert über einen virtuellen Taschenrechner zu ermitteln.\nDie konkrete Einbindung des Widgets in eine Testumgebung ist nicht spezifiziert. Im IQB-Testcenter wird folgendes Verfahren umgesetzt: Das Widget unterbricht die Interaktion mit dem Player und dem übrigen Testsystem und legt sich als Overlay über die Applikationsseite (modaler Dialog). Erst nach Schließen/Beenden kehrt die Testperson zum Player zurück.\nEs können Daten zwischen dem Player und dem Widget ausgetauscht werden. Die Spezifikation der API finden Sie hier.",
+    "crumbs": [
+      "Widget"
+    ]
+  },
+  {
+    "objectID": "widget-docs/index.html#initialisierung",
+    "href": "widget-docs/index.html#initialisierung",
+    "title": "Verona Interfaces – Widget",
+    "section": "1 Initialisierung",
+    "text": "1 Initialisierung\nDer Host richtet ein &lt;iframe&gt;-Element ein und setzt für das srcdoc-Attribut den kompletten Inhalt des Moduls. Das Modul ist technisch eine Html-Seite, d. h. es wird durch das Laden auch die Ausführung von JavaScript-Code angestoßen, der auf oberster Ebene vorgesehen ist.",
+    "crumbs": [
+      "Widget"
+    ]
+  },
+  {
+    "objectID": "widget-docs/index.html#ready-notification",
+    "href": "widget-docs/index.html#ready-notification",
+    "title": "Verona Interfaces – Widget",
+    "section": "2 Ready Notification",
+    "text": "2 Ready Notification\nDieser Code sendet als letzten Schritt der eigenen Initialisierung eine Nachricht an den Host, dass das Modul bereit sei für das Start-Kommando. Als Payload wird das Metadaten-Objekt mitgeschickt – hier allerdings als String serialisiert, um nicht bei jeder Änderung der Metadaten-Spezifikation alle Modul-API ändern zu müssen.",
+    "crumbs": [
+      "Widget"
+    ]
+  },
+  {
+    "objectID": "widget-docs/index.html#start-command",
+    "href": "widget-docs/index.html#start-command",
+    "title": "Verona Interfaces – Widget",
+    "section": "3 Start Command",
+    "text": "3 Start Command\nDas Startkommando ist nicht für alle Widgets zwingend erforderlich. Es könnte sich z. B. um eine statische Anzeige handeln, die keine weiteren Daten benötigt (z. B. interaktive Weltkarte).\nDer Host kann jedoch über das Startkommando Daten schicken:\n\nparameters: Einfache Liste von key/value-Paaren, die Varianten des Widgets steuern. Es könnte darüber beispielsweise eine bestimmte Funktionalität des Taschenrechners angefordert werden.\nsharedParameters: Einfache Liste von key/value-Paaren. Bedeutung siehe hier.\nstate: Ein Zustand aus einem vorherige Aufruf des Widgets kann die UX verbessern.",
+    "crumbs": [
+      "Widget"
+    ]
+  },
+  {
+    "objectID": "widget-docs/index.html#state-changed-notification",
+    "href": "widget-docs/index.html#state-changed-notification",
+    "title": "Verona Interfaces – Widget",
+    "section": "4 State Changed Notification",
+    "text": "4 State Changed Notification\nSobald eine Interaktion stattgefunden hat, meldet das Widget diese Änderung. Parameter:\n\nsessionId: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.\ntimeStamp: Ein String im Standard-Format date-time. Die Nutzung dieser Information ist dem Host überlassen, soll aber vor allem die korrekte Reihenfolge vieler asynchron eintreffender Nachrichten sicherstellen.\nsharedParameters: Einfache Liste von key/value-Paaren. Bedeutung siehe hier.\nstate: Der neue Bearbeitungsstatus als serialisiertes Datenobjekt (string).",
+    "crumbs": [
+      "Widget"
+    ]
+  },
+  {
+    "objectID": "widget-docs/index.html#return-request",
+    "href": "widget-docs/index.html#return-request",
+    "title": "Verona Interfaces – Widget",
+    "section": "5 Return Request",
+    "text": "5 Return Request\nDiese Meldung wird an den Host geschickt, wenn die Testperson die Arbeit mit dem Widget beenden möchte. Über den Parameter saveState teilt das Widget mit, ob die Änderungen am Zustand/State wirksam (also an den Player geschickt) werden sollen, oder ob das Schließen ohne Speichern erfolgen soll (entspricht “Abbruch”).",
+    "crumbs": [
+      "Widget"
+    ]
+  },
+  {
     "objectID": "widget-docs/pse.html",
     "href": "widget-docs/pse.html",
     "title": "Periodensystem der Elemente",
     "section": "",
-    "text": "Es wird ein Periodensystem der Elemente angezeigt und man kann ein oder mehrere Elemente auswählen.\n\nAufrufparameter\n\n\n\n\n\n\n\n\n\nKey\nValue\nErläuterung\nStandardwert\n\n\n\n\nSHOW_INFO_ORDER\n“0” steht für Nein, “1” steht für Ja\nlegt fest, ob im Periodensystem die Ordnungszahl angezeigt wird\n“1”\n\n\nSHOW_INFO_E_NEG\n“0” steht für Nein, “1” steht für Ja\nlegt fest, ob im Periodensystem die Elektronegativität (nach Pauling) angezeigt wird\n“0”\n\n\nSHOW_INFO_A_MASS\n“0” steht für Nein, “1” steht für Ja\nlegt fest, ob im Periodensystem die mittlere relative Atommasse in u angezeigt wird\n“1”\n\n\nMAX_NUMBER_OF_SELECTIONS\nZahl als String\n“0” steht für unbegrenzte Anzahl, “1” steht für nur eine Selektion (das Selektieren eines weiteren Elements ersetzt die vorherige Selection), Wert &gt; 1 führt bei Erreichen der Zahl zu einer Meldung\n“1”\n\n\n\n\n\nState\nAls Status wird ein String übergeben, der mit Leerzeichen getrennt die Kürzel der gewählten Elemente enthält.",
+    "text": "Es wird ein Periodensystem der Elemente angezeigt und man kann ein oder mehrere Elemente auswählen.\n\nAufrufparameter\n\n\n\n\n\n\n\n\n\nKey\nValue\nErläuterung\nStandardwert\n\n\n\n\nSHOW_INFO_ORDER\n“0” steht für Nein, “1” steht für Ja\nlegt fest, ob im Periodensystem die Ordnungszahl angezeigt wird\n“1”\n\n\nSHOW_INFO_E_NEG\n“0” steht für Nein, “1” steht für Ja\nlegt fest, ob im Periodensystem die Elektronegativität (nach Pauling) angezeigt wird\n“0”\n\n\nSHOW_INFO_A_MASS\n“0” steht für Nein, “1” steht für Ja\nlegt fest, ob im Periodensystem die mittlere relative Atommasse in u angezeigt wird\n“1”\n\n\nMAX_NUMBER_OF_SELECTIONS\nZahl als String\n“0” steht für unbegrenzte Anzahl, “1” steht für nur eine Selektion (das Selektieren eines weiteren Elements ersetzt die vorherige Selection), Wert &gt; 1 führt bei Erreichen der Zahl zu einer Meldung\n“1”\n\n\nCLOSE_ON_SELECTION\n“0” steht für Nein, “1” steht für Ja\nlegt fest, ob nach Auswahl eines Elementes das Widget sofort geschlossen werden soll (vowReturnRequest)\n“0”\n\n\n\n\n\nState\nAls Status wird ein String übergeben, der mit Leerzeichen getrennt die Kürzel der gewählten Elemente enthält.\n\n\nShared Parameters\nKeine.",
     "crumbs": [
       "Widget",
       "Periodensystem"
