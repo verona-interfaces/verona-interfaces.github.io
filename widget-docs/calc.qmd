@@ -1,0 +1,22 @@
+---
+lang: de
+title: Taschenrechner
+subtitle: Verona-Modul Widget
+---
+
+Es wird ein Taschenrechner angezeigt und man kann einfache Rechenoperationen ausführen.
+
+# Aufrufparameter
+
+| Key    | Value | Erläuterung | Standardwert |
+| --- | --- | ------- | --- |
+| `MODE` | "SIMPLE", "SCIENTIFIC" | legt das Spektrum der verfügbaren Funktionen fest | "SIMPLE" |
+| `JOURNAL_LINES` | "0" steht für keine, > "0" steht für die Anzahl der Zeilen  | legt fest, ob vorherige Rechenoperationen und Eingaben angezeigt werden | "0" |
+
+# State
+
+Der Status ist eine Zahl.
+
+# Shared Parameters
+
+Keine.

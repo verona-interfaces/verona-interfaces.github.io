@@ -14,7 +14,12 @@ Es wird ein Periodensystem der Elemente angezeigt und man kann ein oder mehrere 
 | `SHOW_INFO_E_NEG` | "0" steht für Nein, "1" steht für Ja  | legt fest, ob im Periodensystem die Elektronegativität (nach Pauling) angezeigt wird | "0" |
 | `SHOW_INFO_A_MASS` | "0" steht für Nein, "1" steht für Ja  | legt fest, ob im Periodensystem die mittlere relative Atommasse in u angezeigt wird | "1" |
 | `MAX_NUMBER_OF_SELECTIONS` | Zahl als String  | "0" steht für unbegrenzte Anzahl, "1" steht für nur eine Selektion (das Selektieren eines weiteren Elements ersetzt die vorherige Selection), Wert > 1 führt bei Erreichen der Zahl zu einer Meldung| "1" |
+| `CLOSE_ON_SELECTION` | "0" steht für Nein, "1" steht für Ja | legt fest, ob nach Auswahl eines Elementes das Widget sofort geschlossen werden soll (`vowReturnRequest`) | "0" |
 
 # State
 
 Als Status wird ein **String** übergeben, der mit **Leerzeichen getrennt** die Kürzel der gewählten Elemente enthält.
+
+# Shared Parameters
+
+Keine.

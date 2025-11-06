@@ -55,8 +55,12 @@ website:
       - section: Widget
         href: widget-docs/index.qmd
         contents:
+          - href: widget-docs/calc.qmd
+            text: Taschenrechner
           - href: widget-docs/pse.qmd
             text: Periodensystem
+          - href: widget-docs/molecule.qmd
+            text: Molekül-Editor
 
 format:
   html:

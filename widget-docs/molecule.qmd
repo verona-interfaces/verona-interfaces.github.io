@@ -1,0 +1,25 @@
+---
+lang: de
+title: Molekül-Editor
+subtitle: Verona-Modul Widget
+---
+
+Es wird ein Editor dargestellt, mit dem man einfache Moleküle (Atome mit ihren Beziehungen) darstellen kann.
+
+# Aufrufparameter
+
+Keine.
+
+# State
+
+Als Status wird ein **JSON-Objekt** übergeben (als String). Zum gegenwärtigen Arbeitsstand ist nur der erste Parameter festgelegt:
+
+* `asImage`: Hierbei handelt es sich um ein Bild, das den letzten Bearbeitungsstand darstellt. Als Format wird jpg oder png erwartet, serialisiert in Form von base64. Dieses Bild kann der aufrufende Player anzeigen und es wird für die manuelle Kodierung genutzt. Die Molekül-Darstellung sollte beschnitten sein, um Platz zu sparen.
+
+Alle anderen Parameter sind geeignet, den Bearbeitungsstand ggf. wiederherzustellen.
+
+# Shared Parameters
+
+| Key    | Value | Erläuterung | Standardwert |
+| --- | --- | ------- | --- |
+| `BONDING_TYPE` | "VALENCE" für Valenzstrichformel, "ELECTRONS" für Elektronenformel | Die Testperson soll zwischen den beiden Darstellungsformen von Bindungen wählen können. Diese Wahl soll beim nächsten Aufruf des Widgets wiederhergestellt werden. | "ELECTRONS" |
