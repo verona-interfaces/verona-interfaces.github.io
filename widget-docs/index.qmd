@@ -14,17 +14,15 @@ Die konkrete Einbindung des Widgets in eine Testumgebung ist nicht spezifiziert.
 
 Es können Daten zwischen dem Player und dem Widget ausgetauscht werden. Die Spezifikation der API finden Sie [hier](https://verona-interfaces.github.io/widget/).
 
-# Widget-Typ
+# Widget-Typ `model`
 
-Es wird nie eine spezifische Widget-Implementation angefordert. Statt dessen wird ein Widget-Typ gerufen. Welches Widget dann konkret bereitgestellt wird, hängt von der Testumgebung ab. Hintergrund dieses Verfahrens ist die Möglichkeit, über den gesamten Test ein einheitliches Widget bereitzustellen.
+Es wird nie eine spezifische Widget-Implementation angefordert. Statt dessen wird ein Widget-Typ gerufen. Welches Widget dann konkret bereitgestellt wird, hängt von der Testumgebung ab. Hintergrund dieses Verfahrens ist die Möglichkeit, über den gesamten Test ein einheitliches Widget bereitzustellen. Der Widget-Typ ist in den Metadaten des Widgets im Eintrag `model` gespeichert.
 
-Für die folgenden Widget-Typen werden aktuell Prototypen programmiert:
+Für die folgenden Widget-Typen stehen zur Verfügung:
 
-* [Taschenrechner](calc.qmd) `WIDGET_CALC`
-* [Periodensystem der Elemente](pse.qmd) `WIDGET_PERIODIC_TABLE`
-* [Molekül-Editor](molecule.qmd) `WIDGET_MOLECULE_EDITOR`
-
-Sobald stabile Versionen veröffentlicht wurden, sind die entsprechenden Links hier verfügbar.
+* [Taschenrechner](calc.qmd) `CALC`
+* [Periodensystem der Elemente](pse.qmd) `PERIODIC_TABLE`
+* [Molekül-Editor](molecule.qmd) `MOLECULE_EDITOR`
 
 # Kommunikation
 
@@ -37,11 +35,6 @@ sequenceDiagram
     VM->>HA:vowReadyNotification
     opt
         HA->>VM:vowStartCommand
-    end
-    opt
-        loop
-            VM->>HA:vowStateChangedNotification
-        end
     end
     opt
         VM->>HA:vowReturnRequest
@@ -62,19 +55,21 @@ Das Startkommando ist nicht für alle Widgets zwingend erforderlich. Es könnte 
 
 Der Host kann jedoch über das Startkommando Daten schicken:
 
-* `parameters`: Einfache Liste von `key`/`value`-Paaren, die Varianten des Widgets steuern. Es könnte darüber beispielsweise eine bestimmte Funktionalität des Taschenrechners angefordert werden.
+* `widgetConfig`: Einfache Liste von `key`/`value`-Paaren, die Varianten des Widgets steuern. Es könnte darüber beispielsweise ein bestimmter Funktionsumfang des Taschenrechners angefordert werden.
 * `sharedParameters`: Einfache Liste von `key`/`value`-Paaren. Bedeutung siehe [hier](../intro/shared-parameters.qmd).
 * `state`: Ein Zustand aus einem vorherige Aufruf des Widgets kann die UX verbessern.
 
 ## 4 State Changed Notification
 
-Sobald eine Interaktion stattgefunden hat, meldet das Widget diese Änderung. Parameter:
+Sobald eine Interaktion stattgefunden hat, kann das Widget diese Änderung melden. Parameter:
 
 * `sessionId`: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.
 * `timeStamp`: Ein String im Standard-Format [date-time](https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-date-time-string-format). Die Nutzung dieser Information ist dem Host überlassen, soll aber vor allem die korrekte Reihenfolge vieler asynchron eintreffender Nachrichten sicherstellen.
 * `sharedParameters`: Einfache Liste von `key`/`value`-Paaren. Bedeutung siehe [hier](../intro/shared-parameters.qmd).
 * `state`: Der neue Bearbeitungsstatus als serialisiertes Datenobjekt (string).
 
+Dass das Widget zwischenzeitlich einen neuen Status schickt, ist nicht erforderlich. Es könnte interessant sein, wenn man Bearbeitungsstände speichern möchte (Log).
+
 ## 5 Return Request
 
-Diese Meldung wird an den Host geschickt, wenn die Testperson die Arbeit mit dem Widget beenden möchte. Über den Parameter `saveState` teilt das Widget mit, ob die Änderungen am Zustand/State wirksam (also an den Player geschickt) werden sollen, oder ob das Schließen ohne Speichern erfolgen soll (entspricht "Abbruch").
+Diese Meldung wird an den Host geschickt, wenn die Testperson die Arbeit mit dem Widget beenden möchte. Über den Parameter `saveState` teilt das Widget mit, ob die Änderungen am Zustand/State wirksam (also an den Player geschickt) werden sollen, oder ob das Schließen ohne Speichern erfolgen soll (entspricht "Abbruch"). `state` und `sharedParameters` können mitgeschickt werden.

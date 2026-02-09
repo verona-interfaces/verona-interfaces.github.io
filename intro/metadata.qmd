@@ -78,7 +78,8 @@ Die vollständige Spezifikation finden Sie [hier](https://verona-interfaces.gith
 
 * `id`: Die ID kann in internen Referenzen verwendet werden. Wenn beispielsweise eine Unitdefinition mit einem bestimmten Editor erzeugt wurde, kann die ID des Editor-Moduls die spätere Weiterarbeit sichern.[^1]
 * `version`: Hier wird eine übliche [SemVer](https://semver.org/lang/de/)-Notation erwartet, also auch mit Suffixen wie `beta` oder `rc4`.
-* `type`: Die möglichen Werte dieser Aufzählung sind `PLAYER`, `EDITOR`, `SCHEMER` und Varianten von `WIDGET_XXX`. Bitte lesen die entsprechenden Teile dieser Dokumentation für ein besseres Verständnis.
+* `type`: Die möglichen Werte dieser Aufzählung sind `PLAYER`, `EDITOR`, `SCHEMER` und `WIDGET`. Bitte lesen die entsprechenden Teile dieser Dokumentation für ein besseres Verständnis.
+* `model`: Hier kann man den Typ näher spezifizieren. Bei einem Player könnte man beispielsweise die Id und Version des Datenformates angeben, das der Player maximal verarbeiten kann. Bei einem Widget muss hier der Untertyp angegeben werden, also z. B. `PERIODIC_TABLE` oder `CALC`.
 * `name`: Diese Bezeichnung erscheint als Label z. B. in Auswahllisten, und dient als menschlich besser lesbare Version der ID. Es handelt sich um eine Datenstruktur für mehrere Sprachen.
 * `description`: Hier soll eine knappe Beschreibung helfen, die Besonderheiten dieses Moduls zu erkennen und darüber zu entscheiden, ob das Modul für die eigenen Zwecke interessant sein könnte. Es handelt sich um eine Datenstruktur für mehrere Sprachen.
 * `specVersion`: Dieser String erklärt, welche Version der Modul-Interfacedefinition unterstützt wird. Da Interfacedefinitionen einer Entwicklung unterliegen und Eigenschaften geändert und hinzugefügt werden, sollte sich eine Hostanwendung darauf einstellen, welchen Dialekt der Kommunikation das Modul versteht.[^2]

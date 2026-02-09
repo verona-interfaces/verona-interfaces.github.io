@@ -19,6 +19,6 @@ Es geht auf den Seiten dieser Dokumentation um große Vergleichsstudien oder Bef
 
 Eine der großen Lernstandserhebungen in Deutschland ist unter dem Namen *VERA* bekannt (VERgleichsArbeiten), und aus der Kombination mit *Online* ist dann die Bezeichnung *Verona* entstanden. Das Logo[^1] stellt eine Leiter dar - italienisch "la scala". Skalieren ist ein wichtiger methodischer Schritt bei der Auswertung der Antworten, und die Scaliger (Scaligeri, della Scala, deutsch oft auch Skaliger, historisch auch Herren von der Leiter) waren Herren der italienischen Stadt Verona von 1262 bis 1387. Die unterschiedlichen Einfärbungen zwischen den Sprossen stehen für verschiedene Endgeräte.
 
-![](../logo_verona_small.png)
+![](../assets/logo_verona_small.png)
 
 [^1]: credits to [HoffmannP](https://github.com/HoffmannP) 2019
