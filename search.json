@@ -268,7 +268,7 @@
     "href": "widget-docs/index.html#start-command",
     "title": "Verona Interfaces – Widget",
     "section": "3 Start Command",
-    "text": "3 Start Command\nDas Startkommando ist nicht für alle Widgets zwingend erforderlich. Es könnte sich z. B. um eine statische Anzeige handeln, die keine weiteren Daten benötigt (z. B. interaktive Weltkarte).\nDer Host kann jedoch über das Startkommando Daten schicken:\n\nparameters: Einfache Liste von key/value-Paaren, die Varianten des Widgets steuern. Es könnte darüber beispielsweise eine bestimmte Funktionalität des Taschenrechners angefordert werden.\nsharedParameters: Einfache Liste von key/value-Paaren. Bedeutung siehe hier.\nstate: Ein Zustand aus einem vorherige Aufruf des Widgets kann die UX verbessern.",
+    "text": "3 Start Command\nDas Startkommando ist nicht für alle Widgets zwingend erforderlich. Es könnte sich z. B. um eine statische Anzeige handeln, die keine weiteren Daten benötigt (z. B. interaktive Weltkarte).\nDer Host kann jedoch über das Startkommando Daten schicken:\n\nwidgetConfig: Einfache Liste von key/value-Paaren, die Varianten des Widgets steuern. Es könnte darüber beispielsweise ein bestimmter Funktionsumfang des Taschenrechners angefordert werden.\nsharedParameters: Einfache Liste von key/value-Paaren. Bedeutung siehe hier.\nstate: Ein Zustand aus einem vorherige Aufruf des Widgets kann die UX verbessern.",
     "crumbs": [
       "Widget"
     ]
@@ -278,7 +278,7 @@
     "href": "widget-docs/index.html#state-changed-notification",
     "title": "Verona Interfaces – Widget",
     "section": "4 State Changed Notification",
-    "text": "4 State Changed Notification\nSobald eine Interaktion stattgefunden hat, meldet das Widget diese Änderung. Parameter:\n\nsessionId: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.\ntimeStamp: Ein String im Standard-Format date-time. Die Nutzung dieser Information ist dem Host überlassen, soll aber vor allem die korrekte Reihenfolge vieler asynchron eintreffender Nachrichten sicherstellen.\nsharedParameters: Einfache Liste von key/value-Paaren. Bedeutung siehe hier.\nstate: Der neue Bearbeitungsstatus als serialisiertes Datenobjekt (string).",
+    "text": "4 State Changed Notification\nSobald eine Interaktion stattgefunden hat, kann das Widget diese Änderung melden. Parameter:\n\nsessionId: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.\ntimeStamp: Ein String im Standard-Format date-time. Die Nutzung dieser Information ist dem Host überlassen, soll aber vor allem die korrekte Reihenfolge vieler asynchron eintreffender Nachrichten sicherstellen.\nsharedParameters: Einfache Liste von key/value-Paaren. Bedeutung siehe hier.\nstate: Der neue Bearbeitungsstatus als serialisiertes Datenobjekt (string).\n\nDass das Widget zwischenzeitlich einen neuen Status schickt, ist nicht erforderlich. Es könnte interessant sein, wenn man Bearbeitungsstände speichern möchte (Log).",
     "crumbs": [
       "Widget"
     ]
@@ -288,7 +288,7 @@
     "href": "widget-docs/index.html#return-request",
     "title": "Verona Interfaces – Widget",
     "section": "5 Return Request",
-    "text": "5 Return Request\nDiese Meldung wird an den Host geschickt, wenn die Testperson die Arbeit mit dem Widget beenden möchte. Über den Parameter saveState teilt das Widget mit, ob die Änderungen am Zustand/State wirksam (also an den Player geschickt) werden sollen, oder ob das Schließen ohne Speichern erfolgen soll (entspricht “Abbruch”).",
+    "text": "5 Return Request\nDiese Meldung wird an den Host geschickt, wenn die Testperson die Arbeit mit dem Widget beenden möchte. Über den Parameter saveState teilt das Widget mit, ob die Änderungen am Zustand/State wirksam (also an den Player geschickt) werden sollen, oder ob das Schließen ohne Speichern erfolgen soll (entspricht “Abbruch”). state und sharedParameters können mitgeschickt werden.",
     "crumbs": [
       "Widget"
     ]

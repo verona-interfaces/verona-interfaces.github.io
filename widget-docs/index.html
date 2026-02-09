@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -39,7 +39,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-5905b6a1615c11779cf27a738634df79.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -260,7 +260,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Auf dieser Seite</h2>
    
   <ul>
-  <li><a href="#widget-typ" id="toc-widget-typ" class="nav-link active" data-scroll-target="#widget-typ">Widget-Typ</a></li>
+  <li><a href="#widget-typ-model" id="toc-widget-typ-model" class="nav-link active" data-scroll-target="#widget-typ-model">Widget-Typ <code>model</code></a></li>
   <li><a href="#kommunikation" id="toc-kommunikation" class="nav-link" data-scroll-target="#kommunikation">Kommunikation</a>
   <ul class="collapse">
   <li><a href="#initialisierung" id="toc-initialisierung" class="nav-link" data-scroll-target="#initialisierung">1 Initialisierung</a></li>
@@ -297,16 +297,15 @@ ul.task-list li input[type="checkbox"] {
 <p>Ein Widget ist ein Interaktionselement, das vom Player angefordert wird. Es erweitert die Interaktionsmöglichkeiten auf universelle Art. Beispiel Taschenrechner: Ein Player kann der Testperson anbieten, einen Wert über einen virtuellen Taschenrechner zu ermitteln.</p>
 <p>Die konkrete Einbindung des Widgets in eine Testumgebung ist nicht spezifiziert. Im IQB-Testcenter wird folgendes Verfahren umgesetzt: Das Widget unterbricht die Interaktion mit dem Player und dem übrigen Testsystem und legt sich als Overlay über die Applikationsseite (modaler Dialog). Erst nach Schließen/Beenden kehrt die Testperson zum Player zurück.</p>
 <p>Es können Daten zwischen dem Player und dem Widget ausgetauscht werden. Die Spezifikation der API finden Sie <a href="https://verona-interfaces.github.io/widget/">hier</a>.</p>
-<section id="widget-typ" class="level1">
-<h1>Widget-Typ</h1>
-<p>Es wird nie eine spezifische Widget-Implementation angefordert. Statt dessen wird ein Widget-Typ gerufen. Welches Widget dann konkret bereitgestellt wird, hängt von der Testumgebung ab. Hintergrund dieses Verfahrens ist die Möglichkeit, über den gesamten Test ein einheitliches Widget bereitzustellen.</p>
-<p>Für die folgenden Widget-Typen werden aktuell Prototypen programmiert:</p>
+<section id="widget-typ-model" class="level1">
+<h1>Widget-Typ <code>model</code></h1>
+<p>Es wird nie eine spezifische Widget-Implementation angefordert. Statt dessen wird ein Widget-Typ gerufen. Welches Widget dann konkret bereitgestellt wird, hängt von der Testumgebung ab. Hintergrund dieses Verfahrens ist die Möglichkeit, über den gesamten Test ein einheitliches Widget bereitzustellen. Der Widget-Typ ist in den Metadaten des Widgets im Eintrag <code>model</code> gespeichert.</p>
+<p>Für die folgenden Widget-Typen stehen zur Verfügung:</p>
 <ul>
-<li><a href="../widget-docs/calc.html">Taschenrechner</a> <code>WIDGET_CALC</code></li>
-<li><a href="../widget-docs/pse.html">Periodensystem der Elemente</a> <code>WIDGET_PERIODIC_TABLE</code></li>
-<li><a href="../widget-docs/molecule.html">Molekül-Editor</a> <code>WIDGET_MOLECULE_EDITOR</code></li>
+<li><a href="../widget-docs/calc.html">Taschenrechner</a> <code>CALC</code></li>
+<li><a href="../widget-docs/pse.html">Periodensystem der Elemente</a> <code>PERIODIC_TABLE</code></li>
+<li><a href="../widget-docs/molecule.html">Molekül-Editor</a> <code>MOLECULE_EDITOR</code></li>
 </ul>
-<p>Sobald stabile Versionen veröffentlicht wurden, sind die entsprechenden Links hier verfügbar.</p>
 </section>
 <section id="kommunikation" class="level1">
 <h1>Kommunikation</h1>
@@ -323,11 +322,6 @@ ul.task-list li input[type="checkbox"] {
     VM-&gt;&gt;HA:vowReadyNotification
     opt
         HA-&gt;&gt;VM:vowStartCommand
-    end
-    opt
-        loop
-            VM-&gt;&gt;HA:vowStateChangedNotification
-        end
     end
     opt
         VM-&gt;&gt;HA:vowReturnRequest
@@ -351,24 +345,25 @@ ul.task-list li input[type="checkbox"] {
 <p>Das Startkommando ist nicht für alle Widgets zwingend erforderlich. Es könnte sich z. B. um eine statische Anzeige handeln, die keine weiteren Daten benötigt (z. B. interaktive Weltkarte).</p>
 <p>Der Host kann jedoch über das Startkommando Daten schicken:</p>
 <ul>
-<li><code>parameters</code>: Einfache Liste von <code>key</code>/<code>value</code>-Paaren, die Varianten des Widgets steuern. Es könnte darüber beispielsweise eine bestimmte Funktionalität des Taschenrechners angefordert werden.</li>
+<li><code>widgetConfig</code>: Einfache Liste von <code>key</code>/<code>value</code>-Paaren, die Varianten des Widgets steuern. Es könnte darüber beispielsweise ein bestimmter Funktionsumfang des Taschenrechners angefordert werden.</li>
 <li><code>sharedParameters</code>: Einfache Liste von <code>key</code>/<code>value</code>-Paaren. Bedeutung siehe <a href="../intro/shared-parameters.html">hier</a>.</li>
 <li><code>state</code>: Ein Zustand aus einem vorherige Aufruf des Widgets kann die UX verbessern.</li>
 </ul>
 </section>
 <section id="state-changed-notification" class="level2">
 <h2 class="anchored" data-anchor-id="state-changed-notification">4 State Changed Notification</h2>
-<p>Sobald eine Interaktion stattgefunden hat, meldet das Widget diese Änderung. Parameter:</p>
+<p>Sobald eine Interaktion stattgefunden hat, kann das Widget diese Änderung melden. Parameter:</p>
 <ul>
 <li><code>sessionId</code>: Die Kennung aus dem Start-Kommando, um die korrekte Zuordnung der Nachricht bzw. der darin enthaltenen Daten zur Unit zu unterstützen.</li>
 <li><code>timeStamp</code>: Ein String im Standard-Format <a href="https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-date-time-string-format">date-time</a>. Die Nutzung dieser Information ist dem Host überlassen, soll aber vor allem die korrekte Reihenfolge vieler asynchron eintreffender Nachrichten sicherstellen.</li>
 <li><code>sharedParameters</code>: Einfache Liste von <code>key</code>/<code>value</code>-Paaren. Bedeutung siehe <a href="../intro/shared-parameters.html">hier</a>.</li>
 <li><code>state</code>: Der neue Bearbeitungsstatus als serialisiertes Datenobjekt (string).</li>
 </ul>
+<p>Dass das Widget zwischenzeitlich einen neuen Status schickt, ist nicht erforderlich. Es könnte interessant sein, wenn man Bearbeitungsstände speichern möchte (Log).</p>
 </section>
 <section id="return-request" class="level2">
 <h2 class="anchored" data-anchor-id="return-request">5 Return Request</h2>
-<p>Diese Meldung wird an den Host geschickt, wenn die Testperson die Arbeit mit dem Widget beenden möchte. Über den Parameter <code>saveState</code> teilt das Widget mit, ob die Änderungen am Zustand/State wirksam (also an den Player geschickt) werden sollen, oder ob das Schließen ohne Speichern erfolgen soll (entspricht “Abbruch”).</p>
+<p>Diese Meldung wird an den Host geschickt, wenn die Testperson die Arbeit mit dem Widget beenden möchte. Über den Parameter <code>saveState</code> teilt das Widget mit, ob die Änderungen am Zustand/State wirksam (also an den Player geschickt) werden sollen, oder ob das Schließen ohne Speichern erfolgen soll (entspricht “Abbruch”). <code>state</code> und <code>sharedParameters</code> können mitgeschickt werden.</p>
 
 
 </section>
