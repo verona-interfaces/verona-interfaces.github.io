@@ -8,7 +8,9 @@ Es wird ein Editor dargestellt, mit dem man einfache Moleküle (Atome mit ihren 
 
 # Aufrufparameter
 
-Keine.
+| Key    | Value | Erläuterung | Standardwert |
+| --- | --- | ------- | --- |
+| `BONDING_TYPE` | "VALENCE" für Valenzstrichformel, "ELECTRONS" für Elektronenformel | Der Aufrufer legt die Darstellungsform von Bindungen fest. | "ELECTRONS" |
 
 # State
 
@@ -20,6 +22,4 @@ Alle anderen Parameter sind geeignet, den Bearbeitungsstand ggf. wiederherzustel
 
 # Shared Parameters
 
-| Key    | Value | Erläuterung | Standardwert |
-| --- | --- | ------- | --- |
-| `BONDING_TYPE` | "VALENCE" für Valenzstrichformel, "ELECTRONS" für Elektronenformel | Die Testperson soll zwischen den beiden Darstellungsformen von Bindungen wählen können. Diese Wahl soll beim nächsten Aufruf des Widgets wiederhergestellt werden. | "ELECTRONS" |
+Keine.
