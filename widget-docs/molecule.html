@@ -41,7 +41,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-5905b6a1615c11779cf27a738634df79.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-c2ac77b0d9c60f9bf261250df30b3de0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -288,18 +288,6 @@ ul.task-list li input[type="checkbox"] {
 <p>Es wird ein Editor dargestellt, mit dem man einfache Moleküle (Atome mit ihren Beziehungen) darstellen kann.</p>
 <section id="aufrufparameter" class="level1">
 <h1>Aufrufparameter</h1>
-<p>Keine.</p>
-</section>
-<section id="state" class="level1">
-<h1>State</h1>
-<p>Als Status wird ein <strong>JSON-Objekt</strong> übergeben (als String). Zum gegenwärtigen Arbeitsstand ist nur der erste Parameter festgelegt:</p>
-<ul>
-<li><code>asImage</code>: Hierbei handelt es sich um ein Bild, das den letzten Bearbeitungsstand darstellt. Als Format wird jpg oder png erwartet, serialisiert in Form von base64. Dieses Bild kann der aufrufende Player anzeigen und es wird für die manuelle Kodierung genutzt. Die Molekül-Darstellung sollte beschnitten sein, um Platz zu sparen.</li>
-</ul>
-<p>Alle anderen Parameter sind geeignet, den Bearbeitungsstand ggf. wiederherzustellen.</p>
-</section>
-<section id="shared-parameters" class="level1">
-<h1>Shared Parameters</h1>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 18%">
@@ -319,11 +307,23 @@ ul.task-list li input[type="checkbox"] {
 <tr class="odd">
 <td><code>BONDING_TYPE</code></td>
 <td>“VALENCE” für Valenzstrichformel, “ELECTRONS” für Elektronenformel</td>
-<td>Die Testperson soll zwischen den beiden Darstellungsformen von Bindungen wählen können. Diese Wahl soll beim nächsten Aufruf des Widgets wiederhergestellt werden.</td>
+<td>Der Aufrufer legt die Darstellungsform von Bindungen fest.</td>
 <td>“ELECTRONS”</td>
 </tr>
 </tbody>
 </table>
+</section>
+<section id="state" class="level1">
+<h1>State</h1>
+<p>Als Status wird ein <strong>JSON-Objekt</strong> übergeben (als String). Zum gegenwärtigen Arbeitsstand ist nur der erste Parameter festgelegt:</p>
+<ul>
+<li><code>asImage</code>: Hierbei handelt es sich um ein Bild, das den letzten Bearbeitungsstand darstellt. Als Format wird jpg oder png erwartet, serialisiert in Form von base64. Dieses Bild kann der aufrufende Player anzeigen und es wird für die manuelle Kodierung genutzt. Die Molekül-Darstellung sollte beschnitten sein, um Platz zu sparen.</li>
+</ul>
+<p>Alle anderen Parameter sind geeignet, den Bearbeitungsstand ggf. wiederherzustellen.</p>
+</section>
+<section id="shared-parameters" class="level1">
+<h1>Shared Parameters</h1>
+<p>Keine.</p>
 
 
 </section>
