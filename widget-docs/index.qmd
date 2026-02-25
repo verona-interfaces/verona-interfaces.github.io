@@ -89,7 +89,7 @@ Gehen Sie zum letzten [Release des Testbeds](https://github.com/iqb-berlin/veron
 
 Ein Widget wird von einem Player aufgerufen. Daher muss es einen Player geben, der diesen "call" erzeugt. Zur Demonstration hat das IQB einen Player programmiert, der alle vorhandenen Widgets aufruft. Über Parameter kann man den Aufruf modifizieren. Das Ergebnis des Widgets wird angezeigt.
 
-Gehen Sie zum letzten [Release des Widget-Players](https://github.com/iqb-berlin/verona-player-widget/releases/releases/latest). In den `assets` des Releases findet sich eine Datei `verona-player-widget-<version>.html`. Durch Klicken auf den Dateinamen laden Sie die Datei herunter.
+Gehen Sie zum letzten [Release des Widget-Players](https://github.com/iqb-berlin/verona-player-widget/releases/latest). In den `assets` des Releases findet sich eine Datei `verona-player-widget-<version>.html`. Durch Klicken auf den Dateinamen laden Sie die Datei herunter.
 
 ## Widgets und Beispiel-Units herunterladen
 
