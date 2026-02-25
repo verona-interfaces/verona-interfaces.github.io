@@ -1,5 +1,9 @@
 project:
   type: website
+  resources:
+    - widget-docs/assets/widget-calc.json
+    - widget-docs/assets/widget-molecule-editor.json
+    - widget-docs/assets/widget-periodic-table.json
 
 website:
   site-url: https://verona-interfaces.github.io

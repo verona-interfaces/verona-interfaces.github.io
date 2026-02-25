@@ -1,6 +1,7 @@
 ---
 lang: de
 title: Verona Interfaces -- Widget
+lightbox: true
 format:
     html:
         other-links:
@@ -73,3 +74,35 @@ Dass das Widget zwischenzeitlich einen neuen Status schickt, ist nicht erforderl
 ## 5 Return Request
 
 Diese Meldung wird an den Host geschickt, wenn die Testperson die Arbeit mit dem Widget beenden möchte. Über den Parameter `saveState` teilt das Widget mit, ob die Änderungen am Zustand/State wirksam (also an den Player geschickt) werden sollen, oder ob das Schließen ohne Speichern erfolgen soll (entspricht "Abbruch"). `state` und `sharedParameters` können mitgeschickt werden.
+
+# Ausprobieren
+
+Die Technologie der Widgets wird schrittweise in die Webanwendungen des IQB integriert. In jeder der Anwendungen (IQB-Testcenter, IQB-Studio) wird es spezielle Verfahren geben, wie die Widgests verfügbar gemacht werden. Um unabhängig von diesen Implementationen Widgets auszuprobieren, führen Sie die folgenden Schritte aus.
+
+## Testbed herunterladen
+
+Das IQB hat eine Referenzimplementierung der Verona-Schnittstellen für Player und Widgets veröffentlicht. Es handelt sich um eine Html-Datei, die man lokal ausführen kann. Dazu ist die jeweils aktuelle Version aus dem Release-Bereich des entsprechenden Repositories herunterzuladen.
+
+Gehen Sie zum letzten [Release des Testbeds](https://github.com/iqb-berlin/verona-player-testbed/releases/latest). In den `assets` des Releases findet sich eine Datei `verona-player-testbed-<version>.html`. Durch Klicken auf den Dateinamen laden Sie die Datei herunter.
+
+## Player herunterladen
+
+Ein Widget wird von einem Player aufgerufen. Daher muss es einen Player geben, der diesen "call" erzeugt. Zur Demonstration hat das IQB einen Player programmiert, der alle vorhandenen Widgets aufruft. Über Parameter kann man den Aufruf modifizieren. Das Ergebnis des Widgets wird angezeigt.
+
+Gehen Sie zum letzten [Release des Widget-Players](https://github.com/iqb-berlin/verona-player-widget/releases/releases/latest). In den `assets` des Releases findet sich eine Datei `verona-player-widget-<version>.html`. Durch Klicken auf den Dateinamen laden Sie die Datei herunter.
+
+## Widgets und Beispiel-Units herunterladen
+
+Die folgende Tabelle listet die Quellen für die Widgets (jeweils Html-Datei im `assets`-Bereich des Releases) und bietet einen Button für den Download einer passenden Unit-UI-Definition:
+
+| Widget-Release | Unit |
+| ------ | ---------------- |
+| [Calc](https://github.com/iqb-berlin/verona-widget-calc/releases/latest) | {{< downloadthis assets/widget-calc.json label="Herunterladen Unit für calc" dname="unit-widget-calc" icon=filetype-json >}} |
+| [Molekül-Editor](https://github.com/iqb-berlin/verona-widgets-chemistry/releases/latest) | {{< downloadthis assets/widget-molecule-editor.json label="Herunterladen Unit für molecule-editor" dname="unit-widget-molecule-editor" icon=filetype-json >}} |
+| [Periodensystem der Elemente](https://github.com/iqb-berlin/verona-widgets-chemistry/releases/latest) | {{< downloadthis assets/widget-periodic-table.json label="Herunterladen Unit für periodic-table" dname="unit-widget-periodic-table" icon=filetype-json >}} |
+
+## Testbed starten
+
+Mit einem Klick auf die Html-Datei des Testbeds wird die Programmierung lokal im Browser gestartet. Danach laden Sie aus dem Download-Ordner den Player. Je nachdem, welches Widget Sie ausprobieren möchten, laden Sie das Widget und eine passende Unit-UI-Definition in das Testbed. Mit einem Doppelklick auf eine Unit oder mit dem Pfeil `>` starten Sie die Anzeige der Unit und können das Widget rufen.
+
+![](assets/testbed.png){width="600" group="play"}

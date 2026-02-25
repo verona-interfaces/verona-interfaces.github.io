@@ -1,0 +1,41 @@
+{
+  "id": "widget-unit-definition",
+  "version": "0.1.0",
+  "backgroundColor": "#3cf",
+  "continueButtonShow": "ALWAYS",
+  "widgetType": "WIDGET_PERIODIC_TABLE",
+  "title": "Periodic Table",
+  "description": "Widget für Periodensystem der Elemente",
+  "parameters": {
+    "SHOW_INFO_ORDER": {
+      "type": "BOOLEAN",
+      "description": "Anzeige der Ordnungszahlen.",
+      "defaultValue": "1"
+    },
+    "SHOW_INFO_E_NEG": {
+      "type": "BOOLEAN",
+      "description": "Anzeige der Elektronegativität.",
+      "defaultValue": "0"
+    },
+    "SHOW_INFO_A_MASS": {
+      "type": "BOOLEAN",
+      "description": "Anzeige der mittleren relativen Atommasse.",
+      "defaultValue": "1"
+    },
+    "CLOSE_ON_SELECTION": {
+      "type": "BOOLEAN",
+      "description": "Automatisches Schließen bei Auswahl eines Elements.",
+      "defaultValue": "0"
+    },
+    "MAX_NUMBER_OF_SELECTIONS": {
+      "type": "NUMBER",
+      "description": "Maximale Anzahl der anwählbaren Elemente. 0 -> unbegrenzt.",
+      "defaultValue": "1"
+    }
+  },
+  "sharedParameters": [],
+  "returnState": {
+    "type": "STRING",
+    "description": "Die ausgewählten Elemente als mit Leerzeichen getrennter String.."
+  }
+}
