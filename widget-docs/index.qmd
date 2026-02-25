@@ -106,3 +106,5 @@ Die folgende Tabelle listet die Quellen für die Widgets (jeweils Html-Datei im 
 Mit einem Klick auf die Html-Datei des Testbeds wird die Programmierung lokal im Browser gestartet. Danach laden Sie aus dem Download-Ordner den Player. Je nachdem, welches Widget Sie ausprobieren möchten, laden Sie das Widget und eine passende Unit-UI-Definition in das Testbed. Mit einem Doppelklick auf eine Unit oder mit dem Pfeil `>` starten Sie die Anzeige der Unit und können das Widget rufen.
 
 ![](assets/testbed.png){width="600" group="play"}
+
+![](assets/testbed-periodic.png){width="600" group="play"}
