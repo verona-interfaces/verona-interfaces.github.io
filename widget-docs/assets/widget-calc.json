@@ -1,0 +1,30 @@
+{
+  "id": "widget-unit-definition",
+  "version": "0.1.0",
+  "backgroundColor": "#3cf",
+  "continueButtonShow": "ALWAYS",
+  "widgetType": "WIDGET_CALC",
+  "title": "Simple Calculator",
+  "description": "Ein einfacher Taschenrechner als Widget",
+  "parameters": {
+    "MODE": {
+      "type": "ENUM",
+      "description": "Legt die verfügbaren Funktionen fest.",
+      "values": [
+        "SIMPLE",
+        "SCIENTIFIC"
+      ],
+      "defaultValue": "SIMPLE"
+    },
+    "JOURNAL_LINES" : {
+      "type": "NUMBER",
+      "description": "Legt fest, wie viele vorherige Rechenoperationen/Eingaben angezeigt werden sollen.",
+      "defaultValue": "0"
+    }
+  },
+  "sharedParameters": [],
+  "returnState": {
+    "type": "NUMBER",
+    "description": "Das Ergebnis der Rechenoperation."
+  }
+}
