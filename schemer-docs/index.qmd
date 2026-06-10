@@ -57,5 +57,6 @@ Sobald eine Bearbeitung des Kodierschemas stattgefunden hat, meldet der Schemer 
 * `timeStamp`: Ein String im Standard-Format [date-time](https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-date-time-string-format). Die Nutzung dieser Information ist dem Host überlassen, soll aber vor allem die korrekte Reihenfolge vieler asynchron eintreffender Nachrichten sicherstellen.
 * `codingScheme`: Das neue vollständige Kodierschema, serialisiert als String.
 * `codingSchemeType`: Spezifizierung des Datenformates, wenn gewünscht.
+* `derivedVariables`: Wenn bei der Erstellung des Kodierschemas neue Variablen abgeleitet wurden, sind diese hier mit ihren Quell-Variablen aufgelistet. Jede neue Variable referenziert dabei ausschließlich Basisvariablen, d. h. ein Bezug auf eine abgeleitete Variable ist nicht zulässig.
 * `dependenciesToCode`: Abhängigkeiten von externen Bibliotheken oder Diensten für das Kodieren der Antworten der Unit.
 * `sharedParameters`: Daten, die zur Laufzeit zwischen Schemer-Modulen ausgetauscht werden sollen. Details siehe [hier](../intro/shared-parameters.qmd).
