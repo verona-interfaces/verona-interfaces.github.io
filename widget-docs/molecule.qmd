@@ -2,9 +2,10 @@
 lang: de
 title: Molekül-Editor
 subtitle: Verona-Modul Widget
+abstract: Es wird ein Editor dargestellt, mit dem man einfache Moleküle (Atome mit ihren Beziehungen) darstellen kann.
 ---
 
-Es wird ein Editor dargestellt, mit dem man einfache Moleküle (Atome mit ihren Beziehungen) darstellen kann.
+[Version 0.1]{.widget-version}
 
 # Aufrufparameter
 

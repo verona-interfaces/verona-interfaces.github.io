@@ -2,9 +2,10 @@
 lang: de
 title: Taschenrechner
 subtitle: Verona-Modul Widget
+abstract: Es wird ein Taschenrechner angezeigt und man kann einfache Rechenoperationen ausführen.
 ---
 
-Es wird ein Taschenrechner angezeigt und man kann einfache Rechenoperationen ausführen.
+[Version 1.0]{.widget-version}
 
 # Aufrufparameter
 
@@ -15,7 +16,11 @@ Es wird ein Taschenrechner angezeigt und man kann einfache Rechenoperationen aus
 
 # State
 
-Der Status ist eine Zahl.
+Als Status wird ein **JSON-Objekt** übergeben (als String).
+
+* `asValue`: number; Ergebnis der Rechnungen als numerischer Wert. Beispiel: `0.3333`
+* `asLatex`: string; wenn der durch das Widget ermittelte letzte Wert über einen Latex-Ausdruck darstellbar ist, wird hier dieser Ausdruck geliefert. Beispiel: `\frac{1}{3}`
+* `asImage`: string; wenn der durch das Widget ermittelte letzte Wert über einen Latex-Ausdruck darstellbar ist, wird hier ein Bild geliefert. Als Format wird jpg oder png erwartet, serialisiert in Form von base64. Dieses Bild kann der aufrufende Player anzeigen und es wird für die manuelle Kodierung genutzt. Die Darstellung sollte beschnitten sein, um Platz zu sparen.
 
 # Shared Parameters
 

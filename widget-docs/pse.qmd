@@ -2,9 +2,10 @@
 lang: de
 title: Periodensystem der Elemente
 subtitle: Verona-Modul Widget
+abstract: Es wird ein Periodensystem der Elemente angezeigt und man kann ein oder mehrere Elemente auswählen.
 ---
 
-Es wird ein Periodensystem der Elemente angezeigt und man kann ein oder mehrere Elemente auswählen.
+[Version 1.0]{.widget-version}
 
 # Aufrufparameter
 

@@ -10,3 +10,9 @@ h1.title {
 img.zoomable, .gslide-image > img {
     border: 10px solid white;
 }
+
+.widget-version {
+    background-color: khaki;
+    font-weight: bold;
+    padding: 5px 20px;
+}
