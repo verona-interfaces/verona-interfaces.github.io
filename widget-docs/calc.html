@@ -44,7 +44,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-60217f96689c6e2bbe947ed28ebba255.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-794991c306a5ffd028a3f66cc20ec278.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -294,7 +294,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><span class="widget-version">Version 1.0</span></p>
+<p><span class="widget-version">Version 1.1</span></p>
 <section id="aufrufparameter" class="level1">
 <h1>Aufrufparameter</h1>
 <table class="caption-top table">
@@ -322,20 +322,32 @@ ul.task-list li input[type="checkbox"] {
 <tr class="even">
 <td><code>JOURNAL_LINES</code></td>
 <td>“0” steht für keine, &gt; “0” steht für die Anzahl der Zeilen</td>
-<td>legt fest, ob vorherige Rechenoperationen und Eingaben angezeigt werden</td>
+<td>legt fest, ob bzw. mit wievielen Zeilen vorherige Rechenoperationen und Eingaben angezeigt werden</td>
 <td>“0”</td>
+</tr>
+<tr class="odd">
+<td><code>MAX_IMAGE_WIDTH_PX</code></td>
+<td>numerisch positiv ganzzahlig</td>
+<td>legt die maximale Breite des Ergebnisbildes fest; längere Ausdrücke müssen umgebrochen werden</td>
+<td>“200”</td>
+</tr>
+<tr class="even">
+<td><code>JOURNAL</code></td>
+<td><code>[{"asLatex": string; "asImage": string}]</code></td>
+<td>stringified JSON-Objekt mit vorherigen Rechnungen, identisch mit dem State; der letzte Eintrag ist der aktuellste</td>
+<td><code>[]</code></td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="state" class="level1">
 <h1>State</h1>
-<p>Als Status wird ein <strong>JSON-Objekt</strong> übergeben (als String).</p>
+<p>Als Status wird ein (stringified) <strong>JSON-Objekt</strong> übergeben. Es handelt sich um das Journal, also die letzten Rechnungen. Der Datentyp ist ein Array von Objekten mit folgenden Eigenschaften:</p>
 <ul>
-<li><code>asValue</code>: number; Ergebnis der Rechnungen als numerischer Wert. Beispiel: <code>0.3333</code></li>
-<li><code>asLatex</code>: string; wenn der durch das Widget ermittelte letzte Wert über einen Latex-Ausdruck darstellbar ist, wird hier dieser Ausdruck geliefert. Beispiel: <code>\frac{1}{3}</code></li>
-<li><code>asImage</code>: string; wenn der durch das Widget ermittelte letzte Wert über einen Latex-Ausdruck darstellbar ist, wird hier ein Bild geliefert. Als Format wird jpg oder png erwartet, serialisiert in Form von base64. Dieses Bild kann der aufrufende Player anzeigen und es wird für die manuelle Kodierung genutzt. Die Darstellung sollte beschnitten sein, um Platz zu sparen.</li>
+<li><code>asLatex</code>: string; Ergebnis/Rechnung als Latex-Ausdruck. Beispiel: <code>\frac{1}{3}</code></li>
+<li><code>asImage</code>: string; Ergebnis/Rechnung als Bild. Als Format wird jpg oder png erwartet, serialisiert in Form von base64. Dieses Bild kann der aufrufende Player bzw. Host anzeigen.</li>
 </ul>
+<p>Der letzte Eintrag des Arrays ist der jüngste.</p>
 </section>
 <section id="shared-parameters" class="level1">
 <h1>Shared Parameters</h1>
