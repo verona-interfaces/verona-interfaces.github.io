@@ -5,22 +5,25 @@ subtitle: Verona-Modul Widget
 abstract: Es wird ein Taschenrechner angezeigt und man kann einfache Rechenoperationen ausführen.
 ---
 
-[Version 1.0]{.widget-version}
+[Version 1.1]{.widget-version}
 
 # Aufrufparameter
 
 | Key    | Value | Erläuterung | Standardwert |
 | --- | --- | ------- | --- |
 | `MODE` | "SIMPLE", "SCIENTIFIC" | legt das Spektrum der verfügbaren Funktionen fest | "SIMPLE" |
-| `JOURNAL_LINES` | "0" steht für keine, > "0" steht für die Anzahl der Zeilen  | legt fest, ob vorherige Rechenoperationen und Eingaben angezeigt werden | "0" |
+| `JOURNAL_LINES` | "0" steht für keine, > "0" steht für die Anzahl der Zeilen  | legt fest, ob bzw. mit wievielen Zeilen vorherige Rechenoperationen und Eingaben angezeigt werden | "0" |
+| `MAX_IMAGE_WIDTH_PX` | numerisch positiv ganzzahlig  | legt die maximale Breite des Ergebnisbildes fest; längere Ausdrücke müssen umgebrochen werden | "200" |
+| `JOURNAL` | `[{"asLatex": string; "asImage": string}]`  | stringified JSON-Objekt mit vorherigen Rechnungen, identisch mit dem State; der letzte Eintrag ist der aktuellste | `[]` |
 
 # State
 
-Als Status wird ein **JSON-Objekt** übergeben (als String).
+Als Status wird ein (stringified) **JSON-Objekt** übergeben. Es handelt sich um das Journal, also die letzten Rechnungen. Der Datentyp ist ein Array von Objekten mit folgenden Eigenschaften:
 
-* `asValue`: number; Ergebnis der Rechnungen als numerischer Wert. Beispiel: `0.3333`
-* `asLatex`: string; wenn der durch das Widget ermittelte letzte Wert über einen Latex-Ausdruck darstellbar ist, wird hier dieser Ausdruck geliefert. Beispiel: `\frac{1}{3}`
-* `asImage`: string; wenn der durch das Widget ermittelte letzte Wert über einen Latex-Ausdruck darstellbar ist, wird hier ein Bild geliefert. Als Format wird jpg oder png erwartet, serialisiert in Form von base64. Dieses Bild kann der aufrufende Player anzeigen und es wird für die manuelle Kodierung genutzt. Die Darstellung sollte beschnitten sein, um Platz zu sparen.
+* `asLatex`: string; Ergebnis/Rechnung als Latex-Ausdruck. Beispiel: `\frac{1}{3}`
+* `asImage`: string; Ergebnis/Rechnung als Bild. Als Format wird jpg oder png erwartet, serialisiert in Form von base64. Dieses Bild kann der aufrufende Player bzw. Host anzeigen.
+
+Der letzte Eintrag des Arrays ist der jüngste.
 
 # Shared Parameters
 
