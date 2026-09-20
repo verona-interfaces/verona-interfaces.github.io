@@ -8,16 +8,16 @@ format:
 ---
 ![](assets/banner-image.jpg)
 
-::: {.callout-note}
-## English version
-[Here](intro/english.qmd) you find a short introduction in English language.
-:::
 
 # Willkommen
 
-In Deutschland werden viele Erhebungen des Bildungsmonitorings dezentral durchgeführt, d. h. jedes Bundesland folgt eigenen Traditionen und Prioritäten. Auch zentral auf Ebene der [KMK](https://www.kmk.org/themen/qualitaetssicherung-in-schulen/bildungsmonitoring/) abgestimmte Lernstandserhebungen (VERA) benutzen zwar gleiche Aufgaben und methodische Verfahren, technisch und organisatorisch laufen aber auch diese Erhebungen getrennt in den Ländern. Eine zentrale technische Lösung würde in Deutschland den heterogenen Anforderungen nicht gerecht werden können.
+Auf diesen Seiten ist ein Plug-in-System beschrieben, um das [TBA-System](https://iqb-berlin.github.io/tba-info) flexibel zu gestalten.
 
-Daraus resultieren sehr hohe Anforderungen an die Modularität und Interoperabilität von technischen Lösungen im computerbasierten Testen. Sämtliche Programmierungen müssen über wohldokumentierte Schnittstellen verfügen. Die Initiative "Verona" hat das Ziel, Definitionen für Schnittstellen und Datenstrukturen zu erarbeiten und zu pflegen. Diese werden hier verlinkt und erläutert.
+:::{.callout-important}
+## Seiten ziehen demnächst um
+
+Im Zuge der Reorganisation der Dokumentationen zum TBA-System werden diese Seiten in andere Dokumentationsorte integriert.
+:::
 
 # Spezifikationen - Übersicht
 
