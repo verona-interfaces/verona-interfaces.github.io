@@ -12,10 +12,13 @@ abstract: Es wird ein Periodensystem der Elemente angezeigt und man kann ein ode
 | Key    | Value | Erläuterung | Standardwert |
 | --- | --- | ------- | --- |
 | `SHOW_INFO_ORDER` | "0" steht für Nein, "1" steht für Ja  | legt fest, ob im Periodensystem die Ordnungszahl angezeigt wird | "1" |
+| `SHOW_INFO_NAME` | "0" steht für Nein, "1" steht für Ja | legt fest, ob im Periodensystem der Name des Elements angezeigt wird | "1" |
+| `SHOW_INFO_SYMBOL` | "0" steht für Nein, "1" steht für Ja | legt fest, ob im Periodensystem das Elementsymbol angezeigt wird | "1" |
 | `SHOW_INFO_A_MASS` | "0" steht für Nein, "1" steht für Ja  | legt fest, ob im Periodensystem die mittlere relative Atommasse in u angezeigt wird | "1" |
 | `SHOW_INFO_E_NEG` | "0" steht für Nein, "1" steht für Ja  | legt fest, ob im Periodensystem die Elektronegativität (nach Pauling) angezeigt wird; Achtung: Wird dann nur bei Hover/Auswahl angezeigt, nicht für alle Elemente | "0" |
 | `MAX_NUMBER_OF_SELECTIONS` | Zahl als String  | "0" steht für unbegrenzte Anzahl, "1" steht für nur eine Selektion (das Selektieren eines weiteren Elements ersetzt die vorherige Selection), Wert > 1 führt bei Erreichen der Zahl zu einer Meldung| "1" |
 | `CLOSE_ON_SELECTION` | "0" steht für Nein, "1" steht für Ja | legt fest, ob nach Auswahl eines Elementes das Widget sofort geschlossen werden soll (`vowReturnRequest`) | "0" |
+| `HIGHLIGHT_BLOCKS` | "0" steht für Nein, "1" steht für Ja | legt fest, ob die Elemente nach ihrem Block (s, p, d, f) eingefärbt werden | "0" |
 
 # State
 
