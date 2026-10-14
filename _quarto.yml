@@ -41,36 +41,6 @@ website:
     contents:
       - href: index.qmd
         text: Start
-      - section: "Einführung"
-        href: intro/index.qmd
-        contents:
-          - intro/data-structures.qmd
-          - intro/architecture.qmd
-          - intro/metadata.qmd
-          - intro/modelling.qmd
-          - intro/shared-parameters.qmd
-          - intro/english.qmd
-      - section: Player
-        href: player-docs/index.qmd
-        contents:
-          - href: player-docs/vopStartCommand.qmd
-            text: Start-Kommando
-          - href: player-docs/vopStateChangedNotification.qmd
-            text: Status-Änderung
-          - player-docs/integration.qmd
-      - href: editor-docs/index.qmd
-        text: Editor
-      - href: schemer-docs/index.qmd
-        text: Schemer
-      - section: Widget
-        href: widget-docs/index.qmd
-        contents:
-          - href: widget-docs/calc.qmd
-            text: Taschenrechner
-          - href: widget-docs/pse.qmd
-            text: Periodensystem
-          - href: widget-docs/molecule.qmd
-            text: Molekül-Editor
 
 format:
   html:
