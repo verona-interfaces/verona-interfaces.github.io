@@ -5,6 +5,7 @@ description: Standards für computerbasiertes Testen
 format:
     html:
       anchor-sections: true
+      toc: false
 
 aliases:
   - "/intro/index.html"

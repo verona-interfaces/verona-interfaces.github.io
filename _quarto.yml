@@ -9,18 +9,18 @@ website:
   site-url: https://verona-interfaces.github.io
   title: "Verona-Interfaces"
   favicon: assets/favicon.ico
-  page-navigation: true
+  page-navigation: false
   repo-url: https://github.com/verona-interfaces/verona-interfaces.github.io
   repo-actions: []
   announcement: 
     icon: exclamation-circle
     dismissable: true
-    content: "**Achtung** - Diese Website ist abgekündigt. Die Seiten werden in andere Dokumentationsorte integriert."
+    content: "**Achtung** - Diese Website ist abgekündigt. Die Seiten wurden in andere Dokumentationsorte integriert."
     type: primary
     position: below-navbar
   navbar:
     pinned: true
-    search: true
+    search: false
     logo: assets/logo_verona_small.png
     right:
       - icon: github
@@ -32,13 +32,6 @@ website:
       - text: "IQB 2026"
         href: https://www.iqb.hu-berlin.de
     left:
-      - href: index.qmd
-        text: Start
-
-  sidebar: 
-    style: "docked"
-    lang: de
-    contents:
       - href: index.qmd
         text: Start
 
