@@ -1,0 +1,64 @@
+---
+title: Integration
+subtitle: Einfügen eines Player-Moduls in ein existierendes Testsystem
+lang: de
+format:
+  html:
+    css: integration_styles.css
+    number-sections: true
+    grid:
+      body-width: 700px
+      margin-width: 450px
+aliases:
+  - "/intro/integration.html"
+---
+
+Die folgende Checkliste gibt eine grobe Orientierung für den Aufwand, der bei einer Integration der Verona-Player-Schnittstelle in eine existierende Infrastruktur zu erwarten ist. Dies steht exemplarisch für die Integrationen von Verona-Modulen. Die Farben markieren steigenden Aufwand.
+
+# Arbeitet das eigene System aufgabenweise oder strukturiert nach Tests/Teilaufgaben/Items?
+
+<span style="color:#79d279;">{{< fa thumbs-up size=2x >}}</span> Die Strukturierung im Testablauf folgt Aufgaben, d. h. Stimulus und dazu gehörende Items werden gemeinsam präsentiert und nach der Bearbeitung zur nächsten Aufgabe navigiert. Das ist genau das Szenario, das dem Verona-Player zugrunde liegt. Ein Umbau ist hier nicht erforderlich.
+
+<span style="color:#ffe680;">{{< fa triangle-exclamation size=2x >}}</span> Mehrere Aufgaben werden gleichzeitig auf einer Seite präsentiert - entweder der gesamte Test oder zumindest Testblöcke (Aufgabenfolgen). Dann muss die Verona-Schnittstelle für jede Aufgabe einzeln implementiert werden, dann also mehrfach pro Seite. Die Kommunikation mit der Aufgabe muss dann auch mehrfach implementiert werden, was das Risiko von Datenverlust erhöht. Besser wäre ein Umbau auf die aufgabenweise Präsentation.
+
+<span style="color:#ff9980;">{{< fa face-frown size=2x >}}</span> Die Aufgabe wird in Einzelteile zerlegt und stückchenweise präsentiert. Der Stimulus läuft völlig getrennt. Das kann die Verona-Schnittstelle nicht leisten, da die Kategorien "Stimulus", "Instruktion", "Item" usw. nicht transparent sind, also innerhalb der Aufgabendefinition nicht identifiziert werden können.
+
+# Werden die Html-Seiten komplett auf dem Server erzeugt oder erst dynamisch im Browser?
+
+<span style="color:#79d279;">{{< fa thumbs-up size=2x >}}</span> Eine Programmierung im Browser (JavaScript) kontrolliert die Anzeige der Aufgaben und sorgt bei Änderungen für das Speichern. Damit kann die Verona-Schnittstelle wie gedacht eingebaut und die Kommunikation eingerichtet werden. Die Kommunikation mit dem Server ist bereits grundsätzlich verfügbar.
+
+<span style="color:#ffe680;">{{< fa triangle-exclamation size=2x >}}</span> Der Server erzeugt große Teile der Seite, aber es gibt browserseitig Programmierungen für die Interaktion. Hierbei gäbe es u. U. Mehraufwand, weil z. B. das Laden der vorherigen Antworten vom Server bisher nicht im Ablauf vorgesehen war und neu implementiert werden muss.
+
+<span style="color:#ff9980;">{{< fa face-frown size=2x >}}</span> Der Server erzeugt die komplette Seite. Änderungen der Anzeige werden durch Neuladen der Seite über Schalter/Aktionsflächen bzw. Navigation/Links ausgelöst. Das wäre problematisch, weil das Laden eines Players, der Aufgabendefinition und ggf. vorher gegebener Antworten Aktionen innerhalb des Browsers sind. Wenn es hierzu bisher keine Erfahrungen gibt bzw. grundsätzlich bisher keine Kommunikation zum Server eingebaut ist, dann wäre hier größerer Aufwand nötig.
+
+# Werden zur Programmierung stark abstrahierende Frameworks genutzt?
+
+<span style="color:#79d279;">{{< fa thumbs-up size=2x >}}</span> Es werden keine Frameworks benutzt bzw. nur gut kontrollierbare Bibliotheken. Alles kann durch die beteiligten Programmierer:innen gut gesteuert werden. Der Einbau der Schnittstelle kann dann schnell erfolgen.
+
+<span style="color:#ffe680;">{{< fa triangle-exclamation size=2x >}}</span> Das genutzte Framework verdeckt viele Teile der Programmierung, kann aber gut durch Module/Komponenten erweitert werden. Ein Verona-Host kann extern vorbereitet und dann gezielt in die Automatismen des Frameworks eingebunden werden. Unter Umständen muss diese neue Komponente umfangreicher programmiert werden als beim Vollzugriff auf die Programmierung. Andererseits muss man diesen Aufwand nur einmal leisten und jemand mit demselben Framework kann diese Komponente sofort einsetzen.
+
+<span style="color:#ff9980;">{{< fa face-frown size=2x >}}</span> Das genutzte Framework kapselt Funktionalität und Navigation so stark, dass ein Eingreifen nicht möglich ist. Die Anpassungsmöglichkeiten durch Konfiguration bzw. Deklaration sind stark beschränkt. Dann muss nach Wegen gesucht werden, das Framework für die Aufgabenanzeige zu umgehen, d. h. die beteiligten Programmierer:innen begeben sich auf neues und u. U. unsicheres und undokumentiertes Terrain.
+
+# Ist die Nutzung des Html-Elementes \<iframe\> problematisch?
+
+<span style="color:#79d279;">{{< fa thumbs-up size=2x >}}</span> Nein. Ein Seitenbereich kann getrost auf diese Art betrieben werden.
+
+<span style="color:#ffe680;">{{< fa triangle-exclamation size=2x >}}</span> Einige Eigenschaften des \<iframe\>-Elements lösen unerwünschtes Verhalten aus. Z. B. könnte ein gesetzter Eingabe-Fokus innerhalb des \<iframe\>-Elements als Verlassen der Seite angesehen werden und entsprechend ein Signal gesendet werden (Testperson versucht im Internet die Antwort zu finden). Hier sind entsprechende Justierungen nötig und möglich.
+
+<span style="color:#ff9980;">{{< fa face-frown size=2x >}}</span> Das genutzte System verhindert grundsätzlich aus Sicherheitsgründen die Nutzung eines \<iframe\>-Elements. Das könnte problematisch werden, da dann die Architektur des bisherigen Systems die Verona-Schnittstelle verhindert.
+
+# Sind Formate für Aufgabendefinition und Antworten hart vorgegeben?
+
+<span style="color:#79d279;">{{< fa thumbs-up size=2x >}}</span> Nein. Aufgabendefinition und Antworten können ein beliebiges Format haben. Um die Antworten wie bisher auswerten zu können, reicht ein kleiner Konverter.
+
+<span style="color:#ffe680;">{{< fa triangle-exclamation size=2x >}}</span> Aufgabendefinition und Antworten sind vorgegeben und viele Systemkomponenten verlassen sich darauf. Hier ist Aufwand zu erwarten, über ständige Datenkonvertierungen das bisherige Verhalten abzusichern.
+
+<span style="color:#ff9980;">{{< fa face-frown size=2x >}}</span> Das gesamte System verlässt sich auf bestimmte Datenstrukturen bei Aufgabendefinition und Antworten und diese Strukturen können nicht über Datenkonvertierung aus den Verona-Daten generiert werden. Erforderliche Zusatzdaten liegen nicht vor, wie z. B. die Information, ob eine gegebene Antwort richtig ist. Hier kollidieren also grundsätzliche Auffassungen über die Datenhaltung und es ist ein erheblicher Umbau nötig.
+
+# Sind Variationen der Aufgabenanzeige in anderem Zusammenhang nötig?
+
+<span style="color:#79d279;">{{< fa thumbs-up size=2x >}}</span> Nein. Aufgaben werden zwar mit den gegebenen Antworten auch bei der Kodierung angezeigt und auch als Ansicht für Eltern, wenn sie die Antworten ihres Kindes anschauen möchten, aber es ist genau dieselbe Ansicht wie im Test. In diesen Fällen kann also einfach wieder ein Verona-Player-Host implementiert werden mit den gegebenen Antworten.
+
+<span style="color:#ffe680;">{{< fa triangle-exclamation size=2x >}}</span> Ja. Das Testsystem soll bei der Anzeige für Kodierung und für Eltern keine Änderungen erlauben. Diese Variation ist für die aktuelle Verona-Schnittstelle nicht verfügbar. Allerdings richtet eine Änderung auch keinen Schaden an, da Änderungen nicht gespeichert werden. Ein Vor- und Zurückblättern stellt die korrekte Beantwortung wieder her.
+
+<span style="color:#ff9980;">{{< fa face-frown size=2x >}}</span> Ja. Das Testsystem visualisiert mit einer Variation der Aufgabenansicht, ob die Antworten richtig oder falsch sind. Dazu werden in der Nähe der Antwortfelder grüne bzw. rote Symbole eingeblendet. Das wird bei der Ansicht durch die Lehrkräfte und für die Eltern verwendet. Diese Variation ist für die aktuelle Verona-Schnittstelle nicht verfügbar.

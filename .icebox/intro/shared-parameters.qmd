@@ -1,0 +1,31 @@
+---
+lang: de
+title: Gemeinsame Parameter
+---
+
+Verona-Module kennen einander nicht. Sie werden nach Bedarf geladen in einer nicht vorhersehbaren Reihenfolge. Allerdings gibt es Situationen, in denen Daten von einem Modul zum anderen weitergegeben werden soll. Beispiele:
+
+* Ein Player kann bei einem Convertible nicht verlässlich erkennen, ob eine Tastatur vorhanden ist. Vorsichtshalber wird der Player die eigene Tastatur einblenden, und die Testperson wird diese virtuelle Tastatur ausblenden, um die des Gerätes zu verwenden. Das passiert jedoch bei jeder Unit neu, wenn der Player geladen wird. Besser wäre, dass die Einstellung "bitte keine virtuelle Tastatur" an folgende Player weitergegeben wird.
+* Ein Schemer hat verschiedene UI-Modi - je nachdem, ob automatische oder manuelle Kodierung definiert werden soll. Den gewählten Modus an folgende Schemer weiterzugeben, wäre eine gute UX.
+* Zu Beginn der Testdurchführung wählt die Testperson einen Begleiter (Avatar). Wenn diese Figur in jeder Unit auftauchen soll wäre es klug, dem Player die Auswahl mitzuteilen und damit die richtige Figur einzublenden. Es wäre alternativ sehr aufwändig, für jede Unit getrennte Varianten für jeden Avatar zu entwickeln und dann über adaptiven Testverlauf die korrekte Anzeige zu erreichen.
+
+Unter `sharedParameters` sind also Daten zu verstehen, die ein Verona-Modul während der Laufzeit einem anderen Modul weitergeben kann. Es kann sich um ein Modul derselben Art handeln. Wenn man übergreifende Konventionen für die Parameter entwickelt, können auch unterschiedliche Module aus verschiedenen Quellen diese Informationen nutzen. Daher enthalten alle Verona-Module in ihrem Kommunikationsmodell diese Art von Datenaustausch.
+
+Die Spezifikation eines Verona-Moduls nutzt eine einfache Struktur `key` und `value`.
+
+```json
+[
+  {
+    "key": "AVATAR",
+    "value": "CRAB"
+  },
+  {
+    "key": "BACKGROUND_COLOR",
+    "value": "#34F"
+  },
+  {
+    "key": "UI_MODE",
+    "value": "RULES_ONLY"
+  }
+]
+```
