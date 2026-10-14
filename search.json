@@ -249,20 +249,14 @@
     "href": "index.html",
     "title": "Verona Interfaces",
     "section": "",
-    "text": "WichtigDiese Seiten sind umgezogen\n\n\n\nIm Zuge der Reorganisation der Dokumentationen zum TBA-System sind die Seiten jetzt im Bereich “IQB-Spezifikationen” zu finden.",
-    "crumbs": [
-      "Start"
-    ]
+    "text": "WichtigDiese Seiten sind umgezogen\n\n\n\nIm Zuge der Reorganisation der Dokumentationen zum TBA-System sind die Seiten jetzt im Bereich “IQB-Spezifikationen” zu finden."
   },
   {
     "objectID": "index.html#api-und-datenstrukturen",
     "href": "index.html#api-und-datenstrukturen",
     "title": "Verona Interfaces",
     "section": "API und Datenstrukturen",
-    "text": "API und Datenstrukturen\n\n\n\nPlugin\nBeschreibung\nLinks\n\n\n\n\nPlayer\nKomponente, die eine Aufgabe in einer Testanwendung abspielt\nSpezifikation, Dokumentation\n\n\nEditor\nKomponente, mit der man Aufgaben gestaltet\nSpezifikation, Dokumentation\n\n\nSchemer\nKomponente, mit der man die Kodieranweisungen für die Antwortverarbeitung festlegt\nSpezifikation, Dokumentation\n\n\nWidget\nÜbergreifendes Modul, das ein Player anfordern kann (z. B. Taschenrechner).\nSpezifikation, Dokumentation\n\n\nMetadaten\nAlle o. g. Komponenten enthalten Metadaten auf einheitliche Art, die hier beschrieben ist.\nSpezifikation, Dokumentation\n\n\nVariable-info\nDatenstruktur, die vom Editor und vom Schemer nbenutzt wird.\nSpezifikation, Dokumentation\n\n\n\nKontakt",
-    "crumbs": [
-      "Start"
-    ]
+    "text": "API und Datenstrukturen\n\n\n\nPlugin\nBeschreibung\nLinks\n\n\n\n\nPlayer\nKomponente, die eine Aufgabe in einer Testanwendung abspielt\nSpezifikation, Dokumentation\n\n\nEditor\nKomponente, mit der man Aufgaben gestaltet\nSpezifikation, Dokumentation\n\n\nSchemer\nKomponente, mit der man die Kodieranweisungen für die Antwortverarbeitung festlegt\nSpezifikation, Dokumentation\n\n\nWidget\nÜbergreifendes Modul, das ein Player anfordern kann (z. B. Taschenrechner).\nSpezifikation, Dokumentation\n\n\nMetadaten\nAlle o. g. Komponenten enthalten Metadaten auf einheitliche Art, die hier beschrieben ist.\nSpezifikation, Dokumentation\n\n\nVariable-info\nDatenstruktur, die vom Editor und vom Schemer nbenutzt wird.\nSpezifikation, Dokumentation\n\n\n\nKontakt"
   },
   {
     "objectID": "widget-docs/pse.html",
